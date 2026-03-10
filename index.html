@@ -2,821 +2,317 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Dimas — AI Engineer Roadmap</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; font-style: normal; }
-
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; font-style:normal; }
 :root {
-  --bg: #f4f1ed;
-  --bg2: #ede9e3;
-  --card: #ffffff;
-  --dark: #1a1a2e;
-  --accent: #4f46e5;
-  --accent2: #7c3aed;
-  --orange: #ea580c;
-  --green: #16a34a;
-  --yellow: #ca8a04;
-  --red: #dc2626;
-  --text: #1e1b18;
-  --muted: #78716c;
-  --border: #e7e2db;
-  --done: #16a34a;
-  --progress: #4f46e5;
-  --locked: #d4cfc9;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  min-height: 100vh;
-}
-
-/* ── HEADER ── */
-.header {
-  background: var(--dark);
-  padding: 0 48px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
-}
-
-.header-logo {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  color: white;
-  letter-spacing: -0.5px;
-}
-
-.header-logo span { color: #818cf8; }
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-date {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  font-weight: 500;
-}
-
-.header-streak {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.08);
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #fbbf24;
-}
-
-/* ── HERO ── */
-.hero {
-  padding: 48px 48px 0;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px;
-  align-items: start;
-}
-
-.hero-greeting {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-.hero-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(36px, 4vw, 54px);
-  font-weight: 900;
-  line-height: 1.1;
-  color: var(--dark);
-  margin-bottom: 14px;
-}
-
-.hero-title span { color: var(--accent); }
-
-.hero-sub {
-  font-size: 15px;
-  color: var(--muted);
-  font-weight: 400;
-  line-height: 1.7;
-  max-width: 520px;
-}
-
-/* ── OVERALL PROGRESS ── */
-.overall-card {
-  background: var(--dark);
-  border-radius: 20px;
-  padding: 28px 32px;
-  color: white;
-  min-width: 260px;
-  position: relative;
-  overflow: hidden;
-}
-
-.overall-card::before {
-  content: '';
-  position: absolute;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(79,70,229,0.3), transparent 70%);
-  top: -60px; right: -60px;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.overall-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 12px;
-}
-
-.overall-pct {
-  font-family: 'Fraunces', serif;
-  font-size: 56px;
-  font-weight: 900;
-  color: #818cf8;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.overall-desc {
-  font-size: 13px;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 20px;
-}
-
-.overall-bar-wrap {
-  background: rgba(255,255,255,0.1);
-  border-radius: 100px;
-  height: 6px;
-  overflow: hidden;
-}
-
-.overall-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #818cf8, #a78bfa);
-  border-radius: 100px;
-  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-}
-
-/* ── STATS ROW ── */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  padding: 32px 48px 0;
-}
-
-.stat-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 20px 24px;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.stat-icon {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.stat-icon.blue { background: #eff6ff; }
-.stat-icon.green { background: #f0fdf4; }
-.stat-icon.orange { background: #fff7ed; }
-.stat-icon.purple { background: #faf5ff; }
-
-.stat-num {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--dark);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 3px;
-  font-weight: 500;
-}
-
-/* ── SECTION TITLE ── */
-.section-wrap {
-  padding: 40px 48px;
-}
-
-.section-title {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--dark);
-  margin-bottom: 6px;
-}
-
-.section-sub {
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 28px;
-}
-
-/* ── PHASE CARDS ── */
-.phases {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.phase-card {
-  background: var(--card);
-  border-radius: 20px;
-  border: 1.5px solid var(--border);
-  overflow: hidden;
-  transition: box-shadow 0.3s;
-}
-
-.phase-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-}
-
-.phase-header {
-  padding: 24px 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.phase-num {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 900;
-  color: white;
-  flex-shrink: 0;
-}
-
-.phase-num.p1 { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
-.phase-num.p2 { background: linear-gradient(135deg, #ea580c, #f59e0b); }
-.phase-num.p3 { background: linear-gradient(135deg, #16a34a, #0891b2); }
-.phase-num.p4 { background: linear-gradient(135deg, #7c3aed, #ec4899); }
-
-.phase-info { flex: 1; }
-
-.phase-name {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 4px;
-}
-
-.phase-period {
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.phase-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.phase-progress-wrap {
-  text-align: right;
-}
-
-.phase-pct {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.phase-pct-label {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-.phase-bar-outer {
-  width: 120px;
-  height: 6px;
-  background: var(--bg2);
-  border-radius: 100px;
-  overflow: hidden;
-  margin-top: 8px;
-}
-
-.phase-bar-inner {
-  height: 100%;
-  border-radius: 100px;
-  transition: width 0.6s ease;
-}
-
-.bar-p1 { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
-.bar-p2 { background: linear-gradient(90deg, #ea580c, #f59e0b); }
-.bar-p3 { background: linear-gradient(90deg, #16a34a, #0891b2); }
-.bar-p4 { background: linear-gradient(90deg, #7c3aed, #ec4899); }
-
-.phase-toggle {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--bg2);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: all 0.2s;
-  color: var(--muted);
-}
-
-.phase-toggle:hover { background: var(--border); }
-
-.phase-toggle.open { transform: rotate(180deg); }
-
-/* ── TOPICS ── */
-.phase-body {
-  display: none;
-  padding: 0 28px 24px;
-  border-top: 1px solid var(--border);
-}
-
-.phase-body.open { display: block; }
-
-.phase-income {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #f0fdf4;
-  color: #16a34a;
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
-  margin: 16px 0;
-  border: 1px solid #bbf7d0;
-}
-
-.topics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.topic-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s;
-  background: white;
-  user-select: none;
-}
-
-.topic-item:hover { border-color: var(--accent); background: #fafafa; }
-
-.topic-item.done {
-  background: #f0fdf4;
-  border-color: #86efac;
-}
-
-.topic-item.done .topic-check { background: var(--green); border-color: var(--green); }
-.topic-item.done .topic-check::after { display: block; }
-.topic-item.done .topic-name { color: var(--green); text-decoration: line-through; text-decoration-color: #86efac; }
-
-.topic-item.current {
-  background: #eff6ff;
-  border-color: #93c5fd;
-}
-
-.topic-item.current .topic-check { border-color: var(--accent); }
-
-.topic-check {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  flex-shrink: 0;
-  position: relative;
-  transition: all 0.2s;
-}
-
-.topic-check::after {
-  content: '✓';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 11px;
-  color: white;
-  font-weight: 700;
-  display: none;
-}
-
-.topic-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  flex: 1;
-  line-height: 1.4;
-}
-
-.topic-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 100px;
-  letter-spacing: 0.5px;
-}
-
-.badge-now { background: #fef3c7; color: #92400e; }
-.badge-next { background: #ede9fe; color: #5b21b6; }
-.badge-later { background: #f1f5f9; color: #64748b; }
-
-/* ── NOTES ── */
-.notes-section {
-  padding: 0 48px 48px;
-}
-
-.notes-card {
-  background: var(--card);
-  border-radius: 20px;
-  border: 1.5px solid var(--border);
-  padding: 28px;
-}
-
-.notes-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.notes-title {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--dark);
-}
-
-.btn-add-note {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 100px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-add-note:hover { background: #4338ca; }
-
-.note-input-wrap {
-  display: none;
-  margin-bottom: 16px;
-}
-
-.note-input-wrap.open { display: flex; gap: 10px; }
-
-.note-input {
-  flex: 1;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.note-input:focus { border-color: var(--accent); }
-
-.btn-save-note {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-
-.btn-save-note:hover { background: #4338ca; }
-
-.notes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.note-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
-  background: var(--bg);
-  border-radius: 12px;
-  animation: fadeUp 0.3s ease;
-}
-
-.note-date {
-  font-size: 11px;
-  color: var(--muted);
-  white-space: nowrap;
-  margin-top: 2px;
-  min-width: 80px;
-}
-
-.note-text {
-  font-size: 14px;
-  color: var(--text);
-  flex: 1;
-  line-height: 1.5;
-}
-
-.note-delete {
-  background: none;
-  border: none;
-  color: var(--border);
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.2s;
-  flex-shrink: 0;
-}
-
-.note-delete:hover { color: var(--red); }
-
-.notes-empty {
-  text-align: center;
-  padding: 32px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* ── MODAL KONFIRMASI ── */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  backdrop-filter: blur(4px);
-}
-
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-
-.modal-box {
-  background: white;
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 360px;
-  width: 90%;
-  text-align: center;
-  transform: scale(0.9);
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-}
-
-.modal-overlay.open .modal-box { transform: scale(1); }
-
-.modal-icon { font-size: 48px; margin-bottom: 16px; }
-
-.modal-title {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 8px;
-}
-
-.modal-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.modal-btns { display: flex; gap: 10px; }
-
-.btn-modal-confirm {
-  flex: 1;
-  background: var(--green);
-  color: white;
-  border: none;
-  padding: 13px;
-  border-radius: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-modal-confirm:hover { background: #15803d; }
-
-.btn-modal-cancel {
-  flex: 1;
-  background: var(--bg);
-  color: var(--muted);
-  border: 1.5px solid var(--border);
-  padding: 13px;
-  border-radius: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-modal-cancel:hover { border-color: var(--text); color: var(--text); }
+  --bg:#f4f1ed; --bg2:#ede9e3; --card:#ffffff; --border:#e7e2db;
+  --text:#1e1b18; --muted:#78716c; --dark:#1a1a2e;
+  --accent:#4f46e5; --accent2:#7c3aed;
+  --green:#16a34a; --greenl:#f0fdf4; --greenb:#86efac;
+  --orange:#ea580c; --orangel:#fff7ed; --orangeb:#fed7aa;
+  --teal:#0891b2; --teal2:#ecfeff;
+  --purple:#9333ea; --purplel:#fdf4ff; --purpleb:#e879f9;
+  --gold:#ca8a04; --goldl:#fefce8; --goldb:#fde68a;
+  --red:#dc2626;
+}
+html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg2); color:var(--text); overflow:hidden; }
+
+/* ── SHELL ── */
+.shell { max-width:430px; margin:0 auto; height:100vh; display:flex; flex-direction:column; background:var(--bg); overflow:hidden; box-shadow:0 0 80px rgba(26,26,46,0.2); }
+
+/* ── TOPBAR ── */
+.topbar { background:var(--dark); padding:0 18px; height:56px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.tb-logo { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; color:white; }
+.tb-logo span { color:#818cf8; }
+.tb-right { display:flex; align-items:center; gap:8px; }
+.tb-date { font-size:11px; color:rgba(255,255,255,0.4); font-weight:500; }
+.tb-streak { display:flex; align-items:center; gap:4px; background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:100px; font-size:11px; font-weight:700; color:#fbbf24; }
+
+/* ── PAGES ── */
+.pages { flex:1; overflow:hidden; position:relative; }
+.page { position:absolute; inset:0; overflow-y:auto; opacity:0; pointer-events:none; transform:translateY(10px); transition:all 0.3s cubic-bezier(.4,0,.2,1); padding-bottom:80px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.page::-webkit-scrollbar { width:3px; }
+.page::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
+.page.active { opacity:1; pointer-events:all; transform:translateY(0); }
+
+/* ── BOTTOM NAV ── */
+.bnav { height:68px; background:var(--card); border-top:1.5px solid var(--border); display:flex; align-items:center; padding:0 4px 6px; flex-shrink:0; box-shadow:0 -4px 20px rgba(26,26,46,0.07); }
+.bni { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:7px 2px; border-radius:12px; transition:all 0.2s; }
+.bni:active { transform:scale(0.88); }
+.bni.on { background:#eef2ff; }
+.bni-ico { font-size:18px; opacity:0.3; transition:all 0.2s; }
+.bni-lbl { font-size:9.5px; color:var(--muted); font-weight:600; transition:all 0.2s; }
+.bni.on .bni-ico { opacity:1; }
+.bni.on .bni-lbl { color:var(--accent); font-weight:700; }
+
+/* ══════════════════════════════
+   OVERVIEW PAGE
+══════════════════════════════ */
+.ov-hero { background:linear-gradient(145deg,#1a1a2e 0%,#16213e 55%,#312e81 100%); padding:22px 18px; position:relative; overflow:hidden; }
+.ov-hero::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%); top:-70px; right:-50px; pointer-events:none; }
+.ov-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.05; line-height:1; pointer-events:none; }
+.ov-greet { font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:7px; }
+.ov-title { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:900; color:white; line-height:1.12; margin-bottom:5px; }
+.ov-title span { background:linear-gradient(90deg,#a5b4fc,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.ov-sub { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:18px; }
+.prog-big { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); border-radius:16px; padding:15px 18px; }
+.pb-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+.pb-label { font-size:10px; font-weight:600; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; }
+.pb-pct { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:900; color:#a5b4fc; }
+.pb-bar { height:5px; background:rgba(255,255,255,0.1); border-radius:100px; overflow:hidden; margin-bottom:5px; }
+.pb-fill { height:100%; background:linear-gradient(90deg,#818cf8,#a78bfa); border-radius:100px; transition:width 0.8s cubic-bezier(.4,0,.2,1); }
+.pb-desc { font-size:11px; color:rgba(255,255,255,0.4); }
+
+/* Stat strip */
+.stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:10px 14px 0; }
+.sc { background:var(--card); border-radius:13px; padding:13px 8px; border:1.5px solid var(--border); text-align:center; }
+.sc-ico { font-size:18px; margin-bottom:5px; }
+.sc-n { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); line-height:1; }
+.sc-l { font-size:9.5px; color:var(--muted); margin-top:2px; font-weight:500; }
+
+/* Phase overview list */
+.sec-h { font-size:10.5px; font-weight:700; color:var(--muted); letter-spacing:0.6px; text-transform:uppercase; display:flex; align-items:center; gap:8px; padding:0 14px; margin-top:14px; }
+.sec-h::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.ph-ov-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
+.ph-ov { background:var(--card); border-radius:14px; padding:14px; border:1.5px solid var(--border); display:flex; gap:12px; align-items:center; cursor:pointer; transition:all 0.2s; }
+.ph-ov:hover { border-color:#c7d2fe; box-shadow:0 2px 16px rgba(79,70,229,0.09); }
+.ph-ov:active { transform:scale(0.98); }
+.ph-ov-num { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:18px; font-weight:900; color:white; flex-shrink:0; }
+.ph-ov-body { flex:1; min-width:0; }
+.ph-ov-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ph-ov-income { font-size:10.5px; color:var(--green); font-weight:600; margin-bottom:6px; }
+.ph-ov-bar-wrap { height:4px; background:var(--border); border-radius:100px; overflow:hidden; }
+.ph-ov-bar-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
+.ph-ov-stat { font-size:10px; color:var(--muted); margin-top:4px; font-weight:600; }
+.ph-ov-arr { width:26px; height:26px; border-radius:8px; background:var(--bg); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--muted); flex-shrink:0; }
+
+/* ══════════════════════════════
+   PHASE PAGES
+══════════════════════════════ */
+.ph-hero { padding:20px 16px 18px; position:relative; overflow:hidden; }
+.ph-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.06; line-height:1; pointer-events:none; }
+.ph-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:7px; }
+.ph-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; line-height:1.2; margin-bottom:5px; }
+.ph-sub { font-size:12px; line-height:1.6; margin-bottom:12px; }
+.income-pill { display:inline-flex; align-items:center; gap:5px; background:var(--greenl); border:1px solid var(--greenb); color:var(--green); font-size:11px; font-weight:700; padding:5px 12px; border-radius:100px; }
+
+/* Phase progress bar */
+.ph-prog { background:var(--card); border-radius:14px; margin:10px 14px 0; padding:13px 16px; border:1.5px solid var(--border); }
+.php-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.php-lbl { font-size:11px; font-weight:700; color:var(--muted); }
+.php-val { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; }
+.php-bar { height:5px; background:var(--border); border-radius:100px; overflow:hidden; }
+.php-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
+
+/* Topic list */
+.topic-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
+.topic-card { background:var(--card); border-radius:13px; padding:13px 14px; border:1.5px solid var(--border); display:flex; align-items:center; gap:11px; cursor:pointer; transition:all 0.2s; user-select:none; }
+.topic-card:hover { border-color:#c7d2fe; }
+.topic-card:active { transform:scale(0.98); }
+.topic-card.done { background:var(--greenl); border-color:var(--greenb); }
+.topic-card.done .tc-chk { background:var(--green); border-color:var(--green); color:white; }
+.topic-card.done .tc-name { color:var(--green); text-decoration:line-through; text-decoration-color:#86efac; }
+.tc-chk { width:22px; height:22px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; transition:all 0.2s; background:var(--bg); }
+.tc-body { flex:1; min-width:0; }
+.tc-name { font-size:13px; font-weight:600; color:var(--text); line-height:1.4; transition:all 0.2s; }
+.tc-badge { font-size:10px; font-weight:700; padding:3px 9px; border-radius:100px; flex-shrink:0; white-space:nowrap; }
+.b-now  { background:#fef3c7; color:#92400e; }
+.b-next { background:#ede9fe; color:#5b21b6; }
+.b-later{ background:#f1f5f9; color:#64748b; }
+
+/* ══════════════════════════════
+   CATATAN PAGE
+══════════════════════════════ */
+.notes-hero { background:var(--dark); padding:18px 16px; }
+.notes-hero-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; color:white; margin-bottom:4px; }
+.notes-hero-sub { font-size:12px; color:rgba(255,255,255,0.45); }
+.note-add { padding:12px 14px 0; }
+.note-input-row { display:flex; gap:8px; background:var(--card); border-radius:13px; padding:11px 14px; border:1.5px solid var(--border); transition:border-color 0.2s; }
+.note-input-row:focus-within { border-color:var(--accent); }
+.note-inp { flex:1; border:none; outline:none; font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color:var(--text); background:transparent; }
+.note-inp::placeholder { color:var(--muted); }
+.note-save { background:var(--accent); color:white; border:none; padding:7px 14px; border-radius:9px; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
+.note-save:active { transform:scale(0.95); }
+.notes-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
+.note-item { background:var(--card); border-radius:12px; padding:13px 14px; border:1.5px solid var(--border); display:flex; gap:10px; align-items:flex-start; animation:fadeUp 0.3s ease; }
+.note-bullet { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:6px; }
+.note-content { flex:1; min-width:0; }
+.note-date-lbl { font-size:10px; color:var(--muted); font-weight:600; margin-bottom:2px; }
+.note-txt { font-size:13px; color:var(--text); line-height:1.55; }
+.note-del { background:none; border:none; color:var(--border); font-size:14px; cursor:pointer; transition:color 0.2s; padding:0 2px; flex-shrink:0; }
+.note-del:hover { color:var(--red); }
+.notes-empty { text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; line-height:1.8; }
+
+/* ══════════════════════════════
+   MODAL (bottom sheet)
+══════════════════════════════ */
+.modal-ov { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:500; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(4px); }
+.modal-ov.open { opacity:1; pointer-events:all; }
+.modal-box { background:white; border-radius:24px 24px 0 0; padding:24px 20px 32px; width:100%; max-width:430px; text-align:center; transform:translateY(100%); transition:transform 0.35s cubic-bezier(.4,0,.2,1); }
+.modal-ov.open .modal-box { transform:translateY(0); }
+.modal-handle { width:38px; height:4px; background:var(--border); border-radius:100px; margin:0 auto 18px; }
+.modal-ico { font-size:42px; margin-bottom:10px; }
+.modal-title { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); margin-bottom:5px; }
+.modal-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+.modal-btns { display:flex; gap:9px; }
+.btn-confirm { flex:1; color:white; border:none; padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:opacity 0.2s; }
+.btn-confirm:active { opacity:0.85; }
+.btn-cancel { flex:1; background:var(--bg); color:var(--muted); border:1.5px solid var(--border); padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+.btn-cancel:hover { color:var(--text); border-color:var(--text); }
 
 /* ── TOAST ── */
-.toast {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  background: var(--dark);
-  color: white;
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 600;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.3s;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  max-width: 320px;
-}
+.toast { position:fixed; bottom:82px; left:50%; transform:translateX(-50%) translateY(16px); background:var(--dark); color:white; padding:11px 20px; border-radius:100px; font-size:13px; font-weight:600; z-index:600; opacity:0; transition:all 0.3s; white-space:nowrap; box-shadow:0 6px 24px rgba(0,0,0,0.18); pointer-events:none; }
+.toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
-.toast.show { transform: translateY(0); opacity: 1; }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .header { padding: 0 20px; }
-  .hero { grid-template-columns: 1fr; padding: 28px 20px 0; }
-  .overall-card { min-width: auto; }
-  .stats-row { grid-template-columns: 1fr 1fr; padding: 20px 20px 0; }
-  .section-wrap { padding: 28px 20px; }
-  .topics-grid { grid-template-columns: 1fr; }
-  .notes-section { padding: 0 20px 40px; }
-  .phase-header { padding: 18px 20px; gap: 14px; }
-  .phase-body { padding: 0 20px 20px; }
-}
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 </style>
 </head>
 <body>
+<div class="shell">
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-logo">Dimas<span>.AI</span></div>
-  <div class="header-right">
-    <div class="header-date" id="headerDate"></div>
-    <div class="header-streak" id="streakBadge">🔥 <span id="streakNum">0</span> Hari Beruntun</div>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-logo">Dimas<span>.AI</span></div>
+    <div class="tb-right">
+      <div class="tb-date" id="tbDate"></div>
+      <div class="tb-streak">🔥 <span id="streakNum">0</span> Hari</div>
+    </div>
   </div>
-</header>
 
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <div class="hero-greeting">Selamat Datang Kembali</div>
-    <h1 class="hero-title">Halo, <span>Dimas</span> 👋<br>Roadmap AI Engineer</h1>
-    <p class="hero-sub">Pantau progres belajarmu menuju AI Engineer & AI Automation Specialist. Centang setiap topik yang sudah kamu selesaikan.</p>
-  </div>
-  <div class="overall-card">
-    <div class="overall-label">Total Progres</div>
-    <div class="overall-pct" id="overallPct">0%</div>
-    <div class="overall-desc" id="overallDesc">0 dari 0 topik selesai</div>
-    <div class="overall-bar-wrap">
-      <div class="overall-bar-fill" id="overallBar" style="width:0%"></div>
-    </div>
-  </div>
-</div>
+  <div class="pages">
 
-<!-- STATS -->
-<div class="stats-row">
-  <div class="stat-card">
-    <div class="stat-icon blue">✅</div>
-    <div>
-      <div class="stat-num" id="statDone">0</div>
-      <div class="stat-label">Topik Selesai</div>
-    </div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon orange">⏳</div>
-    <div>
-      <div class="stat-num" id="statLeft">0</div>
-      <div class="stat-label">Tersisa</div>
-    </div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon purple">📅</div>
-    <div>
-      <div class="stat-num" id="statPhase">1</div>
-      <div class="stat-label">Fase Aktif</div>
-    </div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon green">🗓️</div>
-    <div>
-      <div class="stat-num" id="statDay">1</div>
-      <div class="stat-label">Hari Belajar</div>
-    </div>
-  </div>
-</div>
+    <!-- ══ OVERVIEW ══ -->
+    <div class="page active" id="page-overview">
+      <div class="ov-hero">
+        <div class="ov-deco">🤖</div>
+        <div class="ov-greet">Selamat Datang Kembali</div>
+        <div class="ov-title">Halo, <span>Dimas</span> 👋</div>
+        <div class="ov-sub">Pantau perjalananmu jadi AI Engineer. Tidak ada tekanan waktu — yang penting satu langkah demi satu langkah, konsisten!</div>
+        <div class="prog-big">
+          <div class="pb-top"><div class="pb-label">Total Progress</div><div class="pb-pct" id="ov-pct">0%</div></div>
+          <div class="pb-bar"><div class="pb-fill" id="ov-bar" style="width:0%"></div></div>
+          <div class="pb-desc" id="ov-desc">0 dari 40 topik selesai</div>
+        </div>
+      </div>
 
-<!-- ROADMAP PHASES -->
-<div class="section-wrap">
-  <h2 class="section-title">Roadmap Belajar</h2>
-  <p class="section-sub">Klik topik untuk menandai sudah selesai. Klik judul fase untuk buka/tutup.</p>
+      <div class="stat-strip">
+        <div class="sc"><div class="sc-ico">✅</div><div class="sc-n" id="st-done">0</div><div class="sc-l">Selesai</div></div>
+        <div class="sc"><div class="sc-ico">⏳</div><div class="sc-n" id="st-left">40</div><div class="sc-l">Tersisa</div></div>
+        <div class="sc"><div class="sc-ico">📍</div><div class="sc-n" id="st-phase">1</div><div class="sc-l">Fase Aktif</div></div>
+        <div class="sc"><div class="sc-ico">📝</div><div class="sc-n" id="st-notes">0</div><div class="sc-l">Catatan</div></div>
+      </div>
 
-  <div class="phases" id="phasesContainer"></div>
-</div>
+      <div class="sec-h" style="padding:14px 14px 0;">4 Fase Perjalananmu</div>
+      <div class="ph-ov-list" id="ph-ov-list"></div>
+    </div>
 
-<!-- CATATAN HARIAN -->
-<div class="notes-section">
-  <div class="notes-card">
-    <div class="notes-header">
-      <div class="notes-title">📓 Catatan Belajar</div>
-      <button class="btn-add-note" onclick="toggleNoteInput()">+ Tambah Catatan</button>
+    <!-- ══ FASE 1 ══ -->
+    <div class="page" id="page-f1">
+      <div class="ph-hero" style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-bottom:1.5px solid #c7d2fe;">
+        <div class="ph-deco">🌐</div>
+        <div class="ph-eyebrow" style="color:#4f46e5;">Fase 1 — Fondasi</div>
+        <div class="ph-title" style="color:#312e81;">HTML, CSS, JS<br>&amp; Python Dasar</div>
+        <div class="ph-sub" style="color:#3730a3;">Bangun fondasi coding yang kuat. Website pertama, logika pemrograman, dan Python — semua dimulai dari sini.</div>
+        <div class="income-pill">💰 Rp 1–3 juta/bln dari website klien</div>
+      </div>
+      <div class="ph-prog" id="prog-f1">
+        <div class="php-row"><div class="php-lbl">Progress Fase 1</div><div class="php-val" id="pv-f1" style="color:#4f46e5;">0%</div></div>
+        <div class="php-bar"><div class="php-fill" id="pb-f1" style="width:0%;background:linear-gradient(90deg,#4f46e5,#7c3aed);"></div></div>
+      </div>
+      <div class="topic-list" id="tl-f1"></div>
     </div>
-    <div class="note-input-wrap" id="noteInputWrap">
-      <input type="text" class="note-input" id="noteInput" placeholder="Tulis catatan hari ini... (contoh: Hari 2 CSS selesai, belajar padding dan margin)" onkeydown="if(event.key==='Enter') simpanCatatan()" />
-      <button class="btn-save-note" onclick="simpanCatatan()">Simpan</button>
+
+    <!-- ══ FASE 2 ══ -->
+    <div class="page" id="page-f2">
+      <div class="ph-hero" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-bottom:1.5px solid #fed7aa;">
+        <div class="ph-deco">🤖</div>
+        <div class="ph-eyebrow" style="color:#ea580c;">Fase 2 — Masuk Dunia AI</div>
+        <div class="ph-title" style="color:#7c2d12;">OpenAI, Claude API<br>&amp; Chatbot Pertama</div>
+        <div class="ph-sub" style="color:#9a3412;">Pakai AI di kode Python. Bangun chatbot pertama dan mulai jual ke klien bisnis lokal maupun UMKM.</div>
+        <div class="income-pill">💰 Rp 3–8 juta/bln setup chatbot UMKM</div>
+      </div>
+      <div class="ph-prog">
+        <div class="php-row"><div class="php-lbl">Progress Fase 2</div><div class="php-val" id="pv-f2" style="color:#ea580c;">0%</div></div>
+        <div class="php-bar"><div class="php-fill" id="pb-f2" style="width:0%;background:linear-gradient(90deg,#ea580c,#f59e0b);"></div></div>
+      </div>
+      <div class="topic-list" id="tl-f2"></div>
     </div>
-    <div class="notes-list" id="notesList"></div>
-  </div>
-</div>
+
+    <!-- ══ FASE 3 ══ -->
+    <div class="page" id="page-f3">
+      <div class="ph-hero" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-bottom:1.5px solid #86efac;">
+        <div class="ph-deco">🧠</div>
+        <div class="ph-eyebrow" style="color:#16a34a;">Fase 3 — Bangun AI Agent</div>
+        <div class="ph-title" style="color:#14532d;">AI Agent, Backend<br>&amp; Produk AI Lengkap</div>
+        <div class="ph-sub" style="color:#166534;">AI yang bisa berpikir dan bertindak sendiri. Bangun produk AI yang bisa dijual bulanan ke perusahaan.</div>
+        <div class="income-pill">💰 Rp 15–40 juta/bln produk AI bulanan</div>
+      </div>
+      <div class="ph-prog">
+        <div class="php-row"><div class="php-lbl">Progress Fase 3</div><div class="php-val" id="pv-f3" style="color:#16a34a;">0%</div></div>
+        <div class="php-bar"><div class="php-fill" id="pb-f3" style="width:0%;background:linear-gradient(90deg,#16a34a,#0891b2);"></div></div>
+      </div>
+      <div class="topic-list" id="tl-f3"></div>
+    </div>
+
+    <!-- ══ FASE 4 ══ -->
+    <div class="page" id="page-f4">
+      <div class="ph-hero" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border-bottom:1.5px solid #e879f9;">
+        <div class="ph-deco">🚀</div>
+        <div class="ph-eyebrow" style="color:#9333ea;">Fase 4 — Spesialisasi &amp; Skala</div>
+        <div class="ph-title" style="color:#581c87;">Remote Internasional<br>&amp; Agency AI</div>
+        <div class="ph-sub" style="color:#6b21a8;">Pilih industri, bangun reputasi global, freelance internasional, dan akhirnya bangun agency AI milikmu sendiri.</div>
+        <div class="income-pill">💰 $3.000–$10.000/bln remote</div>
+      </div>
+      <div class="ph-prog">
+        <div class="php-row"><div class="php-lbl">Progress Fase 4</div><div class="php-val" id="pv-f4" style="color:#9333ea;">0%</div></div>
+        <div class="php-bar"><div class="php-fill" id="pb-f4" style="width:0%;background:linear-gradient(90deg,#9333ea,#ec4899);"></div></div>
+      </div>
+      <div class="topic-list" id="tl-f4"></div>
+    </div>
+
+    <!-- ══ CATATAN ══ -->
+    <div class="page" id="page-catatan">
+      <div class="notes-hero">
+        <div class="notes-hero-title">📓 Catatan Belajar Dimas</div>
+        <div class="notes-hero-sub">Catat apa yang sudah dipelajari hari ini</div>
+      </div>
+      <div class="note-add">
+        <div class="note-input-row">
+          <input type="text" class="note-inp" id="noteInp" placeholder="Contoh: Hari ini belajar CSS Flexbox, sudah paham..." onkeydown="if(event.key==='Enter')simpanCatatan()">
+          <button class="note-save" onclick="simpanCatatan()">Simpan</button>
+        </div>
+      </div>
+      <div class="notes-list" id="notesList"></div>
+    </div>
+
+  </div><!-- /pages -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bnav">
+    <div class="bni on" id="nav-overview" onclick="goPage('overview')"><div class="bni-ico">🏠</div><div class="bni-lbl">Home</div></div>
+    <div class="bni" id="nav-f1" onclick="goPage('f1')"><div class="bni-ico">🌐</div><div class="bni-lbl">Fase 1</div></div>
+    <div class="bni" id="nav-f2" onclick="goPage('f2')"><div class="bni-ico">🤖</div><div class="bni-lbl">Fase 2</div></div>
+    <div class="bni" id="nav-f3" onclick="goPage('f3')"><div class="bni-ico">🧠</div><div class="bni-lbl">Fase 3</div></div>
+    <div class="bni" id="nav-f4" onclick="goPage('f4')"><div class="bni-ico">🚀</div><div class="bni-lbl">Fase 4</div></div>
+    <div class="bni" id="nav-catatan" onclick="goPage('catatan')"><div class="bni-ico">📓</div><div class="bni-lbl">Catatan</div></div>
+  </nav>
+
+</div><!-- /shell -->
 
 <!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-ov" id="modalOv" onclick="if(event.target===this)tutupModal()">
   <div class="modal-box">
-    <div class="modal-icon" id="modalIcon">🎉</div>
-    <div class="modal-title" id="modalTitle">Tandai Selesai?</div>
-    <div class="modal-desc" id="modalDesc">Apakah kamu sudah benar-benar menyelesaikan topik ini?</div>
+    <div class="modal-handle"></div>
+    <div class="modal-ico" id="mIco">🎉</div>
+    <div class="modal-title" id="mTitle">Tandai Selesai?</div>
+    <div class="modal-desc" id="mDesc">Apakah topik ini sudah benar-benar kamu selesaikan?</div>
     <div class="modal-btns">
-      <button class="btn-modal-confirm" id="modalConfirm">Ya, Selesai!</button>
-      <button class="btn-modal-cancel" onclick="tutupModal()">Batal</button>
+      <button class="btn-confirm" id="mBtn" onclick="konfirmasi()">Ya, Selesai!</button>
+      <button class="btn-cancel" onclick="tutupModal()">Batal</button>
     </div>
   </div>
 </div>
@@ -825,323 +321,277 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DATA ROADMAP ────────────────────────────────────────────────
-const roadmap = [
+// ─────────────────────────────────────────
+//  DATA ROADMAP — 4 fase, 40 topik total
+//  Tidak ada bulan/deadline → bebas tempo
+// ─────────────────────────────────────────
+var roadmap = [
   {
-    id: 'p1',
-    nama: 'Fase 1 — Fondasi',
-    periode: 'Sekarang — Bulan 6',
-    warna: 'p1',
-    bar: 'bar-p1',
-    income: 'Rp 1–3 juta/bulan dari website klien',
-    topik: [
-      { id: 't1', nama: 'HTML Dasar — Struktur & Tag', badge: 'now' },
-      { id: 't2', nama: 'CSS Dasar — Warna, Font, Padding', badge: 'now' },
-      { id: 't3', nama: 'CSS Lanjut — Flexbox & Grid', badge: 'now' },
-      { id: 't4', nama: 'Javascript Dasar — Variabel & Fungsi', badge: 'next' },
-      { id: 't5', nama: 'Javascript — DOM Manipulation', badge: 'next' },
-      { id: 't6', nama: 'Python Dasar — Variabel, Loop, Kondisi', badge: 'next' },
-      { id: 't7', nama: 'Python — Fungsi & List', badge: 'next' },
-      { id: 't8', nama: 'Python — File Handling & Modules', badge: 'later' },
-      { id: 't9', nama: 'Git & GitHub Dasar', badge: 'later' },
-      { id: 't10', nama: 'Deploy website pertama ke Vercel', badge: 'later' },
+    id:'f1', nav:'f1',
+    nama:'Fase 1 — Fondasi',
+    income:'Rp 1–3 juta/bln dari website klien',
+    numColor:'linear-gradient(135deg,#4f46e5,#7c3aed)',
+    barGrad:'linear-gradient(90deg,#4f46e5,#7c3aed)',
+    pvColor:'#4f46e5',
+    ovBg:'#eef2ff', ovBorder:'#c7d2fe',
+    topik:[
+      {id:'t1',  nama:'HTML Dasar — Struktur & Tag',             badge:'now'},
+      {id:'t2',  nama:'CSS Dasar — Warna, Font, Padding',        badge:'now'},
+      {id:'t3',  nama:'CSS Lanjut — Flexbox & Grid',             badge:'now'},
+      {id:'t4',  nama:'Javascript Dasar — Variabel & Fungsi',    badge:'next'},
+      {id:'t5',  nama:'Javascript — DOM Manipulation',           badge:'next'},
+      {id:'t6',  nama:'Python Dasar — Variabel, Loop, Kondisi',  badge:'next'},
+      {id:'t7',  nama:'Python — Fungsi & List',                  badge:'next'},
+      {id:'t8',  nama:'Python — File Handling & Modules',        badge:'later'},
+      {id:'t9',  nama:'Git & GitHub Dasar',                      badge:'later'},
+      {id:'t10', nama:'Deploy website pertama ke Vercel',        badge:'later'},
     ]
   },
   {
-    id: 'p2',
-    nama: 'Fase 2 — Masuk Dunia AI',
-    periode: 'Bulan 6 — Bulan 18',
-    warna: 'p2',
-    bar: 'bar-p2',
-    income: 'Rp 3–8 juta/bulan setup chatbot UMKM',
-    topik: [
-      { id: 't11', nama: 'Python Menengah — OOP & Class', badge: 'later' },
-      { id: 't12', nama: 'Python — Library Requests & JSON', badge: 'later' },
-      { id: 't13', nama: 'Cara Kerja API — Konsep & Praktik', badge: 'later' },
-      { id: 't14', nama: 'OpenAI API — Pertama Kali', badge: 'later' },
-      { id: 't15', nama: 'Claude API — Integrasi Dasar', badge: 'later' },
-      { id: 't16', nama: 'Prompt Engineering Tingkat Lanjut', badge: 'later' },
-      { id: 't17', nama: 'LangChain Dasar — Konsep Chain', badge: 'later' },
-      { id: 't18', nama: 'Bangun Chatbot AI Pertama', badge: 'later' },
-      { id: 't19', nama: 'Integrasi Chatbot ke WhatsApp', badge: 'later' },
-      { id: 't20', nama: 'Jual Chatbot Pertama ke Klien', badge: 'later' },
+    id:'f2', nav:'f2',
+    nama:'Fase 2 — Masuk Dunia AI',
+    income:'Rp 3–8 juta/bln setup chatbot UMKM',
+    numColor:'linear-gradient(135deg,#ea580c,#f59e0b)',
+    barGrad:'linear-gradient(90deg,#ea580c,#f59e0b)',
+    pvColor:'#ea580c',
+    ovBg:'#fff7ed', ovBorder:'#fed7aa',
+    topik:[
+      {id:'t11', nama:'Python Menengah — OOP & Class',           badge:'later'},
+      {id:'t12', nama:'Python — Library Requests & JSON',        badge:'later'},
+      {id:'t13', nama:'Cara Kerja API — Konsep & Praktik',       badge:'later'},
+      {id:'t14', nama:'OpenAI API — Pertama Kali',               badge:'later'},
+      {id:'t15', nama:'Claude API — Integrasi Dasar',            badge:'later'},
+      {id:'t16', nama:'Prompt Engineering Tingkat Lanjut',       badge:'later'},
+      {id:'t17', nama:'LangChain Dasar — Konsep Chain',          badge:'later'},
+      {id:'t18', nama:'Bangun Chatbot AI Pertama',               badge:'later'},
+      {id:'t19', nama:'Integrasi Chatbot ke WhatsApp',           badge:'later'},
+      {id:'t20', nama:'Jual Chatbot Pertama ke Klien',           badge:'later'},
     ]
   },
   {
-    id: 'p3',
-    nama: 'Fase 3 — Bangun AI Agent',
-    periode: 'Bulan 18 — Bulan 36',
-    warna: 'p3',
-    bar: 'bar-p3',
-    income: 'Rp 15–40 juta/bulan produk AI bulanan',
-    topik: [
-      { id: 't21', nama: 'LangChain Lanjut — Memory & Tools', badge: 'later' },
-      { id: 't22', nama: 'Vector Database — Konsep & Praktik', badge: 'later' },
-      { id: 't23', nama: 'Bangun AI Agent Pertama', badge: 'later' },
-      { id: 't24', nama: 'AI Agent dengan Web Search Tool', badge: 'later' },
-      { id: 't25', nama: 'Workflow Automation dengan AI', badge: 'later' },
-      { id: 't26', nama: 'Backend — Python FastAPI Dasar', badge: 'later' },
-      { id: 't27', nama: 'Database — PostgreSQL Dasar', badge: 'later' },
-      { id: 't28', nama: 'Deploy AI App ke Production', badge: 'later' },
-      { id: 't29', nama: 'Bangun Produk AI Lengkap', badge: 'later' },
-      { id: 't30', nama: 'Dapat Klien Pertama Produk AI', badge: 'later' },
+    id:'f3', nav:'f3',
+    nama:'Fase 3 — Bangun AI Agent',
+    income:'Rp 15–40 juta/bln produk AI bulanan',
+    numColor:'linear-gradient(135deg,#16a34a,#0891b2)',
+    barGrad:'linear-gradient(90deg,#16a34a,#0891b2)',
+    pvColor:'#16a34a',
+    ovBg:'#f0fdf4', ovBorder:'#86efac',
+    topik:[
+      {id:'t21', nama:'LangChain Lanjut — Memory & Tools',       badge:'later'},
+      {id:'t22', nama:'Vector Database — Konsep & Praktik',      badge:'later'},
+      {id:'t23', nama:'Bangun AI Agent Pertama',                 badge:'later'},
+      {id:'t24', nama:'AI Agent dengan Web Search Tool',         badge:'later'},
+      {id:'t25', nama:'Workflow Automation dengan AI',           badge:'later'},
+      {id:'t26', nama:'Backend — Python FastAPI Dasar',          badge:'later'},
+      {id:'t27', nama:'Database — PostgreSQL Dasar',             badge:'later'},
+      {id:'t28', nama:'Deploy AI App ke Production',             badge:'later'},
+      {id:'t29', nama:'Bangun Produk AI Lengkap',                badge:'later'},
+      {id:'t30', nama:'Dapat Klien Pertama Produk AI',           badge:'later'},
     ]
   },
   {
-    id: 'p4',
-    nama: 'Fase 4 — Spesialisasi & Skala',
-    periode: 'Bulan 36 — Bulan 48',
-    warna: 'p4',
-    bar: 'bar-p4',
-    income: '$3.000–$10.000/bulan remote',
-    topik: [
-      { id: 't31', nama: 'Pilih Industri Spesialisasi', badge: 'later' },
-      { id: 't32', nama: 'Pelajari Masalah Industri Mendalam', badge: 'later' },
-      { id: 't33', nama: 'Bangun Solusi AI Spesifik Industri', badge: 'later' },
-      { id: 't34', nama: 'Machine Learning Dasar', badge: 'later' },
-      { id: 't35', nama: 'Fine-tuning Model AI', badge: 'later' },
-      { id: 't36', nama: 'Bangun Portfolio Profesional', badge: 'later' },
-      { id: 't37', nama: 'Daftar Upwork / Toptal', badge: 'later' },
-      { id: 't38', nama: 'Dapat Klien Remote Luar Negeri', badge: 'later' },
-      { id: 't39', nama: 'Bangun Tim / Agency AI', badge: 'later' },
-      { id: 't40', nama: 'Launch Produk AI Sendiri', badge: 'later' },
+    id:'f4', nav:'f4',
+    nama:'Fase 4 — Spesialisasi & Skala',
+    income:'$3.000–$10.000/bln remote',
+    numColor:'linear-gradient(135deg,#9333ea,#ec4899)',
+    barGrad:'linear-gradient(90deg,#9333ea,#ec4899)',
+    pvColor:'#9333ea',
+    ovBg:'#fdf4ff', ovBorder:'#e879f9',
+    topik:[
+      {id:'t31', nama:'Pilih Industri Spesialisasi',             badge:'later'},
+      {id:'t32', nama:'Pelajari Masalah Industri Mendalam',      badge:'later'},
+      {id:'t33', nama:'Bangun Solusi AI Spesifik Industri',      badge:'later'},
+      {id:'t34', nama:'Machine Learning Dasar',                  badge:'later'},
+      {id:'t35', nama:'Fine-tuning Model AI',                    badge:'later'},
+      {id:'t36', nama:'Bangun Portfolio Profesional',            badge:'later'},
+      {id:'t37', nama:'Daftar Upwork / Toptal',                  badge:'later'},
+      {id:'t38', nama:'Dapat Klien Remote Luar Negeri',          badge:'later'},
+      {id:'t39', nama:'Bangun Tim / Agency AI',                  badge:'later'},
+      {id:'t40', nama:'Launch Produk AI Sendiri',                badge:'later'},
     ]
   }
 ];
 
-const badgeLabel = { now: 'Sekarang', next: 'Berikutnya', later: 'Nanti' };
-const badgeClass = { now: 'badge-now', next: 'badge-next', later: 'badge-later' };
+var BADGE_LBL   = {now:'Mulai di sini', next:'Berikutnya', later:'Nanti'};
+var BADGE_CLASS = {now:'b-now', next:'b-next', later:'b-later'};
 
-// ── STATE ──
-let state = {
-  done: {},
-  notes: [],
-  startDate: null,
-  lastActive: null,
-  streak: 0
-};
+// ── STATE (in-memory, tanpa localStorage ─────────────────────
+var st = { done:{}, notes:[], streak:0 };
 
-function loadState() {
-  try {
-    const saved = localStorage.getItem('dimas_roadmap');
-    if (saved) state = JSON.parse(saved);
-    if (!state.startDate) state.startDate = new Date().toISOString();
-    if (!state.notes) state.notes = [];
-    if (!state.streak) state.streak = 0;
-  } catch(e) {}
-}
-
-function saveState() {
-  const today = new Date().toDateString();
-  if (state.lastActive !== today) {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    if (state.lastActive === yesterday.toDateString()) {
-      state.streak = (state.streak || 0) + 1;
-    } else if (state.lastActive !== today) {
-      state.streak = 1;
-    }
-    state.lastActive = today;
-  }
-  localStorage.setItem('dimas_roadmap', JSON.stringify(state));
-}
-
-// ── RENDER ──
-function renderAll() {
-  renderPhases();
-  updateStats();
-  renderNotes();
-  updateHeader();
-}
-
-function renderPhases() {
-  const container = document.getElementById('phasesContainer');
-  container.innerHTML = '';
-
-  roadmap.forEach((phase, pi) => {
-    const total = phase.topik.length;
-    const done = phase.topik.filter(t => state.done[t.id]).length;
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-    const card = document.createElement('div');
-    card.className = 'phase-card';
-    card.innerHTML = `
-      <div class="phase-header" onclick="togglePhase('pb${pi}', 'pt${pi}')">
-        <div class="phase-num ${phase.warna}">${pi + 1}</div>
-        <div class="phase-info">
-          <div class="phase-name">${phase.nama}</div>
-          <div class="phase-period">${phase.periode}</div>
-        </div>
-        <div class="phase-right">
-          <div class="phase-progress-wrap">
-            <div class="phase-pct">${pct}%</div>
-            <div class="phase-pct-label">${done}/${total} topik</div>
-            <div class="phase-bar-outer">
-              <div class="phase-bar-inner ${phase.bar}" style="width:${pct}%"></div>
-            </div>
-          </div>
-          <button class="phase-toggle ${pi === 0 ? 'open' : ''}" id="pt${pi}">▼</button>
-        </div>
-      </div>
-      <div class="phase-body ${pi === 0 ? 'open' : ''}" id="pb${pi}">
-        <div class="phase-income">💰 ${phase.income}</div>
-        <div class="topics-grid">
-          ${phase.topik.map(t => `
-            <div class="topic-item ${state.done[t.id] ? 'done' : ''}" onclick="klikTopik('${t.id}', '${t.nama}')">
-              <div class="topic-check"></div>
-              <div class="topic-name">${t.nama}</div>
-              <span class="topic-badge ${badgeClass[t.badge]}">${badgeLabel[t.badge]}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>`;
-    container.appendChild(card);
-  });
-}
-
-function togglePhase(bodyId, toggleId) {
-  const body = document.getElementById(bodyId);
-  const toggle = document.getElementById(toggleId);
-  body.classList.toggle('open');
-  toggle.classList.toggle('open');
-}
-
-function updateStats() {
-  const allTopik = roadmap.flatMap(p => p.topik);
-  const totalAll = allTopik.length;
-  const doneAll = allTopik.filter(t => state.done[t.id]).length;
-  const pct = totalAll > 0 ? Math.round((doneAll / totalAll) * 100) : 0;
-
-  document.getElementById('overallPct').textContent = pct + '%';
-  document.getElementById('overallDesc').textContent = `${doneAll} dari ${totalAll} topik selesai`;
-  document.getElementById('overallBar').style.width = pct + '%';
-  document.getElementById('statDone').textContent = doneAll;
-  document.getElementById('statLeft').textContent = totalAll - doneAll;
-
-  // fase aktif
-  let faseAktif = 1;
-  roadmap.forEach((phase, i) => {
-    const done = phase.topik.filter(t => state.done[t.id]).length;
-    if (done > 0) faseAktif = i + 1;
-  });
-  document.getElementById('statPhase').textContent = faseAktif;
-
-  // hari belajar
-  if (state.startDate) {
-    const start = new Date(state.startDate);
-    const now = new Date();
-    const days = Math.max(1, Math.ceil((now - start) / (1000 * 60 * 60 * 24)));
-    document.getElementById('statDay').textContent = days;
-  }
-}
-
-function updateHeader() {
-  const now = new Date();
-  const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-  document.getElementById('headerDate').textContent = now.toLocaleDateString('id-ID', options);
-  document.getElementById('streakNum').textContent = state.streak || 0;
-}
-
-// ── TOPIK CLICK ──
-let pendingTopik = null;
-
-function klikTopik(id, nama) {
-  pendingTopik = { id, nama };
-  const isDone = state.done[id];
-
-  document.getElementById('modalIcon').textContent = isDone ? '↩️' : '🎉';
-  document.getElementById('modalTitle').textContent = isDone ? 'Batalkan?' : 'Tandai Selesai?';
-  document.getElementById('modalDesc').textContent = isDone
-    ? `Batalkan penandaan "${nama}"?`
-    : `Apakah "${nama}" sudah benar-benar kamu selesaikan?`;
-  document.getElementById('modalConfirm').textContent = isDone ? 'Ya, Batalkan' : 'Ya, Selesai!';
-  document.getElementById('modalConfirm').style.background = isDone ? '#dc2626' : '#16a34a';
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-document.getElementById('modalConfirm').onclick = function() {
-  if (!pendingTopik) return;
-  const { id, nama } = pendingTopik;
-  const wasDone = state.done[id];
-
-  if (wasDone) {
-    delete state.done[id];
-    tampilToast('↩️ Dibatalkan: ' + nama);
-  } else {
-    state.done[id] = true;
-    tampilToast('🎉 Selesai! ' + nama);
-  }
-
-  saveState();
+// ── NAVIGASI ─────────────────────────────────────────────────
+function goPage(n) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.bni').forEach(function(b){ b.classList.remove('on'); });
+  document.getElementById('page-'+n).classList.add('active');
+  document.getElementById('nav-'+n).classList.add('on');
+  document.getElementById('page-'+n).scrollTop = 0;
   renderAll();
+}
+
+// ── RENDER OVERVIEW PHASE LIST ────────────────────────────────
+function renderPhaseOvs() {
+  var el = document.getElementById('ph-ov-list');
+  el.innerHTML = '';
+  roadmap.forEach(function(ph, i) {
+    var total = ph.topik.length;
+    var done  = ph.topik.filter(function(t){ return st.done[t.id]; }).length;
+    var pct   = total > 0 ? Math.round(done/total*100) : 0;
+    var div   = document.createElement('div');
+    div.className = 'ph-ov';
+    div.onclick = function(){ goPage(ph.nav); };
+    div.innerHTML =
+      '<div class="ph-ov-num" style="background:'+ph.numColor+';">'+(i+1)+'</div>'+
+      '<div class="ph-ov-body">'+
+        '<div class="ph-ov-name">'+ph.nama+'</div>'+
+        '<div class="ph-ov-income">💰 '+ph.income+'</div>'+
+        '<div class="ph-ov-bar-wrap"><div class="ph-ov-bar-fill" style="width:'+pct+'%;background:'+ph.barGrad+';"></div></div>'+
+        '<div class="ph-ov-stat">'+done+' / '+total+' topik selesai · '+pct+'%</div>'+
+      '</div>'+
+      '<div class="ph-ov-arr">›</div>';
+    el.appendChild(div);
+  });
+}
+
+// ── RENDER TOPIC LISTS ────────────────────────────────────────
+function renderTopics() {
+  roadmap.forEach(function(ph) {
+    var container = document.getElementById('tl-'+ph.id);
+    if (!container) return;
+    container.innerHTML = '';
+    ph.topik.forEach(function(t) {
+      var isDone = !!st.done[t.id];
+      var div = document.createElement('div');
+      div.className = 'topic-card' + (isDone ? ' done' : '');
+      div.onclick = function(){ bukaModal(t.id, t.nama); };
+      div.innerHTML =
+        '<div class="tc-chk">'+(isDone ? '✓' : '')+'</div>'+
+        '<div class="tc-body"><div class="tc-name">'+t.nama+'</div></div>'+
+        '<span class="tc-badge '+BADGE_CLASS[t.badge]+'">'+BADGE_LBL[t.badge]+'</span>';
+      container.appendChild(div);
+    });
+
+    // Update phase progress bar
+    var total = ph.topik.length;
+    var done  = ph.topik.filter(function(t){ return st.done[t.id]; }).length;
+    var pct   = total > 0 ? Math.round(done/total*100) : 0;
+    var pbEl  = document.getElementById('pb-'+ph.id);
+    var pvEl  = document.getElementById('pv-'+ph.id);
+    if (pbEl) pbEl.style.width = pct+'%';
+    if (pvEl) pvEl.textContent = pct+'%';
+  });
+}
+
+// ── UPDATE STATS ──────────────────────────────────────────────
+function updateStats() {
+  var total = roadmap.reduce(function(a,p){ return a+p.topik.length; }, 0);
+  var done  = roadmap.reduce(function(a,p){ return a+p.topik.filter(function(t){ return st.done[t.id]; }).length; }, 0);
+  var pct   = total > 0 ? Math.round(done/total*100) : 0;
+
+  document.getElementById('ov-pct').textContent  = pct+'%';
+  document.getElementById('ov-bar').style.width  = pct+'%';
+  document.getElementById('ov-desc').textContent = done+' dari '+total+' topik selesai';
+  document.getElementById('st-done').textContent = done;
+  document.getElementById('st-left').textContent = total-done;
+  document.getElementById('st-notes').textContent = st.notes.length;
+
+  var faseAktif = 1;
+  roadmap.forEach(function(p, i){
+    if (p.topik.filter(function(t){ return st.done[t.id]; }).length > 0) faseAktif = i+1;
+  });
+  document.getElementById('st-phase').textContent = faseAktif;
+}
+
+// ── HEADER ────────────────────────────────────────────────────
+function updateHeader() {
+  var now = new Date();
+  document.getElementById('tbDate').textContent = now.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+  document.getElementById('streakNum').textContent = st.streak;
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────
+function renderAll() {
+  updateStats();
+  updateHeader();
+  renderPhaseOvs();
+  renderTopics();
+  renderNotes();
+}
+
+// ── MODAL ─────────────────────────────────────────────────────
+var pendingId = null;
+
+function bukaModal(id, nama) {
+  pendingId = id;
+  var isDone = !!st.done[id];
+  document.getElementById('mIco').textContent   = isDone ? '↩️' : '🎉';
+  document.getElementById('mTitle').textContent = isDone ? 'Batalkan?' : 'Tandai Selesai?';
+  document.getElementById('mDesc').textContent  = isDone
+    ? 'Hapus centang "'+nama+'"?'
+    : '"'+nama+'" sudah kamu selesaikan?';
+  var btn = document.getElementById('mBtn');
+  btn.textContent       = isDone ? 'Ya, Batalkan' : 'Ya, Selesai! 🎉';
+  btn.style.background  = isDone ? '#dc2626' : '#16a34a';
+  document.getElementById('modalOv').classList.add('open');
+}
+
+function konfirmasi() {
+  if (!pendingId) return;
+  var id = pendingId;
+  var nama = '';
+  roadmap.forEach(function(p){ p.topik.forEach(function(t){ if(t.id===id) nama=t.nama; }); });
+  if (st.done[id]) { delete st.done[id]; tampilToast('↩️ Dibatalkan: '+nama); }
+  else             { st.done[id] = true;  tampilToast('🎉 Selesai! '+nama); }
   tutupModal();
-};
+  renderAll();
+}
 
 function tutupModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  pendingTopik = null;
+  document.getElementById('modalOv').classList.remove('open');
+  pendingId = null;
 }
 
-// ── NOTES ──
-function toggleNoteInput() {
-  const wrap = document.getElementById('noteInputWrap');
-  wrap.classList.toggle('open');
-  if (wrap.classList.contains('open')) {
-    document.getElementById('noteInput').focus();
-  }
-}
-
+// ── CATATAN ───────────────────────────────────────────────────
 function simpanCatatan() {
-  const input = document.getElementById('noteInput');
-  const text = input.value.trim();
+  var inp  = document.getElementById('noteInp');
+  var text = inp.value.trim();
   if (!text) return;
-
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
-
-  state.notes.unshift({ id: Date.now(), text, date: dateStr });
-  input.value = '';
-  document.getElementById('noteInputWrap').classList.remove('open');
-  saveState();
-  renderNotes();
+  var dateStr = new Date().toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+  st.notes.unshift({ id:Date.now(), text:text, date:dateStr });
+  inp.value = '';
+  renderAll();
   tampilToast('📝 Catatan disimpan!');
 }
 
 function hapusCatatan(id) {
-  state.notes = state.notes.filter(n => n.id !== id);
-  saveState();
-  renderNotes();
+  st.notes = st.notes.filter(function(n){ return n.id !== id; });
+  renderAll();
 }
 
 function renderNotes() {
-  const list = document.getElementById('notesList');
-  if (state.notes.length === 0) {
-    list.innerHTML = '<div class="notes-empty">Belum ada catatan. Tambahkan catatan belajar harianmu!</div>';
+  var list = document.getElementById('notesList');
+  if (!list) return;
+  if (st.notes.length === 0) {
+    list.innerHTML = '<div class="notes-empty">Belum ada catatan.<br>Tulis apa yang kamu pelajari hari ini! 📖<br><br><small style="color:#a8a29e;">Contoh: "Belajar Flexbox, akhirnya paham cara center elemen"</small></div>';
     return;
   }
-  list.innerHTML = state.notes.slice(0, 20).map(n => `
-    <div class="note-item">
-      <div class="note-date">${n.date}</div>
-      <div class="note-text">${n.text}</div>
-      <button class="note-delete" onclick="hapusCatatan(${n.id})">✕</button>
-    </div>
-  `).join('');
+  list.innerHTML = st.notes.slice(0,30).map(function(n){
+    return '<div class="note-item">'+
+      '<div class="note-bullet"></div>'+
+      '<div class="note-content"><div class="note-date-lbl">'+n.date+'</div><div class="note-txt">'+n.text+'</div></div>'+
+      '<button class="note-del" onclick="hapusCatatan('+n.id+')">✕</button>'+
+    '</div>';
+  }).join('');
 }
 
-// ── TOAST ──
+// ── TOAST ─────────────────────────────────────────────────────
 function tampilToast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+  setTimeout(function(){ t.classList.remove('show'); }, 2800);
 }
 
-// ── INIT ──
-loadState();
-if (!state.startDate) {
-  state.startDate = new Date().toISOString();
-  saveState();
-}
+// ── INIT ──────────────────────────────────────────────────────
 renderAll();
 </script>
 </body>
