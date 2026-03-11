@@ -12,163 +12,311 @@
   --text:#1e1b18; --muted:#78716c; --dark:#1a1a2e;
   --accent:#4f46e5; --accent2:#7c3aed;
   --green:#16a34a; --greenl:#f0fdf4; --greenb:#86efac;
-  --orange:#ea580c; --orangel:#fff7ed; --orangeb:#fed7aa;
-  --teal:#0891b2; --teal2:#ecfeff;
-  --purple:#9333ea; --purplel:#fdf4ff; --purpleb:#e879f9;
-  --gold:#ca8a04; --goldl:#fefce8; --goldb:#fde68a;
   --red:#dc2626;
 }
-html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg2); color:var(--text); overflow:hidden; }
+
+/* ── BASE ── */
+html { height:100%; height: -webkit-fill-available; }
+body {
+  height: 100%;
+  height: -webkit-fill-available;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg2);
+  color:var(--text);
+  overflow:hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
 /* ── SHELL ── */
-.shell { max-width:430px; margin:0 auto; height:100vh; display:flex; flex-direction:column; background:var(--bg); overflow:hidden; box-shadow:0 0 80px rgba(26,26,46,0.2); }
+.shell {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  height: 100vh;
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  overflow: hidden;
+  position: relative;
+}
 
 /* ── TOPBAR ── */
-.topbar { background:var(--dark); padding:0 18px; height:56px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-.tb-logo { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; color:white; }
+.topbar {
+  background: var(--dark);
+  padding: 0 16px;
+  height: 52px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.tb-logo { font-family:'Fraunces',serif; font-size:1rem; font-weight:900; color:white; }
 .tb-logo span { color:#818cf8; }
-.tb-right { display:flex; align-items:center; gap:8px; }
-.tb-date { font-size:11px; color:rgba(255,255,255,0.4); font-weight:500; }
-.tb-streak { display:flex; align-items:center; gap:4px; background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:100px; font-size:11px; font-weight:700; color:#fbbf24; }
+.tb-right { display:flex; align-items:center; gap:6px; }
+.tb-date { font-size:10px; color:rgba(255,255,255,0.4); font-weight:500; }
+.tb-streak { display:flex; align-items:center; gap:4px; background:rgba(255,255,255,0.1); padding:4px 9px; border-radius:100px; font-size:11px; font-weight:700; color:#fbbf24; }
 
 /* ── PAGES ── */
-.pages { flex:1; overflow:hidden; position:relative; }
-.page { position:absolute; inset:0; overflow-y:auto; opacity:0; pointer-events:none; transform:translateY(10px); transition:all 0.3s cubic-bezier(.4,0,.2,1); padding-bottom:80px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.pages { flex:1; overflow:hidden; position:relative; min-height:0; }
+.page {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  padding-bottom: 80px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
 .page::-webkit-scrollbar { width:3px; }
 .page::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
 .page.active { opacity:1; pointer-events:all; transform:translateY(0); }
 
 /* ── BOTTOM NAV ── */
-.bnav { height:68px; background:var(--card); border-top:1.5px solid var(--border); display:flex; align-items:center; padding:0 4px 6px; flex-shrink:0; box-shadow:0 -4px 20px rgba(26,26,46,0.07); }
-.bni { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:7px 2px; border-radius:12px; transition:all 0.2s; }
+.bnav {
+  height: 60px;
+  min-height: 60px;
+  background: var(--card);
+  border-top: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  flex-shrink: 0;
+  box-shadow: 0 -4px 20px rgba(26,26,46,0.07);
+  z-index: 10;
+}
+.bni {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 6px 2px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  min-width: 0;
+}
 .bni:active { transform:scale(0.88); }
 .bni.on { background:#eef2ff; }
-.bni-ico { font-size:18px; opacity:0.3; transition:all 0.2s; }
-.bni-lbl { font-size:9.5px; color:var(--muted); font-weight:600; transition:all 0.2s; }
+.bni-ico { font-size:17px; opacity:0.3; transition:all 0.2s; }
+.bni-lbl { font-size:9px; color:var(--muted); font-weight:600; transition:all 0.2s; white-space:nowrap; }
 .bni.on .bni-ico { opacity:1; }
 .bni.on .bni-lbl { color:var(--accent); font-weight:700; }
 
-/* ══════════════════════════════
-   OVERVIEW PAGE
-══════════════════════════════ */
-.ov-hero { background:linear-gradient(145deg,#1a1a2e 0%,#16213e 55%,#312e81 100%); padding:22px 18px; position:relative; overflow:hidden; }
-.ov-hero::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%); top:-70px; right:-50px; pointer-events:none; }
-.ov-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.05; line-height:1; pointer-events:none; }
-.ov-greet { font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:7px; }
-.ov-title { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:900; color:white; line-height:1.12; margin-bottom:5px; }
+/* ══ OVERVIEW ══ */
+.ov-hero {
+  background: linear-gradient(145deg,#1a1a2e 0%,#16213e 55%,#312e81 100%);
+  padding: 18px 14px;
+  position: relative;
+  overflow: hidden;
+}
+.ov-hero::before {
+  content:'';
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%);
+  top:-60px; right:-40px;
+  pointer-events:none;
+}
+.ov-deco { position:absolute; right:-8px; bottom:-14px; font-size:80px; opacity:0.05; line-height:1; pointer-events:none; }
+.ov-greet { font-size:9.5px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; }
+.ov-title { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:900; color:white; line-height:1.12; margin-bottom:4px; }
 .ov-title span { background:linear-gradient(90deg,#a5b4fc,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.ov-sub { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:18px; }
-.prog-big { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); border-radius:16px; padding:15px 18px; }
-.pb-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
-.pb-label { font-size:10px; font-weight:600; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; }
-.pb-pct { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:900; color:#a5b4fc; }
+.ov-sub { font-size:11.5px; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:14px; }
+
+.prog-big { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); border-radius:14px; padding:13px 16px; }
+.pb-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+.pb-label { font-size:9.5px; font-weight:600; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; }
+.pb-pct { font-family:'Fraunces',serif; font-size:1.4rem; font-weight:900; color:#a5b4fc; }
 .pb-bar { height:5px; background:rgba(255,255,255,0.1); border-radius:100px; overflow:hidden; margin-bottom:5px; }
 .pb-fill { height:100%; background:linear-gradient(90deg,#818cf8,#a78bfa); border-radius:100px; transition:width 0.8s cubic-bezier(.4,0,.2,1); }
-.pb-desc { font-size:11px; color:rgba(255,255,255,0.4); }
+.pb-desc { font-size:10.5px; color:rgba(255,255,255,0.4); }
 
 /* Stat strip */
-.stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:10px 14px 0; }
-.sc { background:var(--card); border-radius:13px; padding:13px 8px; border:1.5px solid var(--border); text-align:center; }
-.sc-ico { font-size:18px; margin-bottom:5px; }
-.sc-n { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); line-height:1; }
-.sc-l { font-size:9.5px; color:var(--muted); margin-top:2px; font-weight:500; }
+.stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:10px 12px 0; }
+.sc { background:var(--card); border-radius:12px; padding:10px 6px; border:1.5px solid var(--border); text-align:center; }
+.sc-ico { font-size:16px; margin-bottom:4px; }
+.sc-n { font-family:'Fraunces',serif; font-size:1.05rem; font-weight:900; color:var(--dark); line-height:1; }
+.sc-l { font-size:9px; color:var(--muted); margin-top:2px; font-weight:500; }
 
-/* Phase overview list */
-.sec-h { font-size:10.5px; font-weight:700; color:var(--muted); letter-spacing:0.6px; text-transform:uppercase; display:flex; align-items:center; gap:8px; padding:0 14px; margin-top:14px; }
+/* Section header */
+.sec-h {
+  font-size:10px; font-weight:700; color:var(--muted);
+  letter-spacing:0.6px; text-transform:uppercase;
+  display:flex; align-items:center; gap:8px;
+  padding:0 12px; margin-top:12px;
+}
 .sec-h::after { content:''; flex:1; height:1px; background:var(--border); }
 
-.ph-ov-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.ph-ov { background:var(--card); border-radius:14px; padding:14px; border:1.5px solid var(--border); display:flex; gap:12px; align-items:center; cursor:pointer; transition:all 0.2s; }
-.ph-ov:hover { border-color:#c7d2fe; box-shadow:0 2px 16px rgba(79,70,229,0.09); }
+/* Phase overview list */
+.ph-ov-list { display:flex; flex-direction:column; gap:7px; padding:8px 12px 0; }
+.ph-ov {
+  background:var(--card); border-radius:13px; padding:12px;
+  border:1.5px solid var(--border);
+  display:flex; gap:10px; align-items:center;
+  cursor:pointer; transition:all 0.2s;
+}
 .ph-ov:active { transform:scale(0.98); }
-.ph-ov-num { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:18px; font-weight:900; color:white; flex-shrink:0; }
+.ph-ov-num {
+  width:38px; height:38px; border-radius:11px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-size:17px; font-weight:900; color:white; flex-shrink:0;
+}
 .ph-ov-body { flex:1; min-width:0; }
-.ph-ov-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.ph-ov-income { font-size:10.5px; color:var(--green); font-weight:600; margin-bottom:6px; }
+.ph-ov-name { font-size:12.5px; font-weight:700; color:var(--text); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ph-ov-income { font-size:10px; color:var(--green); font-weight:600; margin-bottom:5px; }
 .ph-ov-bar-wrap { height:4px; background:var(--border); border-radius:100px; overflow:hidden; }
 .ph-ov-bar-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
-.ph-ov-stat { font-size:10px; color:var(--muted); margin-top:4px; font-weight:600; }
-.ph-ov-arr { width:26px; height:26px; border-radius:8px; background:var(--bg); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--muted); flex-shrink:0; }
+.ph-ov-stat { font-size:9.5px; color:var(--muted); margin-top:3px; font-weight:600; }
+.ph-ov-arr {
+  width:24px; height:24px; border-radius:7px;
+  background:var(--bg); border:1.5px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; color:var(--muted); flex-shrink:0;
+}
 
-/* ══════════════════════════════
-   PHASE PAGES
-══════════════════════════════ */
-.ph-hero { padding:20px 16px 18px; position:relative; overflow:hidden; }
-.ph-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.06; line-height:1; pointer-events:none; }
-.ph-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:7px; }
-.ph-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; line-height:1.2; margin-bottom:5px; }
-.ph-sub { font-size:12px; line-height:1.6; margin-bottom:12px; }
-.income-pill { display:inline-flex; align-items:center; gap:5px; background:var(--greenl); border:1px solid var(--greenb); color:var(--green); font-size:11px; font-weight:700; padding:5px 12px; border-radius:100px; }
+/* ══ PHASE PAGES ══ */
+.ph-hero { padding:18px 14px 16px; position:relative; overflow:hidden; }
+.ph-deco { position:absolute; right:-8px; bottom:-14px; font-size:80px; opacity:0.06; line-height:1; pointer-events:none; }
+.ph-eyebrow { font-size:9.5px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:6px; }
+.ph-title { font-family:'Fraunces',serif; font-size:1.2rem; font-weight:900; line-height:1.2; margin-bottom:5px; }
+.ph-sub { font-size:11.5px; line-height:1.6; margin-bottom:10px; }
+.income-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  background:var(--greenl); border:1px solid var(--greenb);
+  color:var(--green); font-size:10.5px; font-weight:700;
+  padding:5px 11px; border-radius:100px;
+}
 
-/* Phase progress bar */
-.ph-prog { background:var(--card); border-radius:14px; margin:10px 14px 0; padding:13px 16px; border:1.5px solid var(--border); }
-.php-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-.php-lbl { font-size:11px; font-weight:700; color:var(--muted); }
-.php-val { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; }
+/* Phase progress */
+.ph-prog {
+  background:var(--card); border-radius:13px;
+  margin:8px 12px 0; padding:12px 14px; border:1.5px solid var(--border);
+}
+.php-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+.php-lbl { font-size:10.5px; font-weight:700; color:var(--muted); }
+.php-val { font-family:'Fraunces',serif; font-size:1rem; font-weight:900; }
 .php-bar { height:5px; background:var(--border); border-radius:100px; overflow:hidden; }
 .php-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
 
 /* Topic list */
-.topic-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.topic-card { background:var(--card); border-radius:13px; padding:13px 14px; border:1.5px solid var(--border); display:flex; align-items:center; gap:11px; cursor:pointer; transition:all 0.2s; user-select:none; }
-.topic-card:hover { border-color:#c7d2fe; }
+.topic-list { display:flex; flex-direction:column; gap:7px; padding:8px 12px 0; }
+.topic-card {
+  background:var(--card); border-radius:12px; padding:12px 13px;
+  border:1.5px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; transition:all 0.2s; user-select:none;
+}
 .topic-card:active { transform:scale(0.98); }
 .topic-card.done { background:var(--greenl); border-color:var(--greenb); }
 .topic-card.done .tc-chk { background:var(--green); border-color:var(--green); color:white; }
 .topic-card.done .tc-name { color:var(--green); text-decoration:line-through; text-decoration-color:#86efac; }
-.tc-chk { width:22px; height:22px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; transition:all 0.2s; background:var(--bg); }
-.tc-body { flex:1; min-width:0; }
-.tc-name { font-size:13px; font-weight:600; color:var(--text); line-height:1.4; transition:all 0.2s; }
-.tc-badge { font-size:10px; font-weight:700; padding:3px 9px; border-radius:100px; flex-shrink:0; white-space:nowrap; }
-.b-now  { background:#fef3c7; color:#92400e; }
-.b-next { background:#ede9fe; color:#5b21b6; }
-.b-later{ background:#f1f5f9; color:#64748b; }
 
-/* ══════════════════════════════
-   CATATAN PAGE
-══════════════════════════════ */
-.notes-hero { background:var(--dark); padding:18px 16px; }
-.notes-hero-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; color:white; margin-bottom:4px; }
-.notes-hero-sub { font-size:12px; color:rgba(255,255,255,0.45); }
-.note-add { padding:12px 14px 0; }
-.note-input-row { display:flex; gap:8px; background:var(--card); border-radius:13px; padding:11px 14px; border:1.5px solid var(--border); transition:border-color 0.2s; }
+.tc-chk {
+  width:22px; height:22px; border-radius:50%;
+  border:2px solid var(--border); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; transition:all 0.2s; background:var(--bg);
+}
+.tc-body { flex:1; min-width:0; }
+.tc-name { font-size:12.5px; font-weight:600; color:var(--text); line-height:1.4; transition:all 0.2s; }
+.tc-badge { font-size:9.5px; font-weight:700; padding:3px 8px; border-radius:100px; flex-shrink:0; white-space:nowrap; }
+.b-now   { background:#fef3c7; color:#92400e; }
+.b-next  { background:#ede9fe; color:#5b21b6; }
+.b-later { background:#f1f5f9; color:#64748b; }
+
+/* ══ CATATAN ══ */
+.notes-hero { background:var(--dark); padding:16px 14px; }
+.notes-hero-title { font-family:'Fraunces',serif; font-size:1.2rem; font-weight:900; color:white; margin-bottom:3px; }
+.notes-hero-sub { font-size:11.5px; color:rgba(255,255,255,0.45); }
+
+.note-add { padding:10px 12px 0; }
+.note-input-row {
+  display:flex; gap:8px; background:var(--card);
+  border-radius:12px; padding:10px 13px;
+  border:1.5px solid var(--border); transition:border-color 0.2s;
+}
 .note-input-row:focus-within { border-color:var(--accent); }
-.note-inp { flex:1; border:none; outline:none; font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color:var(--text); background:transparent; }
+.note-inp {
+  flex:1; border:none; outline:none;
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:13px;
+  color:var(--text); background:transparent;
+}
 .note-inp::placeholder { color:var(--muted); }
-.note-save { background:var(--accent); color:white; border:none; padding:7px 14px; border-radius:9px; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
+.note-save {
+  background:var(--accent); color:white; border:none;
+  padding:7px 13px; border-radius:9px;
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:11.5px; font-weight:700;
+  cursor:pointer; flex-shrink:0; transition:all 0.2s;
+}
 .note-save:active { transform:scale(0.95); }
-.notes-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.note-item { background:var(--card); border-radius:12px; padding:13px 14px; border:1.5px solid var(--border); display:flex; gap:10px; align-items:flex-start; animation:fadeUp 0.3s ease; }
-.note-bullet { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:6px; }
+
+.notes-list { display:flex; flex-direction:column; gap:7px; padding:8px 12px 0; }
+.note-item {
+  background:var(--card); border-radius:11px; padding:12px 13px;
+  border:1.5px solid var(--border);
+  display:flex; gap:10px; align-items:flex-start;
+  animation:fadeUp 0.3s ease;
+}
+.note-bullet { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:5px; }
 .note-content { flex:1; min-width:0; }
-.note-date-lbl { font-size:10px; color:var(--muted); font-weight:600; margin-bottom:2px; }
-.note-txt { font-size:13px; color:var(--text); line-height:1.55; }
+.note-date-lbl { font-size:9.5px; color:var(--muted); font-weight:600; margin-bottom:2px; }
+.note-txt { font-size:12.5px; color:var(--text); line-height:1.55; }
 .note-del { background:none; border:none; color:var(--border); font-size:14px; cursor:pointer; transition:color 0.2s; padding:0 2px; flex-shrink:0; }
-.note-del:hover { color:var(--red); }
 .notes-empty { text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; line-height:1.8; }
 
-/* ══════════════════════════════
-   MODAL (bottom sheet)
-══════════════════════════════ */
-.modal-ov { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:500; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(4px); }
+/* ══ MODAL ══ */
+.modal-ov {
+  position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:500;
+  display:flex; align-items:flex-end; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(4px);
+}
 .modal-ov.open { opacity:1; pointer-events:all; }
-.modal-box { background:white; border-radius:24px 24px 0 0; padding:24px 20px 32px; width:100%; max-width:430px; text-align:center; transform:translateY(100%); transition:transform 0.35s cubic-bezier(.4,0,.2,1); }
+.modal-box {
+  background:white; border-radius:22px 22px 0 0;
+  padding:22px 18px 28px;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  width:100%; max-width:480px; text-align:center;
+  transform:translateY(100%); transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+}
 .modal-ov.open .modal-box { transform:translateY(0); }
-.modal-handle { width:38px; height:4px; background:var(--border); border-radius:100px; margin:0 auto 18px; }
-.modal-ico { font-size:42px; margin-bottom:10px; }
-.modal-title { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); margin-bottom:5px; }
-.modal-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+.modal-handle { width:36px; height:4px; background:var(--border); border-radius:100px; margin:0 auto 16px; }
+.modal-ico { font-size:40px; margin-bottom:10px; }
+.modal-title { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; color:var(--dark); margin-bottom:5px; }
+.modal-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:18px; }
 .modal-btns { display:flex; gap:9px; }
-.btn-confirm { flex:1; color:white; border:none; padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:opacity 0.2s; }
+.btn-confirm {
+  flex:1; color:white; border:none; padding:14px;
+  border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px; font-weight:700; cursor:pointer; transition:opacity 0.2s;
+}
 .btn-confirm:active { opacity:0.85; }
-.btn-cancel { flex:1; background:var(--bg); color:var(--muted); border:1.5px solid var(--border); padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; }
-.btn-cancel:hover { color:var(--text); border-color:var(--text); }
+.btn-cancel {
+  flex:1; background:var(--bg); color:var(--muted);
+  border:1.5px solid var(--border); padding:14px; border-radius:12px;
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer;
+}
 
 /* ── TOAST ── */
-.toast { position:fixed; bottom:82px; left:50%; transform:translateX(-50%) translateY(16px); background:var(--dark); color:white; padding:11px 20px; border-radius:100px; font-size:13px; font-weight:600; z-index:600; opacity:0; transition:all 0.3s; white-space:nowrap; box-shadow:0 6px 24px rgba(0,0,0,0.18); pointer-events:none; }
+.toast {
+  position:fixed; bottom:74px; left:50%;
+  transform:translateX(-50%) translateY(16px);
+  background:var(--dark); color:white; padding:10px 18px; border-radius:100px;
+  font-size:13px; font-weight:600; z-index:600; opacity:0; transition:all 0.3s;
+  white-space:nowrap; box-shadow:0 6px 24px rgba(0,0,0,0.18); pointer-events:none;
+}
 .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
 </style>
 </head>
 <body>
@@ -185,53 +333,51 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
 
   <div class="pages">
 
-    <!-- ══ OVERVIEW ══ -->
+    <!-- OVERVIEW -->
     <div class="page active" id="page-overview">
       <div class="ov-hero">
         <div class="ov-deco">🤖</div>
         <div class="ov-greet">Selamat Datang Kembali</div>
         <div class="ov-title">Halo, <span>Dimas</span> 👋</div>
-        <div class="ov-sub">Pantau perjalananmu jadi AI Engineer. Tidak ada tekanan waktu — yang penting satu langkah demi satu langkah, konsisten!</div>
+        <div class="ov-sub">Tidak ada tekanan waktu — yang penting satu langkah demi satu langkah, konsisten!</div>
         <div class="prog-big">
           <div class="pb-top"><div class="pb-label">Total Progress</div><div class="pb-pct" id="ov-pct">0%</div></div>
           <div class="pb-bar"><div class="pb-fill" id="ov-bar" style="width:0%"></div></div>
           <div class="pb-desc" id="ov-desc">0 dari 40 topik selesai</div>
         </div>
       </div>
-
       <div class="stat-strip">
         <div class="sc"><div class="sc-ico">✅</div><div class="sc-n" id="st-done">0</div><div class="sc-l">Selesai</div></div>
         <div class="sc"><div class="sc-ico">⏳</div><div class="sc-n" id="st-left">40</div><div class="sc-l">Tersisa</div></div>
         <div class="sc"><div class="sc-ico">📍</div><div class="sc-n" id="st-phase">1</div><div class="sc-l">Fase Aktif</div></div>
         <div class="sc"><div class="sc-ico">📝</div><div class="sc-n" id="st-notes">0</div><div class="sc-l">Catatan</div></div>
       </div>
-
-      <div class="sec-h" style="padding:14px 14px 0;">4 Fase Perjalananmu</div>
+      <div class="sec-h" style="padding:12px 12px 0;">4 Fase Perjalananmu</div>
       <div class="ph-ov-list" id="ph-ov-list"></div>
     </div>
 
-    <!-- ══ FASE 1 ══ -->
+    <!-- FASE 1 -->
     <div class="page" id="page-f1">
       <div class="ph-hero" style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-bottom:1.5px solid #c7d2fe;">
         <div class="ph-deco">🌐</div>
         <div class="ph-eyebrow" style="color:#4f46e5;">Fase 1 — Fondasi</div>
-        <div class="ph-title" style="color:#312e81;">HTML, CSS, JS<br>&amp; Python Dasar</div>
+        <div class="ph-title" style="color:#312e81;">HTML, CSS, JS &amp; Python</div>
         <div class="ph-sub" style="color:#3730a3;">Bangun fondasi coding yang kuat. Website pertama, logika pemrograman, dan Python — semua dimulai dari sini.</div>
         <div class="income-pill">💰 Rp 1–3 juta/bln dari website klien</div>
       </div>
-      <div class="ph-prog" id="prog-f1">
+      <div class="ph-prog">
         <div class="php-row"><div class="php-lbl">Progress Fase 1</div><div class="php-val" id="pv-f1" style="color:#4f46e5;">0%</div></div>
         <div class="php-bar"><div class="php-fill" id="pb-f1" style="width:0%;background:linear-gradient(90deg,#4f46e5,#7c3aed);"></div></div>
       </div>
       <div class="topic-list" id="tl-f1"></div>
     </div>
 
-    <!-- ══ FASE 2 ══ -->
+    <!-- FASE 2 -->
     <div class="page" id="page-f2">
       <div class="ph-hero" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-bottom:1.5px solid #fed7aa;">
         <div class="ph-deco">🤖</div>
         <div class="ph-eyebrow" style="color:#ea580c;">Fase 2 — Masuk Dunia AI</div>
-        <div class="ph-title" style="color:#7c2d12;">OpenAI, Claude API<br>&amp; Chatbot Pertama</div>
+        <div class="ph-title" style="color:#7c2d12;">OpenAI, Claude API &amp; Chatbot</div>
         <div class="ph-sub" style="color:#9a3412;">Pakai AI di kode Python. Bangun chatbot pertama dan mulai jual ke klien bisnis lokal maupun UMKM.</div>
         <div class="income-pill">💰 Rp 3–8 juta/bln setup chatbot UMKM</div>
       </div>
@@ -242,13 +388,13 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
       <div class="topic-list" id="tl-f2"></div>
     </div>
 
-    <!-- ══ FASE 3 ══ -->
+    <!-- FASE 3 -->
     <div class="page" id="page-f3">
       <div class="ph-hero" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-bottom:1.5px solid #86efac;">
         <div class="ph-deco">🧠</div>
         <div class="ph-eyebrow" style="color:#16a34a;">Fase 3 — Bangun AI Agent</div>
-        <div class="ph-title" style="color:#14532d;">AI Agent, Backend<br>&amp; Produk AI Lengkap</div>
-        <div class="ph-sub" style="color:#166534;">AI yang bisa berpikir dan bertindak sendiri. Bangun produk AI yang bisa dijual bulanan ke perusahaan.</div>
+        <div class="ph-title" style="color:#14532d;">AI Agent, Backend &amp; Produk AI</div>
+        <div class="ph-sub" style="color:#166534;">AI yang bisa berpikir dan bertindak sendiri. Bangun produk AI yang dijual bulanan ke perusahaan.</div>
         <div class="income-pill">💰 Rp 15–40 juta/bln produk AI bulanan</div>
       </div>
       <div class="ph-prog">
@@ -258,13 +404,13 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
       <div class="topic-list" id="tl-f3"></div>
     </div>
 
-    <!-- ══ FASE 4 ══ -->
+    <!-- FASE 4 -->
     <div class="page" id="page-f4">
       <div class="ph-hero" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border-bottom:1.5px solid #e879f9;">
         <div class="ph-deco">🚀</div>
         <div class="ph-eyebrow" style="color:#9333ea;">Fase 4 — Spesialisasi &amp; Skala</div>
-        <div class="ph-title" style="color:#581c87;">Remote Internasional<br>&amp; Agency AI</div>
-        <div class="ph-sub" style="color:#6b21a8;">Pilih industri, bangun reputasi global, freelance internasional, dan akhirnya bangun agency AI milikmu sendiri.</div>
+        <div class="ph-title" style="color:#581c87;">Remote Internasional &amp; Agency AI</div>
+        <div class="ph-sub" style="color:#6b21a8;">Pilih industri, bangun reputasi global, freelance internasional, dan bangun agency AI milikmu sendiri.</div>
         <div class="income-pill">💰 $3.000–$10.000/bln remote</div>
       </div>
       <div class="ph-prog">
@@ -274,7 +420,7 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
       <div class="topic-list" id="tl-f4"></div>
     </div>
 
-    <!-- ══ CATATAN ══ -->
+    <!-- CATATAN -->
     <div class="page" id="page-catatan">
       <div class="notes-hero">
         <div class="notes-hero-title">📓 Catatan Belajar Dimas</div>
@@ -282,7 +428,9 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
       </div>
       <div class="note-add">
         <div class="note-input-row">
-          <input type="text" class="note-inp" id="noteInp" placeholder="Contoh: Hari ini belajar CSS Flexbox, sudah paham..." onkeydown="if(event.key==='Enter')simpanCatatan()">
+          <input type="text" class="note-inp" id="noteInp"
+            placeholder="Contoh: Hari ini belajar CSS Flexbox..."
+            onkeydown="if(event.key==='Enter')simpanCatatan()">
           <button class="note-save" onclick="simpanCatatan()">Simpan</button>
         </div>
       </div>
@@ -317,14 +465,9 @@ html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────
-//  DATA ROADMAP — 4 fase, 40 topik total
-//  Tidak ada bulan/deadline → bebas tempo
-// ─────────────────────────────────────────
 var roadmap = [
   {
     id:'f1', nav:'f1',
@@ -333,18 +476,17 @@ var roadmap = [
     numColor:'linear-gradient(135deg,#4f46e5,#7c3aed)',
     barGrad:'linear-gradient(90deg,#4f46e5,#7c3aed)',
     pvColor:'#4f46e5',
-    ovBg:'#eef2ff', ovBorder:'#c7d2fe',
     topik:[
-      {id:'t1',  nama:'HTML Dasar — Struktur & Tag',             badge:'now'},
-      {id:'t2',  nama:'CSS Dasar — Warna, Font, Padding',        badge:'now'},
-      {id:'t3',  nama:'CSS Lanjut — Flexbox & Grid',             badge:'now'},
-      {id:'t4',  nama:'Javascript Dasar — Variabel & Fungsi',    badge:'next'},
-      {id:'t5',  nama:'Javascript — DOM Manipulation',           badge:'next'},
-      {id:'t6',  nama:'Python Dasar — Variabel, Loop, Kondisi',  badge:'next'},
-      {id:'t7',  nama:'Python — Fungsi & List',                  badge:'next'},
-      {id:'t8',  nama:'Python — File Handling & Modules',        badge:'later'},
-      {id:'t9',  nama:'Git & GitHub Dasar',                      badge:'later'},
-      {id:'t10', nama:'Deploy website pertama ke Vercel',        badge:'later'},
+      {id:'t1',  nama:'HTML Dasar — Struktur & Tag',            badge:'now'},
+      {id:'t2',  nama:'CSS Dasar — Warna, Font, Padding',       badge:'now'},
+      {id:'t3',  nama:'CSS Lanjut — Flexbox & Grid',            badge:'now'},
+      {id:'t4',  nama:'Javascript Dasar — Variabel & Fungsi',   badge:'next'},
+      {id:'t5',  nama:'Javascript — DOM Manipulation',          badge:'next'},
+      {id:'t6',  nama:'Python Dasar — Variabel, Loop, Kondisi', badge:'next'},
+      {id:'t7',  nama:'Python — Fungsi & List',                 badge:'next'},
+      {id:'t8',  nama:'Python — File Handling & Modules',       badge:'later'},
+      {id:'t9',  nama:'Git & GitHub Dasar',                     badge:'later'},
+      {id:'t10', nama:'Deploy website pertama ke Vercel',       badge:'later'},
     ]
   },
   {
@@ -354,18 +496,17 @@ var roadmap = [
     numColor:'linear-gradient(135deg,#ea580c,#f59e0b)',
     barGrad:'linear-gradient(90deg,#ea580c,#f59e0b)',
     pvColor:'#ea580c',
-    ovBg:'#fff7ed', ovBorder:'#fed7aa',
     topik:[
-      {id:'t11', nama:'Python Menengah — OOP & Class',           badge:'later'},
-      {id:'t12', nama:'Python — Library Requests & JSON',        badge:'later'},
-      {id:'t13', nama:'Cara Kerja API — Konsep & Praktik',       badge:'later'},
-      {id:'t14', nama:'OpenAI API — Pertama Kali',               badge:'later'},
-      {id:'t15', nama:'Claude API — Integrasi Dasar',            badge:'later'},
-      {id:'t16', nama:'Prompt Engineering Tingkat Lanjut',       badge:'later'},
-      {id:'t17', nama:'LangChain Dasar — Konsep Chain',          badge:'later'},
-      {id:'t18', nama:'Bangun Chatbot AI Pertama',               badge:'later'},
-      {id:'t19', nama:'Integrasi Chatbot ke WhatsApp',           badge:'later'},
-      {id:'t20', nama:'Jual Chatbot Pertama ke Klien',           badge:'later'},
+      {id:'t11', nama:'Python Menengah — OOP & Class',          badge:'later'},
+      {id:'t12', nama:'Python — Library Requests & JSON',       badge:'later'},
+      {id:'t13', nama:'Cara Kerja API — Konsep & Praktik',      badge:'later'},
+      {id:'t14', nama:'OpenAI API — Pertama Kali',              badge:'later'},
+      {id:'t15', nama:'Claude API — Integrasi Dasar',           badge:'later'},
+      {id:'t16', nama:'Prompt Engineering Tingkat Lanjut',      badge:'later'},
+      {id:'t17', nama:'LangChain Dasar — Konsep Chain',         badge:'later'},
+      {id:'t18', nama:'Bangun Chatbot AI Pertama',              badge:'later'},
+      {id:'t19', nama:'Integrasi Chatbot ke WhatsApp',          badge:'later'},
+      {id:'t20', nama:'Jual Chatbot Pertama ke Klien',          badge:'later'},
     ]
   },
   {
@@ -375,18 +516,17 @@ var roadmap = [
     numColor:'linear-gradient(135deg,#16a34a,#0891b2)',
     barGrad:'linear-gradient(90deg,#16a34a,#0891b2)',
     pvColor:'#16a34a',
-    ovBg:'#f0fdf4', ovBorder:'#86efac',
     topik:[
-      {id:'t21', nama:'LangChain Lanjut — Memory & Tools',       badge:'later'},
-      {id:'t22', nama:'Vector Database — Konsep & Praktik',      badge:'later'},
-      {id:'t23', nama:'Bangun AI Agent Pertama',                 badge:'later'},
-      {id:'t24', nama:'AI Agent dengan Web Search Tool',         badge:'later'},
-      {id:'t25', nama:'Workflow Automation dengan AI',           badge:'later'},
-      {id:'t26', nama:'Backend — Python FastAPI Dasar',          badge:'later'},
-      {id:'t27', nama:'Database — PostgreSQL Dasar',             badge:'later'},
-      {id:'t28', nama:'Deploy AI App ke Production',             badge:'later'},
-      {id:'t29', nama:'Bangun Produk AI Lengkap',                badge:'later'},
-      {id:'t30', nama:'Dapat Klien Pertama Produk AI',           badge:'later'},
+      {id:'t21', nama:'LangChain Lanjut — Memory & Tools',      badge:'later'},
+      {id:'t22', nama:'Vector Database — Konsep & Praktik',     badge:'later'},
+      {id:'t23', nama:'Bangun AI Agent Pertama',                badge:'later'},
+      {id:'t24', nama:'AI Agent dengan Web Search Tool',        badge:'later'},
+      {id:'t25', nama:'Workflow Automation dengan AI',          badge:'later'},
+      {id:'t26', nama:'Backend — Python FastAPI Dasar',         badge:'later'},
+      {id:'t27', nama:'Database — PostgreSQL Dasar',            badge:'later'},
+      {id:'t28', nama:'Deploy AI App ke Production',            badge:'later'},
+      {id:'t29', nama:'Bangun Produk AI Lengkap',               badge:'later'},
+      {id:'t30', nama:'Dapat Klien Pertama Produk AI',          badge:'later'},
     ]
   },
   {
@@ -396,29 +536,25 @@ var roadmap = [
     numColor:'linear-gradient(135deg,#9333ea,#ec4899)',
     barGrad:'linear-gradient(90deg,#9333ea,#ec4899)',
     pvColor:'#9333ea',
-    ovBg:'#fdf4ff', ovBorder:'#e879f9',
     topik:[
-      {id:'t31', nama:'Pilih Industri Spesialisasi',             badge:'later'},
-      {id:'t32', nama:'Pelajari Masalah Industri Mendalam',      badge:'later'},
-      {id:'t33', nama:'Bangun Solusi AI Spesifik Industri',      badge:'later'},
-      {id:'t34', nama:'Machine Learning Dasar',                  badge:'later'},
-      {id:'t35', nama:'Fine-tuning Model AI',                    badge:'later'},
-      {id:'t36', nama:'Bangun Portfolio Profesional',            badge:'later'},
-      {id:'t37', nama:'Daftar Upwork / Toptal',                  badge:'later'},
-      {id:'t38', nama:'Dapat Klien Remote Luar Negeri',          badge:'later'},
-      {id:'t39', nama:'Bangun Tim / Agency AI',                  badge:'later'},
-      {id:'t40', nama:'Launch Produk AI Sendiri',                badge:'later'},
+      {id:'t31', nama:'Pilih Industri Spesialisasi',            badge:'later'},
+      {id:'t32', nama:'Pelajari Masalah Industri Mendalam',     badge:'later'},
+      {id:'t33', nama:'Bangun Solusi AI Spesifik Industri',     badge:'later'},
+      {id:'t34', nama:'Machine Learning Dasar',                 badge:'later'},
+      {id:'t35', nama:'Fine-tuning Model AI',                   badge:'later'},
+      {id:'t36', nama:'Bangun Portfolio Profesional',           badge:'later'},
+      {id:'t37', nama:'Daftar Upwork / Toptal',                 badge:'later'},
+      {id:'t38', nama:'Dapat Klien Remote Luar Negeri',         badge:'later'},
+      {id:'t39', nama:'Bangun Tim / Agency AI',                 badge:'later'},
+      {id:'t40', nama:'Launch Produk AI Sendiri',               badge:'later'},
     ]
   }
 ];
 
 var BADGE_LBL   = {now:'Mulai di sini', next:'Berikutnya', later:'Nanti'};
 var BADGE_CLASS = {now:'b-now', next:'b-next', later:'b-later'};
-
-// ── STATE (in-memory, tanpa localStorage ─────────────────────
 var st = { done:{}, notes:[], streak:0 };
 
-// ── NAVIGASI ─────────────────────────────────────────────────
 function goPage(n) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.bni').forEach(function(b){ b.classList.remove('on'); });
@@ -428,7 +564,6 @@ function goPage(n) {
   renderAll();
 }
 
-// ── RENDER OVERVIEW PHASE LIST ────────────────────────────────
 function renderPhaseOvs() {
   var el = document.getElementById('ph-ov-list');
   el.innerHTML = '';
@@ -445,14 +580,13 @@ function renderPhaseOvs() {
         '<div class="ph-ov-name">'+ph.nama+'</div>'+
         '<div class="ph-ov-income">💰 '+ph.income+'</div>'+
         '<div class="ph-ov-bar-wrap"><div class="ph-ov-bar-fill" style="width:'+pct+'%;background:'+ph.barGrad+';"></div></div>'+
-        '<div class="ph-ov-stat">'+done+' / '+total+' topik selesai · '+pct+'%</div>'+
+        '<div class="ph-ov-stat">'+done+'/'+total+' topik · '+pct+'%</div>'+
       '</div>'+
       '<div class="ph-ov-arr">›</div>';
     el.appendChild(div);
   });
 }
 
-// ── RENDER TOPIC LISTS ────────────────────────────────────────
 function renderTopics() {
   roadmap.forEach(function(ph) {
     var container = document.getElementById('tl-'+ph.id);
@@ -469,8 +603,6 @@ function renderTopics() {
         '<span class="tc-badge '+BADGE_CLASS[t.badge]+'">'+BADGE_LBL[t.badge]+'</span>';
       container.appendChild(div);
     });
-
-    // Update phase progress bar
     var total = ph.topik.length;
     var done  = ph.topik.filter(function(t){ return st.done[t.id]; }).length;
     var pct   = total > 0 ? Math.round(done/total*100) : 0;
@@ -481,19 +613,16 @@ function renderTopics() {
   });
 }
 
-// ── UPDATE STATS ──────────────────────────────────────────────
 function updateStats() {
   var total = roadmap.reduce(function(a,p){ return a+p.topik.length; }, 0);
   var done  = roadmap.reduce(function(a,p){ return a+p.topik.filter(function(t){ return st.done[t.id]; }).length; }, 0);
   var pct   = total > 0 ? Math.round(done/total*100) : 0;
-
   document.getElementById('ov-pct').textContent  = pct+'%';
   document.getElementById('ov-bar').style.width  = pct+'%';
   document.getElementById('ov-desc').textContent = done+' dari '+total+' topik selesai';
   document.getElementById('st-done').textContent = done;
   document.getElementById('st-left').textContent = total-done;
   document.getElementById('st-notes').textContent = st.notes.length;
-
   var faseAktif = 1;
   roadmap.forEach(function(p, i){
     if (p.topik.filter(function(t){ return st.done[t.id]; }).length > 0) faseAktif = i+1;
@@ -501,14 +630,12 @@ function updateStats() {
   document.getElementById('st-phase').textContent = faseAktif;
 }
 
-// ── HEADER ────────────────────────────────────────────────────
 function updateHeader() {
   var now = new Date();
   document.getElementById('tbDate').textContent = now.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
   document.getElementById('streakNum').textContent = st.streak;
 }
 
-// ── RENDER ALL ────────────────────────────────────────────────
 function renderAll() {
   updateStats();
   updateHeader();
@@ -517,27 +644,22 @@ function renderAll() {
   renderNotes();
 }
 
-// ── MODAL ─────────────────────────────────────────────────────
 var pendingId = null;
-
 function bukaModal(id, nama) {
   pendingId = id;
   var isDone = !!st.done[id];
   document.getElementById('mIco').textContent   = isDone ? '↩️' : '🎉';
   document.getElementById('mTitle').textContent = isDone ? 'Batalkan?' : 'Tandai Selesai?';
-  document.getElementById('mDesc').textContent  = isDone
-    ? 'Hapus centang "'+nama+'"?'
-    : '"'+nama+'" sudah kamu selesaikan?';
+  document.getElementById('mDesc').textContent  = isDone ? 'Hapus centang "'+nama+'"?' : '"'+nama+'" sudah kamu selesaikan?';
   var btn = document.getElementById('mBtn');
-  btn.textContent       = isDone ? 'Ya, Batalkan' : 'Ya, Selesai! 🎉';
-  btn.style.background  = isDone ? '#dc2626' : '#16a34a';
+  btn.textContent      = isDone ? 'Ya, Batalkan' : 'Ya, Selesai! 🎉';
+  btn.style.background = isDone ? '#dc2626' : '#16a34a';
   document.getElementById('modalOv').classList.add('open');
 }
 
 function konfirmasi() {
   if (!pendingId) return;
-  var id = pendingId;
-  var nama = '';
+  var id = pendingId, nama = '';
   roadmap.forEach(function(p){ p.topik.forEach(function(t){ if(t.id===id) nama=t.nama; }); });
   if (st.done[id]) { delete st.done[id]; tampilToast('↩️ Dibatalkan: '+nama); }
   else             { st.done[id] = true;  tampilToast('🎉 Selesai! '+nama); }
@@ -550,9 +672,8 @@ function tutupModal() {
   pendingId = null;
 }
 
-// ── CATATAN ───────────────────────────────────────────────────
 function simpanCatatan() {
-  var inp  = document.getElementById('noteInp');
+  var inp = document.getElementById('noteInp');
   var text = inp.value.trim();
   if (!text) return;
   var dateStr = new Date().toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
@@ -583,7 +704,6 @@ function renderNotes() {
   }).join('');
 }
 
-// ── TOAST ─────────────────────────────────────────────────────
 function tampilToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -591,7 +711,6 @@ function tampilToast(msg) {
   setTimeout(function(){ t.classList.remove('show'); }, 2800);
 }
 
-// ── INIT ──────────────────────────────────────────────────────
 renderAll();
 </script>
 </body>
