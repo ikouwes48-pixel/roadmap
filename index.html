@@ -2,607 +2,606 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Dimas — AI Engineer Roadmap</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Roadmap Dimas — AI Engineer & Web3/Web4</title>
 <style>
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; font-style:normal; }
-:root {
-  --bg:#f4f1ed; --bg2:#ede9e3; --card:#ffffff; --border:#e7e2db;
-  --text:#1e1b18; --muted:#78716c; --dark:#1a1a2e;
-  --accent:#4f46e5; --accent2:#7c3aed;
-  --green:#16a34a; --greenl:#f0fdf4; --greenb:#86efac;
-  --orange:#ea580c; --orangel:#fff7ed; --orangeb:#fed7aa;
-  --teal:#0891b2; --teal2:#ecfeff;
-  --purple:#9333ea; --purplel:#fdf4ff; --purpleb:#e879f9;
-  --gold:#ca8a04; --goldl:#fefce8; --goldb:#fde68a;
-  --red:#dc2626;
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --teal:#0d9488;--teal2:#14b8a6;--teal-dark:#0f766e;--teal-bg:#f0fdfa;--teal-mid:#ccfbf1;
+  --black:#111827;--gray-700:#374151;--gray-500:#6b7280;--gray-300:#d1d5db;
+  --gray-100:#f3f4f6;--gray-50:#f9fafb;--white:#fff;
+  --c1:#10b981;--c2:#3b82f6;--c3:#8b5cf6;--c4:#f59e0b;--c5:#ef4444;--c6:#ec4899;--c7:#6b7280;
+  --nav-h:64px;
 }
-html,body { height:100%; font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg2); color:var(--text); overflow:hidden; }
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--gray-50);color:var(--black);}
 
-/* ── SHELL ── */
-.shell { max-width:430px; margin:0 auto; height:100vh; display:flex; flex-direction:column; background:var(--bg); overflow:hidden; box-shadow:0 0 80px rgba(26,26,46,0.2); }
+/* ── APP SHELL ── */
+.app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--white);box-shadow:0 0 40px rgba(0,0,0,.1);}
 
-/* ── TOPBAR ── */
-.topbar { background:var(--dark); padding:0 18px; height:56px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-.tb-logo { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; color:white; }
-.tb-logo span { color:#818cf8; }
-.tb-right { display:flex; align-items:center; gap:8px; }
-.tb-date { font-size:11px; color:rgba(255,255,255,0.4); font-weight:500; }
-.tb-streak { display:flex; align-items:center; gap:4px; background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:100px; font-size:11px; font-weight:700; color:#fbbf24; }
-
-/* ── PAGES ── */
-.pages { flex:1; overflow:hidden; position:relative; }
-.page { position:absolute; inset:0; overflow-y:auto; opacity:0; pointer-events:none; transform:translateY(10px); transition:all 0.3s cubic-bezier(.4,0,.2,1); padding-bottom:80px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-.page::-webkit-scrollbar { width:3px; }
-.page::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
-.page.active { opacity:1; pointer-events:all; transform:translateY(0); }
+/* ── PAGE ── */
+.page{flex:1;overflow-y:auto;display:none;padding-bottom:16px;}
+.page.active{display:block;}
+.page::-webkit-scrollbar{width:3px;}
+.page::-webkit-scrollbar-thumb{background:var(--teal-mid);border-radius:3px;}
 
 /* ── BOTTOM NAV ── */
-.bnav { height:68px; background:var(--card); border-top:1.5px solid var(--border); display:flex; align-items:center; padding:0 4px 6px; flex-shrink:0; box-shadow:0 -4px 20px rgba(26,26,46,0.07); }
-.bni { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:7px 2px; border-radius:12px; transition:all 0.2s; }
-.bni:active { transform:scale(0.88); }
-.bni.on { background:#eef2ff; }
-.bni-ico { font-size:18px; opacity:0.3; transition:all 0.2s; }
-.bni-lbl { font-size:9.5px; color:var(--muted); font-weight:600; transition:all 0.2s; }
-.bni.on .bni-ico { opacity:1; }
-.bni.on .bni-lbl { color:var(--accent); font-weight:700; }
+.bottom-nav{height:var(--nav-h);background:var(--white);border-top:1px solid var(--gray-100);display:flex;align-items:stretch;flex-shrink:0;box-shadow:0 -4px 20px rgba(0,0,0,.06);}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;transition:all .15s;position:relative;}
+.nav-tab.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2.5px;border-radius:0 0 4px 4px;background:var(--teal);}
+.nav-tab .n-ico{font-size:19px;line-height:1;transition:transform .15s;}
+.nav-tab.active .n-ico{transform:scale(1.15);}
+.nav-tab .n-lbl{font-size:9.5px;font-weight:600;color:var(--gray-500);transition:color .15s;}
+.nav-tab.active .n-lbl{color:var(--teal);}
 
-/* ══════════════════════════════
-   OVERVIEW PAGE
-══════════════════════════════ */
-.ov-hero { background:linear-gradient(145deg,#1a1a2e 0%,#16213e 55%,#312e81 100%); padding:22px 18px; position:relative; overflow:hidden; }
-.ov-hero::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%); top:-70px; right:-50px; pointer-events:none; }
-.ov-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.05; line-height:1; pointer-events:none; }
-.ov-greet { font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:7px; }
-.ov-title { font-family:'Fraunces',serif; font-size:1.65rem; font-weight:900; color:white; line-height:1.12; margin-bottom:5px; }
-.ov-title span { background:linear-gradient(90deg,#a5b4fc,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.ov-sub { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:18px; }
-.prog-big { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); border-radius:16px; padding:15px 18px; }
-.pb-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
-.pb-label { font-size:10px; font-weight:600; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; }
-.pb-pct { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:900; color:#a5b4fc; }
-.pb-bar { height:5px; background:rgba(255,255,255,0.1); border-radius:100px; overflow:hidden; margin-bottom:5px; }
-.pb-fill { height:100%; background:linear-gradient(90deg,#818cf8,#a78bfa); border-radius:100px; transition:width 0.8s cubic-bezier(.4,0,.2,1); }
-.pb-desc { font-size:11px; color:rgba(255,255,255,0.4); }
+/* ══════════════════
+   PAGE 0 — HOME
+══════════════════ */
+.home-header{background:linear-gradient(135deg,var(--teal-dark),var(--teal),#2dd4bf);padding:28px 20px 24px;color:#fff;}
+.home-greeting{font-size:12px;font-weight:600;letter-spacing:2px;opacity:.7;text-transform:uppercase;margin-bottom:6px;}
+.home-name{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px;}
+.home-sub{font-size:12.5px;opacity:.7;margin-bottom:20px;}
+.home-prog-wrap{background:rgba(255,255,255,.15);border-radius:12px;padding:14px 16px;}
+.home-prog-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;}
+.home-prog-bar{height:7px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;}
+.home-prog-fill{height:100%;background:#fff;border-radius:99px;transition:width .5s ease;}
+.home-pct{font-weight:800;}
 
-/* Stat strip */
-.stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:10px 14px 0; }
-.sc { background:var(--card); border-radius:13px; padding:13px 8px; border:1.5px solid var(--border); text-align:center; }
-.sc-ico { font-size:18px; margin-bottom:5px; }
-.sc-n { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); line-height:1; }
-.sc-l { font-size:9.5px; color:var(--muted); margin-top:2px; font-weight:500; }
+.home-body{padding:16px;}
+.home-section-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray-500);margin-bottom:10px;}
 
-/* Phase overview list */
-.sec-h { font-size:10.5px; font-weight:700; color:var(--muted); letter-spacing:0.6px; text-transform:uppercase; display:flex; align-items:center; gap:8px; padding:0 14px; margin-top:14px; }
-.sec-h::after { content:''; flex:1; height:1px; background:var(--border); }
+.fase-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.fase-card{display:flex;align-items:center;gap:14px;background:var(--white);border:1.5px solid var(--gray-100);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;}
+.fase-card:active{transform:scale(.98);}
+.fase-card:hover{border-color:var(--teal-mid);}
+.fc-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fc-info{flex:1;}
+.fc-title{font-size:13.5px;font-weight:700;color:var(--black);margin-bottom:2px;}
+.fc-meta{font-size:11px;color:var(--gray-500);}
+.fc-prog{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.fc-bar{flex:1;height:4px;background:var(--gray-100);border-radius:99px;overflow:hidden;}
+.fc-fill{height:100%;border-radius:99px;transition:width .4s;}
+.fc-pct{font-size:10px;font-weight:700;color:var(--gray-500);min-width:28px;text-align:right;}
+.fc-arr{color:var(--gray-300);font-size:16px;flex-shrink:0;}
 
-.ph-ov-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.ph-ov { background:var(--card); border-radius:14px; padding:14px; border:1.5px solid var(--border); display:flex; gap:12px; align-items:center; cursor:pointer; transition:all 0.2s; }
-.ph-ov:hover { border-color:#c7d2fe; box-shadow:0 2px 16px rgba(79,70,229,0.09); }
-.ph-ov:active { transform:scale(0.98); }
-.ph-ov-num { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:18px; font-weight:900; color:white; flex-shrink:0; }
-.ph-ov-body { flex:1; min-width:0; }
-.ph-ov-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.ph-ov-income { font-size:10.5px; color:var(--green); font-weight:600; margin-bottom:6px; }
-.ph-ov-bar-wrap { height:4px; background:var(--border); border-radius:100px; overflow:hidden; }
-.ph-ov-bar-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
-.ph-ov-stat { font-size:10px; color:var(--muted); margin-top:4px; font-weight:600; }
-.ph-ov-arr { width:26px; height:26px; border-radius:8px; background:var(--bg); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--muted); flex-shrink:0; }
+.home-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.stat-card{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:12px;padding:14px;text-align:center;}
+.stat-val{font-size:22px;font-weight:800;color:var(--teal-dark);}
+.stat-lbl{font-size:10.5px;color:var(--gray-500);margin-top:2px;}
 
-/* ══════════════════════════════
-   PHASE PAGES
-══════════════════════════════ */
-.ph-hero { padding:20px 16px 18px; position:relative; overflow:hidden; }
-.ph-deco { position:absolute; right:-8px; bottom:-14px; font-size:88px; opacity:0.06; line-height:1; pointer-events:none; }
-.ph-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:7px; }
-.ph-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; line-height:1.2; margin-bottom:5px; }
-.ph-sub { font-size:12px; line-height:1.6; margin-bottom:12px; }
-.income-pill { display:inline-flex; align-items:center; gap:5px; background:var(--greenl); border:1px solid var(--greenb); color:var(--green); font-size:11px; font-weight:700; padding:5px 12px; border-radius:100px; }
+.home-links{display:flex;gap:8px;}
+.hl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;font-family:'Segoe UI',system-ui,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.hl-btn:active{transform:scale(.97);}
+.hl-teal{background:var(--teal);color:#fff;}
+.hl-dark{background:var(--black);color:#fff;}
 
-/* Phase progress bar */
-.ph-prog { background:var(--card); border-radius:14px; margin:10px 14px 0; padding:13px 16px; border:1.5px solid var(--border); }
-.php-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-.php-lbl { font-size:11px; font-weight:700; color:var(--muted); }
-.php-val { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:900; }
-.php-bar { height:5px; background:var(--border); border-radius:100px; overflow:hidden; }
-.php-fill { height:100%; border-radius:100px; transition:width 0.7s ease; }
+/* ══════════════════
+   PAGES 1–6 — FASE
+══════════════════ */
+.fase-page-header{padding:22px 18px 16px;position:sticky;top:0;z-index:10;background:var(--white);border-bottom:1px solid var(--gray-100);}
+.fph-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.fph-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.fph-title{font-size:16px;font-weight:800;color:var(--black);line-height:1.2;}
+.fph-meta{font-size:11px;color:var(--gray-500);margin-top:2px;}
+.fph-prog{display:flex;align-items:center;gap:10px;}
+.fph-bar{flex:1;height:6px;background:var(--gray-100);border-radius:99px;overflow:hidden;}
+.fph-fill{height:100%;border-radius:99px;transition:width .4s;}
+.fph-pct{font-size:12px;font-weight:800;min-width:36px;text-align:right;}
+.fph-stat{font-size:11px;color:var(--gray-500);}
 
-/* Topic list */
-.topic-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.topic-card { background:var(--card); border-radius:13px; padding:13px 14px; border:1.5px solid var(--border); display:flex; align-items:center; gap:11px; cursor:pointer; transition:all 0.2s; user-select:none; }
-.topic-card:hover { border-color:#c7d2fe; }
-.topic-card:active { transform:scale(0.98); }
-.topic-card.done { background:var(--greenl); border-color:var(--greenb); }
-.topic-card.done .tc-chk { background:var(--green); border-color:var(--green); color:white; }
-.topic-card.done .tc-name { color:var(--green); text-decoration:line-through; text-decoration-color:#86efac; }
-.tc-chk { width:22px; height:22px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; transition:all 0.2s; background:var(--bg); }
-.tc-body { flex:1; min-width:0; }
-.tc-name { font-size:13px; font-weight:600; color:var(--text); line-height:1.4; transition:all 0.2s; }
-.tc-badge { font-size:10px; font-weight:700; padding:3px 9px; border-radius:100px; flex-shrink:0; white-space:nowrap; }
-.b-now  { background:#fef3c7; color:#92400e; }
-.b-next { background:#ede9fe; color:#5b21b6; }
-.b-later{ background:#f1f5f9; color:#64748b; }
+.fase-page-body{padding:12px 16px;}
+.income-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--teal-dark);margin-bottom:16px;}
 
-/* ══════════════════════════════
-   CATATAN PAGE
-══════════════════════════════ */
-.notes-hero { background:var(--dark); padding:18px 16px; }
-.notes-hero-title { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:900; color:white; margin-bottom:4px; }
-.notes-hero-sub { font-size:12px; color:rgba(255,255,255,0.45); }
-.note-add { padding:12px 14px 0; }
-.note-input-row { display:flex; gap:8px; background:var(--card); border-radius:13px; padding:11px 14px; border:1.5px solid var(--border); transition:border-color 0.2s; }
-.note-input-row:focus-within { border-color:var(--accent); }
-.note-inp { flex:1; border:none; outline:none; font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color:var(--text); background:transparent; }
-.note-inp::placeholder { color:var(--muted); }
-.note-save { background:var(--accent); color:white; border:none; padding:7px 14px; border-radius:9px; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
-.note-save:active { transform:scale(0.95); }
-.notes-list { display:flex; flex-direction:column; gap:8px; padding:10px 14px 0; }
-.note-item { background:var(--card); border-radius:12px; padding:13px 14px; border:1.5px solid var(--border); display:flex; gap:10px; align-items:flex-start; animation:fadeUp 0.3s ease; }
-.note-bullet { width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:6px; }
-.note-content { flex:1; min-width:0; }
-.note-date-lbl { font-size:10px; color:var(--muted); font-weight:600; margin-bottom:2px; }
-.note-txt { font-size:13px; color:var(--text); line-height:1.55; }
-.note-del { background:none; border:none; color:var(--border); font-size:14px; cursor:pointer; transition:color 0.2s; padding:0 2px; flex-shrink:0; }
-.note-del:hover { color:var(--red); }
-.notes-empty { text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; line-height:1.8; }
+.group-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray-500);margin:16px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--gray-100);}
+.group-title:first-child{margin-top:0;}
 
-/* ══════════════════════════════
-   MODAL (bottom sheet)
-══════════════════════════════ */
-.modal-ov { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:500; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(4px); }
-.modal-ov.open { opacity:1; pointer-events:all; }
-.modal-box { background:white; border-radius:24px 24px 0 0; padding:24px 20px 32px; width:100%; max-width:430px; text-align:center; transform:translateY(100%); transition:transform 0.35s cubic-bezier(.4,0,.2,1); }
-.modal-ov.open .modal-box { transform:translateY(0); }
-.modal-handle { width:38px; height:4px; background:var(--border); border-radius:100px; margin:0 auto 18px; }
-.modal-ico { font-size:42px; margin-bottom:10px; }
-.modal-title { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:900; color:var(--dark); margin-bottom:5px; }
-.modal-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
-.modal-btns { display:flex; gap:9px; }
-.btn-confirm { flex:1; color:white; border:none; padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:opacity 0.2s; }
-.btn-confirm:active { opacity:0.85; }
-.btn-cancel { flex:1; background:var(--bg); color:var(--muted); border:1.5px solid var(--border); padding:14px; border-radius:13px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; }
-.btn-cancel:hover { color:var(--text); border-color:var(--text); }
+.topik{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:.5px solid var(--gray-100);}
+.topik:last-child{border-bottom:none;}
+.topik label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;flex:1;}
+.topik input[type=checkbox]{width:20px;height:20px;accent-color:var(--teal);cursor:pointer;flex-shrink:0;margin-top:1px;}
+.topik-content{flex:1;}
+.topik-title{font-size:13.5px;font-weight:600;color:var(--black);line-height:1.4;}
+.topik input:checked ~ .topik-content .topik-title{text-decoration:line-through;color:var(--gray-500);}
+.topik-desc{font-size:11.5px;color:var(--gray-500);margin-top:3px;line-height:1.5;}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px;}
+.badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:99px;}
+.b-core{background:#dcfce7;color:#166534;}
+.b-ai{background:#e0f2fe;color:#075985;}
+.b-web3{background:#fef3c7;color:#92400e;}
+.b-web4{background:#ede9fe;color:#4c1d95;}
+.b-tool{background:#f1f5f9;color:#334155;}
 
-/* ── TOAST ── */
-.toast { position:fixed; bottom:82px; left:50%; transform:translateX(-50%) translateY(16px); background:var(--dark); color:white; padding:11px 20px; border-radius:100px; font-size:13px; font-weight:600; z-index:600; opacity:0; transition:all 0.3s; white-space:nowrap; box-shadow:0 6px 24px rgba(0,0,0,0.18); pointer-events:none; }
-.toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+/* ══════════════════
+   PAGE 7 — CATATAN
+══════════════════ */
+.catatan-header{background:linear-gradient(135deg,#374151,#111827);padding:24px 18px;color:#fff;}
+.catatan-header h2{font-size:18px;font-weight:800;margin-bottom:4px;}
+.catatan-header p{font-size:12px;opacity:.6;}
+.catatan-body{padding:16px;}
+.catatan-textarea{width:100%;min-height:220px;border:1.5px solid var(--gray-100);border-radius:14px;padding:14px;font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;resize:vertical;outline:none;background:var(--gray-50);color:var(--black);line-height:1.7;transition:border-color .2s;}
+.catatan-textarea:focus{border-color:var(--teal);background:var(--white);}
+.catatan-btns{display:flex;gap:8px;margin-top:10px;}
+.c-btn{flex:1;padding:12px;border-radius:10px;font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.c-btn:active{transform:scale(.97);}
+.c-save{background:var(--teal);color:#fff;}
+.c-del{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;}
+.catatan-status{font-size:12px;color:var(--teal);margin-top:8px;min-height:18px;font-weight:600;}
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+.motivasi-box{background:linear-gradient(135deg,#111827,#1f2937);border-radius:14px;padding:18px;margin-top:16px;color:#fff;text-align:center;}
+.motivasi-box p{font-size:13px;line-height:1.8;opacity:.8;margin-bottom:6px;}
+.motivasi-box strong{color:#5eead4;opacity:1;}
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="tb-logo">Dimas<span>.AI</span></div>
-    <div class="tb-right">
-      <div class="tb-date" id="tbDate"></div>
-      <div class="tb-streak">🔥 <span id="streakNum">0</span> Hari</div>
+<div class="app">
+
+  <!-- ══ PAGES ══ -->
+
+  <!-- PAGE 0: HOME -->
+  <div class="page active" id="page-0">
+    <div class="home-header">
+      <div class="home-greeting">Roadmap Belajar</div>
+      <div class="home-name">Dimas Erlangga 👋</div>
+      <div class="home-sub">AI Engineer · Web3 · Web4 · Sri Lanka → Medan 🇮🇩</div>
+      <div class="home-prog-wrap">
+        <div class="home-prog-label">
+          <span>Progress Keseluruhan</span>
+          <span class="home-pct" id="totalPct">0%</span>
+        </div>
+        <div class="home-prog-bar"><div class="home-prog-fill" id="totalBar" style="width:0%"></div></div>
+        <div style="font-size:11px;margin-top:6px;opacity:.65;" id="totalStat">0 dari 0 topik selesai</div>
+      </div>
     </div>
-  </div>
 
-  <div class="pages">
+    <div class="home-body">
 
-    <!-- ══ OVERVIEW ══ -->
-    <div class="page active" id="page-overview">
-      <div class="ov-hero">
-        <div class="ov-deco">🤖</div>
-        <div class="ov-greet">Selamat Datang Kembali</div>
-        <div class="ov-title">Halo, <span>Dimas</span> 👋</div>
-        <div class="ov-sub">Pantau perjalananmu jadi AI Engineer. Tidak ada tekanan waktu — yang penting satu langkah demi satu langkah, konsisten!</div>
-        <div class="prog-big">
-          <div class="pb-top"><div class="pb-label">Total Progress</div><div class="pb-pct" id="ov-pct">0%</div></div>
-          <div class="pb-bar"><div class="pb-fill" id="ov-bar" style="width:0%"></div></div>
-          <div class="pb-desc" id="ov-desc">0 dari 50 topik selesai</div>
+      <div class="home-section-title">Fase Belajar</div>
+      <div class="fase-cards">
+        <div class="fase-card" onclick="goPage(1)">
+          <div class="fc-ico" style="background:#dcfce7;">🌱</div>
+          <div class="fc-info">
+            <div class="fc-title">Fondasi Web</div>
+            <div class="fc-meta">HTML · CSS · JS · Deploy · Sri Lanka Thn 1</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f1" style="width:0%;background:#10b981;"></div></div><span class="fc-pct" id="hpct-f1">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
+        </div>
+        <div class="fase-card" onclick="goPage(2)">
+          <div class="fc-ico" style="background:#dbeafe;">🐍</div>
+          <div class="fc-info">
+            <div class="fc-title">Python & AI Dasar</div>
+            <div class="fc-meta">Python · API · OpenAI · Claude API · Sri Lanka Thn 1–2</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f2" style="width:0%;background:#3b82f6;"></div></div><span class="fc-pct" id="hpct-f2">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
+        </div>
+        <div class="fase-card" onclick="goPage(3)">
+          <div class="fc-ico" style="background:#ede9fe;">🧠</div>
+          <div class="fc-info">
+            <div class="fc-title">AI Engineer</div>
+            <div class="fc-meta">LangChain · RAG · Agent · SaaS · Sri Lanka Thn 2–3</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f3" style="width:0%;background:#8b5cf6;"></div></div><span class="fc-pct" id="hpct-f3">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
+        </div>
+        <div class="fase-card" onclick="goPage(4)">
+          <div class="fc-ico" style="background:#fef3c7;">⛓️</div>
+          <div class="fc-info">
+            <div class="fc-title">Web3 — Blockchain</div>
+            <div class="fc-meta">Solidity · DApp · Smart Contract · Sri Lanka Thn 3–4</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f4" style="width:0%;background:#f59e0b;"></div></div><span class="fc-pct" id="hpct-f4">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin:4px 0;">
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#d1d5db);"></div>
+  <div style="font-size:10px;font-weight:700;color:#6b7280;white-space:nowrap;padding:4px 10px;background:#f3f4f6;border-radius:99px;">🇮🇩 Lanjut dari Medan</div>
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,#d1d5db,transparent);"></div>
+</div>
+<div class="fase-card" onclick="goPage(5)">
+          <div class="fc-ico" style="background:#fce7f3;">🚀</div>
+          <div class="fc-info">
+            <div class="fc-title">Web4 — Masa Depan</div>
+            <div class="fc-meta">AI Autonomous · Decentralized AI · Medan Thn 4–5 🇮🇩</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f5" style="width:0%;background:#ef4444;"></div></div><span class="fc-pct" id="hpct-f5">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
+        </div>
+        <div class="fase-card" onclick="goPage(6)">
+          <div class="fc-ico" style="background:#fdf2f8;">🏆</div>
+          <div class="fc-info">
+            <div class="fc-title">Skala & Kebebasan</div>
+            <div class="fc-meta">Agency · SaaS · Remote · Medan Thn 5+ 🇮🇩</div>
+            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f6" style="width:0%;background:#ec4899;"></div></div><span class="fc-pct" id="hpct-f6">0%</span></div>
+          </div>
+          <div class="fc-arr">›</div>
         </div>
       </div>
 
-      <div class="stat-strip">
-        <div class="sc"><div class="sc-ico">✅</div><div class="sc-n" id="st-done">0</div><div class="sc-l">Selesai</div></div>
-        <div class="sc"><div class="sc-ico">⏳</div><div class="sc-n" id="st-left">50</div><div class="sc-l">Tersisa</div></div>
-        <div class="sc"><div class="sc-ico">📍</div><div class="sc-n" id="st-phase">1</div><div class="sc-l">Fase Aktif</div></div>
-        <div class="sc"><div class="sc-ico">📝</div><div class="sc-n" id="st-notes">0</div><div class="sc-l">Catatan</div></div>
+      <div class="home-section-title">Statistik</div>
+      <div class="home-stats">
+        <div class="stat-card"><div class="stat-val" id="statSelesai">0</div><div class="stat-lbl">Topik Selesai</div></div>
+        <div class="stat-card"><div class="stat-val" id="statSisa">0</div><div class="stat-lbl">Topik Tersisa</div></div>
       </div>
 
-      <div class="sec-h" style="padding:14px 14px 0;">4 Fase Perjalananmu</div>
-      <div class="ph-ov-list" id="ph-ov-list"></div>
-    </div>
+      <div class="home-section-title">Link</div>
+      <div class="home-links">
+        <a href="https://wa.me/6281334331776" target="_blank" class="hl-btn hl-teal">💬 WhatsApp</a>
+        <a href="https://www.dimastoremedan.com" target="_blank" class="hl-btn hl-dark">🌐 DIMERLA</a>
+      </div>
 
-    <!-- ══ FASE 1 ══ -->
-    <div class="page" id="page-f1">
-      <div class="ph-hero" style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-bottom:1.5px solid #c7d2fe;">
-        <div class="ph-deco">🌐</div>
-        <div class="ph-eyebrow" style="color:#4f46e5;">Fase 1 — Fondasi</div>
-        <div class="ph-title" style="color:#312e81;">HTML, CSS, JS<br>&amp; Python Dasar</div>
-        <div class="ph-sub" style="color:#3730a3;">Bangun fondasi coding yang kuat. Website pertama, logika pemrograman, dan Python — semua dimulai dari sini.</div>
-        <div class="income-pill">💰 Rp 1–3 juta/bln dari website klien</div>
-      </div>
-      <div class="ph-prog" id="prog-f1">
-        <div class="php-row"><div class="php-lbl">Progress Fase 1</div><div class="php-val" id="pv-f1" style="color:#4f46e5;">0%</div></div>
-        <div class="php-bar"><div class="php-fill" id="pb-f1" style="width:0%;background:linear-gradient(90deg,#4f46e5,#7c3aed);"></div></div>
-      </div>
-      <div class="topic-list" id="tl-f1"></div>
-    </div>
-
-    <!-- ══ FASE 2 ══ -->
-    <div class="page" id="page-f2">
-      <div class="ph-hero" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-bottom:1.5px solid #fed7aa;">
-        <div class="ph-deco">🤖</div>
-        <div class="ph-eyebrow" style="color:#ea580c;">Fase 2 — Masuk Dunia AI</div>
-        <div class="ph-title" style="color:#7c2d12;">OpenAI, Claude API<br>&amp; Chatbot Pertama</div>
-        <div class="ph-sub" style="color:#9a3412;">Pakai AI di kode Python. Bangun chatbot pertama dan mulai jual ke klien bisnis lokal maupun UMKM.</div>
-        <div class="income-pill">💰 Rp 3–8 juta/bln setup chatbot UMKM</div>
-      </div>
-      <div class="ph-prog">
-        <div class="php-row"><div class="php-lbl">Progress Fase 2</div><div class="php-val" id="pv-f2" style="color:#ea580c;">0%</div></div>
-        <div class="php-bar"><div class="php-fill" id="pb-f2" style="width:0%;background:linear-gradient(90deg,#ea580c,#f59e0b);"></div></div>
-      </div>
-      <div class="topic-list" id="tl-f2"></div>
-    </div>
-
-    <!-- ══ FASE 3 ══ -->
-    <div class="page" id="page-f3">
-      <div class="ph-hero" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-bottom:1.5px solid #86efac;">
-        <div class="ph-deco">🧠</div>
-        <div class="ph-eyebrow" style="color:#16a34a;">Fase 3 — Bangun AI Agent</div>
-        <div class="ph-title" style="color:#14532d;">AI Agent, Backend<br>&amp; Produk AI Lengkap</div>
-        <div class="ph-sub" style="color:#166534;">AI yang bisa berpikir dan bertindak sendiri. Bangun produk AI yang bisa dijual bulanan ke perusahaan.</div>
-        <div class="income-pill">💰 Rp 15–40 juta/bln produk AI bulanan</div>
-      </div>
-      <div class="ph-prog">
-        <div class="php-row"><div class="php-lbl">Progress Fase 3</div><div class="php-val" id="pv-f3" style="color:#16a34a;">0%</div></div>
-        <div class="php-bar"><div class="php-fill" id="pb-f3" style="width:0%;background:linear-gradient(90deg,#16a34a,#0891b2);"></div></div>
-      </div>
-      <div class="topic-list" id="tl-f3"></div>
-    </div>
-
-    <!-- ══ FASE 4 ══ -->
-    <div class="page" id="page-f4">
-      <div class="ph-hero" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border-bottom:1.5px solid #e879f9;">
-        <div class="ph-deco">🚀</div>
-        <div class="ph-eyebrow" style="color:#9333ea;">Fase 4 — Spesialisasi &amp; Skala</div>
-        <div class="ph-title" style="color:#581c87;">Remote Internasional<br>&amp; Agency AI</div>
-        <div class="ph-sub" style="color:#6b21a8;">Pilih industri, bangun reputasi global, freelance internasional, dan akhirnya bangun agency AI milikmu sendiri.</div>
-        <div class="income-pill">💰 $3.000–$10.000/bln remote</div>
-      </div>
-      <div class="ph-prog">
-        <div class="php-row"><div class="php-lbl">Progress Fase 4</div><div class="php-val" id="pv-f4" style="color:#9333ea;">0%</div></div>
-        <div class="php-bar"><div class="php-fill" id="pb-f4" style="width:0%;background:linear-gradient(90deg,#9333ea,#ec4899);"></div></div>
-      </div>
-      <div class="topic-list" id="tl-f4"></div>
-    </div>
-
-    <!-- ══ CATATAN ══ -->
-    <div class="page" id="page-catatan">
-      <div class="notes-hero">
-        <div class="notes-hero-title">📓 Catatan Belajar Dimas</div>
-        <div class="notes-hero-sub">Catat apa yang sudah dipelajari hari ini</div>
-      </div>
-      <div class="note-add">
-        <div class="note-input-row">
-          <input type="text" class="note-inp" id="noteInp" placeholder="Contoh: Hari ini belajar CSS Flexbox, sudah paham..." onkeydown="if(event.key==='Enter')simpanCatatan()">
-          <button class="note-save" onclick="simpanCatatan()">Simpan</button>
-        </div>
-      </div>
-      <div class="notes-list" id="notesList"></div>
-    </div>
-
-  </div><!-- /pages -->
-
-  <!-- BOTTOM NAV -->
-  <nav class="bnav">
-    <div class="bni on" id="nav-overview" onclick="goPage('overview')"><div class="bni-ico">🏠</div><div class="bni-lbl">Home</div></div>
-    <div class="bni" id="nav-f1" onclick="goPage('f1')"><div class="bni-ico">🌐</div><div class="bni-lbl">Fase 1</div></div>
-    <div class="bni" id="nav-f2" onclick="goPage('f2')"><div class="bni-ico">🤖</div><div class="bni-lbl">Fase 2</div></div>
-    <div class="bni" id="nav-f3" onclick="goPage('f3')"><div class="bni-ico">🧠</div><div class="bni-lbl">Fase 3</div></div>
-    <div class="bni" id="nav-f4" onclick="goPage('f4')"><div class="bni-ico">🚀</div><div class="bni-lbl">Fase 4</div></div>
-    <div class="bni" id="nav-catatan" onclick="goPage('catatan')"><div class="bni-ico">📓</div><div class="bni-lbl">Catatan</div></div>
-  </nav>
-
-</div><!-- /shell -->
-
-<!-- MODAL -->
-<div class="modal-ov" id="modalOv" onclick="if(event.target===this)tutupModal()">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <div class="modal-ico" id="mIco">🎉</div>
-    <div class="modal-title" id="mTitle">Tandai Selesai?</div>
-    <div class="modal-desc" id="mDesc">Apakah topik ini sudah benar-benar kamu selesaikan?</div>
-    <div class="modal-btns">
-      <button class="btn-confirm" id="mBtn" onclick="konfirmasi()">Ya, Selesai!</button>
-      <button class="btn-cancel" onclick="tutupModal()">Batal</button>
     </div>
   </div>
+
+  <!-- PAGE 1: FONDASI WEB -->
+  <div class="page" id="page-1">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#dcfce7;">🌱</div>
+        <div><div class="fph-title">Fondasi Web</div><div class="fph-meta">HTML · CSS · JavaScript · Deploy · Tahun 1 — Sri Lanka</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f1" style="width:0%;background:#10b981;"></div></div>
+        <span class="fph-pct" style="color:#10b981;" id="ppct-f1">0%</span>
+        <span class="fph-stat" id="pstat-f1">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">💰 Target income: Rp 1–5 juta/bln</div>
+
+      <div class="group-title">HTML</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Struktur dokumen HTML</div><div class="topik-desc">DOCTYPE, html, head, body — hafal di luar kepala</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Tag teks & heading</div><div class="topik-desc">h1–h6, p, strong, em, br, hr, span</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Link & navigasi</div><div class="topik-desc">a href, target="_blank", anchor link (#id)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Gambar & media</div><div class="topik-desc">img src, alt, width, height</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">List & tabel</div><div class="topik-desc">ul, ol, li, table, tr, td, th</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Form & input</div><div class="topik-desc">form, input, textarea, button, select</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Div & semantic HTML</div><div class="topik-desc">div, span, header, main, footer, article, nav</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Atribut id & class</div><div class="topik-desc">Bedanya id vs class, kapan pakai masing-masing</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Komentar HTML</div><div class="topik-desc">&lt;!-- komentar --&gt;</div></div></label></div>
+
+      <div class="group-title">CSS</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Cara tulis CSS</div><div class="topik-desc">Inline, internal (style tag), external (.css file)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Selector CSS</div><div class="topik-desc">element, .class, #id, kombinasi selector</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Warna & tipografi</div><div class="topik-desc">color, background-color, font-family, font-size, font-weight, line-height</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Box model</div><div class="topik-desc">margin, padding, border, border-radius, width, height, box-sizing</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Display & visibility</div><div class="topik-desc">display: block, inline, none — kapan pakai masing-masing</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Flexbox</div><div class="topik-desc">display:flex, justify-content, align-items, gap, flex-wrap</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">CSS Grid</div><div class="topik-desc">display:grid, grid-template-columns, gap — layout 2 dimensi</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Pseudo-class & hover</div><div class="topik-desc">:hover, :focus, :active, :nth-child</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Position & z-index</div><div class="topik-desc">static, relative, absolute, fixed — susun elemen berlapis</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Transisi & animasi</div><div class="topik-desc">transition, transform, @keyframes, animation</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Responsive design</div><div class="topik-desc">@media query, mobile-first, viewport units (vw, vh, rem)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">CSS Variables</div><div class="topik-desc">--var-name, var() — kode lebih rapi dan konsisten</div></div></label></div>
+
+      <div class="group-title">JavaScript</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Variabel & tipe data</div><div class="topik-desc">let, const, var — string, number, boolean, null, undefined</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Operator & kondisi</div><div class="topik-desc">if, else, else if, switch, &&, ||, ===</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Function</div><div class="topik-desc">function biasa, arrow function, parameter, return value</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Loop</div><div class="topik-desc">for, while, forEach — ulang perintah berkali-kali</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Array & Object</div><div class="topik-desc">[], {}, push, pop, map, filter, find — struktur data paling penting</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">DOM Manipulation</div><div class="topik-desc">getElementById, querySelector, innerHTML, style, classList</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Event & listener</div><div class="topik-desc">onclick, addEventListener, onsubmit, event.preventDefault</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Async, Promise, Fetch</div><div class="topik-desc">async/await, fetch API — ambil data dari internet</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">JSON</div><div class="topik-desc">JSON.parse, JSON.stringify — format data paling umum</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">localStorage</div><div class="topik-desc">Simpan data di browser tanpa database</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Error handling</div><div class="topik-desc">try, catch, finally — tangani error dengan benar</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">ES6+ Modern JS</div><div class="topik-desc">destructuring, spread, template literal, optional chaining</div></div></label></div>
+
+      <div class="group-title">Tools & Deploy</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Git & GitHub</div><div class="topik-desc">git init, add, commit, push, pull — version control wajib</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-tool">tool</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy ke Vercel</div><div class="topik-desc">GitHub → Vercel → live URL</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-tool">tool</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Custom domain & Cloudflare</div><div class="topik-desc">Sambungkan domain ke Vercel + setup DNS</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">SEO Dasar</div><div class="topik-desc">Meta tags, title, description, schema, sitemap</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Chrome DevTools</div><div class="topik-desc">Inspect, Console, Network tab — debug seperti pro</div><div class="badges"><span class="badge b-tool">tool</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Portfolio website</div><div class="topik-desc">Buat portofolio sendiri — bukti kemampuan ke klien</div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: PYTHON & AI -->
+  <div class="page" id="page-2">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#dbeafe;">🐍</div>
+        <div><div class="fph-title">Python & AI Dasar</div><div class="fph-meta">Python · API · OpenAI · Claude API · Tahun 1–2 — Sri Lanka</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f2" style="width:0%;background:#3b82f6;"></div></div>
+        <span class="fph-pct" style="color:#3b82f6;" id="ppct-f2">0%</span>
+        <span class="fph-stat" id="pstat-f2">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">💰 Target income: Rp 3–10 juta/bln</div>
+
+      <div class="group-title">Python Dasar</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Setup Python & pip</div><div class="topik-desc">Install Python, pip, virtual environment, VS Code extension</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Syntax dasar Python</div><div class="topik-desc">Variabel, string, number, list, dict, tuple, kondisi, loop</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Function & module</div><div class="topik-desc">def, return, import, pip install — ekosistem library Python</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">OOP Python</div><div class="topik-desc">class, object, method, inheritance — wajib untuk LangChain</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">File & error handling</div><div class="topik-desc">open, read, write, try/except</div></div></label></div>
+
+      <div class="group-title">API & Web</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">HTTP & REST API</div><div class="topik-desc">GET, POST, PUT, DELETE — cara komunikasi antar sistem</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">requests library</div><div class="topik-desc">Call API dari Python — dasar semua integrasi AI</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">JSON & data parsing</div><div class="topik-desc">Parse response API, manipulasi JSON di Python</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Environment variables (.env)</div><div class="topik-desc">Simpan API key dengan aman — wajib sebelum sentuh AI API</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+
+      <div class="group-title">AI API Integration</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">OpenAI API</div><div class="topik-desc">GPT-4, chat completions, token, system prompt</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Claude API (Anthropic)</div><div class="topik-desc">Messages API, system prompt, model selection</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Prompt Engineering</div><div class="topik-desc">System prompt, few-shot, chain-of-thought — optimalkan output AI</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun chatbot pertama</div><div class="topik-desc">Chatbot Python sederhana dengan OpenAI/Claude API</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">WhatsApp Bot dengan AI</div><div class="topik-desc">Integrasi AI ke WhatsApp — produk yang langsung bisa dijual</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Telegram Bot dengan AI</div><div class="topik-desc">python-telegram-bot library + AI integration</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: AI ENGINEER -->
+  <div class="page" id="page-3">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#ede9fe;">🧠</div>
+        <div><div class="fph-title">AI Engineer</div><div class="fph-meta">LangChain · Agent · FastAPI · SaaS · Tahun 2–3 — Sri Lanka</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f3" style="width:0%;background:#8b5cf6;"></div></div>
+        <span class="fph-pct" style="color:#8b5cf6;" id="ppct-f3">0%</span>
+        <span class="fph-stat" id="pstat-f3">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">💰 Target income: Rp 15–50 juta/bln</div>
+
+      <div class="group-title">AI Lanjut</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">LangChain</div><div class="topik-desc">Chain, memory, agent — framework utama AI Engineer</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Vector Database</div><div class="topik-desc">Pinecone / Chroma — simpan & cari data untuk AI (RAG)</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">RAG — Retrieval Augmented Generation</div><div class="topik-desc">AI yang bisa baca dokumen kamu — teknik paling dicari klien</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">AI Agent</div><div class="topik-desc">Agent yang cari web, pakai tools, ambil keputusan sendiri</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Fine-tuning model dasar</div><div class="topik-desc">Training ulang model AI dengan data sendiri</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+
+      <div class="group-title">Backend & Database</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">FastAPI</div><div class="topik-desc">Buat REST API dengan Python — backend untuk produk AI</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">PostgreSQL & SQL Dasar</div><div class="topik-desc">Database relasional — simpan data user & transaksi</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Supabase / Firebase</div><div class="topik-desc">Backend-as-a-service — database cepat tanpa setup server</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Authentication</div><div class="topik-desc">JWT, OAuth, session — sistem login yang aman</div></div></label></div>
+
+      <div class="group-title">Produk & Bisnis</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy backend ke cloud</div><div class="topik-desc">Railway / Render / VPS — hosting API Python</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun SaaS AI pertama</div><div class="topik-desc">Produk berlangganan yang pakai AI — tujuan utama Fase 3</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Freelance di Upwork / Toptal</div><div class="topik-desc">Dapat klien internasional, bayaran USD</div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: WEB3 -->
+  <div class="page" id="page-4">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#fef3c7;">⛓️</div>
+        <div><div class="fph-title">Web3 — Blockchain</div><div class="fph-meta">Solidity · DApp · Smart Contract · Tahun 3–4 — Sri Lanka</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f4" style="width:0%;background:#f59e0b;"></div></div>
+        <span class="fph-pct" style="color:#f59e0b;" id="ppct-f4">0%</span>
+        <span class="fph-stat" id="pstat-f4">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">💰 Target income: $3.000–10.000/bln</div>
+
+      <div class="group-title">Blockchain Dasar</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Cara kerja Blockchain</div><div class="topik-desc">Block, chain, consensus, hash, node — konsep fundamental</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Ethereum & Solana</div><div class="topik-desc">Network paling populer — pilih spesialisasi</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Wallet & Metamask</div><div class="topik-desc">Public key, private key, seed phrase, gas fee</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Token ERC-20 & NFT ERC-721</div><div class="topik-desc">Standard token di Ethereum — dasar semua DeFi & NFT</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
+
+      <div class="group-title">Smart Contract</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Solidity Dasar</div><div class="topik-desc">Bahasa pemrograman smart contract di Ethereum</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-web3">Web3</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Hardhat / Foundry</div><div class="topik-desc">Framework testing & deploy smart contract</div><div class="badges"><span class="badge b-tool">tool</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy smart contract</div><div class="topik-desc">Deploy ke testnet (Sepolia) lalu mainnet</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Security smart contract</div><div class="topik-desc">Reentrancy attack, overflow — bug yang sudah telan miliaran dolar</div></div></label></div>
+
+      <div class="group-title">DApp Development</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Ethers.js / Web3.js</div><div class="topik-desc">Hubungkan frontend JS dengan blockchain</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-web3">Web3</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun DApp pertama</div><div class="topik-desc">Frontend + smart contract — decentralized application</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">IPFS & decentralized storage</div><div class="topik-desc">Simpan file tanpa server terpusat</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">AI + Smart Contract</div><div class="topik-desc">Gabungkan AI dengan blockchain — niche yang sangat dicari</div><div class="badges"><span class="badge b-web3">Web3</span><span class="badge b-ai">AI</span></div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 5: WEB4 -->
+  <div class="page" id="page-5">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#fce7f3;">🚀</div>
+        <div><div class="fph-title">Web4 — Masa Depan</div><div class="fph-meta">AI Autonomous · Decentralized AI · Tahun 4–5 — Medan 🇮🇩</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f5" style="width:0%;background:#ef4444;"></div></div>
+        <span class="fph-pct" style="color:#ef4444;" id="ppct-f5">0%</span>
+        <span class="fph-stat" id="pstat-f5">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">💰 Target income: $5.000–20.000+/bln</div>
+
+      <div class="group-title">Web4 Core</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">AI Autonomous Agent</div><div class="topik-desc">Agent yang bekerja mandiri tanpa instruksi manusia terus-menerus</div><div class="badges"><span class="badge b-web4">Web4</span><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Decentralized AI</div><div class="topik-desc">AI yang berjalan di blockchain — tidak bisa disensor atau dimatikan</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Semantic Web & Knowledge Graph</div><div class="topik-desc">Web yang "mengerti" konteks — fondasi Web4</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Multi-agent Systems</div><div class="topik-desc">Banyak AI agent bekerja bersama — AutoGPT, CrewAI, AutoGen</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun produk Web4 pertama</div><div class="topik-desc">Platform yang gabungkan AI + blockchain + decentralized</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 6: SKALA -->
+  <div class="page" id="page-6">
+    <div class="fase-page-header">
+      <div class="fph-top">
+        <div class="fph-ico" style="background:#fdf2f8;">🏆</div>
+        <div><div class="fph-title">Skala & Kebebasan</div><div class="fph-meta">Agency · SaaS · Remote · Tahun 5+ — Selesai di Medan 🇮🇩</div></div>
+      </div>
+      <div class="fph-prog">
+        <div class="fph-bar"><div class="fph-fill" id="pbar-f6" style="width:0%;background:#ec4899;"></div></div>
+        <span class="fph-pct" style="color:#ec4899;" id="ppct-f6">0%</span>
+        <span class="fph-stat" id="pstat-f6">0/0</span>
+      </div>
+    </div>
+    <div class="fase-page-body">
+      <div class="income-badge">🎯 Goals: Bebas finansial · Pulang ke Medan</div>
+
+      <div class="group-title">Milestone Akhir</div>
+      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Portfolio lengkap — 10+ proyek nyata</div><div class="topik-desc">Web, AI, Web3, Web4 — bukti kemampuan ke klien global</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Agency AI — tim sendiri</div><div class="topik-desc">Hire developer lain, terima proyek besar</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">SaaS dengan MRR $1.000+</div><div class="topik-desc">Monthly Recurring Revenue — pendapatan pasif dari produk AI</div></div></label></div>
+      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Kerja remote full-time dari Medan</div><div class="topik-desc">Selesaikan roadmap dari Medan, kerja remote, bebas waktu & lokasi 🇮🇩</div><div class="badges"><span class="badge b-core">GOALS</span></div></div></label></div>
+    </div>
+  </div>
+
+  <!-- PAGE 7: CATATAN -->
+  <div class="page" id="page-7">
+    <div class="catatan-header">
+      <h2>📋 Catatan Belajar</h2>
+      <p>Tulis catatan & progress harian kamu</p>
+    </div>
+    <div class="catatan-body">
+      <textarea class="catatan-textarea" id="catatanText"
+        placeholder="Contoh:&#10;&#10;📅 Hari ini belajar: CSS Flexbox&#10;✅ Yang sudah paham: display flex, gap&#10;❓ Yang masih bingung: align-items vs justify-content&#10;🎯 Besok target: CSS Grid&#10;&#10;💪 Motivasi hari ini: ..."
+        oninput="simpanCatatan()"></textarea>
+      <div class="catatan-btns">
+        <button class="c-btn c-save" onclick="simpanCatatan()">💾 Simpan</button>
+        <button class="c-btn c-del" onclick="hapusCatatan()">🗑️ Hapus</button>
+      </div>
+      <div class="catatan-status" id="catatanStatus"></div>
+      <div class="motivasi-box">
+        <p>"Setiap hari 30 menit konsisten<br>lebih kuat dari 5 jam sekali seminggu."</p>
+        <strong>Dimas Erlangga · Sri Lanka (4 thn) → Pulang Medan → Dunia 🇮🇩</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BOTTOM NAV ══ -->
+  <div class="bottom-nav">
+    <button class="nav-tab active" onclick="goPage(0)" id="nav-0">
+      <span class="n-ico">🏠</span><span class="n-lbl">Home</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(1)" id="nav-1">
+      <span class="n-ico">🌱</span><span class="n-lbl">Fondasi</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(2)" id="nav-2">
+      <span class="n-ico">🐍</span><span class="n-lbl">Python</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(3)" id="nav-3">
+      <span class="n-ico">🧠</span><span class="n-lbl">AI Eng</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(4)" id="nav-4">
+      <span class="n-ico">⛓️</span><span class="n-lbl">Web3</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(5)" id="nav-5">
+      <span class="n-ico">🚀</span><span class="n-lbl">Web4</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(6)" id="nav-6">
+      <span class="n-ico">🏆</span><span class="n-lbl">Goals</span>
+    </button>
+    <button class="nav-tab" onclick="goPage(7)" id="nav-7">
+      <span class="n-ico">📋</span><span class="n-lbl">Catatan</span>
+    </button>
+  </div>
+
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
 <script>
-// ─────────────────────────────────────────
-//  DATA ROADMAP — 4 fase, 40 topik total
-//  Tidak ada bulan/deadline → bebas tempo
-// ─────────────────────────────────────────
-var roadmap = [
-  {
-    id:'f1', nav:'f1',
-    nama:'Fase 1 — Fondasi',
-    income:'Rp 1–3 juta/bln dari website klien',
-    numColor:'linear-gradient(135deg,#4f46e5,#7c3aed)',
-    barGrad:'linear-gradient(90deg,#4f46e5,#7c3aed)',
-    pvColor:'#4f46e5',
-    ovBg:'#eef2ff', ovBorder:'#c7d2fe',
-    topik:[
-      {id:'t1',  nama:'✅ HTML — Tag Dasar (h1-h6, p, hr, button, div)',  badge:'now'},
-      {id:'t2',  nama:'✅ HTML — Elemen, Atribut (class, id, href, img)',  badge:'now'},
-      {id:'t3',  nama:'✅ HTML — Struktur Dokumen & Komentar',             badge:'now'},
-      {id:'t4',  nama:'✅ CSS — Syntax & Properti (color, font, bg)',      badge:'now'},
-      {id:'t5',  nama:'✅ CSS — Box Model (padding, margin, shadow)',       badge:'now'},
-      {id:'t6',  nama:'✅ CSS — Class vs ID & Pseudo-class (hover)',        badge:'now'},
-      {id:'t7',  nama:'✅ CSS — Display (none, block, flex)',               badge:'now'},
-      {id:'t8',  nama:'✅ JS — Variable, Function, alert, console.log',     badge:'now'},
-      {id:'t9',  nama:'✅ JS — DOM (getElementById, innerHTML, style)',     badge:'now'},
-      {id:'t10', nama:'✅ JS — Array & Object & Array of Objects',          badge:'now'},
-      {id:'t11', nama:'✅ Pisah File — CSS & JS External',                  badge:'now'},
-      {id:'t12', nama:'CSS Flexbox & Grid — Tata Letak Pro',               badge:'next'},
-      {id:'t13', nama:'Responsive Design — Media Query & Viewport',        badge:'next'},
-      {id:'t14', nama:'🏗️ Proyek — Website Profil Dimas Online',           badge:'next'},
-      {id:'t15', nama:'Git & GitHub — Simpan & Backup Kode',               badge:'later'},
-      {id:'t16', nama:'Deploy Website ke Vercel — Online Gratis!',         badge:'later'},
-      {id:'t17', nama:'Python Dasar — Variabel, Loop, Kondisi',            badge:'later'},
-      {id:'t18', nama:'Python — Fungsi, List & Dictionary',                badge:'later'},
-      {id:'t19', nama:'Python — File Handling & Library Dasar',            badge:'later'},
-      {id:'t20', nama:'🏗️ Proyek — Landing Page Bisnis Lokal Medan',      badge:'later'},
-    ]
-  },
-  {
-    id:'f2', nav:'f2',
-    nama:'Fase 2 — Masuk Dunia AI',
-    income:'Rp 3–8 juta/bln setup chatbot UMKM',
-    numColor:'linear-gradient(135deg,#ea580c,#f59e0b)',
-    barGrad:'linear-gradient(90deg,#ea580c,#f59e0b)',
-    pvColor:'#ea580c',
-    ovBg:'#fff7ed', ovBorder:'#fed7aa',
-    topik:[
-      {id:'t11', nama:'Python Menengah — OOP & Class',           badge:'later'},
-      {id:'t12', nama:'Python — Library Requests & JSON',        badge:'later'},
-      {id:'t13', nama:'Cara Kerja API — Konsep & Praktik',       badge:'later'},
-      {id:'t14', nama:'OpenAI API — Pertama Kali',               badge:'later'},
-      {id:'t15', nama:'Claude API — Integrasi Dasar',            badge:'later'},
-      {id:'t16', nama:'Prompt Engineering Tingkat Lanjut',       badge:'later'},
-      {id:'t17', nama:'LangChain Dasar — Konsep Chain',          badge:'later'},
-      {id:'t18', nama:'Bangun Chatbot AI Pertama',               badge:'later'},
-      {id:'t19', nama:'Integrasi Chatbot ke WhatsApp',           badge:'later'},
-      {id:'t20', nama:'Jual Chatbot Pertama ke Klien',           badge:'later'},
-    ]
-  },
-  {
-    id:'f3', nav:'f3',
-    nama:'Fase 3 — Bangun AI Agent',
-    income:'Rp 15–40 juta/bln produk AI bulanan',
-    numColor:'linear-gradient(135deg,#16a34a,#0891b2)',
-    barGrad:'linear-gradient(90deg,#16a34a,#0891b2)',
-    pvColor:'#16a34a',
-    ovBg:'#f0fdf4', ovBorder:'#86efac',
-    topik:[
-      {id:'t21', nama:'LangChain Lanjut — Memory & Tools',       badge:'later'},
-      {id:'t22', nama:'Vector Database — Konsep & Praktik',      badge:'later'},
-      {id:'t23', nama:'Bangun AI Agent Pertama',                 badge:'later'},
-      {id:'t24', nama:'AI Agent dengan Web Search Tool',         badge:'later'},
-      {id:'t25', nama:'Workflow Automation dengan AI',           badge:'later'},
-      {id:'t26', nama:'Backend — Python FastAPI Dasar',          badge:'later'},
-      {id:'t27', nama:'Database — PostgreSQL Dasar',             badge:'later'},
-      {id:'t28', nama:'Deploy AI App ke Production',             badge:'later'},
-      {id:'t29', nama:'Bangun Produk AI Lengkap',                badge:'later'},
-      {id:'t30', nama:'Dapat Klien Pertama Produk AI',           badge:'later'},
-    ]
-  },
-  {
-    id:'f4', nav:'f4',
-    nama:'Fase 4 — Spesialisasi & Skala',
-    income:'$3.000–$10.000/bln remote',
-    numColor:'linear-gradient(135deg,#9333ea,#ec4899)',
-    barGrad:'linear-gradient(90deg,#9333ea,#ec4899)',
-    pvColor:'#9333ea',
-    ovBg:'#fdf4ff', ovBorder:'#e879f9',
-    topik:[
-      {id:'t31', nama:'Pilih Industri Spesialisasi',             badge:'later'},
-      {id:'t32', nama:'Pelajari Masalah Industri Mendalam',      badge:'later'},
-      {id:'t33', nama:'Bangun Solusi AI Spesifik Industri',      badge:'later'},
-      {id:'t34', nama:'Machine Learning Dasar',                  badge:'later'},
-      {id:'t35', nama:'Fine-tuning Model AI',                    badge:'later'},
-      {id:'t36', nama:'Bangun Portfolio Profesional',            badge:'later'},
-      {id:'t37', nama:'Daftar Upwork / Toptal',                  badge:'later'},
-      {id:'t38', nama:'Dapat Klien Remote Luar Negeri',          badge:'later'},
-      {id:'t39', nama:'Bangun Tim / Agency AI',                  badge:'later'},
-      {id:'t40', nama:'Launch Produk AI Sendiri',                badge:'later'},
-    ]
-  }
-];
+var currentPage = 0;
 
-var BADGE_LBL   = {now:'Mulai di sini', next:'Berikutnya', later:'Nanti'};
-var BADGE_CLASS = {now:'b-now', next:'b-next', later:'b-later'};
-
-// ── STATE (in-memory, tanpa localStorage ─────────────────────
-var st = { done:{}, notes:[], streak:0 };
-
-// ── NAVIGASI ─────────────────────────────────────────────────
 function goPage(n) {
-  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-  document.querySelectorAll('.bni').forEach(function(b){ b.classList.remove('on'); });
-  document.getElementById('page-'+n).classList.add('active');
-  document.getElementById('nav-'+n).classList.add('on');
-  document.getElementById('page-'+n).scrollTop = 0;
-  renderAll();
+  document.getElementById('page-' + currentPage).classList.remove('active');
+  document.getElementById('nav-' + currentPage).classList.remove('active');
+  currentPage = n;
+  document.getElementById('page-' + n).classList.add('active');
+  document.getElementById('nav-' + n).classList.add('active');
+  document.getElementById('page-' + n).scrollTop = 0;
+  if (n === 7) loadCatatan();
 }
 
-// ── RENDER OVERVIEW PHASE LIST ────────────────────────────────
-function renderPhaseOvs() {
-  var el = document.getElementById('ph-ov-list');
-  el.innerHTML = '';
-  roadmap.forEach(function(ph, i) {
-    var total = ph.topik.length;
-    var done  = ph.topik.filter(function(t){ return st.done[t.id]; }).length;
-    var pct   = total > 0 ? Math.round(done/total*100) : 0;
-    var div   = document.createElement('div');
-    div.className = 'ph-ov';
-    div.onclick = function(){ goPage(ph.nav); };
-    div.innerHTML =
-      '<div class="ph-ov-num" style="background:'+ph.numColor+';">'+(i+1)+'</div>'+
-      '<div class="ph-ov-body">'+
-        '<div class="ph-ov-name">'+ph.nama+'</div>'+
-        '<div class="ph-ov-income">💰 '+ph.income+'</div>'+
-        '<div class="ph-ov-bar-wrap"><div class="ph-ov-bar-fill" style="width:'+pct+'%;background:'+ph.barGrad+';"></div></div>'+
-        '<div class="ph-ov-stat">'+done+' / '+total+' topik selesai · '+pct+'%</div>'+
-      '</div>'+
-      '<div class="ph-ov-arr">›</div>';
-    el.appendChild(div);
+function update() {
+  var fases = ['f1','f2','f3','f4','f5','f6'];
+  var totalD = 0, totalA = 0;
+
+  fases.forEach(function(f) {
+    var boxes = document.querySelectorAll('input[data-fase="' + f + '"]');
+    var done = 0;
+    boxes.forEach(function(b) { if (b.checked) done++; });
+    var all = boxes.length;
+    totalD += done; totalA += all;
+    var pct = all ? Math.round(done / all * 100) : 0;
+
+    // fase page header
+    var pb = document.getElementById('pbar-' + f);
+    var pp = document.getElementById('ppct-' + f);
+    var ps = document.getElementById('pstat-' + f);
+    if (pb) pb.style.width = pct + '%';
+    if (pp) pp.textContent = pct + '%';
+    if (ps) ps.textContent = done + '/' + all;
+
+    // home card progress
+    var hp = document.getElementById('hprog-' + f);
+    var hpct = document.getElementById('hpct-' + f);
+    if (hp) hp.style.width = pct + '%';
+    if (hpct) hpct.textContent = pct + '%';
   });
+
+  var totalPct = totalA ? Math.round(totalD / totalA * 100) : 0;
+  document.getElementById('totalPct').textContent = totalPct + '%';
+  document.getElementById('totalBar').style.width = totalPct + '%';
+  document.getElementById('totalStat').textContent = totalD + ' dari ' + totalA + ' topik selesai';
+  document.getElementById('statSelesai').textContent = totalD;
+  document.getElementById('statSisa').textContent = totalA - totalD;
+
+  saveProgress();
 }
 
-// ── RENDER TOPIC LISTS ────────────────────────────────────────
-function renderTopics() {
-  roadmap.forEach(function(ph) {
-    var container = document.getElementById('tl-'+ph.id);
-    if (!container) return;
-    container.innerHTML = '';
-    ph.topik.forEach(function(t) {
-      var isDone = !!st.done[t.id];
-      var div = document.createElement('div');
-      div.className = 'topic-card' + (isDone ? ' done' : '');
-      div.onclick = function(){ bukaModal(t.id, t.nama); };
-      div.innerHTML =
-        '<div class="tc-chk">'+(isDone ? '✓' : '')+'</div>'+
-        '<div class="tc-body"><div class="tc-name">'+t.nama+'</div></div>'+
-        '<span class="tc-badge '+BADGE_CLASS[t.badge]+'">'+BADGE_LBL[t.badge]+'</span>';
-      container.appendChild(div);
-    });
-
-    // Update phase progress bar
-    var total = ph.topik.length;
-    var done  = ph.topik.filter(function(t){ return st.done[t.id]; }).length;
-    var pct   = total > 0 ? Math.round(done/total*100) : 0;
-    var pbEl  = document.getElementById('pb-'+ph.id);
-    var pvEl  = document.getElementById('pv-'+ph.id);
-    if (pbEl) pbEl.style.width = pct+'%';
-    if (pvEl) pvEl.textContent = pct+'%';
+function saveProgress() {
+  var data = {};
+  document.querySelectorAll('input[type=checkbox]').forEach(function(b, i) {
+    data[i] = b.checked;
   });
+  localStorage.setItem('dimas_roadmap_v3', JSON.stringify(data));
 }
 
-// ── UPDATE STATS ──────────────────────────────────────────────
-function updateStats() {
-  var total = roadmap.reduce(function(a,p){ return a+p.topik.length; }, 0);
-  var done  = roadmap.reduce(function(a,p){ return a+p.topik.filter(function(t){ return st.done[t.id]; }).length; }, 0);
-  var pct   = total > 0 ? Math.round(done/total*100) : 0;
-
-  document.getElementById('ov-pct').textContent  = pct+'%';
-  document.getElementById('ov-bar').style.width  = pct+'%';
-  document.getElementById('ov-desc').textContent = done+' dari '+total+' topik selesai';
-  document.getElementById('st-done').textContent = done;
-  document.getElementById('st-left').textContent = total-done;
-  document.getElementById('st-notes').textContent = st.notes.length;
-
-  var faseAktif = 1;
-  roadmap.forEach(function(p, i){
-    if (p.topik.filter(function(t){ return st.done[t.id]; }).length > 0) faseAktif = i+1;
+function loadProgress() {
+  var saved = localStorage.getItem('dimas_roadmap_v3');
+  if (!saved) return;
+  var data = JSON.parse(saved);
+  document.querySelectorAll('input[type=checkbox]').forEach(function(b, i) {
+    if (data[i]) b.checked = true;
   });
-  document.getElementById('st-phase').textContent = faseAktif;
+  update();
 }
 
-// ── HEADER ────────────────────────────────────────────────────
-function updateHeader() {
-  var now = new Date();
-  document.getElementById('tbDate').textContent = now.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
-  document.getElementById('streakNum').textContent = st.streak;
-}
-
-// ── RENDER ALL ────────────────────────────────────────────────
-function renderAll() {
-  updateStats();
-  updateHeader();
-  renderPhaseOvs();
-  renderTopics();
-  renderNotes();
-}
-
-// ── MODAL ─────────────────────────────────────────────────────
-var pendingId = null;
-
-function bukaModal(id, nama) {
-  pendingId = id;
-  var isDone = !!st.done[id];
-  document.getElementById('mIco').textContent   = isDone ? '↩️' : '🎉';
-  document.getElementById('mTitle').textContent = isDone ? 'Batalkan?' : 'Tandai Selesai?';
-  document.getElementById('mDesc').textContent  = isDone
-    ? 'Hapus centang "'+nama+'"?'
-    : '"'+nama+'" sudah kamu selesaikan?';
-  var btn = document.getElementById('mBtn');
-  btn.textContent       = isDone ? 'Ya, Batalkan' : 'Ya, Selesai! 🎉';
-  btn.style.background  = isDone ? '#dc2626' : '#16a34a';
-  document.getElementById('modalOv').classList.add('open');
-}
-
-function konfirmasi() {
-  if (!pendingId) return;
-  var id = pendingId;
-  var nama = '';
-  roadmap.forEach(function(p){ p.topik.forEach(function(t){ if(t.id===id) nama=t.nama; }); });
-  if (st.done[id]) { delete st.done[id]; tampilToast('↩️ Dibatalkan: '+nama); }
-  else             { st.done[id] = true;  tampilToast('🎉 Selesai! '+nama); }
-  tutupModal();
-  renderAll();
-}
-
-function tutupModal() {
-  document.getElementById('modalOv').classList.remove('open');
-  pendingId = null;
-}
-
-// ── CATATAN ───────────────────────────────────────────────────
 function simpanCatatan() {
-  var inp  = document.getElementById('noteInp');
-  var text = inp.value.trim();
-  if (!text) return;
-  var dateStr = new Date().toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
-  st.notes.unshift({ id:Date.now(), text:text, date:dateStr });
-  inp.value = '';
-  renderAll();
-  tampilToast('📝 Catatan disimpan!');
+  var txt = document.getElementById('catatanText').value;
+  localStorage.setItem('dimas_catatan', txt);
+  var st = document.getElementById('catatanStatus');
+  st.textContent = '✅ Tersimpan!';
+  setTimeout(function() { st.textContent = ''; }, 2000);
 }
 
-function hapusCatatan(id) {
-  st.notes = st.notes.filter(function(n){ return n.id !== id; });
-  renderAll();
+function hapusCatatan() {
+  if (!confirm('Hapus semua catatan?')) return;
+  document.getElementById('catatanText').value = '';
+  localStorage.removeItem('dimas_catatan');
 }
 
-function renderNotes() {
-  var list = document.getElementById('notesList');
-  if (!list) return;
-  if (st.notes.length === 0) {
-    list.innerHTML = '<div class="notes-empty">Belum ada catatan.<br>Tulis apa yang kamu pelajari hari ini! 📖<br><br><small style="color:#a8a29e;">Contoh: "Belajar Flexbox, akhirnya paham cara center elemen"</small></div>';
-    return;
-  }
-  list.innerHTML = st.notes.slice(0,30).map(function(n){
-    return '<div class="note-item">'+
-      '<div class="note-bullet"></div>'+
-      '<div class="note-content"><div class="note-date-lbl">'+n.date+'</div><div class="note-txt">'+n.text+'</div></div>'+
-      '<button class="note-del" onclick="hapusCatatan('+n.id+')">✕</button>'+
-    '</div>';
-  }).join('');
+function loadCatatan() {
+  var saved = localStorage.getItem('dimas_catatan');
+  if (saved) document.getElementById('catatanText').value = saved;
 }
 
-// ── TOAST ─────────────────────────────────────────────────────
-function tampilToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2800);
-}
-
-// ── INIT ──────────────────────────────────────────────────────
-renderAll();
+window.addEventListener('load', function() {
+  loadProgress();
+  loadCatatan();
+});
 </script>
 </body>
 </html>
