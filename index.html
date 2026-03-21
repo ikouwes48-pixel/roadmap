@@ -4,602 +4,1068 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Roadmap Dimas — AI Engineer & Web3/Web4</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
-  --teal:#0d9488;--teal2:#14b8a6;--teal-dark:#0f766e;--teal-bg:#f0fdfa;--teal-mid:#ccfbf1;
-  --black:#111827;--gray-700:#374151;--gray-500:#6b7280;--gray-300:#d1d5db;
-  --gray-100:#f3f4f6;--gray-50:#f9fafb;--white:#fff;
-  --c1:#10b981;--c2:#3b82f6;--c3:#8b5cf6;--c4:#f59e0b;--c5:#ef4444;--c6:#ec4899;--c7:#6b7280;
-  --nav-h:64px;
+  --teal:#0d9488;--teal2:#14b8a6;--teal3:#5eead4;--teal-dark:#0f766e;
+  --teal-bg:#f0fdfa;--teal-mid:#ccfbf1;
+  --black:#0f172a;--g800:#1e293b;--g600:#475569;--g400:#94a3b8;
+  --g200:#e2e8f0;--g100:#f1f5f9;--g50:#f8fafc;--white:#fff;
+  --c1:#10b981;--c2:#3b82f6;--c3:#8b5cf6;--c4:#f59e0b;--c5:#ef4444;--c6:#ec4899;
+  --red:#ef4444;--amber:#f59e0b;--green:#10b981;
+  --nav-h:60px;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
 }
-html,body{height:100%;overflow:hidden;}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--gray-50);color:var(--black);}
-
-/* ── APP SHELL ── */
-.app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--white);box-shadow:0 0 40px rgba(0,0,0,.1);}
-
-/* ── PAGE ── */
-.page{flex:1;overflow-y:auto;display:none;padding-bottom:16px;}
+html,body{height:100%;overflow:hidden;font-family:var(--sans);}
+body{background:var(--g50);color:var(--black);}
+.app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(0,0,0,.12);}
+.page{flex:1;overflow-y:auto;display:none;scroll-behavior:smooth;}
 .page.active{display:block;}
 .page::-webkit-scrollbar{width:3px;}
-.page::-webkit-scrollbar-thumb{background:var(--teal-mid);border-radius:3px;}
+.page::-webkit-scrollbar-thumb{background:var(--teal-mid);}
 
-/* ── BOTTOM NAV ── */
-.bottom-nav{height:var(--nav-h);background:var(--white);border-top:1px solid var(--gray-100);display:flex;align-items:stretch;flex-shrink:0;box-shadow:0 -4px 20px rgba(0,0,0,.06);}
-.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;transition:all .15s;position:relative;}
-.nav-tab.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2.5px;border-radius:0 0 4px 4px;background:var(--teal);}
-.nav-tab .n-ico{font-size:19px;line-height:1;transition:transform .15s;}
-.nav-tab.active .n-ico{transform:scale(1.15);}
-.nav-tab .n-lbl{font-size:9.5px;font-weight:600;color:var(--gray-500);transition:color .15s;}
-.nav-tab.active .n-lbl{color:var(--teal);}
+/* NAV */
+.bnav{height:var(--nav-h);background:var(--white);border-top:1px solid var(--g200);display:flex;align-items:stretch;flex-shrink:0;box-shadow:0 -2px 12px rgba(0,0,0,.06);}
+.ntab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;transition:all .2s;position:relative;}
+.ntab .ni{font-size:20px;line-height:1;transition:transform .2s;}
+.ntab .nl{font-size:9px;font-weight:700;color:var(--g400);letter-spacing:.3px;}
+.ntab.active .ni{transform:scale(1.15) translateY(-1px);}
+.ntab.active .nl{color:var(--teal);}
+.ntab.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2.5px;background:var(--teal);border-radius:0 0 4px 4px;}
 
-/* ══════════════════
-   PAGE 0 — HOME
-══════════════════ */
-.home-header{background:linear-gradient(135deg,var(--teal-dark),var(--teal),#2dd4bf);padding:28px 20px 24px;color:#fff;}
-.home-greeting{font-size:12px;font-weight:600;letter-spacing:2px;opacity:.7;text-transform:uppercase;margin-bottom:6px;}
-.home-name{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px;}
-.home-sub{font-size:12.5px;opacity:.7;margin-bottom:20px;}
-.home-prog-wrap{background:rgba(255,255,255,.15);border-radius:12px;padding:14px 16px;}
-.home-prog-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;}
-.home-prog-bar{height:7px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;}
-.home-prog-fill{height:100%;background:#fff;border-radius:99px;transition:width .5s ease;}
-.home-pct{font-weight:800;}
+/* ══ HOME ══ */
+.h-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a,#0f766e);padding:24px 20px 20px;position:relative;overflow:hidden;}
+.h-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(13,148,136,.12);border-radius:50%;}
+.h-hero::after{content:'';position:absolute;bottom:-70px;left:-30px;width:160px;height:160px;background:rgba(45,212,191,.06);border-radius:50%;}
+.h-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(94,234,212,.15);border:1px solid rgba(94,234,212,.25);color:var(--teal3);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:12px;position:relative;z-index:1;}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--teal3);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.h-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:2px;position:relative;z-index:1;}
+.h-sub{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:18px;position:relative;z-index:1;}
+.h-prog-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;position:relative;z-index:1;}
+.h-prog-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.h-prog-lbl{font-size:11px;color:rgba(255,255,255,.55);font-weight:500;}
+.h-prog-pct{font-size:22px;font-weight:900;color:var(--teal3);}
+.h-prog-bar{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:6px;}
+.h-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal3));border-radius:99px;transition:width .6s ease;}
+.h-prog-stat{font-size:10px;color:rgba(255,255,255,.35);}
 
-.home-body{padding:16px;}
-.home-section-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray-500);margin-bottom:10px;}
+/* DEBT ALERT */
+.debt-alert{margin:14px 16px 0;background:#fff8f0;border:1.5px solid #fed7aa;border-radius:14px;padding:12px 14px;display:none;}
+.debt-alert.show{display:flex;align-items:center;gap:10px;}
+.debt-ico{font-size:22px;flex-shrink:0;}
+.debt-title{font-size:12px;font-weight:800;color:#c2410c;}
+.debt-sub{font-size:11px;color:#ea580c;margin-top:1px;}
 
-.fase-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-.fase-card{display:flex;align-items:center;gap:14px;background:var(--white);border:1.5px solid var(--gray-100);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;}
-.fase-card:active{transform:scale(.98);}
-.fase-card:hover{border-color:var(--teal-mid);}
-.fc-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.fc-info{flex:1;}
-.fc-title{font-size:13.5px;font-weight:700;color:var(--black);margin-bottom:2px;}
-.fc-meta{font-size:11px;color:var(--gray-500);}
-.fc-prog{display:flex;align-items:center;gap:8px;margin-top:6px;}
-.fc-bar{flex:1;height:4px;background:var(--gray-100);border-radius:99px;overflow:hidden;}
+.h-body{padding:14px 16px 20px;}
+.sec-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--g400);margin:16px 0 10px;}
+.sec-lbl:first-child{margin-top:0;}
+
+/* FASE CARDS */
+.fcard{display:flex;align-items:center;gap:12px;border:1.5px solid var(--g200);border-radius:16px;padding:13px 14px;margin-bottom:8px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.fcard:active{transform:scale(.98);}
+.fcard .fc-stripe{position:absolute;left:0;top:0;bottom:0;width:3.5px;border-radius:99px 0 0 99px;}
+.fc-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fc-info{flex:1;min-width:0;}
+.fc-title{font-size:12.5px;font-weight:700;margin-bottom:2px;}
+.fc-meta{font-size:10px;color:var(--g400);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fc-row{display:flex;align-items:center;gap:8px;}
+.fc-bar{flex:1;height:4px;background:var(--g100);border-radius:99px;overflow:hidden;}
 .fc-fill{height:100%;border-radius:99px;transition:width .4s;}
-.fc-pct{font-size:10px;font-weight:700;color:var(--gray-500);min-width:28px;text-align:right;}
-.fc-arr{color:var(--gray-300);font-size:16px;flex-shrink:0;}
+.fc-pct{font-size:10px;font-weight:800;min-width:28px;text-align:right;}
+.fc-time{font-size:9.5px;color:var(--g400);text-align:right;margin-top:2px;}
 
-.home-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
-.stat-card{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:12px;padding:14px;text-align:center;}
-.stat-val{font-size:22px;font-weight:800;color:var(--teal-dark);}
-.stat-lbl{font-size:10.5px;color:var(--gray-500);margin-top:2px;}
+.sep{display:flex;align-items:center;gap:8px;margin:10px 0;}
+.sep-l{flex:1;height:1px;background:var(--g100);}
+.sep-t{font-size:9.5px;font-weight:800;color:var(--white);background:var(--teal);padding:3px 12px;border-radius:99px;letter-spacing:.5px;}
 
-.home-links{display:flex;gap:8px;}
-.hl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;font-family:'Segoe UI',system-ui,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
-.hl-btn:active{transform:scale(.97);}
-.hl-teal{background:var(--teal);color:#fff;}
-.hl-dark{background:var(--black);color:#fff;}
+/* QUICK STATS */
+.qstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.qstat{background:var(--g50);border:1.5px solid var(--g200);border-radius:14px;padding:12px;text-align:center;}
+.qstat-val{font-size:22px;font-weight:900;color:var(--teal-dark);}
+.qstat-lbl{font-size:10px;color:var(--g400);margin-top:2px;}
 
-/* ══════════════════
-   PAGES 1–6 — FASE
-══════════════════ */
-.fase-page-header{padding:22px 18px 16px;position:sticky;top:0;z-index:10;background:var(--white);border-bottom:1px solid var(--gray-100);}
-.fph-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.fph-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
-.fph-title{font-size:16px;font-weight:800;color:var(--black);line-height:1.2;}
-.fph-meta{font-size:11px;color:var(--gray-500);margin-top:2px;}
-.fph-prog{display:flex;align-items:center;gap:10px;}
-.fph-bar{flex:1;height:6px;background:var(--gray-100);border-radius:99px;overflow:hidden;}
-.fph-fill{height:100%;border-radius:99px;transition:width .4s;}
-.fph-pct{font-size:12px;font-weight:800;min-width:36px;text-align:right;}
-.fph-stat{font-size:11px;color:var(--gray-500);}
+.lrow{display:flex;gap:8px;}
+.lbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;font-family:var(--sans);font-size:12.5px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.lbtn:active{transform:scale(.97);}
+.lb-teal{background:var(--teal);color:#fff;box-shadow:0 4px 14px rgba(13,148,136,.3);}
+.lb-dark{background:var(--black);color:#fff;}
 
-.fase-page-body{padding:12px 16px;}
-.income-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;color:var(--teal-dark);margin-bottom:16px;}
+/* ══ MATERI PAGE ══ */
+.mat-header{background:linear-gradient(145deg,#0f2027,#1a3a4a);padding:20px 18px 14px;color:#fff;}
+.mat-title{font-size:16px;font-weight:800;margin-bottom:14px;}
+.phase-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.phase-tabs::-webkit-scrollbar{display:none;}
+.ptab{flex-shrink:0;padding:7px 14px;border-radius:99px;font-size:11.5px;font-weight:700;border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.ptab.active{color:var(--black);border-color:transparent;}
 
-.group-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray-500);margin:16px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--gray-100);}
-.group-title:first-child{margin-top:0;}
+.mat-body{padding:14px 16px;}
+.phase-section{display:none;}
+.phase-section.active{display:block;}
 
-.topik{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:.5px solid var(--gray-100);}
+.phase-info{border-radius:14px;padding:14px 16px;margin-bottom:14px;border:1.5px solid;}
+.pi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.pi-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pi-title{font-size:13.5px;font-weight:800;}
+.pi-meta{font-size:10.5px;color:var(--g400);margin-top:1px;}
+.pi-prog{display:flex;align-items:center;gap:8px;}
+.pi-bar{flex:1;height:5px;background:var(--g100);border-radius:99px;overflow:hidden;}
+.pi-fill{height:100%;border-radius:99px;transition:width .4s;}
+.pi-pct{font-size:11px;font-weight:800;}
+.pi-stat{font-size:10px;color:var(--g400);}
+.pi-income{display:inline-flex;align-items:center;gap:5px;background:rgba(13,148,136,.08);border:1px solid var(--teal-mid);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--teal-dark);margin-top:8px;}
+
+/* GROUPS */
+.grp-h{font-size:9.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--g400);margin:16px 0 8px;padding-bottom:6px;border-bottom:1.5px solid var(--g100);}
+.grp-h:first-child{margin-top:0;}
+
+/* TOPIK */
+.topik{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:.5px solid var(--g100);}
 .topik:last-child{border-bottom:none;}
-.topik label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;flex:1;}
-.topik input[type=checkbox]{width:20px;height:20px;accent-color:var(--teal);cursor:pointer;flex-shrink:0;margin-top:1px;}
-.topik-content{flex:1;}
-.topik-title{font-size:13.5px;font-weight:600;color:var(--black);line-height:1.4;}
-.topik input:checked ~ .topik-content .topik-title{text-decoration:line-through;color:var(--gray-500);}
-.topik-desc{font-size:11.5px;color:var(--gray-500);margin-top:3px;line-height:1.5;}
-.badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px;}
-.badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:99px;}
-.b-core{background:#dcfce7;color:#166534;}
-.b-ai{background:#e0f2fe;color:#075985;}
-.b-web3{background:#fef3c7;color:#92400e;}
-.b-web4{background:#ede9fe;color:#4c1d95;}
-.b-tool{background:#f1f5f9;color:#334155;}
+.topik label{display:flex;gap:10px;cursor:pointer;flex:1;align-items:flex-start;}
+.chk{width:19px;height:19px;accent-color:var(--teal);flex-shrink:0;margin-top:2px;cursor:pointer;}
+.tc{flex:1;}
+.tt{font-size:13px;font-weight:600;color:var(--black);line-height:1.4;transition:all .2s;}
+.topik input:checked~.tc .tt{text-decoration:line-through;color:var(--g400);}
+.td{font-size:11px;color:var(--g400);margin-top:2px;line-height:1.6;}
+.t-est{font-size:10px;font-weight:700;color:var(--teal-dark);margin-top:4px;display:flex;align-items:center;gap:4px;}
+.t-est::before{content:'⏱';font-size:10px;}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.tag{font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:99px;}
+.t-must{background:#dcfce7;color:#166534;}
+.t-ai{background:#e0f2fe;color:#075985;}
+.t-web3{background:#fef3c7;color:#92400e;}
+.t-web4{background:#ede9fe;color:#4c1d95;}
+.t-tool{background:#f1f5f9;color:#334155;}
+.t-math{background:#fce7f3;color:#9d174d;}
 
-/* ══════════════════
-   PAGE 7 — CATATAN
-══════════════════ */
-.catatan-header{background:linear-gradient(135deg,#374151,#111827);padding:24px 18px;color:#fff;}
-.catatan-header h2{font-size:18px;font-weight:800;margin-bottom:4px;}
-.catatan-header p{font-size:12px;opacity:.6;}
-.catatan-body{padding:16px;}
-.catatan-textarea{width:100%;min-height:220px;border:1.5px solid var(--gray-100);border-radius:14px;padding:14px;font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;resize:vertical;outline:none;background:var(--gray-50);color:var(--black);line-height:1.7;transition:border-color .2s;}
-.catatan-textarea:focus{border-color:var(--teal);background:var(--white);}
-.catatan-btns{display:flex;gap:8px;margin-top:10px;}
-.c-btn{flex:1;padding:12px;border-radius:10px;font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
-.c-btn:active{transform:scale(.97);}
-.c-save{background:var(--teal);color:#fff;}
-.c-del{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;}
-.catatan-status{font-size:12px;color:var(--teal);margin-top:8px;min-height:18px;font-weight:600;}
+/* ══ TIMER PAGE ══ */
+.timer-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a,#0f766e);padding:28px 20px;color:#fff;text-align:center;}
+.timer-mode{display:inline-flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;margin-bottom:20px;}
+.tmode-btn{padding:7px 20px;border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;border:none;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.6);background:transparent;}
+.tmode-btn.active{background:var(--teal);color:#fff;}
+.timer-circle{width:180px;height:180px;border-radius:50%;border:6px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;}
+.timer-circle::before{content:'';position:absolute;inset:0;border-radius:50%;border:6px solid transparent;border-top-color:var(--teal3);transition:transform .3s;}
+.timer-time{font-size:42px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;}
+.timer-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;font-weight:600;}
+.timer-target{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:16px;}
+.timer-target strong{color:var(--teal3);}
+.timer-btns{display:flex;gap:10px;justify-content:center;}
+.t-btn{padding:12px 28px;border-radius:99px;font-family:var(--sans);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;}
+.t-btn:active{transform:scale(.96);}
+.tb-start{background:var(--teal3);color:var(--teal-dark);}
+.tb-stop{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.2);}
+.tb-reset{background:rgba(248,113,113,.2);color:#fca5a5;border:1.5px solid rgba(248,113,113,.2);}
 
-.motivasi-box{background:linear-gradient(135deg,#111827,#1f2937);border-radius:14px;padding:18px;margin-top:16px;color:#fff;text-align:center;}
-.motivasi-box p{font-size:13px;line-height:1.8;opacity:.8;margin-bottom:6px;}
-.motivasi-box strong{color:#5eead4;opacity:1;}
+.timer-body{padding:16px;}
+.timer-today{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:14px;padding:14px 16px;margin-bottom:12px;}
+.tt-title{font-size:11px;font-weight:800;color:var(--teal-dark);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+.tt-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.tt-key{font-size:12.5px;color:var(--g600);}
+.tt-val{font-size:14px;font-weight:800;color:var(--teal-dark);}
+.tt-bar{height:8px;background:rgba(13,148,136,.15);border-radius:99px;overflow:hidden;}
+.tt-fill{height:100%;background:var(--teal);border-radius:99px;transition:width .3s;}
+
+.debt-box{background:#fff8f0;border:1.5px solid #fed7aa;border-radius:14px;padding:14px 16px;margin-bottom:12px;}
+.db-title{font-size:11px;font-weight:800;color:#c2410c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.db-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.db-key{font-size:12px;color:#ea580c;}
+.db-val{font-size:14px;font-weight:800;color:#c2410c;}
+.db-note{font-size:10.5px;color:#ea580c;margin-top:6px;padding-top:6px;border-top:1px solid #fed7aa;}
+
+.log-section{margin-top:4px;}
+.log-title{font-size:11px;font-weight:800;color:var(--g400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.log-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid var(--g100);}
+.log-item:last-child{border-bottom:none;}
+.log-date{font-size:12px;color:var(--g600);}
+.log-dur{font-size:12px;font-weight:700;}
+.log-status{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;}
+.ls-ok{background:#dcfce7;color:#166534;}
+.ls-less{background:#fee2e2;color:#991b1b;}
+.ls-debt{background:#fef3c7;color:#92400e;}
+.log-empty{font-size:12px;color:var(--g400);text-align:center;padding:20px;font-style:italic;}
+
+/* ══ STATS PAGE ══ */
+.stats-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a);padding:22px 20px 18px;color:#fff;}
+.stats-hero h2{font-size:18px;font-weight:800;margin-bottom:4px;}
+.stats-hero p{font-size:11.5px;color:rgba(255,255,255,.5);}
+.stats-body{padding:14px 16px;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.stat-card{background:var(--g50);border:1.5px solid var(--g200);border-radius:14px;padding:14px;text-align:center;}
+.sc-val{font-size:24px;font-weight:900;color:var(--teal-dark);}
+.sc-lbl{font-size:10px;color:var(--g400);margin-top:2px;font-weight:500;}
+.sc-sub{font-size:9px;color:var(--g400);margin-top:1px;}
+.streak-card{background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:14px;padding:16px;text-align:center;margin-bottom:8px;color:#fff;}
+.streak-num{font-size:48px;font-weight:900;line-height:1;}
+.streak-lbl{font-size:13px;font-weight:700;opacity:.85;margin-top:4px;}
+.streak-sub{font-size:11px;opacity:.65;margin-top:2px;}
+.est-card{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:14px;padding:14px 16px;margin-bottom:8px;}
+.est-title{font-size:10px;font-weight:800;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.est-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.est-key{font-size:12px;color:var(--g600);}
+.est-val{font-size:13px;font-weight:800;color:var(--teal-dark);}
+.phase-prog-list{margin-top:4px;}
+.ppl-item{margin-bottom:10px;}
+.ppl-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.ppl-name{font-size:11.5px;font-weight:600;color:var(--black);}
+.ppl-pct{font-size:11px;font-weight:800;}
+.ppl-bar{height:5px;background:var(--g100);border-radius:99px;overflow:hidden;}
+.ppl-fill{height:100%;border-radius:99px;transition:width .5s;}
+
+/* ══ CATATAN PAGE ══ */
+.cat-hero{background:linear-gradient(135deg,var(--g800),var(--black));padding:24px 18px;color:#fff;}
+.cat-hero h2{font-size:18px;font-weight:800;margin-bottom:4px;}
+.cat-hero p{font-size:12px;color:rgba(255,255,255,.5);}
+.cat-body{padding:16px;}
+.cat-ta{width:100%;min-height:220px;border:1.5px solid var(--g200);border-radius:14px;padding:14px;font-family:var(--sans);font-size:13.5px;resize:vertical;outline:none;background:var(--g50);color:var(--black);line-height:1.7;transition:border-color .2s;}
+.cat-ta:focus{border-color:var(--teal);background:var(--white);}
+.cat-btns{display:flex;gap:8px;margin-top:10px;}
+.cb{flex:1;padding:12px;border-radius:12px;font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.cb:active{transform:scale(.97);}
+.cb-save{background:var(--teal);color:#fff;}
+.cb-del{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;}
+.cat-status{font-size:12px;color:var(--teal);margin-top:8px;min-height:18px;font-weight:600;}
+.motiv-box{background:linear-gradient(135deg,var(--black),var(--g800));border-radius:16px;padding:20px;margin-top:16px;text-align:center;border:1px solid rgba(255,255,255,.05);}
+.motiv-box p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:8px;}
+.motiv-box strong{color:var(--teal3);}
 </style>
 </head>
 <body>
-
 <div class="app">
 
-  <!-- ══ PAGES ══ -->
+<!-- ══ PAGES ══ -->
 
-  <!-- PAGE 0: HOME -->
-  <div class="page active" id="page-0">
-    <div class="home-header">
-      <div class="home-greeting">Roadmap Belajar</div>
-      <div class="home-name">Dimas Erlangga 👋</div>
-      <div class="home-sub">AI Engineer · Web3 · Web4 · Sri Lanka → Medan 🇮🇩</div>
-      <div class="home-prog-wrap">
-        <div class="home-prog-label">
-          <span>Progress Keseluruhan</span>
-          <span class="home-pct" id="totalPct">0%</span>
-        </div>
-        <div class="home-prog-bar"><div class="home-prog-fill" id="totalBar" style="width:0%"></div></div>
-        <div style="font-size:11px;margin-top:6px;opacity:.65;" id="totalStat">0 dari 0 topik selesai</div>
+<!-- HOME -->
+<div class="page active" id="page-0">
+  <div class="h-hero">
+    <div class="h-eyebrow"><div class="h-dot"></div>Roadmap Aktif</div>
+    <div class="h-name">Dimas Erlangga 👋</div>
+    <div class="h-sub">22 Mar 2026 · Sri Lanka (4 thn) → Pulang Medan 22 Mar 2030 🇮🇩</div>
+    <div class="h-prog-box">
+      <div class="h-prog-top">
+        <span class="h-prog-lbl">Progress Keseluruhan</span>
+        <span class="h-prog-pct" id="totalPct">0%</span>
       </div>
+      <div class="h-prog-bar"><div class="h-prog-fill" id="totalBar" style="width:0%"></div></div>
+      <div class="h-prog-stat" id="totalStat">0 dari 0 topik selesai</div>
+    </div>
+  </div>
+
+  <div class="debt-alert" id="debtAlert">
+    <div class="debt-ico">⚠️</div>
+    <div>
+      <div class="debt-title">Ada Hutang Jam Belajar!</div>
+      <div class="debt-sub" id="debtAlertText">Kamu kurang belajar kemarin</div>
+    </div>
+  </div>
+
+  <div class="h-body">
+    <div class="sec-lbl">Sri Lanka — 22 Mar 2026 s/d 22 Mar 2030 (1 jam/hari)</div>
+    <div id="homeCards"></div>
+
+    <div class="sep"><div class="sep-l"></div><div class="sep-t">🇮🇩 Lanjut dari Medan (5 jam/hari)</div><div class="sep-l"></div></div>
+    <div id="homeCards2"></div>
+
+    <div class="sec-lbl">Statistik Cepat</div>
+    <div class="qstats">
+      <div class="qstat"><div class="qstat-val" id="qs-done">0</div><div class="qstat-lbl">Topik Selesai</div></div>
+      <div class="qstat"><div class="qstat-val" id="qs-left">0</div><div class="qstat-lbl">Tersisa</div></div>
     </div>
 
-    <div class="home-body">
-
-      <div class="home-section-title">Fase Belajar</div>
-      <div class="fase-cards">
-        <div class="fase-card" onclick="goPage(1)">
-          <div class="fc-ico" style="background:#dcfce7;">🌱</div>
-          <div class="fc-info">
-            <div class="fc-title">Fondasi Web</div>
-            <div class="fc-meta">HTML · CSS · JS · Deploy · Sri Lanka Thn 1</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f1" style="width:0%;background:#10b981;"></div></div><span class="fc-pct" id="hpct-f1">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-        <div class="fase-card" onclick="goPage(2)">
-          <div class="fc-ico" style="background:#dbeafe;">🐍</div>
-          <div class="fc-info">
-            <div class="fc-title">Python & AI Dasar</div>
-            <div class="fc-meta">Python · API · OpenAI · Claude API · Sri Lanka Thn 1–2</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f2" style="width:0%;background:#3b82f6;"></div></div><span class="fc-pct" id="hpct-f2">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-        <div class="fase-card" onclick="goPage(3)">
-          <div class="fc-ico" style="background:#ede9fe;">🧠</div>
-          <div class="fc-info">
-            <div class="fc-title">AI Engineer</div>
-            <div class="fc-meta">LangChain · RAG · Agent · SaaS · Sri Lanka Thn 2–3</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f3" style="width:0%;background:#8b5cf6;"></div></div><span class="fc-pct" id="hpct-f3">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-        <div class="fase-card" onclick="goPage(4)">
-          <div class="fc-ico" style="background:#fef3c7;">⛓️</div>
-          <div class="fc-info">
-            <div class="fc-title">Web3 — Blockchain</div>
-            <div class="fc-meta">Solidity · DApp · Smart Contract · Sri Lanka Thn 3–4</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f4" style="width:0%;background:#f59e0b;"></div></div><span class="fc-pct" id="hpct-f4">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;margin:4px 0;">
-  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#d1d5db);"></div>
-  <div style="font-size:10px;font-weight:700;color:#6b7280;white-space:nowrap;padding:4px 10px;background:#f3f4f6;border-radius:99px;">🇮🇩 Lanjut dari Medan</div>
-  <div style="flex:1;height:1px;background:linear-gradient(90deg,#d1d5db,transparent);"></div>
+    <div class="sec-lbl">Link</div>
+    <div class="lrow">
+      <a href="https://wa.me/6281334331776" target="_blank" class="lbtn lb-teal">💬 WhatsApp</a>
+      <a href="https://www.dimastoremedan.com" target="_blank" class="lbtn lb-dark">🌐 DIMERLA</a>
+    </div>
+  </div>
 </div>
-<div class="fase-card" onclick="goPage(5)">
-          <div class="fc-ico" style="background:#fce7f3;">🚀</div>
-          <div class="fc-info">
-            <div class="fc-title">Web4 — Masa Depan</div>
-            <div class="fc-meta">AI Autonomous · Decentralized AI · Medan Thn 4–5 🇮🇩</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f5" style="width:0%;background:#ef4444;"></div></div><span class="fc-pct" id="hpct-f5">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-        <div class="fase-card" onclick="goPage(6)">
-          <div class="fc-ico" style="background:#fdf2f8;">🏆</div>
-          <div class="fc-info">
-            <div class="fc-title">Skala & Kebebasan</div>
-            <div class="fc-meta">Agency · SaaS · Remote · Medan Thn 5+ 🇮🇩</div>
-            <div class="fc-prog"><div class="fc-bar"><div class="fc-fill" id="hprog-f6" style="width:0%;background:#ec4899;"></div></div><span class="fc-pct" id="hpct-f6">0%</span></div>
-          </div>
-          <div class="fc-arr">›</div>
-        </div>
-      </div>
 
-      <div class="home-section-title">Statistik</div>
-      <div class="home-stats">
-        <div class="stat-card"><div class="stat-val" id="statSelesai">0</div><div class="stat-lbl">Topik Selesai</div></div>
-        <div class="stat-card"><div class="stat-val" id="statSisa">0</div><div class="stat-lbl">Topik Tersisa</div></div>
-      </div>
+<!-- MATERI -->
+<div class="page" id="page-1">
+  <div class="mat-header">
+    <div class="mat-title">📚 Materi Belajar</div>
+    <div class="phase-tabs" id="phaseTabs"></div>
+  </div>
+  <div class="mat-body" id="matBody"></div>
+</div>
 
-      <div class="home-section-title">Link</div>
-      <div class="home-links">
-        <a href="https://wa.me/6281334331776" target="_blank" class="hl-btn hl-teal">💬 WhatsApp</a>
-        <a href="https://www.dimastoremedan.com" target="_blank" class="hl-btn hl-dark">🌐 DIMERLA</a>
-      </div>
-
+<!-- TIMER -->
+<div class="page" id="page-2">
+  <div class="timer-hero">
+    <div class="timer-mode">
+      <button class="tmode-btn active" id="mode-sl" onclick="setMode('sl')">🇱🇰 Sri Lanka</button>
+      <button class="tmode-btn" id="mode-md" onclick="setMode('md')">🇮🇩 Medan</button>
+    </div>
+    <div class="timer-circle" id="timerCircle">
+      <div class="timer-time" id="timerDisplay">00:00</div>
+      <div class="timer-label" id="timerLabel">Siap belajar</div>
+    </div>
+    <div class="timer-target">Target hari ini: <strong id="timerTarget">60 menit</strong></div>
+    <div class="timer-btns">
+      <button class="t-btn tb-start" id="startBtn" onclick="startTimer()">▶ Mulai</button>
+      <button class="t-btn tb-stop" id="stopBtn" onclick="stopTimer()" style="display:none;">⏸ Pause</button>
+      <button class="t-btn tb-reset" onclick="resetTimer()">↺ Reset</button>
     </div>
   </div>
-
-  <!-- PAGE 1: FONDASI WEB -->
-  <div class="page" id="page-1">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#dcfce7;">🌱</div>
-        <div><div class="fph-title">Fondasi Web</div><div class="fph-meta">HTML · CSS · JavaScript · Deploy · Tahun 1 — Sri Lanka</div></div>
+  <div class="timer-body">
+    <div class="timer-today">
+      <div class="tt-title">Progress Hari Ini</div>
+      <div class="tt-row">
+        <span class="tt-key">Waktu belajar</span>
+        <span class="tt-val" id="todayTime">0 menit</span>
       </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f1" style="width:0%;background:#10b981;"></div></div>
-        <span class="fph-pct" style="color:#10b981;" id="ppct-f1">0%</span>
-        <span class="fph-stat" id="pstat-f1">0/0</span>
+      <div class="tt-row" style="margin-bottom:4px;">
+        <span class="tt-key">Target</span>
+        <span class="tt-val" id="todayTarget">60 menit</span>
       </div>
+      <div class="tt-bar"><div class="tt-fill" id="todayBar" style="width:0%"></div></div>
     </div>
-    <div class="fase-page-body">
-      <div class="income-badge">💰 Target income: Rp 1–5 juta/bln</div>
-
-      <div class="group-title">HTML</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Struktur dokumen HTML</div><div class="topik-desc">DOCTYPE, html, head, body — hafal di luar kepala</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Tag teks & heading</div><div class="topik-desc">h1–h6, p, strong, em, br, hr, span</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Link & navigasi</div><div class="topik-desc">a href, target="_blank", anchor link (#id)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Gambar & media</div><div class="topik-desc">img src, alt, width, height</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">List & tabel</div><div class="topik-desc">ul, ol, li, table, tr, td, th</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Form & input</div><div class="topik-desc">form, input, textarea, button, select</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Div & semantic HTML</div><div class="topik-desc">div, span, header, main, footer, article, nav</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Atribut id & class</div><div class="topik-desc">Bedanya id vs class, kapan pakai masing-masing</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Komentar HTML</div><div class="topik-desc">&lt;!-- komentar --&gt;</div></div></label></div>
-
-      <div class="group-title">CSS</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Cara tulis CSS</div><div class="topik-desc">Inline, internal (style tag), external (.css file)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Selector CSS</div><div class="topik-desc">element, .class, #id, kombinasi selector</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Warna & tipografi</div><div class="topik-desc">color, background-color, font-family, font-size, font-weight, line-height</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Box model</div><div class="topik-desc">margin, padding, border, border-radius, width, height, box-sizing</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Display & visibility</div><div class="topik-desc">display: block, inline, none — kapan pakai masing-masing</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Flexbox</div><div class="topik-desc">display:flex, justify-content, align-items, gap, flex-wrap</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">CSS Grid</div><div class="topik-desc">display:grid, grid-template-columns, gap — layout 2 dimensi</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Pseudo-class & hover</div><div class="topik-desc">:hover, :focus, :active, :nth-child</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Position & z-index</div><div class="topik-desc">static, relative, absolute, fixed — susun elemen berlapis</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Transisi & animasi</div><div class="topik-desc">transition, transform, @keyframes, animation</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Responsive design</div><div class="topik-desc">@media query, mobile-first, viewport units (vw, vh, rem)</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">CSS Variables</div><div class="topik-desc">--var-name, var() — kode lebih rapi dan konsisten</div></div></label></div>
-
-      <div class="group-title">JavaScript</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Variabel & tipe data</div><div class="topik-desc">let, const, var — string, number, boolean, null, undefined</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Operator & kondisi</div><div class="topik-desc">if, else, else if, switch, &&, ||, ===</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Function</div><div class="topik-desc">function biasa, arrow function, parameter, return value</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Loop</div><div class="topik-desc">for, while, forEach — ulang perintah berkali-kali</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Array & Object</div><div class="topik-desc">[], {}, push, pop, map, filter, find — struktur data paling penting</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">DOM Manipulation</div><div class="topik-desc">getElementById, querySelector, innerHTML, style, classList</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Event & listener</div><div class="topik-desc">onclick, addEventListener, onsubmit, event.preventDefault</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Async, Promise, Fetch</div><div class="topik-desc">async/await, fetch API — ambil data dari internet</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">JSON</div><div class="topik-desc">JSON.parse, JSON.stringify — format data paling umum</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">localStorage</div><div class="topik-desc">Simpan data di browser tanpa database</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Error handling</div><div class="topik-desc">try, catch, finally — tangani error dengan benar</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">ES6+ Modern JS</div><div class="topik-desc">destructuring, spread, template literal, optional chaining</div></div></label></div>
-
-      <div class="group-title">Tools & Deploy</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Git & GitHub</div><div class="topik-desc">git init, add, commit, push, pull — version control wajib</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-tool">tool</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy ke Vercel</div><div class="topik-desc">GitHub → Vercel → live URL</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-tool">tool</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Custom domain & Cloudflare</div><div class="topik-desc">Sambungkan domain ke Vercel + setup DNS</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">SEO Dasar</div><div class="topik-desc">Meta tags, title, description, schema, sitemap</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Chrome DevTools</div><div class="topik-desc">Inspect, Console, Network tab — debug seperti pro</div><div class="badges"><span class="badge b-tool">tool</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f1" onchange="update()"><div class="topik-content"><div class="topik-title">Portfolio website</div><div class="topik-desc">Buat portofolio sendiri — bukti kemampuan ke klien</div></div></label></div>
+    <div class="debt-box" id="debtBox" style="display:none;">
+      <div class="db-title">⚠️ Hutang Jam Belajar</div>
+      <div class="db-row"><span class="db-key">Total hutang</span><span class="db-val" id="debtTotal">0 menit</span></div>
+      <div class="db-row"><span class="db-key">Target hari ini (+hutang)</span><span class="db-val" id="debtTarget">60 menit</span></div>
+      <div class="db-note">💡 Selesaikan target + hutang hari ini untuk kembali on track!</div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">Riwayat Belajar</div>
+      <div id="studyLog"><div class="log-empty">Belum ada riwayat belajar.<br>Mulai timer untuk mencatat!</div></div>
     </div>
   </div>
+</div>
 
-  <!-- PAGE 2: PYTHON & AI -->
-  <div class="page" id="page-2">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#dbeafe;">🐍</div>
-        <div><div class="fph-title">Python & AI Dasar</div><div class="fph-meta">Python · API · OpenAI · Claude API · Tahun 1–2 — Sri Lanka</div></div>
-      </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f2" style="width:0%;background:#3b82f6;"></div></div>
-        <span class="fph-pct" style="color:#3b82f6;" id="ppct-f2">0%</span>
-        <span class="fph-stat" id="pstat-f2">0/0</span>
-      </div>
+<!-- STATS -->
+<div class="page" id="page-3">
+  <div class="stats-hero">
+    <h2>📊 Statistik</h2>
+    <p>Progress & perjalanan belajar kamu</p><p style="font-size:10px;color:rgba(255,255,255,.4);margin-top:6px;">📅 Mulai belajar: 22 Maret 2026</p>
+  </div>
+  <div class="stats-body">
+    <div class="streak-card">
+      <div class="streak-num" id="streakNum">0</div>
+      <div class="streak-lbl">🔥 Hari Streak</div>
+      <div class="streak-sub" id="streakSub">Mulai streak kamu hari ini!</div>
     </div>
-    <div class="fase-page-body">
-      <div class="income-badge">💰 Target income: Rp 3–10 juta/bln</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="sc-val" id="st-hours">0</div><div class="sc-lbl">Total Jam</div><div class="sc-sub">belajar tercatat</div></div>
+      <div class="stat-card"><div class="sc-val" id="st-topics">0</div><div class="sc-lbl">Topik Selesai</div><div class="sc-sub">dari 0 total</div></div>
+      <div class="stat-card"><div class="sc-val" id="st-debt">0</div><div class="sc-lbl">Hutang Menit</div><div class="sc-sub">perlu diganti</div></div>
+      <div class="stat-card"><div class="sc-val" id="st-days">0</div><div class="sc-lbl">Hari Belajar</div><div class="sc-sub">total sesi</div></div>
+    </div>
+    <div class="est-card">
+      <div class="est-title">Estimasi Selesai</div>
+      <div class="est-row"><span class="est-key">Fase 1 (Fondasi)</span><span class="est-val" id="est-f1">-</span></div>
+      <div class="est-row"><span class="est-key">Fase 1–4 (Sri Lanka)</span><span class="est-val" id="est-sl">-</span></div>
+      <div class="est-row"><span class="est-key">Fase 5–6 (Medan)</span><span class="est-val" id="est-md">-</span></div>
+      <div class="est-row" style="margin-bottom:0;"><span class="est-key">Semua fase selesai</span><span class="est-val" id="est-all">-</span></div>
+    </div>
+    <div class="log-title" style="margin-top:4px;">Progress Per Fase</div>
+    <div class="phase-prog-list" id="phaseProgList"></div>
+  </div>
+</div>
 
-      <div class="group-title">Python Dasar</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Setup Python & pip</div><div class="topik-desc">Install Python, pip, virtual environment, VS Code extension</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Syntax dasar Python</div><div class="topik-desc">Variabel, string, number, list, dict, tuple, kondisi, loop</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Function & module</div><div class="topik-desc">def, return, import, pip install — ekosistem library Python</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">OOP Python</div><div class="topik-desc">class, object, method, inheritance — wajib untuk LangChain</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">File & error handling</div><div class="topik-desc">open, read, write, try/except</div></div></label></div>
-
-      <div class="group-title">API & Web</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">HTTP & REST API</div><div class="topik-desc">GET, POST, PUT, DELETE — cara komunikasi antar sistem</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">requests library</div><div class="topik-desc">Call API dari Python — dasar semua integrasi AI</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">JSON & data parsing</div><div class="topik-desc">Parse response API, manipulasi JSON di Python</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Environment variables (.env)</div><div class="topik-desc">Simpan API key dengan aman — wajib sebelum sentuh AI API</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-
-      <div class="group-title">AI API Integration</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">OpenAI API</div><div class="topik-desc">GPT-4, chat completions, token, system prompt</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Claude API (Anthropic)</div><div class="topik-desc">Messages API, system prompt, model selection</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Prompt Engineering</div><div class="topik-desc">System prompt, few-shot, chain-of-thought — optimalkan output AI</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun chatbot pertama</div><div class="topik-desc">Chatbot Python sederhana dengan OpenAI/Claude API</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">WhatsApp Bot dengan AI</div><div class="topik-desc">Integrasi AI ke WhatsApp — produk yang langsung bisa dijual</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f2" onchange="update()"><div class="topik-content"><div class="topik-title">Telegram Bot dengan AI</div><div class="topik-desc">python-telegram-bot library + AI integration</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
+<!-- CATATAN -->
+<div class="page" id="page-4">
+  <div class="cat-hero">
+    <h2>📋 Catatan Belajar</h2>
+    <p>Catat progress & insight harian kamu</p>
+  </div>
+  <div class="cat-body">
+    <textarea class="cat-ta" id="catatanText"
+      placeholder="📅 Tanggal:&#10;&#10;✅ Hari ini belajar:&#10;&#10;💡 Yang sudah paham:&#10;&#10;❓ Yang masih bingung:&#10;&#10;🎯 Target besok:&#10;&#10;⏱ Jam belajar hari ini:&#10;&#10;💪 Motivasi:"></textarea>
+    <div class="cat-btns">
+      <button class="cb cb-save" onclick="simpanCatatan()">💾 Simpan</button>
+      <button class="cb cb-del" onclick="hapusCatatan()">🗑️ Hapus</button>
+    </div>
+    <div class="cat-status" id="catStatus"></div>
+    <div class="motiv-box">
+      <p>"1 jam/hari Sri Lanka + 5 jam/hari Medan<br>= <strong>Bebas finansial sebelum usia 30</strong> 🔥"</p>
+      <strong>Dimas · Sri Lanka → Medan → Dunia 🇮🇩</strong>
     </div>
   </div>
+</div>
 
-  <!-- PAGE 3: AI ENGINEER -->
-  <div class="page" id="page-3">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#ede9fe;">🧠</div>
-        <div><div class="fph-title">AI Engineer</div><div class="fph-meta">LangChain · Agent · FastAPI · SaaS · Tahun 2–3 — Sri Lanka</div></div>
-      </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f3" style="width:0%;background:#8b5cf6;"></div></div>
-        <span class="fph-pct" style="color:#8b5cf6;" id="ppct-f3">0%</span>
-        <span class="fph-stat" id="pstat-f3">0/0</span>
-      </div>
-    </div>
-    <div class="fase-page-body">
-      <div class="income-badge">💰 Target income: Rp 15–50 juta/bln</div>
-
-      <div class="group-title">AI Lanjut</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">LangChain</div><div class="topik-desc">Chain, memory, agent — framework utama AI Engineer</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Vector Database</div><div class="topik-desc">Pinecone / Chroma — simpan & cari data untuk AI (RAG)</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">RAG — Retrieval Augmented Generation</div><div class="topik-desc">AI yang bisa baca dokumen kamu — teknik paling dicari klien</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">AI Agent</div><div class="topik-desc">Agent yang cari web, pakai tools, ambil keputusan sendiri</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Fine-tuning model dasar</div><div class="topik-desc">Training ulang model AI dengan data sendiri</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-
-      <div class="group-title">Backend & Database</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">FastAPI</div><div class="topik-desc">Buat REST API dengan Python — backend untuk produk AI</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">PostgreSQL & SQL Dasar</div><div class="topik-desc">Database relasional — simpan data user & transaksi</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Supabase / Firebase</div><div class="topik-desc">Backend-as-a-service — database cepat tanpa setup server</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Authentication</div><div class="topik-desc">JWT, OAuth, session — sistem login yang aman</div></div></label></div>
-
-      <div class="group-title">Produk & Bisnis</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy backend ke cloud</div><div class="topik-desc">Railway / Render / VPS — hosting API Python</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun SaaS AI pertama</div><div class="topik-desc">Produk berlangganan yang pakai AI — tujuan utama Fase 3</div><div class="badges"><span class="badge b-core">wajib</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f3" onchange="update()"><div class="topik-content"><div class="topik-title">Freelance di Upwork / Toptal</div><div class="topik-desc">Dapat klien internasional, bayaran USD</div></div></label></div>
-    </div>
-  </div>
-
-  <!-- PAGE 4: WEB3 -->
-  <div class="page" id="page-4">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#fef3c7;">⛓️</div>
-        <div><div class="fph-title">Web3 — Blockchain</div><div class="fph-meta">Solidity · DApp · Smart Contract · Tahun 3–4 — Sri Lanka</div></div>
-      </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f4" style="width:0%;background:#f59e0b;"></div></div>
-        <span class="fph-pct" style="color:#f59e0b;" id="ppct-f4">0%</span>
-        <span class="fph-stat" id="pstat-f4">0/0</span>
-      </div>
-    </div>
-    <div class="fase-page-body">
-      <div class="income-badge">💰 Target income: $3.000–10.000/bln</div>
-
-      <div class="group-title">Blockchain Dasar</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Cara kerja Blockchain</div><div class="topik-desc">Block, chain, consensus, hash, node — konsep fundamental</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Ethereum & Solana</div><div class="topik-desc">Network paling populer — pilih spesialisasi</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Wallet & Metamask</div><div class="topik-desc">Public key, private key, seed phrase, gas fee</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Token ERC-20 & NFT ERC-721</div><div class="topik-desc">Standard token di Ethereum — dasar semua DeFi & NFT</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
-
-      <div class="group-title">Smart Contract</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Solidity Dasar</div><div class="topik-desc">Bahasa pemrograman smart contract di Ethereum</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-web3">Web3</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Hardhat / Foundry</div><div class="topik-desc">Framework testing & deploy smart contract</div><div class="badges"><span class="badge b-tool">tool</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Deploy smart contract</div><div class="topik-desc">Deploy ke testnet (Sepolia) lalu mainnet</div><div class="badges"><span class="badge b-web3">Web3</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Security smart contract</div><div class="topik-desc">Reentrancy attack, overflow — bug yang sudah telan miliaran dolar</div></div></label></div>
-
-      <div class="group-title">DApp Development</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Ethers.js / Web3.js</div><div class="topik-desc">Hubungkan frontend JS dengan blockchain</div><div class="badges"><span class="badge b-core">wajib</span><span class="badge b-web3">Web3</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun DApp pertama</div><div class="topik-desc">Frontend + smart contract — decentralized application</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">IPFS & decentralized storage</div><div class="topik-desc">Simpan file tanpa server terpusat</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f4" onchange="update()"><div class="topik-content"><div class="topik-title">AI + Smart Contract</div><div class="topik-desc">Gabungkan AI dengan blockchain — niche yang sangat dicari</div><div class="badges"><span class="badge b-web3">Web3</span><span class="badge b-ai">AI</span></div></div></label></div>
-    </div>
-  </div>
-
-  <!-- PAGE 5: WEB4 -->
-  <div class="page" id="page-5">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#fce7f3;">🚀</div>
-        <div><div class="fph-title">Web4 — Masa Depan</div><div class="fph-meta">AI Autonomous · Decentralized AI · Tahun 4–5 — Medan 🇮🇩</div></div>
-      </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f5" style="width:0%;background:#ef4444;"></div></div>
-        <span class="fph-pct" style="color:#ef4444;" id="ppct-f5">0%</span>
-        <span class="fph-stat" id="pstat-f5">0/0</span>
-      </div>
-    </div>
-    <div class="fase-page-body">
-      <div class="income-badge">💰 Target income: $5.000–20.000+/bln</div>
-
-      <div class="group-title">Web4 Core</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">AI Autonomous Agent</div><div class="topik-desc">Agent yang bekerja mandiri tanpa instruksi manusia terus-menerus</div><div class="badges"><span class="badge b-web4">Web4</span><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Decentralized AI</div><div class="topik-desc">AI yang berjalan di blockchain — tidak bisa disensor atau dimatikan</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Semantic Web & Knowledge Graph</div><div class="topik-desc">Web yang "mengerti" konteks — fondasi Web4</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Multi-agent Systems</div><div class="topik-desc">Banyak AI agent bekerja bersama — AutoGPT, CrewAI, AutoGen</div><div class="badges"><span class="badge b-ai">AI</span></div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f5" onchange="update()"><div class="topik-content"><div class="topik-title">Bangun produk Web4 pertama</div><div class="topik-desc">Platform yang gabungkan AI + blockchain + decentralized</div><div class="badges"><span class="badge b-web4">Web4</span></div></div></label></div>
-    </div>
-  </div>
-
-  <!-- PAGE 6: SKALA -->
-  <div class="page" id="page-6">
-    <div class="fase-page-header">
-      <div class="fph-top">
-        <div class="fph-ico" style="background:#fdf2f8;">🏆</div>
-        <div><div class="fph-title">Skala & Kebebasan</div><div class="fph-meta">Agency · SaaS · Remote · Tahun 5+ — Selesai di Medan 🇮🇩</div></div>
-      </div>
-      <div class="fph-prog">
-        <div class="fph-bar"><div class="fph-fill" id="pbar-f6" style="width:0%;background:#ec4899;"></div></div>
-        <span class="fph-pct" style="color:#ec4899;" id="ppct-f6">0%</span>
-        <span class="fph-stat" id="pstat-f6">0/0</span>
-      </div>
-    </div>
-    <div class="fase-page-body">
-      <div class="income-badge">🎯 Goals: Bebas finansial · Pulang ke Medan</div>
-
-      <div class="group-title">Milestone Akhir</div>
-      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Portfolio lengkap — 10+ proyek nyata</div><div class="topik-desc">Web, AI, Web3, Web4 — bukti kemampuan ke klien global</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Agency AI — tim sendiri</div><div class="topik-desc">Hire developer lain, terima proyek besar</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">SaaS dengan MRR $1.000+</div><div class="topik-desc">Monthly Recurring Revenue — pendapatan pasif dari produk AI</div></div></label></div>
-      <div class="topik"><label><input type="checkbox" data-fase="f6" onchange="update()"><div class="topik-content"><div class="topik-title">Kerja remote full-time dari Medan</div><div class="topik-desc">Selesaikan roadmap dari Medan, kerja remote, bebas waktu & lokasi 🇮🇩</div><div class="badges"><span class="badge b-core">GOALS</span></div></div></label></div>
-    </div>
-  </div>
-
-  <!-- PAGE 7: CATATAN -->
-  <div class="page" id="page-7">
-    <div class="catatan-header">
-      <h2>📋 Catatan Belajar</h2>
-      <p>Tulis catatan & progress harian kamu</p>
-    </div>
-    <div class="catatan-body">
-      <textarea class="catatan-textarea" id="catatanText"
-        placeholder="Contoh:&#10;&#10;📅 Hari ini belajar: CSS Flexbox&#10;✅ Yang sudah paham: display flex, gap&#10;❓ Yang masih bingung: align-items vs justify-content&#10;🎯 Besok target: CSS Grid&#10;&#10;💪 Motivasi hari ini: ..."
-        oninput="simpanCatatan()"></textarea>
-      <div class="catatan-btns">
-        <button class="c-btn c-save" onclick="simpanCatatan()">💾 Simpan</button>
-        <button class="c-btn c-del" onclick="hapusCatatan()">🗑️ Hapus</button>
-      </div>
-      <div class="catatan-status" id="catatanStatus"></div>
-      <div class="motivasi-box">
-        <p>"Setiap hari 30 menit konsisten<br>lebih kuat dari 5 jam sekali seminggu."</p>
-        <strong>Dimas Erlangga · Sri Lanka (4 thn) → Pulang Medan → Dunia 🇮🇩</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ BOTTOM NAV ══ -->
-  <div class="bottom-nav">
-    <button class="nav-tab active" onclick="goPage(0)" id="nav-0">
-      <span class="n-ico">🏠</span><span class="n-lbl">Home</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(1)" id="nav-1">
-      <span class="n-ico">🌱</span><span class="n-lbl">Fondasi</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(2)" id="nav-2">
-      <span class="n-ico">🐍</span><span class="n-lbl">Python</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(3)" id="nav-3">
-      <span class="n-ico">🧠</span><span class="n-lbl">AI Eng</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(4)" id="nav-4">
-      <span class="n-ico">⛓️</span><span class="n-lbl">Web3</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(5)" id="nav-5">
-      <span class="n-ico">🚀</span><span class="n-lbl">Web4</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(6)" id="nav-6">
-      <span class="n-ico">🏆</span><span class="n-lbl">Goals</span>
-    </button>
-    <button class="nav-tab" onclick="goPage(7)" id="nav-7">
-      <span class="n-ico">📋</span><span class="n-lbl">Catatan</span>
-    </button>
-  </div>
+<!-- BOTTOM NAV -->
+<div class="bnav">
+  <button class="ntab active" onclick="goPage(0)" id="nav-0"><span class="ni">🏠</span><span class="nl">Home</span></button>
+  <button class="ntab" onclick="goPage(1)" id="nav-1"><span class="ni">📚</span><span class="nl">Materi</span></button>
+  <button class="ntab" onclick="goPage(2)" id="nav-2"><span class="ni">⏱️</span><span class="nl">Timer</span></button>
+  <button class="ntab" onclick="goPage(3)" id="nav-3"><span class="ni">📊</span><span class="nl">Stats</span></button>
+  <button class="ntab" onclick="goPage(4)" id="nav-4"><span class="ni">📋</span><span class="nl">Catatan</span></button>
+</div>
 
 </div>
 
 <script>
-var currentPage = 0;
+// ══════════════════════════════
+// DATA ROADMAP
+// ══════════════════════════════
+var PHASES = [
+  {id:'f1',title:'Fase 1 — Fondasi Web',short:'Fondasi',ico:'🌱',color:'#10b981',bg:'#d1fae5',loc:'Sri Lanka',year:'Thn 1',income:'Rp 1–5 juta/bln',totalDays:237,
+   groups:[
+    {name:'HTML',topics:[
+      {t:'Struktur dokumen HTML',d:'DOCTYPE, html, head, body — hafal di luar kepala',days:2,hrs:2,tags:['must']},
+      {t:'Tag teks & heading',d:'h1–h6, p, strong, em, br, hr, span',days:2,hrs:2,tags:[]},
+      {t:'Link & navigasi',d:'a href, target="_blank", anchor #id',days:3,hrs:3,tags:['must']},
+      {t:'Gambar & media',d:'img src, alt, width, height, video dasar',days:2,hrs:2,tags:[]},
+      {t:'List & tabel',d:'ul, ol, li, table, tr, td, th',days:3,hrs:3,tags:[]},
+      {t:'Form & input',d:'form, input, textarea, button, select, label',days:4,hrs:4,tags:['must']},
+      {t:'Semantic HTML',d:'header, main, footer, article, nav, section',days:2,hrs:2,tags:[]},
+      {t:'Atribut id & class',d:'Bedanya id vs class — kapan pakai masing-masing',days:2,hrs:2,tags:['must']},
+      {t:'Komentar HTML',d:'<!-- komentar --> — cara beri catatan di kode',days:1,hrs:1,tags:[]},
+    ]},
+    {name:'CSS',topics:[
+      {t:'Cara tulis CSS',d:'Inline, internal (style tag), external (.css file)',days:2,hrs:2,tags:['must']},
+      {t:'Selector CSS',d:'element, .class, #id, kombinasi, specificity',days:3,hrs:3,tags:['must']},
+      {t:'Warna & tipografi',d:'color, background, font-family, size, weight, line-height',days:3,hrs:3,tags:[]},
+      {t:'Box model',d:'margin, padding, border, border-radius, width, height, box-sizing',days:4,hrs:4,tags:['must']},
+      {t:'Display & visibility',d:'block, inline, inline-block, none',days:3,hrs:3,tags:[]},
+      {t:'Flexbox',d:'display:flex, justify-content, align-items, gap, flex-wrap',days:5,hrs:5,tags:['must']},
+      {t:'CSS Grid',d:'display:grid, grid-template-columns, gap — layout 2 dimensi',days:5,hrs:5,tags:['must']},
+      {t:'Position & z-index',d:'static, relative, absolute, fixed, sticky',days:4,hrs:4,tags:[]},
+      {t:'Pseudo-class & element',d:':hover, :focus, :nth-child, ::before, ::after',days:3,hrs:3,tags:[]},
+      {t:'Transisi & animasi',d:'transition, transform, @keyframes, animation',days:4,hrs:4,tags:[]},
+      {t:'Responsive design',d:'@media query, mobile-first, vw, vh, rem, em, %',days:7,hrs:7,tags:['must']},
+      {t:'CSS Variables',d:'--var-name, var() — kode lebih rapi dan maintainable',days:2,hrs:2,tags:[]},
+      {t:'Shadow, opacity, overflow',d:'box-shadow, text-shadow, opacity, overflow',days:2,hrs:2,tags:[]},
+      {t:'Figma dasar',d:'Buat mockup sebelum coding — standar komunikasi klien',days:7,hrs:7,tags:['tool']},
+    ]},
+    {name:'JavaScript',topics:[
+      {t:'Variabel & tipe data',d:'let, const, var — string, number, boolean, null, undefined',days:3,hrs:3,tags:['must']},
+      {t:'Operator & kondisi',d:'if, else, switch, &&, ||, ===, ternary operator',days:3,hrs:3,tags:['must']},
+      {t:'Function',d:'function biasa, arrow function, parameter, return, scope',days:4,hrs:4,tags:['must']},
+      {t:'Loop',d:'for, while, do-while, forEach, for...of',days:4,hrs:4,tags:['must']},
+      {t:'Array & method array',d:'[], push, pop, map, filter, find, reduce, sort',days:5,hrs:5,tags:['must']},
+      {t:'Object & spread',d:'{}, key:value, Object.keys, spread, destructuring',days:4,hrs:4,tags:['must']},
+      {t:'DOM Manipulation',d:'getElementById, querySelector, innerHTML, classList, style',days:5,hrs:5,tags:['must']},
+      {t:'Event & listener',d:'addEventListener, onclick, onsubmit, event.preventDefault',days:4,hrs:4,tags:['must']},
+      {t:'Async, Promise, Fetch',d:'async/await, fetch API, .then() — ambil data dari internet',days:7,hrs:7,tags:['must']},
+      {t:'JSON',d:'JSON.parse, JSON.stringify — format data paling umum',days:3,hrs:3,tags:['must']},
+      {t:'localStorage & sessionStorage',d:'Simpan data di browser tanpa database',days:2,hrs:2,tags:[]},
+      {t:'Error handling',d:'try, catch, finally, throw Error',days:3,hrs:3,tags:[]},
+      {t:'ES6+ Modern JS',d:'Template literal, modules, optional chaining, nullish coalescing',days:5,hrs:5,tags:[]},
+      {t:'OOP JavaScript',d:'class, constructor, extends, super — dasar untuk framework',days:5,hrs:5,tags:[]},
+      {t:'WebSockets dasar',d:'Real-time komunikasi — wajib untuk chatbot UI',days:5,hrs:5,tags:['must']},
+    ]},
+    {name:'Node.js & React',topics:[
+      {t:'Command Line / Terminal',d:'cd, ls, mkdir, rm, pwd, nano — wajib semua developer!',days:3,hrs:3,tags:['must','tool']},
+      {t:'Node.js dasar',d:'JS di server — runtime dipakai hampir semua tools modern',days:5,hrs:5,tags:['must']},
+      {t:'npm & package.json',d:'npm install, scripts, dependencies — manajemen library JS',days:3,hrs:3,tags:['must','tool']},
+      {t:'Vite & build tools',d:'Bundler modern — cara setup project JS/React profesional',days:3,hrs:3,tags:['tool']},
+      {t:'TypeScript dasar',d:'Types, interface, generics — standar industri saat ini',days:10,hrs:10,tags:[]},
+      {t:'React.js dasar',d:'Component, props, state, hooks (useState, useEffect)',days:14,hrs:14,tags:['must']},
+      {t:'React Router & API call',d:'Navigasi halaman di React, fetch data dari API',days:7,hrs:7,tags:[]},
+    ]},
+    {name:'Tools & Deploy',topics:[
+      {t:'Git & GitHub',d:'init, add, commit, push, pull, branch, merge — version control',days:5,hrs:5,tags:['must','tool']},
+      {t:'VS Code & Extensions',d:'Prettier, ESLint, Live Server, GitLens — setup IDE pro',days:2,hrs:2,tags:['tool']},
+      {t:'Chrome DevTools',d:'Elements, Console, Network, Sources — debug seperti pro',days:3,hrs:3,tags:['tool']},
+      {t:'Deploy ke Vercel',d:'GitHub → Vercel → live URL — publish website gratis',days:2,hrs:2,tags:['must']},
+      {t:'Custom domain & Cloudflare',d:'Sambungkan domain ke Vercel, setup DNS, SSL',days:3,hrs:3,tags:[]},
+      {t:'SEO Dasar',d:'Meta tags, title, description, schema, sitemap, robots.txt',days:4,hrs:4,tags:[]},
+      {t:'Portfolio website',d:'Bangun portofolio sendiri — bukti nyata kemampuan ke klien',days:14,hrs:14,tags:['must']},
+      {t:'Technical writing dasar',d:'Dokumentasi kode & proposal klien — wajib dapat klien global',days:5,hrs:5,tags:['must']},
+    ]},
+    {name:'Web Lanjut & Performa',topics:[
+      {t:'Accessibility (a11y)',d:'ARIA, semantic HTML, keyboard nav — wajib untuk klien internasional',days:5,hrs:5,tags:['must']},
+      {t:'Web Performance & PageSpeed',d:'Lazy loading, code splitting, Core Web Vitals — website lambat = klien kabur',days:5,hrs:5,tags:['must']},
+      {t:'Progressive Web App (PWA)',d:'Service worker, manifest, offline mode — website yang bisa diinstall',days:7,hrs:7,tags:[]},
+    ]},
+  ]},
 
-function goPage(n) {
-  document.getElementById('page-' + currentPage).classList.remove('active');
-  document.getElementById('nav-' + currentPage).classList.remove('active');
-  currentPage = n;
-  document.getElementById('page-' + n).classList.add('active');
-  document.getElementById('nav-' + n).classList.add('active');
-  document.getElementById('page-' + n).scrollTop = 0;
-  if (n === 7) loadCatatan();
+  {id:'f2',title:'Fase 2 — Python & AI Dasar',short:'Python',ico:'🐍',color:'#3b82f6',bg:'#dbeafe',loc:'Sri Lanka',year:'Thn 1–2',income:'Rp 3–10 juta/bln',totalDays:137,
+   groups:[
+    {name:'Python Dasar',topics:[
+      {t:'Setup Python & pip',d:'Install Python, pip, virtual environment (venv)',days:2,hrs:2,tags:['must']},
+      {t:'Syntax dasar Python',d:'Variabel, string, number, list, dict, tuple, kondisi, loop',days:7,hrs:7,tags:['must']},
+      {t:'Function & module',d:'def, return, *args, **kwargs, import, pip install',days:5,hrs:5,tags:[]},
+      {t:'OOP Python',d:'class, object, method, inheritance, dunder methods',days:7,hrs:7,tags:[]},
+      {t:'File & error handling',d:'open, read, write, try/except, with statement',days:3,hrs:3,tags:[]},
+      {t:'List comprehension & lambda',d:'Cara menulis Python yang lebih elegan dan efisien',days:3,hrs:3,tags:[]},
+    ]},
+    {name:'Data & Library Penting',topics:[
+      {t:'Jupyter Notebook',d:'Standar mutlak untuk semua AI/data science — wajib paham!',days:3,hrs:3,tags:['must','ai']},
+      {t:'pandas & numpy',d:'Olah data — wajib untuk semua project AI & data science',days:10,hrs:10,tags:['must','ai']},
+      {t:'matplotlib',d:'Visualisasi data — wajib untuk analisis & presentasi AI',days:5,hrs:5,tags:['ai']},
+      {t:'scikit-learn dasar',d:'Library ML dasar — supervised learning, classification, regression',days:10,hrs:10,tags:['ai']},
+      {t:'Embedding & Vector concepts',d:'Paham cara kerja embedding sebelum masuk RAG',days:5,hrs:5,tags:['must','ai']},
+      {t:'Regex (Regular Expression)',d:'Pattern matching — sering dipakai di AI pipeline & data cleaning',days:3,hrs:3,tags:[]},
+      {t:'Web scraping (BeautifulSoup)',d:'Ambil data dari internet — untuk training data AI',days:5,hrs:5,tags:['ai']},
+    ]},
+    {name:'API & Web',topics:[
+      {t:'HTTP & REST API',d:'GET, POST, PUT, DELETE, status code — cara kerja internet',days:3,hrs:3,tags:['must']},
+      {t:'requests library',d:'Call API dari Python — dasar semua integrasi AI',days:3,hrs:3,tags:['must']},
+      {t:'Environment variables (.env)',d:'python-dotenv — simpan API key dengan aman',days:2,hrs:2,tags:['must']},
+    ]},
+    {name:'AI API Integration',topics:[
+      {t:'OpenAI API',d:'GPT-4, chat completions, token, temperature, system prompt',days:7,hrs:7,tags:['ai']},
+      {t:'Claude API (Anthropic)',d:'Messages API, streaming, system prompt, model selection',days:5,hrs:5,tags:['ai']},
+      {t:'Prompt Engineering',d:'System prompt, few-shot, chain-of-thought, role prompting',days:7,hrs:7,tags:['must','ai']},
+      {t:'Hugging Face dasar',d:'Platform AI terbesar — model, spaces, inference API',days:5,hrs:5,tags:['ai']},
+      {t:'Bangun chatbot pertama',d:'Chatbot Python dengan AI API — produk nyata pertama',days:7,hrs:7,tags:['ai']},
+      {t:'WhatsApp Bot + AI',d:'Integrasi AI ke WA — langsung bisa dijual ke klien',days:7,hrs:7,tags:['ai']},
+      {t:'Telegram Bot + AI',d:'python-telegram-bot + AI integration',days:5,hrs:5,tags:['ai']},
+    ]},
+    {name:'AI Tools Tambahan',topics:[
+      {t:'Streamlit',d:'Build AI web app Python cepat — standar demo ke klien tanpa React',days:5,hrs:5,tags:['must','ai']},
+      {t:'Gradio',d:'UI untuk demo model AI — standar di Hugging Face Spaces',days:5,hrs:5,tags:['ai']},
+      {t:'Whisper API (Speech-to-Text)',d:'Transkripsi suara ke teks — banyak diminta klien untuk chatbot suara',days:3,hrs:3,tags:['ai']},
+      {t:'Image Generation API',d:'DALL-E, Stable Diffusion API — integrasi generasi gambar ke produk',days:5,hrs:5,tags:['ai']},
+    ]},
+  ]},
+
+  {id:'f3',title:'Fase 3 — AI Engineer',short:'AI Eng',ico:'🧠',color:'#8b5cf6',bg:'#ede9fe',loc:'Sri Lanka',year:'Thn 2–3',income:'Rp 15–50 juta/bln',totalDays:241,
+   groups:[
+    {name:'Fondasi & Matematika AI',topics:[
+      {t:'Matematika dasar AI',d:'Linear algebra, statistik dasar, probabilitas — fondasi ML',days:14,hrs:14,tags:['must','math']},
+      {t:'Machine Learning konsep',d:'Supervised, unsupervised, reinforcement — paham teori',days:7,hrs:7,tags:['ai']},
+    ]},
+    {name:'AI Framework Lanjut',topics:[
+      {t:'LangChain',d:'Chain, memory, tools, agent — framework utama AI Engineer',days:14,hrs:14,tags:['must','ai']},
+      {t:'Vector Database',d:'Pinecone / Chroma / Weaviate — simpan embedding untuk AI',days:7,hrs:7,tags:['must','ai']},
+      {t:'RAG — Retrieval Augmented Generation',d:'AI yang bisa baca dokumen — teknik paling dicari klien',days:14,hrs:14,tags:['must','ai']},
+      {t:'AI Agent lanjut',d:'Agent yang cari web, pakai tools, ambil keputusan sendiri',days:14,hrs:14,tags:['must','ai']},
+      {t:'Fine-tuning model',d:'Training ulang AI dengan data sendiri — LoRA, PEFT',days:14,hrs:14,tags:['ai']},
+      {t:'MLflow',d:'Tracking eksperimen ML — standar industri, wajib untuk tim',days:5,hrs:5,tags:['tool']},
+      {t:'API cost optimization',d:'Kelola biaya AI API agar produk tetap profit',days:5,hrs:5,tags:['must']},
+    ]},
+    {name:'Backend & Infrastruktur',topics:[
+      {t:'Linux dasar',d:'ls, cd, mkdir, vim, chmod, systemctl — semua server AI pakai Linux',days:7,hrs:7,tags:['must','tool']},
+      {t:'FastAPI',d:'Buat REST API dengan Python — backend untuk produk AI',days:10,hrs:10,tags:['must']},
+      {t:'WebSocket server',d:'Backend real-time — wajib untuk chatbot & live AI apps',days:5,hrs:5,tags:['must']},
+      {t:'PostgreSQL & SQL',d:'SELECT, INSERT, JOIN, index — database relasional wajib',days:10,hrs:10,tags:['must']},
+      {t:'Redis',d:'Database cepat untuk cache hasil AI — kurangi biaya API',days:5,hrs:5,tags:['tool']},
+      {t:'Supabase / Firebase',d:'Backend-as-a-service — database + auth tanpa setup server',days:5,hrs:5,tags:[]},
+      {t:'Authentication & Security',d:'JWT, OAuth2, bcrypt, HTTPS — sistem login yang aman',days:7,hrs:7,tags:['must']},
+      {t:'Docker dasar',d:'Container, image, Dockerfile — packaging app AI agar portable',days:7,hrs:7,tags:['must','tool']},
+      {t:'GitHub Actions / CI/CD',d:'Otomasi deploy — standar profesional, hemat waktu',days:5,hrs:5,tags:['tool']},
+      {t:'Cloud basics (AWS/GCP)',d:'Deploy AI apps skala besar — EC2, Lambda, Cloud Run',days:10,hrs:10,tags:['must']},
+      {t:'Testing dasar',d:'Unit test, pytest, Jest — pastikan kode AI tidak rusak',days:5,hrs:5,tags:[]},
+    ]},
+    {name:'Produk & Bisnis',topics:[
+      {t:'Bangun SaaS AI pertama',d:'Produk berlangganan — tujuan utama Fase 3',days:21,hrs:21,tags:['must']},
+      {t:'Open source contribution',d:'Bangun reputasi di GitHub — dilihat klien global',days:14,hrs:14,tags:[]},
+      {t:'Freelance di Upwork / Toptal',d:'Dapat klien internasional, bayaran USD',days:7,hrs:7,tags:[]},
+    ]},
+    {name:'AI Framework Tambahan',topics:[
+      {t:'LlamaIndex',d:'Alternatif LangChain — framework indexing dokumen untuk AI, sering diminta klien',days:7,hrs:7,tags:['must','ai']},
+      {t:'LangGraph',d:'Versi terbaru untuk complex AI agent dengan state machine — standar 2025+',days:7,hrs:7,tags:['ai']},
+      {t:'CrewAI',d:'Multi-agent framework paling populer — buat tim AI yang bekerja bersama',days:5,hrs:5,tags:['ai']},
+      {t:'GraphQL',d:'Alternatif REST API — banyak startup dan klien modern pakai ini',days:5,hrs:5,tags:[]},
+      {t:'OWASP Security',d:'Top 10 kerentanan web — wajib sebelum jual produk ke klien enterprise',days:5,hrs:5,tags:['must']},
+    ]},
+  ]},
+
+  {id:'f4',title:'Fase 4 — Web3 Blockchain',short:'Web3',ico:'⛓️',color:'#f59e0b',bg:'#fef3c7',loc:'Sri Lanka',year:'Thn 3–4',income:'$3.000–10.000/bln',totalDays:145,
+   groups:[
+    {name:'Blockchain Dasar',topics:[
+      {t:'Cara kerja Blockchain',d:'Block, chain, consensus (PoW/PoS), hash, node, ledger',days:5,hrs:5,tags:['must','web3']},
+      {t:'Ethereum & Solana',d:'Network paling populer — pilih spesialisasi utama',days:5,hrs:5,tags:['web3']},
+      {t:'Layer 2 Solutions',d:'Polygon, Arbitrum, Optimism — biaya lebih murah dari Ethereum',days:5,hrs:5,tags:['web3']},
+      {t:'Wallet & Metamask',d:'Public key, private key, seed phrase, gas fee, signing',days:3,hrs:3,tags:[]},
+      {t:'Token ERC-20 & NFT ERC-721',d:'Standard token Ethereum — dasar semua DeFi & NFT',days:5,hrs:5,tags:['web3']},
+      {t:'DeFi protocol dasar',d:'Paham Uniswap, Aave, Compound — ekosistem Web3',days:7,hrs:7,tags:['web3']},
+    ]},
+    {name:'Smart Contract',topics:[
+      {t:'Solidity dasar',d:'Variables, functions, events, modifiers, mappings',days:14,hrs:14,tags:['must','web3']},
+      {t:'Hardhat / Foundry',d:'Framework testing & deploy smart contract — standar industri',days:7,hrs:7,tags:['tool']},
+      {t:'Deploy smart contract',d:'Deploy ke testnet (Sepolia) → mainnet Ethereum',days:7,hrs:7,tags:['web3']},
+      {t:'Security smart contract',d:'Reentrancy, overflow, access control — audit wajib',days:10,hrs:10,tags:['must']},
+      {t:'Zero-knowledge proof dasar',d:'zk-SNARK konsep — teknologi Web3 masa depan',days:7,hrs:7,tags:['web3']},
+    ]},
+    {name:'DApp Development',topics:[
+      {t:'Ethers.js / Web3.js',d:'Hubungkan frontend JS dengan blockchain',days:7,hrs:7,tags:['must','web3']},
+      {t:'The Graph',d:'Indexing data blockchain seperti database — sangat dicari',days:5,hrs:5,tags:['web3']},
+      {t:'Chainlink (Oracle)',d:'Data dunia nyata ke blockchain — harga crypto, cuaca, dll',days:5,hrs:5,tags:['web3']},
+      {t:'Bangun DApp pertama',d:'React + smart contract — decentralized application',days:14,hrs:14,tags:['web3']},
+      {t:'IPFS & decentralized storage',d:'Simpan file tanpa server terpusat — Filecoin, Arweave',days:5,hrs:5,tags:[]},
+      {t:'AI + Smart Contract',d:'Gabungkan AI dengan blockchain — niche sangat langka',days:14,hrs:14,tags:['web3','ai']},
+    ]},
+    {name:'Solidity Lanjut',topics:[
+      {t:'OpenZeppelin',d:'Library smart contract standar industri — reusable, audited, aman',days:5,hrs:5,tags:['must','web3']},
+      {t:'Gas Optimization Solidity',d:'Teknik hemat biaya transaksi — sangat dicari klien DeFi',days:5,hrs:5,tags:['web3']},
+      {t:'Rust dasar',d:'Bahasa pemrograman untuk Solana development — high performance',days:10,hrs:10,tags:['web3']},
+    ]},
+  ]},
+
+  {id:'fb',title:'Fase Bonus — Persiapan Skala Global',short:'Bonus',ico:'💎',color:'#0ea5e9',bg:'#e0f2fe',loc:'Sri Lanka',year:'Thn 2–4',income:'Mulai dapat $500–2.000/bln',totalDays:700,
+   groups:[
+    {name:'Bahasa Inggris Teknis',topics:[
+      {t:'English teknis aktif',d:'Speaking & writing untuk meeting klien, email, proposal — tanpa ini USD tidak datang',days:60,hrs:60,tags:['must']},
+      {t:'Technical documentation writing',d:'README, API docs, proposal teknis — standar klien internasional',days:14,hrs:14,tags:['must']},
+    ]},
+    {name:'Personal Branding & Karir',topics:[
+      {t:'GitHub profile & portofolio',d:'Buat GitHub terlihat profesional — README, pinned repos, contribution graph',days:7,hrs:7,tags:['must']},
+      {t:'LinkedIn profile teknis',d:'Optimasi LinkedIn untuk dapat klien/rekruter internasional',days:5,hrs:5,tags:['must']},
+      {t:'Twitter/X tech presence',d:'Bangun audiens di komunitas developer & AI global',days:14,hrs:14,tags:[]},
+      {t:'Blog teknis (dev.to / Medium)',d:'Tulis artikel teknis — bukti keahlian yang bisa dilihat klien',days:14,hrs:14,tags:[]},
+    ]},
+    {name:'Freelance & Bisnis',topics:[
+      {t:'Setup Upwork & Toptal profile',d:'Cara buat profile yang menarik klien USD sejak hari pertama',days:5,hrs:5,tags:['must']},
+      {t:'Pricing & proposal freelance',d:'Cara harga jasa, tulis proposal menang, negosiasi tanpa takut',days:7,hrs:7,tags:['must']},
+      {t:'Client communication',d:'Handle klien sulit, manage deadline, negosiasi revisi',days:7,hrs:7,tags:['must']},
+      {t:'Product thinking & validation',d:'Cara validasi ide produk sebelum bangun — hindari buang waktu',days:10,hrs:10,tags:['must']},
+      {t:'Business model SaaS',d:'Pricing model, MRR, churn, CAC — paham bisnis bukan hanya kode',days:7,hrs:7,tags:[]},
+    ]},
+    {name:'Proyek Portfolio Nyata',topics:[
+      {t:'Proyek 1 — Web app full stack',d:'HTML+CSS+JS+React+API — deploy live ke Vercel dengan domain',days:21,hrs:21,tags:['must']},
+      {t:'Proyek 2 — AI Chatbot produk',d:'Chatbot dengan RAG + FastAPI + database — bisa langsung dijual',days:30,hrs:30,tags:['must']},
+      {t:'Proyek 3 — SaaS AI mini',d:'Produk berlangganan sederhana dengan payment gateway',days:30,hrs:30,tags:['must']},
+      {t:'Proyek 4 — DApp Web3',d:'Smart contract + React frontend — deploy ke testnet',days:21,hrs:21,tags:['web3']},
+      {t:'Proyek 5 — Open source contribution',d:'Kontribusi ke project AI/Web3 populer — bangun reputasi global',days:30,hrs:30,tags:[]},
+    ]},
+    {name:'Review & Pendalaman',topics:[
+      {t:'Review & perdalam Fase 1',d:'Pastikan fondasi web benar-benar kuat sebelum ke tingkat lebih tinggi',days:21,hrs:21,tags:['must']},
+      {t:'Review & perdalam Fase 2',d:'Perdalam Python dan AI API — eksperimen lebih banyak model',days:21,hrs:21,tags:['must']},
+      {t:'Review & perdalam Fase 3',d:'Perdalam LangChain, RAG, Agent — bangun sistem lebih kompleks',days:21,hrs:21,tags:['must']},
+      {t:'Review & perdalam Fase 4',d:'Perdalam smart contract — audit, optimasi, proyek DeFi',days:21,hrs:21,tags:[]},
+      {t:'Persiapan pulang Medan',d:'Siapkan semua aset, klien, dan pendapatan sebelum pulang',days:14,hrs:14,tags:['must']},
+    ]},
+  ]},
+
+  {id:'f5',title:'Fase 5 — Web4 & AI Future',short:'Web4',ico:'🚀',color:'#ef4444',bg:'#fee2e2',loc:'Medan',year:'Thn 4–5',income:'$5.000–20.000+/bln',totalDays:79,
+   groups:[
+    {name:'Web4 Core',topics:[
+      {t:'AI Autonomous Agent',d:'Agent bekerja mandiri tanpa instruksi terus-menerus',days:14,hrs:70,tags:['web4','ai']},
+      {t:'Decentralized AI',d:'AI di blockchain — tidak bisa disensor atau dimatikan',days:10,hrs:50,tags:['web4']},
+      {t:'Semantic Web & Knowledge Graph',d:'Web yang mengerti konteks — fondasi Web4',days:10,hrs:50,tags:['web4']},
+      {t:'Multi-agent Systems',d:'Banyak AI agent bekerja bersama — CrewAI, AutoGen',days:14,hrs:70,tags:['ai']},
+      {t:'AI + IoT Integration',d:'Hubungkan AI dengan perangkat fisik — industri masa depan',days:10,hrs:50,tags:['web4']},
+      {t:'Bangun produk Web4 pertama',d:'AI + blockchain + decentralized — platform masa depan',days:21,hrs:105,tags:['must','web4']},
+    ]},
+  ]},
+
+  {id:'f6',title:'Fase 6 — Skala & Kebebasan',short:'Goals',ico:'🏆',color:'#ec4899',bg:'#fce7f3',loc:'Medan',year:'Thn 5+',income:'Bebas finansial',totalDays:30,
+   groups:[
+    {name:'Milestone Kebebasan',topics:[
+      {t:'Portfolio 10+ proyek nyata',d:'Web, AI, Web3, Web4 — bukti ke klien global',days:0,hrs:0,tags:['must']},
+      {t:'SaaS dengan MRR $1.000+',d:'Pendapatan pasif bulanan dari produk AI sendiri',days:0,hrs:0,tags:['must']},
+      {t:'Agency AI — tim sendiri',d:'Hire developer lain, terima proyek besar dari klien global',days:0,hrs:0,tags:[]},
+      {t:'Kerja remote dari Medan',d:'Bebas waktu, bebas lokasi, tidak perlu ke Sri Lanka lagi 🇮🇩',days:0,hrs:0,tags:['must']},
+    ]},
+  ]},
+];
+
+var TAG_LABELS = {must:'wajib',ai:'AI',web3:'Web3',web4:'Web4',tool:'tool',math:'math'};
+var TAG_CLASS = {must:'t-must',ai:'t-ai',web3:'t-web3',web4:'t-web4',tool:'t-tool',math:'t-math'};
+
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
+var cur = 0;
+var activePhase = 0;
+var timerInterval = null;
+var timerRunning = false;
+var timerSeconds = 0;
+var timerMode = 'sl'; // sl = Sri Lanka (60min), md = Medan (300min)
+var TARGET = {sl:60,md:300}; // minutes
+
+function getState(){
+  var s = localStorage.getItem('dimas_v5');
+  return s ? JSON.parse(s) : {
+    checks:{}, todayMinutes:0, totalMinutes:0, debtMinutes:0,
+    streak:0, lastDate:'', studyLog:[], lastSessionDate:''
+  };
+}
+function saveState(s){ localStorage.setItem('dimas_v5',JSON.stringify(s)); }
+
+// ══════════════════════════════
+// NAV
+// ══════════════════════════════
+function goPage(n){
+  document.getElementById('page-'+cur).classList.remove('active');
+  document.getElementById('nav-'+cur).classList.remove('active');
+  cur=n;
+  document.getElementById('page-'+n).classList.add('active');
+  document.getElementById('nav-'+n).classList.add('active');
+  document.getElementById('page-'+n).scrollTop=0;
+  if(n===0) updateHome();
+  if(n===3) updateStats();
+  if(n===4) loadCatatan();
 }
 
-function update() {
-  var fases = ['f1','f2','f3','f4','f5','f6'];
-  var totalD = 0, totalA = 0;
+// ══════════════════════════════
+// BUILD UI
+// ══════════════════════════════
+function buildHome(){
+  var sl = ['f1','f2','f3','f4','fb'], md = ['f5','f6'];
+  document.getElementById('homeCards').innerHTML = sl.map(phaseCard).join('');
+  document.getElementById('homeCards2').innerHTML = md.map(phaseCard).join('');
+}
 
-  fases.forEach(function(f) {
-    var boxes = document.querySelectorAll('input[data-fase="' + f + '"]');
-    var done = 0;
-    boxes.forEach(function(b) { if (b.checked) done++; });
-    var all = boxes.length;
-    totalD += done; totalA += all;
-    var pct = all ? Math.round(done / all * 100) : 0;
+function phaseCard(fid){
+  var p = PHASES.find(function(x){return x.id===fid;});
+  var s = getState(); var done=0,all=0;
+  p.groups.forEach(function(g){ g.topics.forEach(function(t,ti){
+    var k=p.id+'-'+p.groups.indexOf(g)+'-'+ti;
+    all++; if(s.checks[k]) done++;
+  });});
+  var pct=all?Math.round(done/all*100):0;
+  var daysLeft = p.totalDays - Math.floor(done/all*p.totalDays);
+  var timeEst = p.loc==='Sri Lanka' ? '~'+p.totalDays+' hari (1 jam/hari)' : '~'+Math.ceil(p.totalDays/5*p.totalDays/p.totalDays)+'hari (5 jam/hari)';
+  // simpler
+  var estText = p.loc==='Sri Lanka' ? '~'+p.totalDays+' hari total' : '~'+p.totalDays+' hari total';
+  return '<div class="fcard" onclick="goPage(1);switchPhase('+PHASES.indexOf(p)+')">' +
+    '<div class="fc-stripe" style="background:'+p.color+'"></div>' +
+    '<div class="fc-ico" style="background:'+p.bg+'">'+p.ico+'</div>' +
+    '<div class="fc-info">' +
+      '<div class="fc-title" style="color:'+p.color+'">'+p.title+'</div>' +
+      '<div class="fc-meta">'+p.loc+' · '+p.year+'</div>' +
+      '<div class="fc-row">' +
+        '<div class="fc-bar"><div class="fc-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div>' +
+        '<span class="fc-pct" style="color:'+p.color+'">'+pct+'%</span>' +
+      '</div>' +
+      '<div class="fc-time">'+estText+'</div>' +
+    '</div><div class="fc-arr">›</div></div>';
+}
 
-    // fase page header
-    var pb = document.getElementById('pbar-' + f);
-    var pp = document.getElementById('ppct-' + f);
-    var ps = document.getElementById('pstat-' + f);
-    if (pb) pb.style.width = pct + '%';
-    if (pp) pp.textContent = pct + '%';
-    if (ps) ps.textContent = done + '/' + all;
+function buildMateri(){
+  // tabs
+  var tabs = PHASES.map(function(p,i){
+    return '<button class="ptab'+(i===0?' active':'')+'" id="ptab-'+i+'" onclick="switchPhase('+i+')" style="'+(i===0?'background:'+p.color+';color:#fff;border-color:'+p.color+'':'')+'">'+p.ico+' '+p.short+'</button>';
+  }).join('');
+  document.getElementById('phaseTabs').innerHTML = tabs;
 
-    // home card progress
-    var hp = document.getElementById('hprog-' + f);
-    var hpct = document.getElementById('hpct-' + f);
-    if (hp) hp.style.width = pct + '%';
-    if (hpct) hpct.textContent = pct + '%';
+  var html = PHASES.map(function(p,pi){
+    var s=getState(); var pdone=0,pall=0;
+    var ghtml = p.groups.map(function(g,gi){
+      var gdone=0,gall=g.topics.length;
+      var thtml = g.topics.map(function(t,ti){
+        var k=p.id+'-'+gi+'-'+ti;
+        var checked=s.checks[k]?' checked':'';
+        var estText = t.days>0 ? (p.loc==='Sri Lanka'?'~'+t.days+' hari (1 jam/hari)':'~'+Math.ceil(t.hrs/5)+' hari (5 jam/hari)') : '';
+        if(s.checks[k]) gdone++;
+        var tagsHtml = t.tags.map(function(tg){return '<span class="tag '+TAG_CLASS[tg]+'">'+TAG_LABELS[tg]+'</span>';}).join('');
+        return '<div class="topik"><label>' +
+          '<input class="chk" type="checkbox"'+checked+' onchange="toggleCheck(\''+k+'\')">' +
+          '<div class="tc"><div class="tt">'+t.t+'</div>' +
+          (t.d?'<div class="td">'+t.d+'</div>':'') +
+          (estText?'<div class="t-est">'+estText+'</div>':'') +
+          (t.tags.length?'<div class="tags">'+tagsHtml+'</div>':'') +
+          '</div></label></div>';
+      }).join('');
+      pdone+=gdone; pall+=g.topics.length;
+      return '<div class="grp-h">'+g.name+'</div>'+thtml;
+    }).join('');
+    var ppct=pall?Math.round(pdone/pall*100):0;
+    var phaseInfoHtml = '<div class="phase-info" style="background:'+p.bg+'20;border-color:'+p.color+'30">' +
+      '<div class="pi-top"><div class="pi-ico" style="background:'+p.bg+'">'+p.ico+'</div>' +
+      '<div><div class="pi-title" style="color:'+p.color+'">'+p.title+'</div>' +
+      '<div class="pi-meta">'+p.loc+' · '+p.year+'</div></div></div>' +
+      '<div class="pi-prog"><div class="pi-bar"><div class="pi-fill" id="pi-'+p.id+'" style="width:'+ppct+'%;background:'+p.color+'"></div></div>' +
+      '<span class="pi-pct" style="color:'+p.color+'">'+ppct+'%</span>' +
+      '<span class="pi-stat">'+pdone+'/'+pall+'</span></div>' +
+      '<div class="pi-income">💰 '+p.income+'</div>' +
+      '</div>';
+    return '<div class="phase-section'+(pi===0?' active':'')+'" id="ps-'+pi+'">'+phaseInfoHtml+ghtml+'</div>';
+  }).join('');
+  document.getElementById('matBody').innerHTML = html;
+}
+
+function switchPhase(i){
+  document.querySelectorAll('.phase-section').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.ptab').forEach(function(el,idx){
+    el.classList.remove('active');
+    el.style.background=''; el.style.color=''; el.style.borderColor='';
   });
-
-  var totalPct = totalA ? Math.round(totalD / totalA * 100) : 0;
-  document.getElementById('totalPct').textContent = totalPct + '%';
-  document.getElementById('totalBar').style.width = totalPct + '%';
-  document.getElementById('totalStat').textContent = totalD + ' dari ' + totalA + ' topik selesai';
-  document.getElementById('statSelesai').textContent = totalD;
-  document.getElementById('statSisa').textContent = totalA - totalD;
-
-  saveProgress();
+  document.getElementById('ps-'+i).classList.add('active');
+  var tab = document.getElementById('ptab-'+i);
+  tab.classList.add('active');
+  tab.style.background = PHASES[i].color;
+  tab.style.color = '#fff';
+  tab.style.borderColor = PHASES[i].color;
+  activePhase = i;
 }
 
-function saveProgress() {
-  var data = {};
-  document.querySelectorAll('input[type=checkbox]').forEach(function(b, i) {
-    data[i] = b.checked;
+function toggleCheck(k){
+  var s = getState();
+  s.checks[k] = !s.checks[k];
+  saveState(s);
+  updateAll();
+}
+
+// ══════════════════════════════
+// UPDATE UI
+// ══════════════════════════════
+function updateAll(){
+  updateHome();
+  updateStats();
+  updateHomeCards();
+}
+
+function updateHome(){
+  var s=getState(); var td=0,ta=0;
+  PHASES.forEach(function(p,pi){
+    p.groups.forEach(function(g,gi){
+      g.topics.forEach(function(t,ti){
+        var k=p.id+'-'+gi+'-'+ti; ta++;
+        if(s.checks[k]) td++;
+      });
+    });
   });
-  localStorage.setItem('dimas_roadmap_v3', JSON.stringify(data));
+  var pct=ta?Math.round(td/ta*100):0;
+  document.getElementById('totalPct').textContent=pct+'%';
+  document.getElementById('totalBar').style.width=pct+'%';
+  document.getElementById('totalStat').textContent=td+' dari '+ta+' topik selesai';
+  document.getElementById('qs-done').textContent=td;
+  document.getElementById('qs-left').textContent=ta-td;
+  // debt alert
+  if(s.debtMinutes>0){
+    document.getElementById('debtAlert').classList.add('show');
+    document.getElementById('debtAlertText').textContent='Hutang '+s.debtMinutes+' menit — bayar hari ini!';
+  } else {
+    document.getElementById('debtAlert').classList.remove('show');
+  }
 }
 
-function loadProgress() {
-  var saved = localStorage.getItem('dimas_roadmap_v3');
-  if (!saved) return;
-  var data = JSON.parse(saved);
-  document.querySelectorAll('input[type=checkbox]').forEach(function(b, i) {
-    if (data[i]) b.checked = true;
+function updateHomeCards(){
+  var sl=['f1','f2','f3','f4'],md=['f5','f6'];
+  document.getElementById('homeCards').innerHTML=sl.map(phaseCard).join('');
+  document.getElementById('homeCards2').innerHTML=md.map(phaseCard).join('');
+}
+
+function updateStats(){
+  var s=getState(); var td=0,ta=0;
+  PHASES.forEach(function(p,pi){
+    p.groups.forEach(function(g,gi){
+      g.topics.forEach(function(t,ti){
+        var k=p.id+'-'+gi+'-'+ti; ta++;
+        if(s.checks[k]) td++;
+      });
+    });
   });
-  update();
+  // Streak
+  document.getElementById('streakNum').textContent=s.streak||0;
+  document.getElementById('streakSub').textContent=s.streak>0?s.streak+' hari berturut-turut! 🔥':'Mulai streak kamu hari ini!';
+  // Stats
+  document.getElementById('st-hours').textContent=Math.floor((s.totalMinutes||0)/60);
+  document.getElementById('st-topics').textContent=td;
+  document.getElementById('st-debt').textContent=s.debtMinutes||0;
+  document.getElementById('st-days').textContent=(s.studyLog||[]).length;
+  // update label
+  document.querySelector('#st-topics + .sc-lbl + .sc-sub').textContent='dari '+ta+' total';
+  // Estimasi selesai — START DATE: 22 Maret 2026
+  var START_DATE = new Date('2026-03-22');
+  var today = new Date();
+  var daysPassed = Math.max(0, Math.floor((today - START_DATE) / (1000*60*60*24)));
+  var calcBase = today > START_DATE ? today : START_DATE;
+
+  // Fase 1
+  var f1done=0,f1all=0;
+  PHASES[0].groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){f1all++;if(s.checks['f1-'+gi+'-'+ti])f1done++;});});
+  var f1pct=f1all?f1done/f1all:0;
+  var f1rem=Math.round(PHASES[0].totalDays*(1-f1pct));
+  var f1date=new Date(calcBase); f1date.setDate(f1date.getDate()+f1rem);
+  document.getElementById('est-f1').textContent=fmtDate(f1date)+' (~'+f1rem+' hari)';
+
+  // Sri Lanka total (F1-F4 + Bonus)
+  var slRem=0;
+  ['f1','f2','f3','f4','fb'].forEach(function(fid){
+    var p=PHASES.find(function(x){return x.id===fid;}); if(!p)return;
+    var done=0,all=0;
+    p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){all++;if(s.checks[fid+'-'+gi+'-'+ti])done++;});});
+    var pct=all?done/all:0;
+    slRem+=Math.round(p.totalDays*(1-pct));
+  });
+  var slDate=new Date(calcBase); slDate.setDate(slDate.getDate()+slRem);
+  document.getElementById('est-sl').textContent=fmtDate(slDate)+' (~'+slRem+' hari)';
+
+  // Medan F5-F6 (5 jam/hari)
+  var mdRem=0;
+  [PHASES[4],PHASES[5]].forEach(function(p){
+    var fid=p.id; var done=0,all=0;
+    p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){all++;if(s.checks[fid+'-'+gi+'-'+ti])done++;});});
+    var pct=all?done/all:0;
+    mdRem+=Math.round(p.totalDays*(1-pct));
+  });
+  var mdDate=new Date(slDate); mdDate.setDate(mdDate.getDate()+mdRem);
+  document.getElementById('est-md').textContent=fmtDate(mdDate)+' (~'+mdRem+' hari di Medan)';
+  document.getElementById('est-all').textContent=fmtDate(mdDate);
+  // Phase progress list
+  var pplHtml = PHASES.map(function(p,pi){
+    var done=0,all=0;
+    p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){all++;if(s.checks[p.id+'-'+gi+'-'+ti])done++;});});
+    var pct=all?Math.round(done/all*100):0;
+    return '<div class="ppl-item"><div class="ppl-top"><span class="ppl-name">'+p.ico+' '+p.short+'</span><span class="ppl-pct" style="color:'+p.color+'">'+pct+'%</span></div><div class="ppl-bar"><div class="ppl-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div></div>';
+  }).join('');
+  document.getElementById('phaseProgList').innerHTML=pplHtml;
 }
 
-function simpanCatatan() {
-  var txt = document.getElementById('catatanText').value;
-  localStorage.setItem('dimas_catatan', txt);
-  var st = document.getElementById('catatanStatus');
-  st.textContent = '✅ Tersimpan!';
-  setTimeout(function() { st.textContent = ''; }, 2000);
+function fmtDate(d){
+  var months=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Des'];
+  return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
 }
 
-function hapusCatatan() {
-  if (!confirm('Hapus semua catatan?')) return;
-  document.getElementById('catatanText').value = '';
+// ══════════════════════════════
+// TIMER
+// ══════════════════════════════
+function setMode(m){
+  timerMode=m;
+  document.getElementById('mode-sl').classList.toggle('active',m==='sl');
+  document.getElementById('mode-md').classList.toggle('active',m==='md');
+  var tgt=TARGET[m];
+  document.getElementById('timerTarget').textContent=tgt+' menit';
+  document.getElementById('todayTarget').textContent=tgt+' menit';
+  updateTimerUI();
+}
+
+function startTimer(){
+  if(timerRunning) return;
+  timerRunning=true;
+  checkNewDay();
+  document.getElementById('startBtn').style.display='none';
+  document.getElementById('stopBtn').style.display='inline-block';
+  document.getElementById('timerLabel').textContent='Sedang belajar... 💪';
+  timerInterval=setInterval(function(){
+    timerSeconds++;
+    updateTimerUI();
+    if(timerSeconds%60===0) saveTimerProgress();
+  },1000);
+}
+
+function stopTimer(){
+  if(!timerRunning) return;
+  timerRunning=false;
+  clearInterval(timerInterval);
+  document.getElementById('startBtn').style.display='inline-block';
+  document.getElementById('stopBtn').style.display='none';
+  document.getElementById('timerLabel').textContent='Di-pause';
+  saveTimerProgress();
+}
+
+function resetTimer(){
+  stopTimer();
+  saveTimerProgress();
+  timerSeconds=0;
+  document.getElementById('timerLabel').textContent='Siap belajar';
+  updateTimerUI();
+}
+
+function saveTimerProgress(){
+  var mins=Math.floor(timerSeconds/60);
+  var s=getState();
+  var today=getToday();
+  // Update today
+  s.todayMinutes=mins;
+  // Update total
+  s.totalMinutes=(s.totalMinutes||0);
+  // Log
+  if(!s.studyLog) s.studyLog=[];
+  var existing=s.studyLog.find(function(l){return l.date===today;});
+  if(existing){ s.totalMinutes=s.totalMinutes+(mins-existing.mins); existing.mins=mins; }
+  else { s.studyLog.unshift({date:today,mins:mins}); s.totalMinutes+=mins; }
+  if(s.studyLog.length>30) s.studyLog=s.studyLog.slice(0,30);
+  saveState(s);
+  updateTimerDisplay();
+  updateDebt();
+}
+
+function updateTimerUI(){
+  var m=Math.floor(timerSeconds/60),sec=timerSeconds%60;
+  document.getElementById('timerDisplay').textContent=pad(m)+':'+pad(sec);
+  var tgt=TARGET[timerMode];
+  var pct=Math.min(100,Math.round(timerSeconds/60/tgt*100));
+  var s=getState();
+  var todayMins=(s.studyLog||[]).find(function(l){return l.date===getToday();});
+  var tm=todayMins?todayMins.mins:0;
+  document.getElementById('todayTime').textContent=tm+' menit';
+  document.getElementById('todayBar').style.width=Math.min(100,Math.round(tm/tgt*100))+'%';
+}
+
+function updateTimerDisplay(){
+  var s=getState();
+  var today=getToday();
+  var todayLog=s.studyLog?s.studyLog.find(function(l){return l.date===today;}):null;
+  var tm=todayLog?todayLog.mins:0;
+  var tgt=TARGET[timerMode];
+  document.getElementById('todayTime').textContent=tm+' menit';
+  document.getElementById('todayTarget').textContent=tgt+' menit';
+  document.getElementById('todayBar').style.width=Math.min(100,Math.round(tm/tgt*100))+'%';
+  // Log list
+  var logHtml='';
+  if(!s.studyLog||!s.studyLog.length){logHtml='<div class="log-empty">Belum ada riwayat belajar.</div>';}
+  else {
+    logHtml=s.studyLog.slice(0,7).map(function(l){
+      var tgt2=TARGET['sl'];
+      var status=l.mins>=tgt2?'ok':l.mins>0?'less':'debt';
+      var lbl=status==='ok'?'✅ Tercapai':status==='less'?'⚠️ Kurang':'❌ Skip';
+      var cls=status==='ok'?'ls-ok':status==='less'?'ls-less':'ls-debt';
+      return '<div class="log-item"><span class="log-date">'+l.date+'</span><span class="log-dur">'+l.mins+' mnt</span><span class="log-status '+cls+'">'+lbl+'</span></div>';
+    }).join('');
+  }
+  document.getElementById('studyLog').innerHTML=logHtml;
+}
+
+function updateDebt(){
+  var s=getState();
+  var debt=s.debtMinutes||0;
+  if(debt>0){
+    document.getElementById('debtBox').style.display='block';
+    document.getElementById('debtTotal').textContent=debt+' menit';
+    document.getElementById('debtTarget').textContent=(TARGET[timerMode]+debt)+' menit';
+  } else {
+    document.getElementById('debtBox').style.display='none';
+  }
+}
+
+function checkNewDay(){
+  var s=getState();
+  var today=getToday();
+  if(s.lastSessionDate && s.lastSessionDate!==today){
+    // Check yesterday
+    var yesterday=getYesterday();
+    var yLog=s.studyLog?s.studyLog.find(function(l){return l.date===yesterday;}):null;
+    var yMins=yLog?yLog.mins:0;
+    var tgt=TARGET['sl'];
+    if(yMins<tgt){
+      s.debtMinutes=(s.debtMinutes||0)+(tgt-yMins);
+    }
+    // Update streak
+    if(yMins>=tgt){ s.streak=(s.streak||0)+1; }
+    else { s.streak=0; }
+  }
+  s.lastSessionDate=today;
+  s.lastDate=today;
+  saveState(s);
+}
+
+function getToday(){
+  var d=new Date();
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function getYesterday(){
+  var d=new Date(); d.setDate(d.getDate()-1);
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function pad(n){return String(n).padStart(2,'0');}
+
+// ══════════════════════════════
+// CATATAN
+// ══════════════════════════════
+function simpanCatatan(){
+  localStorage.setItem('dimas_catatan',document.getElementById('catatanText').value);
+  var st=document.getElementById('catStatus');
+  st.textContent='✅ Tersimpan!';
+  setTimeout(function(){st.textContent='';},2000);
+}
+function hapusCatatan(){
+  if(!confirm('Hapus semua catatan?'))return;
+  document.getElementById('catatanText').value='';
   localStorage.removeItem('dimas_catatan');
 }
-
-function loadCatatan() {
-  var saved = localStorage.getItem('dimas_catatan');
-  if (saved) document.getElementById('catatanText').value = saved;
+function loadCatatan(){
+  var s=localStorage.getItem('dimas_catatan');
+  if(s)document.getElementById('catatanText').value=s;
 }
 
-window.addEventListener('load', function() {
-  loadProgress();
+// ══════════════════════════════
+// INIT
+// ══════════════════════════════
+window.addEventListener('load',function(){
+  buildHome();
+  buildMateri();
+  updateAll();
+  updateTimerDisplay();
+  updateDebt();
   loadCatatan();
 });
 </script>
