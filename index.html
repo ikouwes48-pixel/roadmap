@@ -3,388 +3,460 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Roadmap Dimas — AI Engineer & Web3/Web4</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Roadmap Dimas — AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
-  --teal:#0d9488;--teal2:#14b8a6;--teal3:#5eead4;--teal-dark:#0f766e;
-  --teal-bg:#f0fdfa;--teal-mid:#ccfbf1;
-  --black:#0f172a;--g800:#1e293b;--g600:#475569;--g400:#94a3b8;
-  --g200:#e2e8f0;--g100:#f1f5f9;--g50:#f8fafc;--white:#fff;
-  --nav-h:60px;--sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --bg:#08090e;--surf:#0f1117;--surf2:#161820;--surf3:#1d1f27;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
+  --txt:#e8eaf0;--txt2:#9ca3af;--txt3:#6b7280;
+  --accent:#00d4aa;--accent2:#00b894;--accent3:rgba(0,212,170,.15);
+  --accent-glow:rgba(0,212,170,.25);
+  --red:#f87171;--amber:#fbbf24;--blue:#60a5fa;--purple:#a78bfa;--orange:#fb923c;
+  --nav-h:64px;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --r:14px;--r-sm:8px;--r-lg:20px;
 }
-html,body{height:100%;overflow:hidden;font-family:var(--sans);}
-body{background:var(--g50);color:var(--black);}
-.app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--white);box-shadow:0 0 60px rgba(0,0,0,.12);}
-.page{flex:1;overflow-y:auto;display:none;scroll-behavior:smooth;}
+html,body{height:100%;overflow:hidden;font-family:var(--sans);background:var(--bg);}
+body{color:var(--txt);}
+.app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--bg);box-shadow:0 0 0 1px var(--border),0 40px 120px rgba(0,0,0,.8);}
+.page{flex:1;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch;}
 .page.active{display:block;}
-.page::-webkit-scrollbar{width:3px;}
-.page::-webkit-scrollbar-thumb{background:var(--teal-mid);}
+.page::-webkit-scrollbar{width:2px;}
+.page::-webkit-scrollbar-thumb{background:var(--accent2);}
 
 /* NAV */
-.bnav{height:var(--nav-h);background:var(--white);border-top:1px solid var(--g200);display:flex;align-items:stretch;flex-shrink:0;box-shadow:0 -2px 12px rgba(0,0,0,.06);}
-.ntab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;transition:all .2s;position:relative;}
-.ntab .ni{font-size:20px;line-height:1;transition:transform .2s;}
-.ntab .nl{font-size:9px;font-weight:700;color:var(--g400);letter-spacing:.3px;}
+.bnav{height:var(--nav-h);background:var(--surf);border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
+.ntab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:transparent;cursor:pointer;transition:all .2s;position:relative;padding:0;}
+.ntab .ni{font-size:19px;line-height:1;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+.ntab .nl{font-size:9px;font-weight:600;color:var(--txt3);letter-spacing:.4px;transition:color .2s;}
 .ntab.active .ni{transform:scale(1.15) translateY(-1px);}
-.ntab.active .nl{color:var(--teal);}
-.ntab.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2.5px;background:var(--teal);border-radius:0 0 4px 4px;}
+.ntab.active .nl{color:var(--accent);}
+.ntab.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:0 0 4px 4px;}
 
-/* HOME */
-.h-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a,#0f766e);padding:24px 20px 20px;position:relative;overflow:hidden;}
-.h-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(13,148,136,.12);border-radius:50%;}
-.h-hero::after{content:'';position:absolute;bottom:-70px;left:-30px;width:160px;height:160px;background:rgba(45,212,191,.06);border-radius:50%;}
-.h-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(94,234,212,.15);border:1px solid rgba(94,234,212,.25);color:var(--teal3);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:12px;position:relative;z-index:1;}
-.h-dot{width:5px;height:5px;border-radius:50%;background:var(--teal3);animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
-.h-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:2px;position:relative;z-index:1;}
-.h-sub{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:18px;position:relative;z-index:1;}
-.h-prog-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;position:relative;z-index:1;}
-.h-prog-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
-.h-prog-lbl{font-size:11px;color:rgba(255,255,255,.55);}
-.h-prog-pct{font-size:22px;font-weight:900;color:var(--teal3);}
-.h-prog-bar{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:6px;}
-.h-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal3));border-radius:99px;transition:width .6s;}
-.h-prog-stat{font-size:10px;color:rgba(255,255,255,.35);}
-.debt-alert{margin:14px 16px 0;background:#fff8f0;border:1.5px solid #fed7aa;border-radius:14px;padding:12px 14px;display:none;align-items:center;gap:10px;}
-.debt-alert.show{display:flex;}
-.debt-ico{font-size:22px;}
-.debt-title{font-size:12px;font-weight:800;color:#c2410c;}
-.debt-sub{font-size:11px;color:#ea580c;margin-top:1px;}
-.h-body{padding:14px 16px 20px;}
-.sec-lbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--g400);margin:16px 0 10px;}
-.sec-lbl:first-child{margin-top:0;}
-.fcard{display:flex;align-items:center;gap:12px;border:1.5px solid var(--g200);border-radius:16px;padding:13px 14px;margin-bottom:8px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+/* HOME HERO */
+.h-hero{background:linear-gradient(160deg,#0a0e1a 0%,#0d1428 35%,#091a16 70%,#0a1410 100%);padding:28px 20px 24px;position:relative;overflow:hidden;}
+.h-hero::before{content:'';position:absolute;top:-100px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 65%);pointer-events:none;}
+.h-hero::after{content:'';position:absolute;bottom:-100px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(96,165,250,.06) 0%,transparent 65%);pointer-events:none;}
+.h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;position:relative;z-index:1;}
+.h-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.2);color:var(--accent);font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:99px;}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.7);}}
+.h-ring-wrap{position:relative;width:64px;height:64px;flex-shrink:0;}
+.h-ring-svg{transform:rotate(-90deg);}
+.h-ring-track{fill:none;stroke:var(--surf3);stroke-width:4;}
+.h-ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1);}
+.h-ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:12px;font-weight:800;color:var(--accent);}
+.h-name{font-family:var(--display);font-size:22px;font-weight:800;color:var(--txt);margin-bottom:3px;position:relative;z-index:1;letter-spacing:-.5px;}
+.h-name em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-sub{font-size:11.5px;color:var(--txt3);margin-bottom:22px;position:relative;z-index:1;line-height:1.6;}
+.h-prog{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;position:relative;z-index:1;}
+.h-prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.h-prog-lbl{font-size:11px;color:var(--txt3);}
+.h-prog-num{font-family:var(--display);font-size:13px;font-weight:700;color:var(--accent);}
+.h-prog-bar{height:4px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.h-prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),#00b4d8);border-radius:99px;transition:width .8s cubic-bezier(.4,0,.2,1);}
+.h-prog-sub{font-size:10px;color:var(--txt3);margin-top:7px;}
+
+/* FOCUS BANNER */
+.focus-banner{margin:14px 16px 0;border-radius:var(--r);padding:13px 16px;border:1px solid;display:none;}
+.focus-banner.show{display:block;}
+.fb-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.fb-ico{font-size:16px;}
+.fb-title{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.fb-msg{font-size:12px;line-height:1.6;}
+.fb-prog{margin-top:8px;height:4px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.08);}
+.fb-prog-fill{height:100%;border-radius:99px;transition:width .5s;}
+
+/* TODAY FOCUS */
+.focus-card{margin:12px 16px 0;background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(96,165,250,.05));border:1px solid rgba(0,212,170,.15);border-radius:var(--r);padding:14px 16px;}
+.focus-hdr{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.focus-hdr-ico{font-size:14px;}
+.focus-hdr-title{font-size:10.5px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;}
+.focus-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.focus-item:last-child{border-bottom:none;padding-bottom:0;}
+.focus-num{width:20px;height:20px;border-radius:50%;background:var(--surf3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--txt3);flex-shrink:0;}
+.focus-txt{font-size:12px;font-weight:500;color:var(--txt2);flex:1;line-height:1.4;}
+.focus-phase{font-size:9px;font-weight:600;padding:2px 7px;border-radius:99px;flex-shrink:0;}
+
+.h-body{padding:16px 16px 100px;}
+.sec-lbl{font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin:20px 0 10px;display:flex;align-items:center;gap:8px;}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* PHASE CARDS */
+.fcard{display:flex;align-items:center;gap:12px;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.fcard:hover{border-color:var(--border2);background:var(--surf2);transform:translateX(2px);}
 .fcard:active{transform:scale(.98);}
-.fc-stripe{position:absolute;left:0;top:0;bottom:0;width:3.5px;}
-.fc-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fcard.warned{border-color:rgba(251,191,36,.2);}
+.fc-glow{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 2px 2px 0;}
+.fc-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
 .fc-info{flex:1;min-width:0;}
-.fc-title{font-size:12.5px;font-weight:700;margin-bottom:2px;}
-.fc-meta{font-size:10px;color:var(--g400);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fc-title{font-size:12.5px;font-weight:700;margin-bottom:2px;letter-spacing:-.2px;}
+.fc-meta{font-size:9.5px;color:var(--txt3);margin-bottom:6px;}
 .fc-row{display:flex;align-items:center;gap:8px;}
-.fc-bar{flex:1;height:4px;background:var(--g100);border-radius:99px;overflow:hidden;}
-.fc-fill{height:100%;border-radius:99px;transition:width .4s;}
-.fc-pct{font-size:10px;font-weight:800;min-width:28px;text-align:right;}
-.fc-time{font-size:9.5px;color:var(--g400);margin-top:2px;}
-.fc-arr{color:var(--g200);font-size:16px;flex-shrink:0;}
-.sep{display:flex;align-items:center;gap:8px;margin:10px 0;}
-.sep-l{flex:1;height:1px;background:var(--g100);}
-.sep-t{font-size:9.5px;font-weight:800;color:#fff;background:var(--teal);padding:3px 12px;border-radius:99px;letter-spacing:.5px;white-space:nowrap;}
-.qstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.qstat{background:var(--g50);border:1.5px solid var(--g200);border-radius:14px;padding:12px;text-align:center;}
-.qstat-val{font-size:22px;font-weight:900;color:var(--teal-dark);}
-.qstat-lbl{font-size:10px;color:var(--g400);margin-top:2px;}
+.fc-bar{flex:1;height:3px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.fc-fill{height:100%;border-radius:99px;transition:width .6s;}
+.fc-pct{font-size:10px;font-weight:700;min-width:28px;text-align:right;}
+.fc-stat{font-size:9px;color:var(--txt3);margin-top:3px;}
+.fc-arr{color:var(--txt3);font-size:12px;flex-shrink:0;}
+.fc-warn{font-size:9.5px;font-weight:700;color:var(--amber);margin-top:4px;display:flex;align-items:center;gap:4px;}
+
+.sep-row{display:flex;align-items:center;gap:10px;margin:14px 0;}
+.sep-line{flex:1;height:1px;background:var(--border);}
+.sep-pill{font-size:9.5px;font-weight:700;color:var(--bg);background:var(--accent);padding:3px 12px;border-radius:99px;white-space:nowrap;letter-spacing:.5px;}
+
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.qcard{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center;}
+.qv{font-family:var(--display);font-size:26px;font-weight:800;color:var(--accent);}
+.ql{font-size:10px;color:var(--txt3);margin-top:3px;}
 .lrow{display:flex;gap:8px;}
-.lbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;font-family:var(--sans);font-size:12.5px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.lbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:var(--r-sm);font-family:var(--sans);font-size:12.5px;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
 .lbtn:active{transform:scale(.97);}
-.lb-teal{background:var(--teal);color:#fff;box-shadow:0 4px 14px rgba(13,148,136,.3);}
-.lb-dark{background:var(--black);color:#fff;}
+.lb-accent{background:var(--accent);color:var(--bg);}
+.lb-surf{background:var(--surf2);color:var(--txt);border:1px solid var(--border);}
 
 /* MATERI */
-.mat-header{background:linear-gradient(145deg,#0f2027,#1a3a4a);padding:20px 18px 14px;color:#fff;position:sticky;top:0;z-index:20;}
-.mat-title{font-size:16px;font-weight:800;margin-bottom:12px;}
-.phase-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
-.phase-tabs::-webkit-scrollbar{display:none;}
-.ptab{flex-shrink:0;padding:7px 14px;border-radius:99px;font-size:11px;font-weight:700;border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--sans);}
-.ptab.active{color:#fff;border-color:transparent;}
-.mat-body{padding:14px 16px;}
-.phase-section{display:none;}
-.phase-section.active{display:block;}
-.phase-info{border-radius:14px;padding:14px 16px;margin-bottom:14px;border:1.5px solid;}
-.pi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.pi-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.pi-title{font-size:13.5px;font-weight:800;}
-.pi-meta{font-size:10.5px;color:var(--g400);margin-top:1px;}
-.pi-prog{display:flex;align-items:center;gap:8px;}
-.pi-bar{flex:1;height:5px;background:var(--g100);border-radius:99px;overflow:hidden;}
-.pi-fill{height:100%;border-radius:99px;transition:width .4s;}
-.pi-pct{font-size:11px;font-weight:800;}
-.pi-stat{font-size:10px;color:var(--g400);}
-.pi-income{display:inline-flex;align-items:center;gap:5px;background:rgba(13,148,136,.08);border:1px solid var(--teal-mid);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--teal-dark);margin-top:8px;}
-.pi-deadline{display:inline-flex;align-items:center;gap:5px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#0369a1;margin-top:6px;margin-left:6px;}
-.grp-h{font-size:9.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--g400);margin:16px 0 8px;padding-bottom:6px;border-bottom:1.5px solid var(--g100);}
-.grp-h:first-child{margin-top:0;}
-.topik{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:.5px solid var(--g100);}
-.topik:last-child{border-bottom:none;}
-.topik label{display:flex;gap:10px;cursor:pointer;flex:1;align-items:flex-start;}
-.chk{width:19px;height:19px;accent-color:var(--teal);flex-shrink:0;margin-top:2px;cursor:pointer;}
-.tc{flex:1;}
-.tt{font-size:13px;font-weight:600;color:var(--black);line-height:1.4;transition:all .2s;}
-.topik input:checked~.tc .tt{text-decoration:line-through;color:var(--g400);}
-.td{font-size:11px;color:var(--g400);margin-top:2px;line-height:1.6;}
-.t-est{font-size:10px;font-weight:700;color:var(--teal-dark);margin-top:4px;}
-.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
-.tag{font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:99px;}
-.t-must{background:#dcfce7;color:#166534;}
-.t-ai{background:#e0f2fe;color:#075985;}
-.t-web3{background:#fef3c7;color:#92400e;}
-.t-web4{background:#ede9fe;color:#4c1d95;}
-.t-tool{background:#f1f5f9;color:#334155;}
-.t-math{background:#fce7f3;color:#9d174d;}
-.t-biz{background:#fef9c3;color:#854d0e;}
+.mat-hdr{background:var(--surf);border-bottom:1px solid var(--border);padding:16px 16px 12px;position:sticky;top:0;z-index:20;}
+.mat-hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.mat-title{font-family:var(--display);font-size:17px;font-weight:800;color:var(--txt);}
+.mat-count{font-size:10px;color:var(--txt3);}
+.search-wrap{position:relative;margin-bottom:10px;}
+.search-inp{width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 14px 9px 36px;font-family:var(--sans);font-size:13px;color:var(--txt);outline:none;transition:border-color .2s;}
+.search-inp:focus{border-color:rgba(0,212,170,.4);}
+.search-inp::placeholder{color:var(--txt3);}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--txt3);pointer-events:none;}
+.search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;display:none;padding:2px;}
+.tag-filters{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.tag-filters::-webkit-scrollbar{display:none;}
+.tf{flex-shrink:0;padding:5px 12px;border-radius:99px;font-size:10.5px;font-weight:600;border:1px solid var(--border);color:var(--txt3);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--sans);background:transparent;}
+.ptabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-top:10px;}
+.ptabs::-webkit-scrollbar{display:none;}
+.ptab{flex-shrink:0;padding:6px 13px;border-radius:99px;font-size:10.5px;font-weight:600;border:1px solid var(--border);color:var(--txt3);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--sans);background:transparent;}
+.ptab.active{color:var(--bg);border-color:transparent;}
 
-/* TIMER */
-.timer-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a,#0f766e);padding:28px 20px;color:#fff;text-align:center;}
-.timer-mode{display:inline-flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;margin-bottom:20px;}
-.tmode-btn{padding:7px 18px;border-radius:99px;font-family:var(--sans);font-size:12px;font-weight:700;border:none;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.6);background:transparent;}
-.tmode-btn.active{background:var(--teal);color:#fff;}
-.timer-circle{width:180px;height:180px;border-radius:50%;border:6px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;}
-.timer-time{font-size:42px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;}
-.timer-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;font-weight:600;}
-.timer-target{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:16px;}
-.timer-target strong{color:var(--teal3);}
-.timer-btns{display:flex;gap:10px;justify-content:center;}
-.t-btn{padding:12px 24px;border-radius:99px;font-family:var(--sans);font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s;}
-.t-btn:active{transform:scale(.96);}
-.tb-start{background:var(--teal3);color:var(--teal-dark);}
-.tb-stop{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.2);}
-.tb-reset{background:rgba(248,113,113,.2);color:#fca5a5;border:1.5px solid rgba(248,113,113,.2);}
-.timer-body{padding:16px;}
-.timer-today{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:14px;padding:14px 16px;margin-bottom:12px;}
-.tt-title{font-size:11px;font-weight:800;color:var(--teal-dark);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
-.tt-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.tt-key{font-size:12.5px;color:var(--g600);}
-.tt-val{font-size:14px;font-weight:800;color:var(--teal-dark);}
-.tt-bar{height:8px;background:rgba(13,148,136,.15);border-radius:99px;overflow:hidden;}
-.tt-fill{height:100%;background:var(--teal);border-radius:99px;transition:width .3s;}
-.debt-box{background:#fff8f0;border:1.5px solid #fed7aa;border-radius:14px;padding:14px 16px;margin-bottom:12px;}
-.db-title{font-size:11px;font-weight:800;color:#c2410c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
-.db-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.db-key{font-size:12px;color:#ea580c;}
-.db-val{font-size:14px;font-weight:800;color:#c2410c;}
-.db-note{font-size:10.5px;color:#ea580c;margin-top:6px;padding-top:6px;border-top:1px solid #fed7aa;}
-.log-section{margin-top:4px;}
-.log-title{font-size:11px;font-weight:800;color:var(--g400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
-.log-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid var(--g100);}
-.log-item:last-child{border-bottom:none;}
-.log-date{font-size:12px;color:var(--g600);}
-.log-dur{font-size:12px;font-weight:700;}
-.log-status{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;}
-.ls-ok{background:#dcfce7;color:#166534;}
-.ls-less{background:#fee2e2;color:#991b1b;}
-.log-empty{font-size:12px;color:var(--g400);text-align:center;padding:20px;font-style:italic;}
+.mat-body{padding:12px 14px 100px;}
+.phase-sec{display:none;}
+.phase-sec.active{display:block;}
+
+/* PHASE WARNING BANNER */
+.ph-warn-banner{background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.04));border:1px solid rgba(251,191,36,.2);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;}
+.pwb-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.pwb-ico{font-size:20px;}
+.pwb-title{font-size:13px;font-weight:800;color:var(--amber);}
+.pwb-msg{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:10px;}
+.pwb-prog-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.pwb-bar{flex:1;height:5px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.pwb-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--orange));border-radius:99px;transition:width .5s;}
+.pwb-pct{font-size:11px;font-weight:800;color:var(--amber);}
+.pwb-need{font-size:10.5px;color:var(--txt3);}
+.pwb-btn{width:100%;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:var(--amber);border-radius:var(--r-sm);padding:10px;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer;margin-top:8px;transition:all .2s;}
+.pwb-btn:hover{background:rgba(251,191,36,.18);}
+
+/* PHASE INFO */
+.ph-info{border-radius:var(--r);padding:14px 16px;margin-bottom:14px;border:1px solid var(--border);background:var(--surf);}
+.ph-info-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.ph-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ph-title{font-size:14px;font-weight:800;letter-spacing:-.3px;}
+.ph-meta{font-size:10px;color:var(--txt3);margin-top:2px;}
+.ph-prog-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.ph-bar{flex:1;height:4px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.ph-fill{height:100%;border-radius:99px;transition:width .5s;}
+.ph-pct{font-size:11px;font-weight:800;}
+.ph-stat{font-size:10px;color:var(--txt3);}
+.ph-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.ph-pill{display:inline-flex;align-items:center;gap:5px;border-radius:8px;padding:4px 10px;font-size:10.5px;font-weight:600;}
+.ph-pill-inc{background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2);color:var(--accent);}
+.ph-pill-date{background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2);color:var(--blue);}
+
+/* GROUPS */
+.grp-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);margin-top:10px;cursor:pointer;transition:all .2s;}
+.grp-hdr:first-child{margin-top:0;}
+.grp-hdr:hover{border-color:var(--border2);}
+.grp-hdr.open{border-color:var(--border2);border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent;}
+.grp-left{display:flex;flex-direction:column;gap:4px;flex:1;}
+.grp-name-row{display:flex;align-items:center;gap:8px;}
+.grp-name{font-size:11px;font-weight:700;color:var(--txt2);letter-spacing:.3px;}
+.grp-badge{font-size:8.5px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--surf3);color:var(--txt3);}
+.grp-badge.par{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2);}
+/* GROUP PROGRESS BAR */
+.grp-prog-row{display:flex;align-items:center;gap:7px;}
+.grp-prog-bar{flex:1;height:3px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.grp-prog-fill{height:100%;border-radius:99px;transition:width .5s;}
+.grp-prog-pct{font-size:9px;font-weight:700;min-width:24px;text-align:right;}
+.grp-arrow{font-size:11px;color:var(--txt3);transition:transform .2s;flex-shrink:0;margin-left:6px;}
+.grp-hdr.open .grp-arrow{transform:rotate(90deg);}
+.grp-body{background:var(--surf);border:1px solid var(--border2);border-top:none;border-radius:0 0 var(--r-sm) var(--r-sm);display:none;}
+.grp-body.open{display:block;}
+
+/* TOPICS */
+.topik{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border-bottom:.5px solid var(--border);transition:background .15s;}
+.topik:last-child{border-bottom:none;}
+.topik:hover{background:rgba(255,255,255,.02);}
+.topik.hidden{display:none;}
+.chk{width:17px;height:17px;accent-color:var(--accent);flex-shrink:0;margin-top:2.5px;cursor:pointer;}
+.tc{flex:1;min-width:0;}
+.tt{font-size:12.5px;font-weight:600;color:var(--txt);line-height:1.45;transition:all .2s;}
+.topik input:checked~.tc .tt{text-decoration:line-through;color:var(--txt3);}
+.td{font-size:11px;color:var(--txt3);margin-top:3px;line-height:1.65;}
+.t-est{font-size:9.5px;font-weight:600;color:var(--accent2);margin-top:5px;display:flex;align-items:center;gap:4px;opacity:.8;}
+.t-est::before{content:'⏱';font-size:9px;}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.tag{font-size:8px;font-weight:700;padding:2px 7px;border-radius:99px;}
+.t-must{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);}
+.t-ai{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);}
+.t-web3{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2);}
+.t-web4{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);}
+.t-tool{background:rgba(156,163,175,.1);color:#9ca3af;border:1px solid rgba(156,163,175,.2);}
+.t-math{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2);}
+.t-biz{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2);}
+
+/* MINI PROJECT */
+.mini-project{margin:6px 14px 12px;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(96,165,250,.05));border:1px solid rgba(167,139,250,.2);border-radius:var(--r-sm);padding:12px 14px;}
+.mp-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.mp-badge{font-size:9px;font-weight:800;background:rgba(167,139,250,.15);color:var(--purple);border:1px solid rgba(167,139,250,.3);padding:3px 10px;border-radius:99px;letter-spacing:.5px;text-transform:uppercase;}
+.mp-title{font-size:13px;font-weight:800;color:var(--txt);margin-bottom:4px;}
+.mp-desc{font-size:11.5px;color:var(--txt3);line-height:1.6;margin-bottom:10px;}
+.mp-check-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;cursor:pointer;transition:all .2s;}
+.mp-check-row:hover{border-color:rgba(167,139,250,.3);}
+.mp-chk{width:17px;height:17px;accent-color:var(--purple);flex-shrink:0;cursor:pointer;}
+.mp-chk-label{font-size:12px;font-weight:600;color:var(--txt2);}
+.mp-check-row input:checked~.mp-chk-label{text-decoration:line-through;color:var(--txt3);}
+.mp-done-badge{font-size:9px;font-weight:700;background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);padding:2px 8px;border-radius:99px;margin-left:auto;display:none;}
+.mp-done-badge.show{display:block;}
+
+.no-result{text-align:center;padding:48px 20px;color:var(--txt3);font-size:14px;display:none;}
+.no-result.show{display:block;}
 
 /* STATS */
-.stats-hero{background:linear-gradient(145deg,#0f2027,#1a3a4a);padding:22px 20px 18px;color:#fff;}
-.stats-hero h2{font-size:18px;font-weight:800;margin-bottom:4px;}
-.stats-hero p{font-size:11.5px;color:rgba(255,255,255,.5);}
-.stats-body{padding:14px 16px;}
-.streak-card{background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:14px;padding:16px;text-align:center;margin-bottom:8px;color:#fff;}
-.streak-num{font-size:48px;font-weight:900;line-height:1;}
-.streak-lbl{font-size:13px;font-weight:700;opacity:.85;margin-top:4px;}
-.streak-sub{font-size:11px;opacity:.65;margin-top:2px;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.stat-card{background:var(--g50);border:1.5px solid var(--g200);border-radius:14px;padding:14px;text-align:center;}
-.sc-val{font-size:24px;font-weight:900;color:var(--teal-dark);}
-.sc-lbl{font-size:10px;color:var(--g400);margin-top:2px;}
-.sc-sub{font-size:9px;color:var(--g400);margin-top:1px;}
-.est-card{background:var(--teal-bg);border:1.5px solid var(--teal-mid);border-radius:14px;padding:14px 16px;margin-bottom:8px;}
-.est-title{font-size:10px;font-weight:800;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
-.est-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.est-key{font-size:12px;color:var(--g600);}
-.est-val{font-size:12px;font-weight:800;color:var(--teal-dark);}
-.ppl-item{margin-bottom:10px;}
-.ppl-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
-.ppl-name{font-size:11.5px;font-weight:600;color:var(--black);}
-.ppl-pct{font-size:11px;font-weight:800;}
-.ppl-bar{height:5px;background:var(--g100);border-radius:99px;overflow:hidden;}
-.ppl-fill{height:100%;border-radius:99px;transition:width .5s;}
-.tools-box{background:var(--g50);border:1.5px solid var(--g200);border-radius:14px;padding:14px 16px;margin-bottom:8px;}
-.tools-title{font-size:10px;font-weight:800;color:var(--g400);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
-.tool-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:.5px solid var(--g100);}
-.tool-item:last-child{border-bottom:none;}
-.tool-ico{font-size:16px;flex-shrink:0;margin-top:1px;}
-.tool-info{}
-.tool-name{font-size:12px;font-weight:700;color:var(--black);}
-.tool-desc{font-size:10.5px;color:var(--g400);margin-top:1px;line-height:1.5;}
+.st-hdr{background:linear-gradient(160deg,#0a0e1a,#0d1428,#091a16);padding:26px 20px 20px;position:relative;overflow:hidden;}
+.st-hdr::before{content:'';position:absolute;top:-80px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,212,170,.1) 0%,transparent 65%);}
+.st-hdr h2{font-family:var(--display);font-size:20px;font-weight:800;color:var(--txt);margin-bottom:3px;position:relative;z-index:1;}
+.st-hdr p{font-size:11px;color:var(--txt3);position:relative;z-index:1;}
+.st-body{padding:16px 16px 100px;}
+.streak-hero{background:linear-gradient(135deg,#1a0f00,#2d1a00);border:1px solid rgba(251,191,36,.15);border-radius:var(--r-lg);padding:20px;margin-bottom:10px;text-align:center;position:relative;overflow:hidden;}
+.streak-hero::before{content:'🔥';position:absolute;right:20px;top:12px;font-size:44px;opacity:.15;}
+.streak-n{font-family:var(--display);font-size:56px;font-weight:800;color:var(--amber);line-height:1;}
+.streak-l{font-size:13px;font-weight:600;color:rgba(251,191,36,.7);margin-top:4px;}
+.streak-s{font-size:11px;color:var(--txt3);margin-top:3px;}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.sc{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center;}
+.scv{font-family:var(--display);font-size:28px;font-weight:800;color:var(--accent);}
+.scl{font-size:10px;color:var(--txt3);margin-top:3px;}
+.scs{font-size:9px;color:var(--txt3);margin-top:1px;}
+.timeline-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;}
+.tc-title{font-size:9.5px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.tl-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid var(--border);}
+.tl-row:last-child{border-bottom:none;}
+.tl-key{font-size:12px;color:var(--txt2);}
+.tl-val{font-size:11.5px;font-weight:700;color:var(--txt);}
+.tl-val.accent{color:var(--accent);}
+.tl-val.green{color:#34d399;}
+.phase-bars-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;}
+.pb-title{font-size:9.5px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.pb-item{margin-bottom:12px;}
+.pb-item:last-child{margin-bottom:0;}
+.pb-top{display:flex;justify-content:space-between;margin-bottom:5px;}
+.pb-name{font-size:12px;font-weight:600;color:var(--txt2);}
+.pb-pct{font-size:11px;font-weight:700;}
+.pb-bar{height:4px;background:var(--surf3);border-radius:99px;overflow:hidden;}
+.pb-fill{height:100%;border-radius:99px;transition:width .7s cubic-bezier(.4,0,.2,1);}
+.tools-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
+.tools-title{font-size:9.5px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.tool-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);}
+.tool-row:last-child{border-bottom:none;padding-bottom:0;}
+.tool-ico{font-size:14px;flex-shrink:0;margin-top:1px;}
+.tool-name{font-size:12px;font-weight:600;color:var(--txt);}
+.tool-desc{font-size:10.5px;color:var(--txt3);margin-top:1px;line-height:1.5;}
 
 /* CATATAN */
-.cat-hero{background:linear-gradient(135deg,var(--g800),var(--black));padding:24px 18px;color:#fff;}
-.cat-hero h2{font-size:18px;font-weight:800;margin-bottom:4px;}
-.cat-hero p{font-size:12px;color:rgba(255,255,255,.5);}
-.cat-body{padding:16px;}
-.cat-ta{width:100%;min-height:220px;border:1.5px solid var(--g200);border-radius:14px;padding:14px;font-family:var(--sans);font-size:13.5px;resize:vertical;outline:none;background:var(--g50);color:var(--black);line-height:1.7;transition:border-color .2s;}
-.cat-ta:focus{border-color:var(--teal);background:var(--white);}
+.cat-hdr{background:linear-gradient(160deg,#0a0e1a,#0d1428);padding:26px 20px 20px;position:relative;overflow:hidden;}
+.cat-hdr::before{content:'';position:absolute;top:-80px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(167,139,250,.08) 0%,transparent 65%);}
+.cat-hdr h2{font-family:var(--display);font-size:20px;font-weight:800;color:var(--txt);margin-bottom:3px;position:relative;z-index:1;}
+.cat-hdr p{font-size:11px;color:var(--txt3);position:relative;z-index:1;}
+.cat-body{padding:16px 16px 100px;}
+.cat-ta{width:100%;min-height:200px;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:14px;font-family:var(--sans);font-size:13px;resize:vertical;outline:none;color:var(--txt);line-height:1.75;transition:border-color .2s;}
+.cat-ta:focus{border-color:rgba(0,212,170,.35);background:var(--surf2);}
+.cat-ta::placeholder{color:var(--txt3);}
 .cat-btns{display:flex;gap:8px;margin-top:10px;}
-.cb{flex:1;padding:12px;border-radius:12px;font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.cb{flex:1;padding:12px;border-radius:var(--r-sm);font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
 .cb:active{transform:scale(.97);}
-.cb-save{background:var(--teal);color:#fff;}
-.cb-del{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;}
-.cat-status{font-size:12px;color:var(--teal);margin-top:8px;min-height:18px;font-weight:600;}
-.motiv-box{background:linear-gradient(135deg,var(--black),var(--g800));border-radius:16px;padding:20px;margin-top:16px;text-align:center;border:1px solid rgba(255,255,255,.05);}
-.motiv-box p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:8px;}
-.motiv-box strong{color:var(--teal3);}
+.cb-save{background:var(--accent);color:var(--bg);}
+.cb-del{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.15);}
+.cat-status{font-size:12px;color:var(--accent);margin-top:8px;min-height:18px;font-weight:600;}
+.motiv-card{background:linear-gradient(135deg,#0a0e1a,#0d1428);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;margin-top:16px;text-align:center;position:relative;overflow:hidden;}
+.motiv-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--accent-glow),transparent 60%);pointer-events:none;}
+.motiv-q{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:10px;position:relative;z-index:1;}
+.motiv-q strong{color:var(--accent);}
+.motiv-sig{font-size:12px;font-weight:700;color:var(--txt3);position:relative;z-index:1;}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ══ HOME ══ -->
+<!-- HOME -->
 <div class="page active" id="page-0">
   <div class="h-hero">
-    <div class="h-eyebrow"><div class="h-dot"></div>Roadmap Aktif — Mulai 22 Mar 2026</div>
-    <div class="h-name">Dimas Erlangga 👋</div>
-    <div class="h-sub">22 Mar 2026 · Sri Lanka (4 thn) → Pulang Medan 22 Mar 2030 🇮🇩</div>
-    <div class="h-prog-box">
-      <div class="h-prog-top"><span class="h-prog-lbl">Progress Keseluruhan</span><span class="h-prog-pct" id="totalPct">0%</span></div>
-      <div class="h-prog-bar"><div class="h-prog-fill" id="totalBar" style="width:0%"></div></div>
-      <div class="h-prog-stat" id="totalStat">0 dari 0 topik selesai</div>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#00d4aa"/>
+          <stop offset="100%" style="stop-color:#00b4d8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="h-top">
+      <div class="h-badge"><div class="h-dot"></div>Roadmap · 22 Mar 2026</div>
+      <div class="h-ring-wrap">
+        <svg class="h-ring-svg" width="64" height="64" viewBox="0 0 64 64">
+          <circle class="h-ring-track" cx="32" cy="32" r="26"/>
+          <circle class="h-ring-fill" id="ringCircle" cx="32" cy="32" r="26" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
+        </svg>
+        <div class="h-ring-pct" id="ringPct">0%</div>
+      </div>
+    </div>
+    <div class="h-name">Dimas <em>Erlangga</em></div>
+    <div class="h-sub">AI Engineer · Web3 · Web4 · Sri Lanka → Medan 🇮🇩</div>
+    <div class="h-prog">
+      <div class="h-prog-top"><span class="h-prog-lbl">Progress Keseluruhan</span><span class="h-prog-num" id="homePct">0/0 topik</span></div>
+      <div class="h-prog-bar"><div class="h-prog-fill" id="homeBar" style="width:0%"></div></div>
+      <div class="h-prog-sub" id="homeSub">Mulai belajar dari sekarang 🚀</div>
     </div>
   </div>
-  <div class="debt-alert" id="debtAlert">
-    <div class="debt-ico">⚠️</div>
-    <div><div class="debt-title">Ada Hutang Jam Belajar!</div><div class="debt-sub" id="debtAlertText">Bayar hari ini!</div></div>
+
+  <!-- FOCUS BANNER -->
+  <div class="focus-banner" id="focusBanner">
+    <div class="fb-top"><span class="fb-ico">🎯</span><span class="fb-title" id="fbTitle"></span></div>
+    <div class="fb-msg" id="fbMsg"></div>
+    <div class="fb-prog"><div class="fb-prog-fill" id="fbProgFill" style="width:0%"></div></div>
   </div>
+
+  <!-- TODAY FOCUS -->
+  <div class="focus-card">
+    <div class="focus-hdr"><span class="focus-hdr-ico">⚡</span><span class="focus-hdr-title">Topik Selanjutnya</span></div>
+    <div id="focusItems"></div>
+  </div>
+
   <div class="h-body">
-    <div class="sec-lbl">Sri Lanka — 22 Mar 2026 s/d 22 Mar 2030 (1 jam/hari)</div>
+    <div class="sec-lbl">Sri Lanka — 4 Tahun · 1 jam/hari</div>
     <div id="homeCards"></div>
-    <div class="sep"><div class="sep-l"></div><div class="sep-t">🇮🇩 Lanjut dari Medan (5 jam/hari)</div><div class="sep-l"></div></div>
+    <div class="sep-row"><div class="sep-line"></div><div class="sep-pill">🇮🇩 Lanjut dari Medan · 5 jam/hari</div><div class="sep-line"></div></div>
     <div id="homeCards2"></div>
-    <div class="sec-lbl">Statistik Cepat</div>
-    <div class="qstats">
-      <div class="qstat"><div class="qstat-val" id="qs-done">0</div><div class="qstat-lbl">Topik Selesai</div></div>
-      <div class="qstat"><div class="qstat-val" id="qs-left">0</div><div class="qstat-lbl">Tersisa</div></div>
+    <div class="sec-lbl">Statistik</div>
+    <div class="qgrid">
+      <div class="qcard"><div class="qv" id="qs-done">0</div><div class="ql">Topik Selesai</div></div>
+      <div class="qcard"><div class="qv" id="qs-left">0</div><div class="ql">Tersisa</div></div>
     </div>
-    <div class="sec-lbl">Link</div>
     <div class="lrow">
-      <a href="https://wa.me/6281334331776" target="_blank" class="lbtn lb-teal">💬 WhatsApp</a>
-      <a href="https://www.dimastoremedan.com" target="_blank" class="lbtn lb-dark">🌐 DIMERLA</a>
+      <a href="https://wa.me/6281334331776" target="_blank" class="lbtn lb-accent">💬 WhatsApp</a>
+      <a href="https://www.dimastoremedan.com" target="_blank" class="lbtn lb-surf">🌐 DIMERLA</a>
     </div>
   </div>
 </div>
 
-<!-- ══ MATERI ══ -->
+<!-- MATERI -->
 <div class="page" id="page-1">
-  <div class="mat-header">
-    <div class="mat-title">📚 Materi Belajar</div>
-    <div class="phase-tabs" id="phaseTabs"></div>
+  <div class="mat-hdr">
+    <div class="mat-hdr-top">
+      <div class="mat-title">📚 Materi Belajar</div>
+      <div class="mat-count" id="matCount">0 topik</div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input class="search-inp" id="searchInp" placeholder="Cari topik..." oninput="doSearch(this.value)">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="tag-filters" id="tagFilters"></div>
+    <div class="ptabs" id="phaseTabs"></div>
   </div>
-  <div class="mat-body" id="matBody"></div>
+  <div class="mat-body" id="matBody">
+    <div class="no-result" id="noResult">Tidak ada topik ditemukan 😔</div>
+  </div>
 </div>
 
-<!-- ══ TIMER ══ -->
+<!-- STATS -->
 <div class="page" id="page-2">
-  <div class="timer-hero">
-    <div class="timer-mode">
-      <button class="tmode-btn active" id="mode-sl" onclick="setMode('sl')">🇱🇰 Sri Lanka</button>
-      <button class="tmode-btn" id="mode-md" onclick="setMode('md')">🇮🇩 Medan</button>
-    </div>
-    <div class="timer-circle">
-      <div class="timer-time" id="timerDisplay">00:00</div>
-      <div class="timer-label" id="timerLabel">Siap belajar</div>
-    </div>
-    <div class="timer-target">Target hari ini: <strong id="timerTarget">60 menit</strong></div>
-    <div class="timer-btns">
-      <button class="t-btn tb-start" id="startBtn" onclick="startTimer()">▶ Mulai</button>
-      <button class="t-btn tb-stop" id="stopBtn" onclick="stopTimer()" style="display:none;">⏸ Pause</button>
-      <button class="t-btn tb-reset" onclick="resetTimer()">↺ Reset</button>
-    </div>
-  </div>
-  <div class="timer-body">
-    <div class="timer-today">
-      <div class="tt-title">Progress Hari Ini</div>
-      <div class="tt-row"><span class="tt-key">Waktu belajar</span><span class="tt-val" id="todayTime">0 menit</span></div>
-      <div class="tt-row" style="margin-bottom:4px;"><span class="tt-key">Target</span><span class="tt-val" id="todayTarget">60 menit</span></div>
-      <div class="tt-bar"><div class="tt-fill" id="todayBar" style="width:0%"></div></div>
-    </div>
-    <div class="debt-box" id="debtBox" style="display:none;">
-      <div class="db-title">⚠️ Hutang Jam Belajar</div>
-      <div class="db-row"><span class="db-key">Total hutang</span><span class="db-val" id="debtTotal">0 menit</span></div>
-      <div class="db-row"><span class="db-key">Target hari ini (+hutang)</span><span class="db-val" id="debtTarget">60 menit</span></div>
-      <div class="db-note">💡 Selesaikan target + hutang hari ini untuk kembali on track!</div>
-    </div>
-    <div class="log-section">
-      <div class="log-title">Riwayat Belajar</div>
-      <div id="studyLog"><div class="log-empty">Belum ada riwayat.<br>Mulai timer untuk mencatat!</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ STATS ══ -->
-<div class="page" id="page-3">
-  <div class="stats-hero">
+  <div class="st-hdr">
     <h2>📊 Statistik</h2>
-    <p>Progress & perjalanan belajar kamu · Mulai 22 Mar 2026</p>
+    <p>Progress perjalanan belajar kamu · Mulai 22 Mar 2026</p>
   </div>
-  <div class="stats-body">
-    <div class="streak-card">
-      <div class="streak-num" id="streakNum">0</div>
-      <div class="streak-lbl">🔥 Hari Streak</div>
-      <div class="streak-sub" id="streakSub">Mulai streak kamu hari ini!</div>
+  <div class="st-body">
+    <div class="streak-hero">
+      <div class="streak-n" id="streakN">0</div>
+      <div class="streak-l">Hari Streak Belajar 🔥</div>
+      <div class="streak-s" id="streakS">Mulai streak kamu hari ini!</div>
     </div>
-    <div class="stat-grid">
-      <div class="stat-card"><div class="sc-val" id="st-hours">0</div><div class="sc-lbl">Total Jam</div><div class="sc-sub">tercatat</div></div>
-      <div class="stat-card"><div class="sc-val" id="st-topics">0</div><div class="sc-lbl">Topik Selesai</div><div class="sc-sub" id="st-topics-sub">dari 0 total</div></div>
-      <div class="stat-card"><div class="sc-val" id="st-debt">0</div><div class="sc-lbl">Hutang Menit</div><div class="sc-sub">perlu diganti</div></div>
-      <div class="stat-card"><div class="sc-val" id="st-days">0</div><div class="sc-lbl">Hari Belajar</div><div class="sc-sub">total sesi</div></div>
+    <div class="sg">
+      <div class="sc"><div class="scv" id="st-done">0</div><div class="scl">Topik Selesai</div><div class="scs" id="st-sub">dari 0 total</div></div>
+      <div class="sc"><div class="scv" id="st-pct">0%</div><div class="scl">Progress</div><div class="scs">keseluruhan</div></div>
+      <div class="sc"><div class="scv" id="st-days">0</div><div class="scl">Hari Belajar</div><div class="scs">tercatat</div></div>
+      <div class="sc"><div class="scv" id="st-left">0</div><div class="scl">Tersisa</div><div class="scs">menuju selesai</div></div>
     </div>
-    <div class="est-card">
-      <div class="est-title">Estimasi Selesai</div>
-      <div class="est-row"><span class="est-key">🌱 Fase 1 — Fondasi Web</span><span class="est-val" id="est-f1">5 Des 2026</span></div>
-      <div class="est-row"><span class="est-key">🐍 Fase 2 — Python & AI</span><span class="est-val" id="est-f2">22 Mei 2027</span></div>
-      <div class="est-row"><span class="est-key">🧠 Fase 3 — AI Engineer</span><span class="est-val" id="est-f3">31 Jan 2028</span></div>
-      <div class="est-row"><span class="est-key">⛓️ Fase 4 — Web3</span><span class="est-val" id="est-f4">12 Jul 2028</span></div>
-      <div class="est-row"><span class="est-key">💎 Bonus — Skala Global</span><span class="est-val" id="est-fb">21 Mar 2030</span></div>
-      <div class="est-row"><span class="est-key">🇮🇩 Pulang Medan</span><span class="est-val" style="color:#10b981;font-weight:900;">22 Mar 2030</span></div>
-      <div class="est-row"><span class="est-key">🚀 Fase 5 — Web4</span><span class="est-val" id="est-f5">26 Jun 2030</span></div>
-      <div class="est-row" style="margin-bottom:0;"><span class="est-key">🏆 Semua Selesai</span><span class="est-val" id="est-all" style="color:#8b5cf6;font-weight:900;">10 Jul 2030</span></div>
+    <div class="timeline-card">
+      <div class="tc-title">📅 Estimasi Timeline</div>
+      <div class="tl-row"><span class="tl-key">🌱 Fase 1 selesai</span><span class="tl-val">5 Des 2026</span></div>
+      <div class="tl-row"><span class="tl-key">🐍 Fase 2 selesai</span><span class="tl-val">22 Mei 2027</span></div>
+      <div class="tl-row"><span class="tl-key">🧠 Fase 3 selesai</span><span class="tl-val">31 Jan 2028</span></div>
+      <div class="tl-row"><span class="tl-key">⛓️ Fase 4 selesai</span><span class="tl-val">12 Jul 2028</span></div>
+      <div class="tl-row"><span class="tl-key">💎 Bonus selesai</span><span class="tl-val">21 Mar 2030</span></div>
+      <div class="tl-row"><span class="tl-key" style="font-weight:700;color:var(--txt)">🇮🇩 Pulang Medan</span><span class="tl-val green">22 Mar 2030</span></div>
+      <div class="tl-row"><span class="tl-key">🚀 Fase 5 selesai</span><span class="tl-val">26 Jun 2030</span></div>
+      <div class="tl-row"><span class="tl-key">🏆 Semua selesai</span><span class="tl-val accent">10 Jul 2030</span></div>
     </div>
-    <div class="log-title" style="margin-top:4px;">Progress Per Fase</div>
-    <div id="phaseProgList"></div>
-    <div class="tools-box" style="margin-top:14px;">
-      <div class="tools-title">🎓 Tools Belajar Rekomendasi</div>
-      <div class="tool-item"><div class="tool-ico">💻</div><div class="tool-info"><div class="tool-name">FreeCodeCamp</div><div class="tool-desc">Latihan HTML/CSS/JS terstruktur — gratis (paralel Fase 1)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">🌱</div><div class="tool-info"><div class="tool-name">The Odin Project</div><div class="tool-desc">Full stack web dev path gratis — sangat lengkap (Fase 1)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">🧪</div><div class="tool-info"><div class="tool-name">Kaggle</div><div class="tool-desc">Kompetisi data science + notebook gratis (mulai Fase 2)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">🤖</div><div class="tool-info"><div class="tool-name">fast.ai</div><div class="tool-desc">Kursus deep learning gratis, sangat praktis (Fase 2–3)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">⛓️</div><div class="tool-info"><div class="tool-name">CryptoZombies</div><div class="tool-desc">Belajar Solidity interaktif & gratis (paralel Fase 4)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">🏫</div><div class="tool-info"><div class="tool-name">Alchemy University</div><div class="tool-desc">Web3 curriculum gratis, standar industri (Fase 4)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">🗣️</div><div class="tool-info"><div class="tool-name">iTalki / Tandem</div><div class="tool-desc">Latihan English speaking dengan native speaker (sepanjang roadmap)</div></div></div>
-      <div class="tool-item"><div class="tool-ico">💡</div><div class="tool-info"><div class="tool-name">LeetCode</div><div class="tool-desc">Problem solving — wajib untuk interview & portofolio (Fase 3+)</div></div></div>
+    <div class="phase-bars-card">
+      <div class="pb-title">Progress Per Fase</div>
+      <div id="phaseBars"></div>
+    </div>
+    <div class="tools-card">
+      <div class="tools-title">🎓 Platform Belajar Rekomendasi</div>
+      <div class="tool-row"><div class="tool-ico">💻</div><div><div class="tool-name">FreeCodeCamp</div><div class="tool-desc">HTML/CSS/JS terstruktur — gratis (Fase 1)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">🌱</div><div><div class="tool-name">The Odin Project</div><div class="tool-desc">Full stack web dev path gratis (Fase 1)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">🧪</div><div><div class="tool-name">Kaggle</div><div class="tool-desc">Data science & AI competitions (Fase 2+)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">🤖</div><div><div class="tool-name">fast.ai</div><div class="tool-desc">Deep learning praktis gratis (Fase 2–3)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">⛓️</div><div><div class="tool-name">CryptoZombies</div><div class="tool-desc">Belajar Solidity interaktif gratis (Fase 4)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">🏫</div><div><div class="tool-name">Alchemy University</div><div class="tool-desc">Web3 curriculum standar industri (Fase 4)</div></div></div>
+      <div class="tool-row"><div class="tool-ico">🗣️</div><div><div class="tool-name">iTalki / Tandem</div><div class="tool-desc">English speaking dengan native speaker</div></div></div>
+      <div class="tool-row"><div class="tool-ico">💡</div><div><div class="tool-name">LeetCode</div><div class="tool-desc">Problem solving — wajib untuk interview</div></div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ CATATAN ══ -->
-<div class="page" id="page-4">
-  <div class="cat-hero">
+<!-- CATATAN -->
+<div class="page" id="page-3">
+  <div class="cat-hdr">
     <h2>📋 Catatan Belajar</h2>
     <p>Catat progress & insight harian kamu</p>
   </div>
   <div class="cat-body">
-    <textarea class="cat-ta" id="catatanText"
-      placeholder="📅 Tanggal:&#10;&#10;✅ Hari ini belajar:&#10;&#10;💡 Yang sudah paham:&#10;&#10;❓ Yang masih bingung:&#10;&#10;🎯 Target besok:&#10;&#10;⏱ Jam belajar hari ini:&#10;&#10;💪 Motivasi:"></textarea>
+    <textarea class="cat-ta" id="catatanText" placeholder="📅 Tanggal:&#10;&#10;✅ Hari ini belajar:&#10;&#10;💡 Yang sudah paham:&#10;&#10;❓ Yang masih bingung:&#10;&#10;🎯 Target besok:&#10;&#10;💪 Motivasi:"></textarea>
     <div class="cat-btns">
-      <button class="cb cb-save" onclick="simpanCatatan()">💾 Simpan</button>
-      <button class="cb cb-del" onclick="hapusCatatan()">🗑️ Hapus</button>
+      <button class="cb cb-save" onclick="simpanCatatan()">💾 Simpan Catatan</button>
+      <button class="cb cb-del" onclick="hapusCatatan()">🗑</button>
     </div>
     <div class="cat-status" id="catStatus"></div>
-    <div class="motiv-box">
-      <p>"1 jam/hari konsisten selama 4 tahun<br>= <strong>bebas finansial sebelum usia 45</strong> 🔥"</p>
-      <strong>Dimas · Sri Lanka → Medan → Dunia 🇮🇩</strong>
+    <div class="motiv-card">
+      <div class="motiv-q">"1 jam/hari konsisten selama 4 tahun<br>= <strong>bebas finansial sebelum 30</strong> 🔥"</div>
+      <div class="motiv-sig">Dimas · Sri Lanka → Medan → Dunia 🇮🇩</div>
     </div>
   </div>
 </div>
 
-<!-- ══ BOTTOM NAV ══ -->
+<!-- BOTTOM NAV -->
 <div class="bnav">
   <button class="ntab active" onclick="goPage(0)" id="nav-0"><span class="ni">🏠</span><span class="nl">Home</span></button>
   <button class="ntab" onclick="goPage(1)" id="nav-1"><span class="ni">📚</span><span class="nl">Materi</span></button>
-  <button class="ntab" onclick="goPage(2)" id="nav-2"><span class="ni">⏱️</span><span class="nl">Timer</span></button>
-  <button class="ntab" onclick="goPage(3)" id="nav-3"><span class="ni">📊</span><span class="nl">Stats</span></button>
-  <button class="ntab" onclick="goPage(4)" id="nav-4"><span class="ni">📋</span><span class="nl">Catatan</span></button>
+  <button class="ntab" onclick="goPage(2)" id="nav-2"><span class="ni">📊</span><span class="nl">Stats</span></button>
+  <button class="ntab" onclick="goPage(3)" id="nav-3"><span class="ni">📋</span><span class="nl">Catatan</span></button>
 </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════
-// DATA ROADMAP — FINAL VERSION
-// ══════════════════════════════════════════
+// ══ DATA ══
 var PHASES=[
-{id:'f1',title:'Fase 1 — Fondasi Web',short:'Fondasi',ico:'🌱',color:'#10b981',bg:'#d1fae5',loc:'Sri Lanka',year:'Thn 1',deadline:'5 Des 2026',income:'Rp 1–5 juta/bln',totalDays:258,
+{id:'f1',title:'Fase 1 — Fondasi Web',short:'Fondasi',ico:'🌱',color:'#10b981',bg:'rgba(16,185,129,.12)',loc:'Sri Lanka',year:'Thn 1',deadline:'5 Des 2026',income:'Rp 1–5 juta/bln',totalDays:258,prevId:null,
 groups:[
-{name:'HTML',topics:[
+{name:'HTML',project:{title:'Halaman Profil DIMERLA',desc:'Buat halaman HTML lengkap dengan header, nav, section produk, tabel, form kontak, dan footer.'},topics:[
 {t:'Struktur dokumen HTML',d:'DOCTYPE, html, head, body — hafal luar kepala',e:'~2 hari',tags:['must']},
 {t:'Tag teks & heading',d:'h1–h6, p, strong, em, br, hr, span',e:'~2 hari',tags:[]},
 {t:'Link & navigasi',d:'a href, target="_blank", anchor #id',e:'~3 hari',tags:['must']},
@@ -395,7 +467,7 @@ groups:[
 {t:'Atribut id & class',d:'Bedanya id vs class — kapan pakai masing-masing',e:'~2 hari',tags:['must']},
 {t:'Komentar HTML',d:'<!-- komentar --> — cara beri catatan di kode',e:'~1 hari',tags:[]},
 ]},
-{name:'CSS',topics:[
+{name:'CSS',project:{title:'Styling Halaman DIMERLA',desc:'Tambahkan CSS ke halaman HTML — warna, font, layout, hover effects, dan responsive design.'},topics:[
 {t:'Cara tulis CSS',d:'Inline, internal (style tag), external (.css file)',e:'~2 hari',tags:['must']},
 {t:'Selector CSS',d:'element, .class, #id, kombinasi, specificity',e:'~3 hari',tags:['must']},
 {t:'Warna & tipografi',d:'color, background, font-family, size, weight, line-height',e:'~3 hari',tags:[]},
@@ -410,15 +482,15 @@ groups:[
 {t:'CSS Variables',d:'--var-name, var() — kode lebih rapi dan maintainable',e:'~2 hari',tags:[]},
 {t:'Shadow, opacity, overflow',d:'box-shadow, text-shadow, opacity, overflow:hidden/scroll',e:'~2 hari',tags:[]},
 ]},
-{name:'Tailwind CSS',topics:[
+{name:'Tailwind CSS',project:{title:'Landing Page dengan Tailwind',desc:'Rebuild halaman DIMERLA menggunakan utility classes Tailwind CSS.'},topics:[
 {t:'Tailwind CSS',d:'Framework CSS paling populer — utility-first, dipakai hampir semua startup global',e:'~7 hari',tags:['must','tool']},
 ]},
-{name:'CSS & Web Lanjut',topics:[
+{name:'CSS & Web Lanjut',project:{title:'Audit & Optimasi Website',desc:'Cek accessibility, performance score, dan buat website bisa diinstall sebagai PWA.'},topics:[
 {t:'Accessibility (a11y)',d:'ARIA, semantic HTML, keyboard nav — wajib untuk klien internasional',e:'~5 hari',tags:['must']},
 {t:'Web Performance & PageSpeed',d:'Lazy loading, code splitting, Core Web Vitals — website lambat = klien kabur',e:'~5 hari',tags:['must']},
 {t:'Progressive Web App (PWA)',d:'Service worker, manifest, offline mode — website bisa diinstall',e:'~7 hari',tags:[]},
 ]},
-{name:'JavaScript',topics:[
+{name:'JavaScript',project:{title:'Keranjang Belanja Interaktif',desc:'Buat fitur add to cart, hapus item, dan hitung total harga menggunakan JavaScript DOM manipulation.'},topics:[
 {t:'Variabel & tipe data',d:'let, const, var — string, number, boolean, null, undefined',e:'~3 hari',tags:['must']},
 {t:'Operator & kondisi',d:'if, else, switch, &&, ||, ===, ternary operator',e:'~3 hari',tags:['must']},
 {t:'Function',d:'function biasa, arrow function, parameter, return, scope',e:'~4 hari',tags:['must']},
@@ -434,8 +506,9 @@ groups:[
 {t:'ES6+ Modern JS',d:'Template literal, modules, optional chaining, nullish coalescing',e:'~5 hari',tags:[]},
 {t:'OOP JavaScript',d:'class, constructor, extends, super — dasar untuk framework',e:'~5 hari',tags:[]},
 {t:'WebSockets dasar',d:'Real-time komunikasi — wajib untuk chatbot UI',e:'~5 hari',tags:['must']},
+{t:'Testing dengan Jest',d:'Unit test JavaScript — pastikan kode tidak rusak saat perubahan',e:'~4 hari',tags:['tool']},
 ]},
-{name:'Node.js & React',topics:[
+{name:'Node.js & React',project:{title:'React Todo App',desc:'Buat aplikasi todo list dengan React — add, delete, mark done menggunakan useState dan useEffect.'},topics:[
 {t:'Command Line / Terminal',d:'cd, ls, mkdir, rm, pwd — wajib semua developer!',e:'~3 hari',tags:['must','tool']},
 {t:'Node.js dasar',d:'JS di server — runtime dipakai hampir semua tools modern',e:'~5 hari',tags:['must']},
 {t:'npm & package.json',d:'npm install, scripts, dependencies — manajemen library JS',e:'~3 hari',tags:['must','tool']},
@@ -443,11 +516,12 @@ groups:[
 {t:'TypeScript dasar',d:'Types, interface, generics — standar industri saat ini',e:'~10 hari',tags:[]},
 {t:'React.js dasar',d:'Component, props, state, hooks (useState, useEffect)',e:'~14 hari',tags:['must']},
 {t:'React Router & API call',d:'Navigasi halaman di React, fetch data dari API',e:'~7 hari',tags:[]},
+{t:'Zustand / Redux',d:'State management — kelola data global di React dengan rapi',e:'~5 hari',tags:[]},
 ]},
-{name:'Next.js',topics:[
+{name:'Next.js',project:{title:'Website Multi-halaman DIMERLA',desc:'Buat website DIMERLA dengan Next.js — halaman home, produk, dan kontak dengan App Router.'},topics:[
 {t:'Next.js',d:'Framework React standar industri — SSR, SSG, App Router, hampir semua lowongan minta ini',e:'~14 hari',tags:['must']},
 ]},
-{name:'Tools & Deploy',topics:[
+{name:'Tools & Deploy',project:{title:'Deploy Website ke Vercel',desc:'Push kode ke GitHub dan deploy ke Vercel dengan custom domain dimastoremedan.com.'},topics:[
 {t:'Git & GitHub',d:'init, add, commit, push, pull, branch, merge — version control wajib',e:'~5 hari',tags:['must','tool']},
 {t:'VS Code & Extensions',d:'Prettier, ESLint, Live Server, GitLens — setup IDE pro',e:'~2 hari',tags:['tool']},
 {t:'Chrome DevTools',d:'Elements, Console, Network, Sources — debug seperti pro',e:'~3 hari',tags:['tool']},
@@ -459,10 +533,9 @@ groups:[
 {t:'Technical writing dasar',d:'Dokumentasi kode & proposal klien — wajib dapat klien global',e:'~5 hari',tags:['must']},
 ]},
 ]},
-
-{id:'f2',title:'Fase 2 — Python & AI Dasar',short:'Python',ico:'🐍',color:'#3b82f6',bg:'#dbeafe',loc:'Sri Lanka',year:'Thn 1–2',deadline:'22 Mei 2027',income:'Rp 3–10 juta/bln',totalDays:168,
+{id:'f2',title:'Fase 2 — Python & AI Dasar',short:'Python',ico:'🐍',color:'#3b82f6',bg:'rgba(59,130,246,.12)',loc:'Sri Lanka',year:'Thn 1–2',deadline:'22 Mei 2027',income:'Rp 3–10 juta/bln',totalDays:168,prevId:'f1',
 groups:[
-{name:'Python Dasar',topics:[
+{name:'Python Dasar',project:{title:'Kalkulator & To-Do CLI',desc:'Buat program Python sederhana — kalkulator dan aplikasi todo list yang berjalan di terminal.'},topics:[
 {t:'Setup Python & pip',d:'Install Python, pip, virtual environment (venv)',e:'~2 hari',tags:['must']},
 {t:'Syntax dasar Python',d:'Variabel, string, number, list, dict, tuple, set, kondisi, loop',e:'~7 hari',tags:['must']},
 {t:'Function & module',d:'def, return, *args, **kwargs, import, pip install',e:'~5 hari',tags:[]},
@@ -470,7 +543,7 @@ groups:[
 {t:'File & error handling',d:'open, read, write, try/except, with statement',e:'~3 hari',tags:[]},
 {t:'List comprehension & lambda',d:'Cara menulis Python yang lebih elegan dan efisien',e:'~3 hari',tags:[]},
 ]},
-{name:'Data & Library Penting',topics:[
+{name:'Data & Library Penting',project:{title:'Analisis Data Produk DIMERLA',desc:'Gunakan pandas untuk analisis data penjualan — total, rata-rata, dan visualisasi dengan matplotlib.'},topics:[
 {t:'Jupyter Notebook',d:'Standar mutlak semua AI/data science — wajib paham!',e:'~3 hari',tags:['must','ai']},
 {t:'pandas & numpy',d:'Olah data — wajib untuk semua project AI & data science',e:'~10 hari',tags:['must','ai']},
 {t:'matplotlib',d:'Visualisasi data — wajib untuk analisis & presentasi AI',e:'~5 hari',tags:['ai']},
@@ -479,12 +552,12 @@ groups:[
 {t:'Regex (Regular Expression)',d:'Pattern matching — sering dipakai di AI pipeline & data cleaning',e:'~3 hari',tags:[]},
 {t:'Web scraping (BeautifulSoup)',d:'Ambil data dari internet — untuk training data AI',e:'~5 hari',tags:['ai']},
 ]},
-{name:'API & Web',topics:[
+{name:'API & Web',project:{title:'Fetch Data dari API Publik',desc:'Ambil data dari public API (weather/berita) menggunakan Python requests dan tampilkan hasilnya.'},topics:[
 {t:'HTTP & REST API',d:'GET, POST, PUT, DELETE, status code — cara kerja internet',e:'~3 hari',tags:['must']},
 {t:'requests library',d:'Call API dari Python — dasar semua integrasi AI',e:'~3 hari',tags:['must']},
 {t:'Environment variables (.env)',d:'python-dotenv — simpan API key dengan aman',e:'~2 hari',tags:['must']},
 ]},
-{name:'AI API Integration',topics:[
+{name:'AI API Integration',project:{title:'Chatbot DIMERLA Pertama',desc:'Buat chatbot sederhana menggunakan Claude atau OpenAI API yang bisa menjawab pertanyaan produk.'},topics:[
 {t:'OpenAI API',d:'GPT-4, chat completions, token, temperature, system prompt',e:'~7 hari',tags:['ai']},
 {t:'Claude API (Anthropic)',d:'Messages API, streaming, system prompt, model selection',e:'~5 hari',tags:['ai']},
 {t:'Prompt Engineering',d:'System prompt, few-shot, chain-of-thought, role prompting',e:'~7 hari',tags:['must','ai']},
@@ -494,26 +567,27 @@ groups:[
 {t:'WhatsApp Bot + AI',d:'Integrasi AI ke WA — langsung bisa dijual ke klien',e:'~7 hari',tags:['ai']},
 {t:'Telegram Bot + AI',d:'python-telegram-bot + AI integration',e:'~5 hari',tags:['ai']},
 ]},
-{name:'AI Tools Tambahan',topics:[
+{name:'AI Tools Tambahan',project:{title:'Demo AI dengan Streamlit',desc:'Buat web app sederhana dengan Streamlit yang menampilkan hasil dari AI API secara interaktif.'},topics:[
 {t:'Streamlit',d:'Build AI web app Python cepat — standar demo ke klien tanpa React',e:'~5 hari',tags:['must','ai']},
 {t:'Gradio',d:'UI untuk demo model AI — standar di Hugging Face Spaces',e:'~5 hari',tags:['ai']},
 {t:'Whisper API (Speech-to-Text)',d:'Transkripsi suara ke teks — banyak diminta klien untuk chatbot suara',e:'~3 hari',tags:['ai']},
 {t:'Image Generation API',d:'DALL-E, Stable Diffusion API — integrasi generasi gambar ke produk',e:'~5 hari',tags:['ai']},
 ]},
-{name:'Produk & Monetisasi',topics:[
+{name:'Produk & Monetisasi',project:{title:'Integrasi Stripe Payment',desc:'Tambahkan sistem pembayaran Stripe ke aplikasi Python — checkout flow lengkap.'},topics:[
 {t:'Stripe Payment Integration',d:'Sistem pembayaran — tanpa ini SaaS tidak bisa menghasilkan uang',e:'~5 hari',tags:['must','biz']},
 {t:'Email Service (Resend/SendGrid)',d:'Kirim email verifikasi, notifikasi, marketing — setiap produk butuh ini',e:'~3 hari',tags:['must']},
 {t:'n8n / Make (Automation)',d:'Tool automation yang sangat laku dijual ke klien bisnis non-tech',e:'~7 hari',tags:['must','biz']},
 ]},
 ]},
-
-{id:'f3',title:'Fase 3 — AI Engineer',short:'AI Eng',ico:'🧠',color:'#8b5cf6',bg:'#ede9fe',loc:'Sri Lanka',year:'Thn 2–3',deadline:'31 Jan 2028',income:'Rp 15–50 juta/bln',totalDays:254,
+{id:'f3',title:'Fase 3 — AI Engineer',short:'AI Eng',ico:'🧠',color:'#8b5cf6',bg:'rgba(139,92,246,.12)',loc:'Sri Lanka',year:'Thn 2–3',deadline:'31 Jan 2028',income:'Rp 15–50 juta/bln',totalDays:254,prevId:'f2',
 groups:[
-{name:'Fondasi & Matematika AI',topics:[
+{name:'Fondasi & Matematika AI',project:{title:'Implementasi ML Sederhana',desc:'Buat model klasifikasi dengan scikit-learn menggunakan dataset nyata dan evaluasi hasilnya.'},topics:[
 {t:'Matematika dasar AI',d:'Linear algebra, statistik dasar, probabilitas — fondasi ML',e:'~14 hari',tags:['must','math']},
 {t:'Machine Learning konsep',d:'Supervised, unsupervised, reinforcement — paham teori & praktik',e:'~7 hari',tags:['ai']},
+{t:'Data Structures & Algorithms',d:'Array, linked list, tree, graph, sorting, searching — wajib untuk interview internasional',e:'~21 hari',tags:['must']},
+{t:'System Design dasar',d:'Scalability, load balancing, caching, database sharding — wajib untuk senior level',e:'~14 hari',tags:['must']},
 ]},
-{name:'AI Framework Utama',topics:[
+{name:'AI Framework Utama',project:{title:'RAG Chatbot Dokumen',desc:'Buat chatbot yang bisa menjawab pertanyaan dari dokumen PDF menggunakan RAG + LangChain.'},topics:[
 {t:'LangChain',d:'Chain, memory, tools, agent — framework utama AI Engineer',e:'~14 hari',tags:['must','ai']},
 {t:'LlamaIndex',d:'Alternatif LangChain untuk indexing dokumen — sering diminta klien enterprise',e:'~7 hari',tags:['must','ai']},
 {t:'LangGraph',d:'Complex AI agent dengan state machine — standar 2025+',e:'~7 hari',tags:['ai']},
@@ -521,41 +595,39 @@ groups:[
 {t:'Vector Database',d:'Pinecone / Chroma / Weaviate — simpan embedding untuk AI',e:'~7 hari',tags:['must','ai']},
 {t:'RAG — Retrieval Augmented Generation',d:'AI yang bisa baca dokumen kamu — teknik paling dicari klien',e:'~14 hari',tags:['must','ai']},
 {t:'AI Agent lanjut',d:'Agent yang cari web, pakai tools, ambil keputusan sendiri',e:'~14 hari',tags:['must','ai']},
-{t:'OpenAI Assistants API',d:'Persistent threads, file search, code interpreter — beda dari chat biasa',e:'~5 hari',tags:['ai']},
-{t:'Model Context Protocol (MCP)',d:'Standar baru Anthropic untuk AI agent — ini masa depan AI engineering',e:'~5 hari',tags:['must','ai']},
+{t:'OpenAI Assistants API',d:'Persistent threads, file search, code interpreter',e:'~5 hari',tags:['ai']},
+{t:'Model Context Protocol (MCP)',d:'Standar baru Anthropic untuk AI agent — masa depan AI engineering',e:'~5 hari',tags:['must','ai']},
 {t:'Fine-tuning model',d:'Training ulang AI dengan data sendiri — LoRA, PEFT',e:'~14 hari',tags:['ai']},
-{t:'MLflow',d:'Tracking eksperimen ML — standar industri, wajib untuk tim',e:'~5 hari',tags:['tool']},
+{t:'MLflow',d:'Tracking eksperimen ML — standar industri',e:'~5 hari',tags:['tool']},
 {t:'API cost optimization',d:'Kelola biaya AI API agar produk tetap profit',e:'~5 hari',tags:['must']},
 ]},
-{name:'Backend & Infrastruktur',topics:[
+{name:'Backend & Infrastruktur',project:{title:'REST API FastAPI + PostgreSQL',desc:'Buat REST API untuk toko DIMERLA — endpoint produk, user, dan order dengan database PostgreSQL.'},topics:[
 {t:'Linux dasar',d:'ls, cd, mkdir, vim, chmod, systemctl — semua server AI pakai Linux',e:'~7 hari',tags:['must','tool']},
 {t:'FastAPI',d:'Buat REST API dengan Python — backend untuk produk AI',e:'~10 hari',tags:['must']},
 {t:'GraphQL',d:'Alternatif REST API — banyak startup dan klien modern pakai ini',e:'~5 hari',tags:[]},
 {t:'WebSocket server',d:'Backend real-time — wajib untuk chatbot & live AI apps',e:'~5 hari',tags:['must']},
 {t:'PostgreSQL & SQL',d:'SELECT, INSERT, JOIN, index — database relasional wajib',e:'~10 hari',tags:['must']},
+{t:'Prisma ORM',d:'Type-safe database client — standar project TypeScript/Node modern',e:'~5 hari',tags:['tool']},
 {t:'Redis',d:'Database cepat untuk cache hasil AI — kurangi biaya API',e:'~5 hari',tags:['tool']},
 {t:'Supabase / Firebase',d:'Backend-as-a-service — database + auth tanpa setup server',e:'~5 hari',tags:[]},
 {t:'Authentication & Security',d:'JWT, OAuth2, bcrypt, HTTPS — sistem login yang aman',e:'~7 hari',tags:['must']},
-{t:'Rate limiting & API security',d:'Proteksi produk dari abuse & serangan — wajib sebelum launch',e:'~4 hari',tags:['must']},
+{t:'Rate limiting & API security',d:'Proteksi produk dari abuse & serangan',e:'~4 hari',tags:['must']},
 {t:'OWASP Security',d:'Top 10 kerentanan web — wajib sebelum jual produk ke klien enterprise',e:'~5 hari',tags:['must']},
 {t:'Docker dasar',d:'Container, image, Dockerfile — packaging app AI agar portable',e:'~7 hari',tags:['must','tool']},
-{t:'Celery / Background Jobs',d:'Task antrian untuk proses AI yang lama — kirim email, training, dll',e:'~5 hari',tags:[]},
 {t:'GitHub Actions / CI/CD',d:'Otomasi deploy — standar profesional, hemat waktu',e:'~5 hari',tags:['tool']},
 {t:'Cloud basics (AWS/GCP)',d:'Deploy AI apps skala besar — EC2, Lambda, Cloud Run',e:'~10 hari',tags:['must']},
 {t:'Monitoring & Logging (Sentry)',d:'Track error di production — semua produk wajib punya ini',e:'~4 hari',tags:['must','tool']},
-{t:'Analytics (Mixpanel/GA)',d:'Tahu user behavior di produk — wajib untuk improve produk',e:'~4 hari',tags:[]},
-{t:'Testing dasar',d:'Unit test, pytest, Jest — pastikan kode AI tidak rusak',e:'~5 hari',tags:[]},
+{t:'Testing (pytest & Cypress)',d:'Unit test Python + end-to-end test — kode AI yang bisa dipercaya',e:'~7 hari',tags:['tool']},
 ]},
-{name:'Produk & Bisnis',topics:[
+{name:'Produk & Bisnis',project:{title:'SaaS AI MVP — Launch Pertama',desc:'Launch produk SaaS AI pertama — landing page, auth, AI feature, dan payment gateway live!'},topics:[
 {t:'Bangun SaaS AI pertama',d:'Produk berlangganan lengkap — Fase 3 goal utama',e:'~21 hari',tags:['must']},
 {t:'Open source contribution',d:'Kontribusi ke project AI populer — bangun reputasi GitHub global',e:'~14 hari',tags:[]},
 {t:'Freelance di Upwork / Toptal',d:'Dapat klien internasional, bayaran USD',e:'~7 hari',tags:[]},
 ]},
 ]},
-
-{id:'f4',title:'Fase 4 — Web3 Blockchain',short:'Web3',ico:'⛓️',color:'#f59e0b',bg:'#fef3c7',loc:'Sri Lanka',year:'Thn 3–4',deadline:'12 Jul 2028',income:'$3.000–10.000/bln',totalDays:163,
+{id:'f4',title:'Fase 4 — Web3 Blockchain',short:'Web3',ico:'⛓️',color:'#f59e0b',bg:'rgba(245,158,11,.12)',loc:'Sri Lanka',year:'Thn 3–4',deadline:'12 Jul 2028',income:'$3.000–10.000/bln',totalDays:163,prevId:'f3',
 groups:[
-{name:'Blockchain Dasar',topics:[
+{name:'Blockchain Dasar',project:{title:'Wallet & Transaksi Testnet',desc:'Setup MetaMask, kirim transaksi di testnet Ethereum, dan pahami cara kerja gas fee secara nyata.'},topics:[
 {t:'Cara kerja Blockchain',d:'Block, chain, consensus (PoW/PoS), hash, node, ledger',e:'~5 hari',tags:['must','web3']},
 {t:'Ethereum & Solana',d:'Network paling populer — pilih spesialisasi utama',e:'~5 hari',tags:['web3']},
 {t:'Layer 2 Solutions',d:'Polygon, Arbitrum, Optimism — biaya lebih murah dari Ethereum',e:'~5 hari',tags:['web3']},
@@ -563,7 +635,7 @@ groups:[
 {t:'Token ERC-20 & NFT ERC-721',d:'Standard token Ethereum — dasar semua DeFi & NFT project',e:'~5 hari',tags:['web3']},
 {t:'DeFi protocol dasar',d:'Paham Uniswap, Aave, Compound — ekosistem Web3',e:'~7 hari',tags:['web3']},
 ]},
-{name:'Smart Contract',topics:[
+{name:'Smart Contract',project:{title:'Deploy Token ERC-20 di Testnet',desc:'Buat dan deploy token ERC-20 sederhana di testnet Sepolia menggunakan Foundry.'},topics:[
 {t:'Solidity dasar',d:'Variables, functions, events, modifiers, mappings',e:'~14 hari',tags:['must','web3']},
 {t:'Hardhat / Foundry',d:'Framework testing & deploy smart contract — standar industri',e:'~7 hari',tags:['tool']},
 {t:'Foundry testing lanjut',d:'Fuzz testing, invariant test — smart contract tanpa test tidak dipercaya klien',e:'~7 hari',tags:['must','web3']},
@@ -573,7 +645,7 @@ groups:[
 {t:'Gas Optimization Solidity',d:'Teknik hemat biaya transaksi — sangat dicari klien DeFi',e:'~5 hari',tags:['web3']},
 {t:'Zero-knowledge proof dasar',d:'zk-SNARK konsep — teknologi Web3 masa depan',e:'~7 hari',tags:['web3']},
 ]},
-{name:'DApp Development',topics:[
+{name:'DApp Development',project:{title:'DApp Voting Terdesentralisasi',desc:'Buat aplikasi voting dengan React frontend dan smart contract Solidity — deploy ke testnet.'},topics:[
 {t:'Ethers.js / Web3.js',d:'Hubungkan frontend JS dengan blockchain',e:'~7 hari',tags:['must','web3']},
 {t:'The Graph',d:'Indexing data blockchain seperti database — standar DApp production',e:'~5 hari',tags:['web3']},
 {t:'Subgraph development',d:'Lanjutan The Graph — buat indexer sendiri untuk DApp',e:'~5 hari',tags:['web3']},
@@ -583,24 +655,23 @@ groups:[
 {t:'IPFS & decentralized storage',d:'Simpan file tanpa server terpusat — Filecoin, Arweave',e:'~5 hari',tags:[]},
 {t:'AI + Smart Contract',d:'Gabungkan AI dengan blockchain — niche sangat langka di dunia',e:'~14 hari',tags:['web3','ai']},
 ]},
-{name:'Rust Dasar (Solana)',topics:[
+{name:'Rust Dasar (Solana)',project:{title:'Hello World di Solana Devnet',desc:'Deploy program Rust pertama di Solana devnet — transaksi pertama di high-performance blockchain.'},topics:[
 {t:'Rust dasar',d:'Bahasa pemrograman untuk Solana development — high performance blockchain',e:'~10 hari',tags:['web3']},
 ]},
 ]},
-
-{id:'fb',title:'Fase Bonus — Skala & Persiapan Global',short:'Bonus',ico:'💎',color:'#0ea5e9',bg:'#e0f2fe',loc:'Sri Lanka',year:'Thn 2–4',deadline:'21 Mar 2030',income:'Mulai $500–3.000/bln',totalDays:617,
+{id:'fb',title:'Fase Bonus — Skala & Global',short:'Bonus',ico:'💎',color:'#0ea5e9',bg:'rgba(14,165,233,.12)',loc:'Sri Lanka',year:'Thn 2–4',deadline:'21 Mar 2030',income:'Mulai $500–3.000/bln',totalDays:617,prevId:'f1',
 groups:[
-{name:'English Teknis',topics:[
+{name:'English Teknis',project:{title:'README Profesional dalam Inggris',desc:'Buat README.md lengkap dalam Bahasa Inggris untuk salah satu project portfolio kamu.'},topics:[
 {t:'English teknis aktif (speaking & writing)',d:'Komunikasi dengan klien global, interview, proposal — tanpa ini USD tidak datang',e:'~60 hari bertahap',tags:['must']},
 {t:'Technical documentation writing',d:'README, API docs, proposal teknis yang menarik klien internasional',e:'~14 hari',tags:['must']},
 ]},
-{name:'Personal Branding & Karir',topics:[
+{name:'Personal Branding & Karir',project:{title:'GitHub & LinkedIn Pro Setup',desc:'Buat GitHub profile README yang menarik dan optimalkan LinkedIn untuk klien internasional.'},topics:[
 {t:'GitHub profile profesional',d:'README menarik, pinned repos, contribution graph aktif — CV visual programmer',e:'~7 hari',tags:['must']},
 {t:'LinkedIn profile teknis',d:'Optimasi LinkedIn untuk dapat klien/rekruter internasional',e:'~5 hari',tags:['must']},
 {t:'Blog teknis (dev.to / Medium / Hashnode)',d:'Tulis artikel teknis — bukti keahlian nyata yang dilihat klien',e:'~14 hari',tags:[]},
 {t:'Twitter/X tech presence',d:'Bangun audiens di komunitas developer & AI global',e:'~14 hari',tags:[]},
 ]},
-{name:'Freelance & Bisnis',topics:[
+{name:'Freelance & Bisnis',project:{title:'Proposal Klien Pertama $500',desc:'Tulis proposal freelance dalam Bahasa Inggris untuk proyek AI chatbot fiktif senilai $500.'},topics:[
 {t:'Setup Upwork & Toptal profile',d:'Profile yang menarik klien USD dari hari pertama',e:'~5 hari',tags:['must','biz']},
 {t:'Pricing & proposal freelance',d:'Cara harga jasa, tulis proposal menang, negosiasi tanpa takut',e:'~7 hari',tags:['must','biz']},
 {t:'Cold outreach & email marketing',d:'Cara aktif cari klien pertama — tidak hanya nunggu di Upwork',e:'~5 hari',tags:['must','biz']},
@@ -608,14 +679,14 @@ groups:[
 {t:'Product thinking & validation',d:'Cara validasi ide produk sebelum bangun — hindari buang waktu',e:'~10 hari',tags:['must','biz']},
 {t:'Business model SaaS',d:'Pricing model, MRR, churn, CAC — paham bisnis bukan hanya kode',e:'~7 hari',tags:['biz']},
 ]},
-{name:'Proyek Portfolio Nyata',topics:[
+{name:'Proyek Portfolio Nyata',project:{title:'Launch 3 Proyek Live',desc:'Pastikan minimal 3 proyek portfolio live dengan domain sendiri dan dokumentasi lengkap dalam Inggris.'},topics:[
 {t:'Proyek 1 — Web app full stack',d:'HTML+CSS+JS+React+Next.js+API — deploy live dengan domain sendiri',e:'~21 hari',tags:['must']},
 {t:'Proyek 2 — AI Chatbot produk',d:'Chatbot dengan RAG + FastAPI + database — langsung bisa dijual',e:'~30 hari',tags:['must']},
 {t:'Proyek 3 — SaaS AI + Payment',d:'Produk berlangganan dengan Stripe — menghasilkan MRR nyata',e:'~30 hari',tags:['must']},
 {t:'Proyek 4 — DApp Web3',d:'Smart contract + React frontend — deploy ke mainnet',e:'~21 hari',tags:['web3']},
 {t:'Proyek 5 — Open source contribution',d:'Kontribusi nyata ke project AI/Web3 populer — reputasi global',e:'~30 hari',tags:[]},
 ]},
-{name:'Review & Pendalaman',topics:[
+{name:'Review & Pendalaman',project:{title:'Technical Blog Post',desc:'Tulis artikel teknis di dev.to tentang salah satu hal yang kamu pelajari selama roadmap.'},topics:[
 {t:'Review & perdalam Fase 1',d:'Fondasi web benar-benar kuat sebelum ke level lebih tinggi',e:'~21 hari',tags:['must']},
 {t:'Review & perdalam Fase 2',d:'Perdalam Python & AI API — eksperimen lebih banyak model baru',e:'~21 hari',tags:['must']},
 {t:'Review & perdalam Fase 3',d:'Perdalam LangChain, RAG, Agent — sistem lebih kompleks',e:'~21 hari',tags:['must']},
@@ -623,10 +694,9 @@ groups:[
 {t:'Persiapan pulang Medan',d:'Siapkan semua aset digital, klien tetap, dan pendapatan sebelum pulang',e:'~14 hari',tags:['must']},
 ]},
 ]},
-
-{id:'f5',title:'Fase 5 — Web4 & AI Future',short:'Web4',ico:'🚀',color:'#ef4444',bg:'#fee2e2',loc:'Medan',year:'Thn 4–5',deadline:'26 Jun 2030',income:'$5.000–20.000+/bln',totalDays:96,
+{id:'f5',title:'Fase 5 — Web4 & AI Future',short:'Web4',ico:'🚀',color:'#ef4444',bg:'rgba(239,68,68,.12)',loc:'Medan',year:'Thn 4–5',deadline:'26 Jun 2030',income:'$5.000–20.000+/bln',totalDays:96,prevId:'fb',
 groups:[
-{name:'Web4 Core',topics:[
+{name:'Web4 Core',project:{title:'Autonomous AI Agent',desc:'Buat AI agent yang bisa browsing web, baca dokumen, dan buat laporan sendiri tanpa instruksi manual.'},topics:[
 {t:'AI Autonomous Agent',d:'Agent bekerja mandiri tanpa instruksi terus-menerus — masa depan AI',e:'~14 hari',tags:['web4','ai']},
 {t:'Decentralized AI',d:'AI di blockchain — tidak bisa disensor atau dimatikan',e:'~10 hari',tags:['web4']},
 {t:'Semantic Web & Knowledge Graph',d:'Web yang mengerti konteks — fondasi Web4',e:'~10 hari',tags:['web4']},
@@ -637,12 +707,11 @@ groups:[
 {t:'Bangun produk Web4 pertama',d:'AI + blockchain + decentralized — platform yang benar-benar masa depan',e:'~21 hari',tags:['must','web4']},
 ]},
 ]},
-
-{id:'f6',title:'Fase 6 — Skala & Kebebasan',short:'Goals',ico:'🏆',color:'#ec4899',bg:'#fce7f3',loc:'Medan',year:'Thn 5+',deadline:'10 Jul 2030',income:'Bebas finansial',totalDays:14,
+{id:'f6',title:'Fase 6 — Skala & Kebebasan',short:'Goals',ico:'🏆',color:'#ec4899',bg:'rgba(236,72,153,.12)',loc:'Medan',year:'Thn 5+',deadline:'10 Jul 2030',income:'Bebas finansial',totalDays:14,prevId:'f5',
 groups:[
-{name:'Milestone Kebebasan',topics:[
+{name:'Milestone Kebebasan',project:{title:'Launch Day 🚀',desc:'Hari kebebasan — remote work dari Medan, SaaS live, portfolio lengkap, income USD sudah mengalir!'},topics:[
 {t:'Portfolio 10+ proyek nyata live',d:'Web, AI, Web3, Web4 — semua bisa dilihat klien global kapan saja',e:'ongoing',tags:['must']},
-{t:'SaaS dengan MRR $1.000+',d:'Pendapatan pasif bulanan dari produk AI sendiri — tidak bergantung klien',e:'ongoing',tags:['must']},
+{t:'SaaS dengan MRR $1.000+',d:'Pendapatan pasif bulanan dari produk AI sendiri',e:'ongoing',tags:['must']},
 {t:'Agency AI — tim sendiri',d:'Hire developer lain, terima proyek besar dari klien multinasional',e:'ongoing',tags:[]},
 {t:'Kerja remote full-time dari Medan',d:'Bebas waktu, bebas lokasi, tidak perlu Sri Lanka lagi 🇮🇩',e:'22 Mar 2030',tags:['must']},
 {t:'Speaking di Event Tech Indonesia',d:'Jadi pembicara — cara paling cepat bangun reputasi sebagai expert AI',e:'ongoing',tags:['must']},
@@ -652,19 +721,15 @@ groups:[
 ];
 
 var TAG_LABELS={must:'wajib',ai:'AI',web3:'Web3',web4:'Web4',tool:'tool',math:'math',biz:'bisnis'};
-var TAG_CLASS={must:'t-must',ai:'t-ai',web3:'t-web3',web4:'t-web4',tool:'t-tool',math:'t-math',biz:'t-biz'};
+var TAG_CLS={must:'t-must',ai:'t-ai',web3:'t-web3',web4:'t-web4',tool:'t-tool',math:'t-math',biz:'t-biz'};
+var TAG_COLORS={must:'#10b981',ai:'#60a5fa',web3:'#fbbf24',web4:'#a78bfa',tool:'#9ca3af',math:'#f87171',biz:'#fbbf24',all:'#00d4aa'};
+var WARN_THRESHOLD=70;
 
-// ══ STATE ══
-var cur=0,timerInterval=null,timerRunning=false,timerSeconds=0,timerMode='sl';
-var TARGET={sl:60,md:300};
+var cur=0,searchQ='',filterTag='all',activePhase=0;
 
-function getState(){
-  var s=localStorage.getItem('dimas_v8');
-  return s?JSON.parse(s):{checks:{},todayMinutes:0,totalMinutes:0,debtMinutes:0,streak:0,lastDate:'',studyLog:[],lastSessionDate:''};
-}
-function saveState(s){localStorage.setItem('dimas_v8',JSON.stringify(s));}
+function getState(){var s=localStorage.getItem('dimas_v11');return s?JSON.parse(s):{checks:{},projects:{},streak:0,lastDate:'',studyLog:[]};}
+function saveState(s){localStorage.setItem('dimas_v11',JSON.stringify(s));}
 
-// ══ NAV ══
 function goPage(n){
   document.getElementById('page-'+cur).classList.remove('active');
   document.getElementById('nav-'+cur).classList.remove('active');
@@ -673,15 +738,32 @@ function goPage(n){
   document.getElementById('nav-'+n).classList.add('active');
   document.getElementById('page-'+n).scrollTop=0;
   if(n===0)updateHome();
-  if(n===3)updateStats();
-  if(n===4)loadCatatan();
+  if(n===2)updateStats();
+  if(n===3)loadCatatan();
 }
 
-// ══ BUILD UI ══
+// ── PHASE PROGRESS ──
+function getPhasePct(p){
+  var s=getState();var done=0,all=0;
+  p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){all++;if(s.checks[p.id+'-'+gi+'-'+ti])done++;});});
+  return all?Math.round(done/all*100):0;
+}
+
+function isPhaseWarned(p){
+  if(!p.prevId)return false;
+  var prev=PHASES.find(function(x){return x.id===p.prevId;});
+  if(!prev)return false;
+  var pct=getPhasePct(prev);
+  return pct<WARN_THRESHOLD;
+}
+
+// ── HOME ──
 function buildHome(){
   var sl=['f1','f2','f3','f4','fb'],md=['f5','f6'];
   document.getElementById('homeCards').innerHTML=sl.map(phaseCard).join('');
   document.getElementById('homeCards2').innerHTML=md.map(phaseCard).join('');
+  buildFocus();
+  buildFocusBanner();
 }
 
 function phaseCard(fid){
@@ -689,200 +771,320 @@ function phaseCard(fid){
   var s=getState();var done=0,all=0;
   p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){var k=p.id+'-'+gi+'-'+ti;all++;if(s.checks[k])done++;});});
   var pct=all?Math.round(done/all*100):0;
-  return '<div class="fcard" onclick="goPage(1);switchPhase('+PHASES.indexOf(p)+')">'+
-    '<div class="fc-stripe" style="background:'+p.color+'"></div>'+
+  var warned=isPhaseWarned(p);
+  var warnHtml='';
+  if(warned){
+    var prev=PHASES.find(function(x){return x.id===p.prevId;});
+    var prevPct=getPhasePct(prev);
+    var need=WARN_THRESHOLD-prevPct;
+    warnHtml='<div class="fc-warn">⚠️ Selesaikan '+prev.short+' dulu — kurang '+need+'% lagi</div>';
+  }
+  return '<div class="fcard'+(warned?' warned':'')+'" onclick="goPage(1);switchPhase('+PHASES.indexOf(p)+')">'+
+    '<div class="fc-glow" style="background:'+p.color+'"></div>'+
     '<div class="fc-ico" style="background:'+p.bg+'">'+p.ico+'</div>'+
     '<div class="fc-info">'+
       '<div class="fc-title" style="color:'+p.color+'">'+p.title+'</div>'+
-      '<div class="fc-meta">'+p.loc+' · '+p.year+' · target '+p.deadline+'</div>'+
+      '<div class="fc-meta">'+p.loc+' · '+p.year+' · '+p.deadline+'</div>'+
       '<div class="fc-row">'+
         '<div class="fc-bar"><div class="fc-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div>'+
         '<span class="fc-pct" style="color:'+p.color+'">'+pct+'%</span>'+
       '</div>'+
-      '<div class="fc-time">'+done+'/'+all+' topik · ~'+p.totalDays+' hari</div>'+
+      '<div class="fc-stat">'+done+'/'+all+' topik · ~'+p.totalDays+' hari</div>'+
+      warnHtml+
     '</div><div class="fc-arr">›</div></div>';
 }
 
-function buildMateri(){
-  var tabs=PHASES.map(function(p,i){
-    var active=i===0;
-    return '<button class="ptab'+(active?' active':'')+'" id="ptab-'+i+'" onclick="switchPhase('+i+')" style="'+(active?'background:'+p.color+';color:#fff;border-color:'+p.color+'':'')+'">'+p.ico+' '+p.short+'</button>';
+function buildFocus(){
+  var s=getState();var items=[];
+  for(var pi=0;pi<PHASES.length;pi++){
+    var p=PHASES[pi];
+    for(var gi=0;gi<p.groups.length;gi++){
+      for(var ti=0;ti<p.groups[gi].topics.length;ti++){
+        var k=p.id+'-'+gi+'-'+ti;
+        if(!s.checks[k]){items.push({t:p.groups[gi].topics[ti].t,phase:p.short,color:p.color,ico:p.ico});if(items.length>=3)break;}
+      }
+      if(items.length>=3)break;
+    }
+    if(items.length>=3)break;
+  }
+  var html=items.map(function(it,i){
+    return '<div class="focus-item">'+
+      '<div class="focus-num">'+(i+1)+'</div>'+
+      '<div class="focus-txt">'+it.t+'</div>'+
+      '<span class="focus-phase" style="background:'+it.color+'20;color:'+it.color+'">'+it.ico+' '+it.phase+'</span>'+
+    '</div>';
   }).join('');
-  document.getElementById('phaseTabs').innerHTML=tabs;
+  document.getElementById('focusItems').innerHTML=html||'<div style="text-align:center;padding:8px;font-size:12px;color:var(--txt3)">Semua topik selesai! 🎉</div>';
+}
+
+function buildFocusBanner(){
+  // Find active phase — fase pertama yang belum 100%
+  var activeP=null;
+  for(var i=0;i<PHASES.length;i++){
+    if(getPhasePct(PHASES[i])<100){activeP=PHASES[i];break;}
+  }
+  var banner=document.getElementById('focusBanner');
+  if(!activeP){banner.classList.remove('show');return;}
+  var pct=getPhasePct(activeP);
+  banner.classList.add('show');
+  banner.style.background='linear-gradient(135deg,'+activeP.bg+',rgba(0,0,0,0))';
+  banner.style.borderColor=activeP.color+'40';
+  document.getElementById('fbTitle').textContent='Fokus Sekarang: '+activeP.short;
+  document.getElementById('fbTitle').style.color=activeP.color;
+  document.getElementById('fbMsg').textContent='Kamu sedang di '+activeP.title+' — '+pct+'% selesai. Konsisten 1 jam/hari! 💪';
+  document.getElementById('fbProgFill').style.width=pct+'%';
+  document.getElementById('fbProgFill').style.background=activeP.color;
+}
+
+function updateHome(){
+  var s=getState();var td=0,ta=0;
+  PHASES.forEach(function(p){p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){ta++;if(s.checks[p.id+'-'+gi+'-'+ti])td++;});});});
+  var pct=ta?Math.round(td/ta*100):0;
+  var circ=163.4;
+  var ring=document.getElementById('ringCircle');
+  if(ring)ring.style.strokeDashoffset=circ-(circ*pct/100);
+  document.getElementById('ringPct').textContent=pct+'%';
+  document.getElementById('homeBar').style.width=pct+'%';
+  document.getElementById('homePct').textContent=td+'/'+ta+' topik';
+  document.getElementById('homeSub').textContent=pct===0?'Mulai belajar dari sekarang 🚀':pct===100?'Semua selesai! 🏆':pct+'% selesai · terus semangat! 💪';
+  document.getElementById('qs-done').textContent=td;
+  document.getElementById('qs-left').textContent=ta-td;
+  buildFocus();
+  buildFocusBanner();
+}
+
+// ── MATERI ──
+function buildMateri(){
+  var tabsHtml=PHASES.map(function(p,i){
+    return '<button class="ptab'+(i===0?' active':'')+'" id="ptab-'+i+'" onclick="switchPhase('+i+')" style="'+(i===0?'background:'+p.color+';color:#000;border-color:transparent':'')+'">'+p.ico+' '+p.short+'</button>';
+  }).join('');
+  document.getElementById('phaseTabs').innerHTML=tabsHtml;
+
+  var tags=['all','must','ai','web3','web4','tool','biz','math'];
+  var tagLabels={all:'Semua',must:'Wajib',ai:'AI',web3:'Web3',web4:'Web4',tool:'Tool',biz:'Bisnis',math:'Math'};
+  var tfHtml=tags.map(function(tag){
+    var active=tag===filterTag;
+    return '<button class="tf'+(active?' active':'')+'" id="tf-'+tag+'" onclick="setFilter(\''+tag+'\')" style="'+(active?'background:'+TAG_COLORS[tag]+';color:#000;border-color:transparent':'')+'">'+tagLabels[tag]+'</button>';
+  }).join('');
+  document.getElementById('tagFilters').innerHTML=tfHtml;
+
+  var total=0;
+  PHASES.forEach(function(p){p.groups.forEach(function(g){total+=g.topics.length;});});
+  document.getElementById('matCount').textContent=total+' topik';
+
+  var s=getState();
   var html=PHASES.map(function(p,pi){
-    var s=getState();var pdone=0,pall=0;
+    var pdone=0,pall=0;
+    var warned=isPhaseWarned(p);
+
+    // Warning banner for this phase
+    var warnBannerHtml='';
+    if(warned){
+      var prev=PHASES.find(function(x){return x.id===p.prevId;});
+      var prevPct=getPhasePct(prev);
+      var need=WARN_THRESHOLD-prevPct;
+      warnBannerHtml='<div class="ph-warn-banner">'+
+        '<div class="pwb-top"><span class="pwb-ico">⚠️</span><span class="pwb-title">Disarankan Selesaikan '+prev.short+' Dulu!</span></div>'+
+        '<div class="pwb-msg">'+prev.title+' baru '+prevPct+'% selesai. Fondasi yang kuat akan mempercepat belajar di fase ini. Kamu kurang '+need+'% lagi untuk mencapai 70%.</div>'+
+        '<div class="pwb-prog-row"><div class="pwb-bar"><div class="pwb-fill" style="width:'+prevPct+'%"></div></div><span class="pwb-pct">'+prevPct+'%</span></div>'+
+        '<div class="pwb-need">Target minimum: 70% sebelum lanjut ke fase ini</div>'+
+        '<button class="pwb-btn" onclick="switchPhase('+PHASES.indexOf(prev)+')">→ Kembali ke '+prev.short+' ('+prevPct+'%)</button>'+
+      '</div>';
+    }
+
     var ghtml=p.groups.map(function(g,gi){
+      var isPar=g.parallel===true;
+      var gdone=0,gall=0;
       var thtml=g.topics.map(function(t,ti){
         var k=p.id+'-'+gi+'-'+ti;
+        if(s.checks[k]){pdone++;gdone++;}
+        pall++;gall++;
+        var tagMatch=filterTag==='all'||(t.tags&&t.tags.indexOf(filterTag)>=0);
+        var searchMatch=searchQ===''||t.t.toLowerCase().indexOf(searchQ)>=0||(t.d&&t.d.toLowerCase().indexOf(searchQ)>=0);
+        var hidden=(!tagMatch||!searchMatch)?' hidden':'';
         var checked=s.checks[k]?' checked':'';
-        if(s.checks[k])pdone++;pall++;
-        var tagsHtml=t.tags.map(function(tg){return '<span class="tag '+TAG_CLASS[tg]+'">'+TAG_LABELS[tg]+'</span>';}).join('');
-        return '<div class="topik"><label>'+
+        var tagsHtml=(t.tags||[]).map(function(tg){return '<span class="tag '+TAG_CLS[tg]+'">'+TAG_LABELS[tg]+'</span>';}).join('');
+        return '<div class="topik'+hidden+'"><label>'+
           '<input class="chk" type="checkbox"'+checked+' onchange="toggleCheck(\''+k+'\')">'+
-          '<div class="tc"><div class="tt">'+t.t+'</div>'+
-          (t.d?'<div class="td">'+t.d+'</div>':'')+
-          (t.e?'<div class="t-est">⏱ '+t.e+'</div>':'')+
-          (t.tags.length?'<div class="tags">'+tagsHtml+'</div>':'')+
+          '<div class="tc">'+
+            '<div class="tt">'+t.t+'</div>'+
+            (t.d?'<div class="td">'+t.d+'</div>':'')+
+            (t.e?'<div class="t-est">'+t.e+'</div>':'')+
+            (tagsHtml?'<div class="tags">'+tagsHtml+'</div>':'')+
           '</div></label></div>';
       }).join('');
-      return '<div class="grp-h">'+g.name+'</div>'+thtml;
+
+      // Mini project
+      var mpHtml='';
+      if(g.project){
+        var mpKey='mp-'+p.id+'-'+gi;
+        var mpDone=s.projects&&s.projects[mpKey];
+        mpHtml='<div class="mini-project">'+
+          '<div class="mp-hdr"><span class="mp-badge">🛠 Mini Project</span>'+(mpDone?'<span class="mp-done-badge show">✅ Selesai</span>':'')+'</div>'+
+          '<div class="mp-title">'+g.project.title+'</div>'+
+          '<div class="mp-desc">'+g.project.desc+'</div>'+
+          '<label class="mp-check-row">'+
+            '<input class="mp-chk" type="checkbox"'+(mpDone?' checked':'')+' onchange="toggleProject(\''+mpKey+'\')">'+
+            '<span class="mp-chk-label">Tandai proyek ini selesai</span>'+
+          '</label>'+
+        '</div>';
+      }
+
+      var gpct=gall?Math.round(gdone/gall*100):0;
+      var grpId='grp-'+pi+'-'+gi;
+      return '<div class="grp-hdr'+(gi===0?' open':'')+'" id="'+grpId+'-hdr" onclick="toggleGrp(\''+grpId+'\')">'+
+        '<div class="grp-left">'+
+          '<div class="grp-name-row">'+
+            '<span class="grp-name">'+g.name+'</span>'+
+            (isPar?'<span class="grp-badge par">paralel · 20%</span>':'<span class="grp-badge">'+g.topics.length+' topik</span>')+
+          '</div>'+
+          '<div class="grp-prog-row">'+
+            '<div class="grp-prog-bar"><div class="grp-prog-fill" style="width:'+gpct+'%;background:'+p.color+'"></div></div>'+
+            '<span class="grp-prog-pct" style="color:'+p.color+'">'+gpct+'%</span>'+
+          '</div>'+
+        '</div>'+
+        '<span class="grp-arrow">›</span>'+
+      '</div>'+
+      '<div class="grp-body'+(gi===0?' open':'')+'" id="'+grpId+'-body">'+thtml+mpHtml+'</div>';
     }).join('');
+
     var ppct=pall?Math.round(pdone/pall*100):0;
-    var phInfo='<div class="phase-info" style="background:'+p.bg+'20;border-color:'+p.color+'30">'+
-      '<div class="pi-top"><div class="pi-ico" style="background:'+p.bg+'">'+p.ico+'</div>'+
-      '<div><div class="pi-title" style="color:'+p.color+'">'+p.title+'</div>'+
-      '<div class="pi-meta">'+p.loc+' · '+p.year+'</div></div></div>'+
-      '<div class="pi-prog"><div class="pi-bar"><div class="pi-fill" style="width:'+ppct+'%;background:'+p.color+'"></div></div>'+
-      '<span class="pi-pct" style="color:'+p.color+'">'+ppct+'%</span>'+
-      '<span class="pi-stat">'+pdone+'/'+pall+'</span></div>'+
-      '<div class="pi-income">💰 '+p.income+'</div>'+
-      '<div class="pi-deadline">📅 Target: '+p.deadline+'</div>'+
-      '</div>';
-    return '<div class="phase-section'+(pi===0?' active':'')+'" id="ps-'+pi+'">'+phInfo+ghtml+'</div>';
+    var phHtml='<div class="ph-info">'+
+      '<div class="ph-info-row">'+
+        '<div class="ph-ico" style="background:'+p.bg+'">'+p.ico+'</div>'+
+        '<div><div class="ph-title" style="color:'+p.color+'">'+p.title+'</div>'+
+        '<div class="ph-meta">'+p.loc+' · '+p.year+'</div></div>'+
+      '</div>'+
+      '<div class="ph-prog-row"><div class="ph-bar"><div class="ph-fill" style="width:'+ppct+'%;background:'+p.color+'"></div></div>'+
+      '<span class="ph-pct" style="color:'+p.color+'">'+ppct+'%</span>'+
+      '<span class="ph-stat">'+pdone+'/'+pall+'</span></div>'+
+      '<div class="ph-pills">'+
+        '<div class="ph-pill ph-pill-inc">💰 '+p.income+'</div>'+
+        '<div class="ph-pill ph-pill-date">📅 '+p.deadline+'</div>'+
+      '</div></div>';
+
+    return '<div class="phase-sec'+(pi===0?' active':'')+'" id="ps-'+pi+'">'+warnBannerHtml+phHtml+ghtml+'</div>';
   }).join('');
-  document.getElementById('matBody').innerHTML=html;
+
+  document.getElementById('matBody').innerHTML=html+'<div class="no-result" id="noResult">Tidak ada topik ditemukan 😔</div>';
+  checkNoResult();
+}
+
+function toggleGrp(id){
+  var hdr=document.getElementById(id+'-hdr');
+  var body=document.getElementById(id+'-body');
+  hdr.classList.toggle('open');
+  body.classList.toggle('open');
 }
 
 function switchPhase(i){
-  document.querySelectorAll('.phase-section').forEach(function(el){el.classList.remove('active');});
+  activePhase=i;
+  document.querySelectorAll('.phase-sec').forEach(function(el){el.classList.remove('active');});
   document.querySelectorAll('.ptab').forEach(function(el){el.classList.remove('active');el.style.background='';el.style.color='';el.style.borderColor='';});
   document.getElementById('ps-'+i).classList.add('active');
   var tab=document.getElementById('ptab-'+i);
-  tab.classList.add('active');tab.style.background=PHASES[i].color;tab.style.color='#fff';tab.style.borderColor=PHASES[i].color;
+  if(tab){tab.classList.add('active');tab.style.background=PHASES[i].color;tab.style.color='#000';tab.style.borderColor='transparent';}
+  document.getElementById('page-1').scrollTop=0;
+}
+
+function setFilter(tag){
+  filterTag=tag;
+  document.querySelectorAll('.tf').forEach(function(el){el.classList.remove('active');el.style.background='';el.style.color='';el.style.borderColor='';});
+  var btn=document.getElementById('tf-'+tag);
+  if(btn){btn.classList.add('active');btn.style.background=TAG_COLORS[tag];btn.style.color='#000';btn.style.borderColor='transparent';}
+  applyFilters();
+}
+
+function doSearch(val){
+  searchQ=val.toLowerCase().trim();
+  document.getElementById('searchClear').style.display=val.length>0?'block':'none';
+  applyFilters();
+}
+
+function clearSearch(){
+  document.getElementById('searchInp').value='';
+  searchQ='';
+  document.getElementById('searchClear').style.display='none';
+  applyFilters();
+}
+
+function applyFilters(){
+  document.querySelectorAll('.topik').forEach(function(el){
+    var name=(el.querySelector('.tt')||{}).textContent||'';
+    var desc=(el.querySelector('.td')||{}).textContent||'';
+    var tags=[];
+    el.querySelectorAll('.tag').forEach(function(t){var cls=t.className.split(' ')[1];if(cls){var tg=cls.replace('t-','');tags.push(tg);}});
+    var tagMatch=filterTag==='all'||tags.indexOf(filterTag)>=0;
+    var searchMatch=searchQ===''||name.toLowerCase().indexOf(searchQ)>=0||desc.toLowerCase().indexOf(searchQ)>=0;
+    el.classList.toggle('hidden',!tagMatch||!searchMatch);
+  });
+  checkNoResult();
+}
+
+function checkNoResult(){
+  var any=false;
+  document.querySelectorAll('.phase-sec.active .topik:not(.hidden)').forEach(function(){any=true;});
+  var nr=document.getElementById('noResult');
+  if(nr)nr.classList.toggle('show',!any);
 }
 
 function toggleCheck(k){
   var s=getState();s.checks[k]=!s.checks[k];saveState(s);
-  updateAll();buildMateri();switchPhase(cur===1?parseInt(document.querySelector('.ptab.active').id.split('-')[1])||0:0);
+  var today=new Date().toISOString().slice(0,10);
+  if(today!==s.lastDate){
+    var yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    s.streak=s.lastDate===yesterday?(s.streak||0)+1:1;
+    s.lastDate=today;
+    if(!s.studyLog)s.studyLog=[];
+    if(s.studyLog.indexOf(today)<0)s.studyLog.push(today);
+    saveState(s);
+  }
+  updateHome();buildHome();buildMateri();
+  var activeTab=document.querySelector('.ptab.active');
+  if(activeTab){
+    var idx=Array.from(document.querySelectorAll('.ptab')).indexOf(activeTab);
+    switchPhase(idx);
+  }
 }
 
-// ══ UPDATE ══
-function updateAll(){updateHome();updateStats();buildHome();}
-
-function updateHome(){
-  var s=getState();var td=0,ta=0;
-  PHASES.forEach(function(p){p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){var k=p.id+'-'+gi+'-'+ti;ta++;if(s.checks[k])td++;});});});
-  var pct=ta?Math.round(td/ta*100):0;
-  document.getElementById('totalPct').textContent=pct+'%';
-  document.getElementById('totalBar').style.width=pct+'%';
-  document.getElementById('totalStat').textContent=td+' dari '+ta+' topik selesai';
-  document.getElementById('qs-done').textContent=td;
-  document.getElementById('qs-left').textContent=ta-td;
-  var debt=s.debtMinutes||0;
-  if(debt>0){document.getElementById('debtAlert').classList.add('show');document.getElementById('debtAlertText').textContent='Hutang '+debt+' menit — bayar hari ini!';}
-  else{document.getElementById('debtAlert').classList.remove('show');}
+function toggleProject(key){
+  var s=getState();
+  if(!s.projects)s.projects={};
+  s.projects[key]=!s.projects[key];
+  saveState(s);
+  buildMateri();
+  var activeTab=document.querySelector('.ptab.active');
+  if(activeTab){
+    var idx=Array.from(document.querySelectorAll('.ptab')).indexOf(activeTab);
+    switchPhase(idx);
+  }
 }
 
+// ── STATS ──
 function updateStats(){
   var s=getState();var td=0,ta=0;
-  PHASES.forEach(function(p){p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){var k=p.id+'-'+gi+'-'+ti;ta++;if(s.checks[k])td++;});});});
-  document.getElementById('streakNum').textContent=s.streak||0;
-  document.getElementById('streakSub').textContent=(s.streak||0)>0?(s.streak+' hari berturut-turut! 🔥'):'Mulai streak kamu hari ini!';
-  document.getElementById('st-hours').textContent=Math.floor((s.totalMinutes||0)/60);
-  document.getElementById('st-topics').textContent=td;
-  document.getElementById('st-topics-sub').textContent='dari '+ta+' total';
-  document.getElementById('st-debt').textContent=s.debtMinutes||0;
+  PHASES.forEach(function(p){p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){ta++;if(s.checks[p.id+'-'+gi+'-'+ti])td++;});});});
+  var pct=ta?Math.round(td/ta*100):0;
+  document.getElementById('st-done').textContent=td;
+  document.getElementById('st-sub').textContent='dari '+ta+' total';
+  document.getElementById('st-pct').textContent=pct+'%';
+  document.getElementById('st-left').textContent=ta-td;
   document.getElementById('st-days').textContent=(s.studyLog||[]).length;
-  // Phase progress
-  var pplHtml=PHASES.map(function(p){
+  document.getElementById('streakN').textContent=s.streak||0;
+  document.getElementById('streakS').textContent=(s.streak||0)>0?(s.streak+' hari berturut-turut! 🔥'):'Mulai streak kamu hari ini!';
+  var barsHtml=PHASES.map(function(p){
     var done=0,all=0;
     p.groups.forEach(function(g,gi){g.topics.forEach(function(t,ti){all++;if(s.checks[p.id+'-'+gi+'-'+ti])done++;});});
     var pct=all?Math.round(done/all*100):0;
-    return '<div class="ppl-item"><div class="ppl-top"><span class="ppl-name">'+p.ico+' '+p.short+'</span><span class="ppl-pct" style="color:'+p.color+'">'+pct+'%</span></div><div class="ppl-bar"><div class="ppl-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div></div>';
+    return '<div class="pb-item">'+
+      '<div class="pb-top"><span class="pb-name">'+p.ico+' '+p.short+'</span><span class="pb-pct" style="color:'+p.color+'">'+pct+'%</span></div>'+
+      '<div class="pb-bar"><div class="pb-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div>'+
+    '</div>';
   }).join('');
-  document.getElementById('phaseProgList').innerHTML=pplHtml;
+  document.getElementById('phaseBars').innerHTML=barsHtml;
 }
 
-// ══ TIMER ══
-function setMode(m){
-  timerMode=m;
-  document.getElementById('mode-sl').classList.toggle('active',m==='sl');
-  document.getElementById('mode-md').classList.toggle('active',m==='md');
-  var tgt=TARGET[m];
-  document.getElementById('timerTarget').textContent=tgt+' menit';
-  document.getElementById('todayTarget').textContent=tgt+' menit';
-}
-
-function startTimer(){
-  if(timerRunning)return;
-  timerRunning=true;checkNewDay();
-  document.getElementById('startBtn').style.display='none';
-  document.getElementById('stopBtn').style.display='inline-block';
-  document.getElementById('timerLabel').textContent='Sedang belajar... 💪';
-  timerInterval=setInterval(function(){timerSeconds++;updateTimerDisplay();if(timerSeconds%60===0)saveTimerProgress();},1000);
-}
-
-function stopTimer(){
-  if(!timerRunning)return;
-  timerRunning=false;clearInterval(timerInterval);
-  document.getElementById('startBtn').style.display='inline-block';
-  document.getElementById('stopBtn').style.display='none';
-  document.getElementById('timerLabel').textContent='Di-pause';
-  saveTimerProgress();
-}
-
-function resetTimer(){
-  stopTimer();timerSeconds=0;
-  document.getElementById('timerLabel').textContent='Siap belajar';
-  updateTimerDisplay();
-}
-
-function saveTimerProgress(){
-  var mins=Math.floor(timerSeconds/60);
-  var s=getState();var today=getToday();
-  if(!s.studyLog)s.studyLog=[];
-  var existing=s.studyLog.find(function(l){return l.date===today;});
-  var prevMins=existing?existing.mins:0;
-  if(existing){s.totalMinutes=(s.totalMinutes||0)+(mins-prevMins);existing.mins=mins;}
-  else{s.studyLog.unshift({date:today,mins:mins});s.totalMinutes=(s.totalMinutes||0)+mins;}
-  if(s.studyLog.length>30)s.studyLog=s.studyLog.slice(0,30);
-  saveState(s);updateTimerDisplay();updateDebt();
-}
-
-function updateTimerDisplay(){
-  var m=Math.floor(timerSeconds/60),sec=timerSeconds%60;
-  document.getElementById('timerDisplay').textContent=pad(m)+':'+pad(sec);
-  var s=getState();var today=getToday();
-  var todayLog=s.studyLog?s.studyLog.find(function(l){return l.date===today;}):null;
-  var tm=todayLog?todayLog.mins:0;
-  var tgt=TARGET[timerMode];
-  document.getElementById('todayTime').textContent=tm+' menit';
-  document.getElementById('todayBar').style.width=Math.min(100,Math.round(tm/tgt*100))+'%';
-  var logHtml='';
-  if(!s.studyLog||!s.studyLog.length){logHtml='<div class="log-empty">Belum ada riwayat belajar.</div>';}
-  else{logHtml=s.studyLog.slice(0,7).map(function(l){
-    var ok=l.mins>=TARGET['sl'];
-    return '<div class="log-item"><span class="log-date">'+l.date+'</span><span class="log-dur">'+l.mins+' mnt</span><span class="log-status '+(ok?'ls-ok':'ls-less')+'">'+(ok?'✅ Tercapai':'⚠️ Kurang')+'</span></div>';
-  }).join('');}
-  document.getElementById('studyLog').innerHTML=logHtml;
-}
-
-function updateDebt(){
-  var s=getState();var debt=s.debtMinutes||0;
-  if(debt>0){
-    document.getElementById('debtBox').style.display='block';
-    document.getElementById('debtTotal').textContent=debt+' menit';
-    document.getElementById('debtTarget').textContent=(TARGET[timerMode]+debt)+' menit';
-  }else{document.getElementById('debtBox').style.display='none';}
-}
-
-function checkNewDay(){
-  var s=getState();var today=getToday();
-  if(s.lastSessionDate&&s.lastSessionDate!==today){
-    var yesterday=getYesterday();
-    var yLog=s.studyLog?s.studyLog.find(function(l){return l.date===yesterday;}):null;
-    var yMins=yLog?yLog.mins:0;
-    if(yMins<TARGET['sl']){s.debtMinutes=(s.debtMinutes||0)+(TARGET['sl']-yMins);}
-    s.streak=yMins>=TARGET['sl']?(s.streak||0)+1:0;
-  }
-  s.lastSessionDate=today;saveState(s);
-}
-
-function getToday(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-function getYesterday(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-function pad(n){return String(n).padStart(2,'0');}
-
-// ══ CATATAN ══
+// ── CATATAN ──
 function simpanCatatan(){
   localStorage.setItem('dimas_catatan',document.getElementById('catatanText').value);
   var st=document.getElementById('catStatus');st.textContent='✅ Tersimpan!';
@@ -891,10 +1093,8 @@ function simpanCatatan(){
 function hapusCatatan(){if(!confirm('Hapus semua catatan?'))return;document.getElementById('catatanText').value='';localStorage.removeItem('dimas_catatan');}
 function loadCatatan(){var s=localStorage.getItem('dimas_catatan');if(s)document.getElementById('catatanText').value=s;}
 
-// ══ INIT ══
-window.addEventListener('load',function(){
-  buildHome();buildMateri();updateAll();updateTimerDisplay();updateDebt();loadCatatan();
-});
+// ── INIT ──
+window.addEventListener('load',function(){buildHome();buildMateri();updateHome();loadCatatan();});
 </script>
 </body>
 </html>
