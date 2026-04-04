@@ -409,6 +409,39 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
   .hero-stats{min-width:auto;grid-template-columns:repeat(3,1fr);}
   .tools-grid{grid-template-columns:1fr;}
 }
+/* ── PARALLEL PHASE ── */
+.sb-item-parallel{background:linear-gradient(135deg,rgba(12,107,94,.05),transparent);}
+.sb-item-parallel .sb-name{color:var(--accent);}
+.sb-item-parallel .sb-pct{color:var(--accent);}
+.parallel-tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+  color:var(--accent);background:var(--accent-bg);
+  border:1px solid rgba(12,107,94,.2);padding:2px 8px;border-radius:99px;
+  margin-left:6px;
+}
+.phase-parallel-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:700;color:var(--accent);
+  background:var(--accent-bg);border:1px solid rgba(12,107,94,.2);
+  padding:4px 12px;border-radius:99px;margin-bottom:12px;
+}
+.home-parallel-card{
+  margin:0 52px 0;padding:14px 20px;
+  background:linear-gradient(135deg,var(--accent-bg),#F0FDF9);
+  border:1px solid rgba(12,107,94,.2);border-radius:var(--r);
+  display:flex;align-items:center;gap:14px;cursor:pointer;
+  transition:all .2s;
+}
+.home-parallel-card:hover{border-color:var(--accent);box-shadow:0 2px 12px rgba(12,107,94,.1);}
+.hpc-ico{font-size:22px;flex-shrink:0;}
+.hpc-content{flex:1;}
+.hpc-title{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:2px;}
+.hpc-sub{font-size:11.5px;color:var(--text2);line-height:1.5;}
+.hpc-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--accent);background:rgba(12,107,94,.1);padding:2px 8px;border-radius:99px;}
+.hpc-arr{color:var(--accent);font-size:16px;font-weight:300;}
+@media(max-width:900px){.home-parallel-card{margin:0 24px;}}
+
 </style>
 </head>
 <body>
@@ -484,6 +517,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="home-parallel-card" onclick="goMateri(0)" id="parallelCard">
+        <div class="hpc-ico">🌅</div>
+        <div class="hpc-content">
+          <div class="hpc-title">Kebiasaan Harian <span class="hpc-badge">Mulai Hari Ini · Paralel</span></div>
+          <div class="hpc-sub">English teknis, debug sendiri dulu, jurnal belajar — dimulai sekarang, bukan nanti.</div>
+        </div>
+        <div class="hpc-arr">›</div>
       </div>
 
       <div class="home-next">
@@ -589,322 +631,358 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font
 <script>
 // ══ DATA ══
 var PHASES = [
+  // ─── PARALEL: MULAI HARI INI ───
+  {id:'fh',title:'Kebiasaan Harian',short:'Harian',ico:'🌅',color:'#0C6B5E',bg:'#EAF4F2',
+   income:'Fondasi yang tidak bisa dibeli',parallel:true,
+   milestones:[
+     'Bisa baca dokumentasi teknis Inggris tanpa kamus',
+     'Bisa jelaskan apa yang dipelajari dengan kata sendiri — bukan hafalan',
+     'Konsisten tulis jurnal belajar minimal 5 hari/minggu'
+   ],
+   prevId:null,
+   groups:[
+    {name:'English Teknis Harian',project:{title:'Baca & Rangkum 10 Artikel Tech',desc:'Baca 10 artikel teknis bahasa Inggris (dev.to, docs resmi, Medium) dan tulis rangkuman 3 kalimat per artikel — dalam Inggris.'},topics:[
+      {t:'Baca 1 artikel teknis Inggris per hari',d:'15 menit — dev.to, official docs, Medium tech. Paksa otak baca langsung, jangan terjemahkan dulu.',e:'setiap hari',tags:['must']},
+      {t:'Tulis rangkuman dalam Inggris',d:'3-5 kalimat tentang apa yang dibaca — dalam Bahasa Inggris. Grammar tidak perlu sempurna, yang penting tulis.',e:'setiap hari',tags:['must']},
+      {t:'Dengarkan podcast tech berbahasa Inggris',d:'Syntax.fm, Software Engineering Daily, Lex Fridman — saat commute atau makan.',e:'3x/minggu',tags:[]},
+      {t:'Tulis komentar kode dalam Inggris',d:'Setiap komentar di kode ditulis dalam Bahasa Inggris. Kebiasaan kecil ini dampaknya besar jangka panjang.',e:'setiap hari',tags:['must']},
+    ]},
+    {name:'Problem Solving & Debug',project:{title:'Selesaikan 4 Soal LeetCode Easy',desc:'Kerjakan 4 soal LeetCode kategori Easy — fokus pada cara berpikir, bukan kecepatan.'},topics:[
+      {t:'Debug sendiri dulu minimal 15 menit',d:'Sebelum tanya AI atau Google — coba solve sendiri dulu. Ini yang membangun instinct dan intuisi programmer.',e:'setiap kali ada error',tags:['must']},
+      {t:'1 soal LeetCode Easy per minggu',d:'Bukan untuk interview sekarang — untuk melatih cara berpikir sistematis dan terstruktur.',e:'1x/minggu',tags:[]},
+      {t:'Baca error message dengan sabar',d:'Error message adalah petunjuk, bukan musuh. Biasakan baca sampai habis sebelum googling.',e:'setiap ada error',tags:['must']},
+    ]},
+    {name:'Jurnal & Evaluasi',project:{title:'30 Hari Jurnal Berturut-turut',desc:'Tulis jurnal belajar 30 hari berturut-turut — tidak perlu panjang, yang penting konsisten.'},topics:[
+      {t:'Tulis jurnal belajar harian',d:'"Hari ini saya belajar X, caranya adalah Y, yang masih bingung adalah Z." — 5 menit saja. Ini memperkuat memori lebih dari membaca ulang.',e:'setiap hari',tags:['must']},
+      {t:'Evaluasi mingguan jujur',d:'Setiap akhir minggu: bisa apa sekarang yang seminggu lalu tidak bisa? Kalau tidak ada jawaban — evaluasi cara belajarnya, bukan tambah materi baru.',e:'1x/minggu',tags:['must']},
+      {t:'Bangun satu hal kecil setiap minggu',d:'Tidak peduli kecilnya — tombol, form, script 20 baris. Yang penting bangun, bukan hanya baca atau tonton.',e:'1x/minggu',tags:['must']},
+    ]},
+  ]},
+
+  // ─── FASE 1: FONDASI WEB ───
   {id:'f1',title:'Fase 1 — Fondasi Web',short:'Fase 1',ico:'🌱',color:'#059669',bg:'#ECFDF5',
    income:'Rp 1–5 juta/bln',
    milestones:[
      'Bisa buat halaman web lengkap dari nol tanpa buka tutorial',
-     'Bisa layout apapun pakai Flexbox & Grid dari kepala',
-     'Bisa buat komponen React dan deploy ke Vercel sendiri',
-     'Bisa debug CSS & JavaScript error tanpa panik'
+     'Bisa layout apapun pakai Flexbox & Grid dari kepala tanpa googling',
+     'Bisa buat komponen React interaktif dan deploy ke Vercel sendiri',
+     'Bisa debug CSS & JavaScript error tanpa langsung minta bantuan'
    ],
    prevId:null,
    groups:[
-    {name:'HTML',project:{title:'Halaman Profil DIMERLA',desc:'Buat halaman HTML lengkap dengan header, nav, section produk, tabel, form kontak, dan footer.'},topics:[
+    {name:'HTML',project:{title:'Halaman Profil DIMERLA',desc:'Buat halaman HTML lengkap dengan header, nav, section produk, tabel, form kontak, dan footer — dari nol tanpa lihat contoh.'},topics:[
       {t:'Struktur dokumen HTML',d:'DOCTYPE, html, head, body — hafal luar kepala',e:'~2 hari',tags:['must']},
       {t:'Tag teks & heading',d:'h1–h6, p, strong, em, br, hr, span',e:'~2 hari',tags:[]},
       {t:'Link & navigasi',d:'a href, target="_blank", anchor #id',e:'~3 hari',tags:['must']},
       {t:'Gambar & media',d:'img src, alt, width, height',e:'~2 hari',tags:[]},
       {t:'List & tabel',d:'ul, ol, li, table, tr, td, th',e:'~3 hari',tags:[]},
       {t:'Form & input',d:'form, input, textarea, button, select, label',e:'~4 hari',tags:['must']},
-      {t:'Semantic HTML',d:'header, main, footer, article, nav, section',e:'~2 hari',tags:[]},
+      {t:'Semantic HTML',d:'header, main, footer, article, nav, section — wajib untuk SEO dan accessibility',e:'~2 hari',tags:['must']},
       {t:'Atribut id & class',d:'Bedanya id vs class — kapan pakai masing-masing',e:'~2 hari',tags:['must']},
-      {t:'Komentar HTML',d:'<!-- komentar --> — cara beri catatan di kode',e:'~1 hari',tags:[]},
     ]},
-    {name:'CSS',project:{title:'Styling Halaman DIMERLA',desc:'Tambahkan CSS ke halaman HTML — warna, font, layout, hover effects, dan responsive design.'},topics:[
-      {t:'Cara tulis CSS',d:'Inline, internal (style tag), external (.css file)',e:'~2 hari',tags:['must']},
-      {t:'Selector CSS',d:'element, .class, #id, kombinasi, specificity',e:'~3 hari',tags:['must']},
+    {name:'CSS',project:{title:'Styling Halaman DIMERLA',desc:'Styling halaman HTML dari nol — warna, font, layout dengan Flexbox, dan responsive untuk mobile.'},topics:[
+      {t:'Cara tulis CSS',d:'Inline, internal (style tag), external (.css file) — dan mana yang sebaiknya dipakai',e:'~2 hari',tags:['must']},
+      {t:'Selector & Specificity',d:'element, .class, #id, kombinasi — paham specificity agar tidak bingung kenapa style tidak jalan',e:'~3 hari',tags:['must']},
       {t:'Warna & tipografi',d:'color, background, font-family, size, weight, line-height',e:'~3 hari',tags:[]},
-      {t:'Box model',d:'margin, padding, border, border-radius, width, height, box-sizing',e:'~4 hari',tags:['must']},
-      {t:'Display & visibility',d:'block, inline, inline-block, none',e:'~3 hari',tags:[]},
-      {t:'Flexbox',d:'display:flex, justify-content, align-items, gap, flex-wrap',e:'~5 hari',tags:['must']},
-      {t:'CSS Grid',d:'display:grid, grid-template-columns, gap — layout 2 dimensi',e:'~5 hari',tags:['must']},
-      {t:'Position & z-index',d:'static, relative, absolute, fixed, sticky',e:'~4 hari',tags:[]},
+      {t:'Box model',d:'margin, padding, border, border-radius, width, height, box-sizing — ini fondasi semua layout',e:'~4 hari',tags:['must']},
+      {t:'Display & visibility',d:'block, inline, inline-block, none — paham ini dulu sebelum Flexbox',e:'~3 hari',tags:['must']},
+      {t:'Flexbox',d:'display:flex, justify-content, align-items, gap, flex-wrap — latihan sampai bisa dari kepala',e:'~5 hari',tags:['must']},
+      {t:'CSS Grid',d:'display:grid, grid-template-columns, gap — layout 2 dimensi yang lebih powerful dari Flexbox',e:'~5 hari',tags:['must']},
+      {t:'Position & z-index',d:'static, relative, absolute, fixed, sticky — penting untuk navbar, modal, overlay',e:'~4 hari',tags:[]},
       {t:'Pseudo-class & element',d:':hover, :focus, :nth-child, ::before, ::after',e:'~3 hari',tags:[]},
-      {t:'Transisi & animasi',d:'transition, transform, @keyframes, animation',e:'~4 hari',tags:[]},
-      {t:'Responsive design',d:'@media query, mobile-first, vw, vh, rem, em, %',e:'~7 hari',tags:['must']},
-      {t:'CSS Variables',d:'--var-name, var() — kode lebih rapi dan maintainable',e:'~2 hari',tags:[]},
-      {t:'Shadow, opacity, overflow',d:'box-shadow, text-shadow, opacity, overflow:hidden/scroll',e:'~2 hari',tags:[]},
+      {t:'Transisi & animasi',d:'transition, transform, @keyframes — buat interaksi terasa hidup',e:'~4 hari',tags:[]},
+      {t:'Responsive design',d:'@media query, mobile-first, vw, vh, rem, em, % — wajib di dunia mobile-first',e:'~7 hari',tags:['must']},
+      {t:'CSS Variables',d:'--var-name, var() — kode lebih rapi dan mudah di-maintain',e:'~2 hari',tags:[]},
     ]},
-    {name:'Tailwind CSS',project:{title:'Landing Page dengan Tailwind',desc:'Rebuild halaman DIMERLA menggunakan utility classes Tailwind CSS.'},topics:[
-      {t:'Tailwind CSS',d:'Framework CSS paling populer — utility-first, dipakai hampir semua startup global',e:'~7 hari',tags:['must','tool']},
+    {name:'Tailwind CSS',project:{title:'Landing Page dengan Tailwind',desc:'Rebuild halaman DIMERLA menggunakan utility classes Tailwind — perhatikan bedanya dengan CSS biasa.'},topics:[
+      {t:'Tailwind CSS',d:'Framework CSS paling populer di industri — utility-first, hampir semua startup pakai ini. Pelajari setelah CSS biasa solid.',e:'~7 hari',tags:['must','tool']},
     ]},
-    {name:'CSS & Web Lanjut',project:{title:'Audit & Optimasi Website',desc:'Cek accessibility, performance score, dan buat website bisa diinstall sebagai PWA.'},topics:[
-      {t:'Accessibility (a11y)',d:'ARIA, semantic HTML, keyboard nav — wajib untuk klien internasional',e:'~5 hari',tags:['must']},
-      {t:'Web Performance & PageSpeed',d:'Lazy loading, code splitting, Core Web Vitals — website lambat = klien kabur',e:'~5 hari',tags:['must']},
-      {t:'Progressive Web App (PWA)',d:'Service worker, manifest, offline mode — website bisa diinstall',e:'~7 hari',tags:[]},
+    {name:'Accessibility & Performance',project:{title:'Audit Website DIMERLA',desc:'Jalankan Lighthouse audit di Chrome DevTools — capai skor 90+ untuk Accessibility dan Performance.'},topics:[
+      {t:'Accessibility (a11y)',d:'ARIA, semantic HTML, keyboard navigation — wajib untuk klien internasional dan enterprise',e:'~5 hari',tags:['must']},
+      {t:'Web Performance & Core Web Vitals',d:'Lazy loading, image optimization, Core Web Vitals — website lambat = klien kabur dan ranking Google turun',e:'~5 hari',tags:['must']},
     ]},
-    {name:'JavaScript',project:{title:'Keranjang Belanja Interaktif',desc:'Buat fitur add to cart, hapus item, dan hitung total harga menggunakan JavaScript DOM manipulation.'},topics:[
-      {t:'Variabel & tipe data',d:'let, const, var — string, number, boolean, null, undefined',e:'~3 hari',tags:['must']},
+    {name:'JavaScript',project:{title:'Keranjang Belanja Interaktif',desc:'Buat fitur add to cart, hapus item, dan hitung total harga — pakai JavaScript DOM murni tanpa library.'},topics:[
+      {t:'Variabel & tipe data',d:'let, const — perbedaan dan kapan pakai masing-masing. Hindari var.',e:'~3 hari',tags:['must']},
       {t:'Operator & kondisi',d:'if, else, switch, &&, ||, ===, ternary operator',e:'~3 hari',tags:['must']},
-      {t:'Function',d:'function biasa, arrow function, parameter, return, scope',e:'~4 hari',tags:['must']},
-      {t:'Loop',d:'for, while, do-while, forEach, for...of',e:'~4 hari',tags:['must']},
-      {t:'Array & method array',d:'[], push, pop, map, filter, find, reduce, sort, includes',e:'~5 hari',tags:['must']},
-      {t:'Object & spread',d:'{}, key:value, Object.keys, spread, destructuring',e:'~4 hari',tags:['must']},
-      {t:'DOM Manipulation',d:'getElementById, querySelector, innerHTML, classList, style',e:'~5 hari',tags:['must']},
+      {t:'Function',d:'function biasa, arrow function, parameter, return, scope — ini pondasi logika kode',e:'~4 hari',tags:['must']},
+      {t:'Loop',d:'for, while, forEach, for...of — tahu kapan pakai yang mana',e:'~4 hari',tags:['must']},
+      {t:'Array & method array',d:'[], push, pop, map, filter, find, reduce, sort — hafal ini dan kode JS kamu jauh lebih bersih',e:'~5 hari',tags:['must']},
+      {t:'Object & destructuring',d:'{}, key:value, Object.keys, spread, destructuring — cara modern kelola data',e:'~4 hari',tags:['must']},
+      {t:'DOM Manipulation',d:'getElementById, querySelector, innerHTML, classList, style — ini inti interaktivitas web',e:'~5 hari',tags:['must']},
       {t:'Event & listener',d:'addEventListener, onclick, onsubmit, event.preventDefault',e:'~4 hari',tags:['must']},
-      {t:'Async, Promise, Fetch',d:'async/await, fetch API, .then() — ambil data dari internet',e:'~7 hari',tags:['must']},
-      {t:'JSON',d:'JSON.parse, JSON.stringify — format data paling umum',e:'~3 hari',tags:['must']},
-      {t:'localStorage & sessionStorage',d:'Simpan data di browser tanpa database',e:'~2 hari',tags:[]},
-      {t:'Error handling',d:'try, catch, finally, throw Error',e:'~3 hari',tags:[]},
-      {t:'ES6+ Modern JS',d:'Template literal, modules, optional chaining, nullish coalescing',e:'~5 hari',tags:[]},
-      {t:'OOP JavaScript',d:'class, constructor, extends, super — dasar untuk framework',e:'~5 hari',tags:[]},
-      {t:'WebSockets dasar',d:'Real-time komunikasi — wajib untuk chatbot UI',e:'~5 hari',tags:['must']},
-      {t:'Testing dengan Jest',d:'Unit test JavaScript — pastikan kode tidak rusak saat perubahan',e:'~4 hari',tags:['tool']},
+      {t:'Async, Promise, Fetch',d:'async/await, fetch API — cara ambil data dari API. Ini wajib sebelum bisa buat apapun yang konek ke server.',e:'~7 hari',tags:['must']},
+      {t:'JSON',d:'JSON.parse, JSON.stringify — format data paling umum di seluruh web',e:'~3 hari',tags:['must']},
+      {t:'localStorage',d:'Simpan data di browser — berguna untuk user preference, draft, dll',e:'~2 hari',tags:[]},
+      {t:'Error handling',d:'try, catch, finally — kode yang robust tidak crash diam-diam',e:'~3 hari',tags:[]},
+      {t:'ES6+ Modern JS',d:'Template literal, optional chaining, nullish coalescing, modules — cara JavaScript modern yang lebih bersih',e:'~5 hari',tags:[]},
+      {t:'OOP JavaScript',d:'class, constructor, extends — dasar memahami framework modern',e:'~5 hari',tags:[]},
     ]},
-    {name:'Node.js & React',project:{title:'React Todo App',desc:'Buat aplikasi todo list dengan React — add, delete, mark done menggunakan useState dan useEffect.'},topics:[
-      {t:'Command Line / Terminal',d:'cd, ls, mkdir, rm, pwd — wajib semua developer!',e:'~3 hari',tags:['must','tool']},
-      {t:'Node.js dasar',d:'JS di server — runtime dipakai hampir semua tools modern',e:'~5 hari',tags:['must']},
-      {t:'npm & package.json',d:'npm install, scripts, dependencies — manajemen library JS',e:'~3 hari',tags:['must','tool']},
-      {t:'Vite & build tools',d:'Bundler modern — setup project JS/React profesional',e:'~3 hari',tags:['tool']},
-      {t:'TypeScript dasar',d:'Types, interface, generics — standar industri saat ini',e:'~10 hari',tags:[]},
-      {t:'React.js dasar',d:'Component, props, state, hooks (useState, useEffect)',e:'~14 hari',tags:['must']},
-      {t:'React Router & API call',d:'Navigasi halaman di React, fetch data dari API',e:'~7 hari',tags:[]},
-      {t:'Zustand / Redux',d:'State management — kelola data global di React dengan rapi',e:'~5 hari',tags:[]},
+    {name:'Node.js & React',project:{title:'React Todo App',desc:'Buat aplikasi todo list dengan React dari nol — add, delete, filter done/undone pakai useState dan useEffect.'},topics:[
+      {t:'Command Line / Terminal',d:'cd, ls, mkdir, rm, pwd, nano — wajib semua developer. Jangan takut terminal.',e:'~3 hari',tags:['must','tool']},
+      {t:'Node.js dasar',d:'Pahami JS bisa jalan di luar browser — runtime yang dipakai hampir semua tools modern',e:'~5 hari',tags:['must']},
+      {t:'npm & package.json',d:'npm install, scripts, dependencies — cara kelola library JavaScript',e:'~3 hari',tags:['must','tool']},
+      {t:'Vite',d:'Bundler modern yang cepat — setup project JS/React profesional',e:'~2 hari',tags:['tool']},
+      {t:'React.js dasar',d:'Component, props, state, hooks (useState, useEffect) — kuasai ini dulu sebelum Next.js',e:'~14 hari',tags:['must']},
+      {t:'React Router',d:'Navigasi multi-halaman di React — Link, useNavigate, useParams',e:'~5 hari',tags:[]},
+      {t:'Fetch data dari API di React',d:'useEffect + fetch — cara standar ambil data dari backend ke React',e:'~4 hari',tags:['must']},
     ]},
-    {name:'Next.js',project:{title:'Website Multi-halaman DIMERLA',desc:'Buat website DIMERLA dengan Next.js — halaman home, produk, dan kontak dengan App Router.'},topics:[
-      {t:'Next.js',d:'Framework React standar industri — SSR, SSG, App Router, hampir semua lowongan minta ini',e:'~14 hari',tags:['must']},
+    {name:'Next.js',project:{title:'Website Multi-halaman DIMERLA',desc:'Rebuild website DIMERLA dengan Next.js — halaman home, produk, kontak. Perhatikan perbedaan SSR vs CSR.'},topics:[
+      {t:'Next.js',d:'Framework React standar industri — SSR, SSG, App Router. Pelajari setelah React.js benar-benar solid, bukan sebelumnya.',e:'~14 hari',tags:['must']},
     ]},
-    {name:'Tools & Deploy',project:{title:'Deploy Website ke Vercel',desc:'Push kode ke GitHub dan deploy ke Vercel dengan custom domain dimastoremedan.com.'},topics:[
-      {t:'Git & GitHub',d:'init, add, commit, push, pull, branch, merge — version control wajib',e:'~5 hari',tags:['must','tool']},
-      {t:'VS Code & Extensions',d:'Prettier, ESLint, Live Server, GitLens — setup IDE pro',e:'~2 hari',tags:['tool']},
-      {t:'Chrome DevTools',d:'Elements, Console, Network, Sources — debug seperti pro',e:'~3 hari',tags:['tool']},
-      {t:'Figma dasar',d:'Buat mockup sebelum coding — standar komunikasi dengan klien',e:'~7 hari',tags:['tool']},
-      {t:'Deploy ke Vercel',d:'GitHub → Vercel → live URL — publish website gratis',e:'~2 hari',tags:['must']},
-      {t:'Custom domain & Cloudflare',d:'Sambungkan domain ke Vercel, setup DNS, SSL',e:'~3 hari',tags:[]},
-      {t:'SEO Dasar',d:'Meta tags, title, description, schema, sitemap, robots.txt',e:'~4 hari',tags:[]},
-      {t:'Portfolio website',d:'Bangun portofolio sendiri — bukti nyata kemampuan ke klien',e:'~14 hari',tags:['must']},
-      {t:'Technical writing dasar',d:'Dokumentasi kode & proposal klien — wajib dapat klien global',e:'~5 hari',tags:['must']},
+    {name:'Tools & Deploy',project:{title:'Deploy DIMERLA ke Production',desc:'Push kode ke GitHub dan deploy ke Vercel dengan custom domain — setup Cloudflare, DNS, dan SSL.'},topics:[
+      {t:'Git & GitHub',d:'init, add, commit, push, pull, branch, merge — version control wajib. Tidak bisa tidak tahu ini.',e:'~5 hari',tags:['must','tool']},
+      {t:'VS Code & Extensions',d:'Prettier, ESLint, Live Server, GitLens — setup environment yang nyaman',e:'~2 hari',tags:['tool']},
+      {t:'Chrome DevTools',d:'Elements, Console, Network, Sources — debug seperti pro. Ini dipakai setiap hari.',e:'~3 hari',tags:['must','tool']},
+      {t:'Deploy ke Vercel',d:'GitHub → Vercel → live URL — publish website gratis dalam 5 menit',e:'~2 hari',tags:['must']},
+      {t:'Custom domain & Cloudflare',d:'Sambungkan domain ke Vercel, setup DNS, SSL otomatis',e:'~3 hari',tags:[]},
+      {t:'SEO Dasar',d:'Meta tags, title, description, Open Graph, sitemap — dasar agar website bisa ditemukan',e:'~4 hari',tags:[]},
+      {t:'Portfolio website',d:'Bangun portfolio sendiri — ini CV visual kamu ke semua klien dan recruiter',e:'~14 hari',tags:['must']},
+      {t:'Technical writing dasar',d:'Dokumentasi kode & README yang jelas — standar profesional dan wajib untuk klien global',e:'~5 hari',tags:['must']},
     ]},
   ]},
+
+  // ─── FASE 2: PYTHON & AI DASAR ───
   {id:'f2',title:'Fase 2 — Python & AI Dasar',short:'Fase 2',ico:'🐍',color:'#2563EB',bg:'#EFF6FF',
    income:'Rp 3–10 juta/bln',
    milestones:[
-     'Bisa tulis script Python dari kepala untuk automasi sehari-hari',
-     'Bisa call AI API (Claude/OpenAI) dan buat chatbot fungsional',
-     'Bisa bersihkan data dengan pandas dan buat visualisasi dasar',
-     'Bisa buat dan deploy WhatsApp/Telegram bot yang berfungsi'
+     'Bisa tulis script Python dari kepala untuk automasi tugas sehari-hari',
+     'Bisa call AI API dan buat chatbot fungsional dari nol',
+     'Bisa bersihkan dan analisis data dengan pandas dan buat visualisasi',
+     'Bisa run model AI lokal pakai Ollama tanpa bergantung API berbayar'
    ],
    prevId:'f1',
    groups:[
-    {name:'Python Dasar',project:{title:'Kalkulator & To-Do CLI',desc:'Buat program Python sederhana — kalkulator dan aplikasi todo list yang berjalan di terminal.'},topics:[
-      {t:'Setup Python & pip',d:'Install Python, pip, virtual environment (venv)',e:'~2 hari',tags:['must']},
-      {t:'Syntax dasar Python',d:'Variabel, string, number, list, dict, tuple, set, kondisi, loop',e:'~7 hari',tags:['must']},
+    {name:'Python Dasar',project:{title:'Kalkulator & To-Do CLI',desc:'Buat kalkulator dan todo list yang berjalan di terminal — tanpa lihat tutorial, dari kepala.'},topics:[
+      {t:'Setup Python & pip',d:'Install Python, pip, virtual environment (venv) — jangan skip venv, ini standar di semua project',e:'~2 hari',tags:['must']},
+      {t:'Syntax dasar Python',d:'Variabel, string, number, list, dict, tuple, set, kondisi, loop — Python lebih simpel dari JS, tapi tetap perlu latihan',e:'~7 hari',tags:['must']},
       {t:'Function & module',d:'def, return, *args, **kwargs, import, pip install',e:'~5 hari',tags:[]},
-      {t:'OOP Python',d:'class, object, method, inheritance, dunder methods',e:'~7 hari',tags:[]},
+      {t:'OOP Python',d:'class, object, method, inheritance — dasar memahami library besar seperti LangChain',e:'~7 hari',tags:[]},
       {t:'File & error handling',d:'open, read, write, try/except, with statement',e:'~3 hari',tags:[]},
-      {t:'List comprehension & lambda',d:'Cara menulis Python yang lebih elegan dan efisien',e:'~3 hari',tags:[]},
+      {t:'List comprehension & lambda',d:'Cara menulis Python yang elegan — ini yang membedakan kode pemula vs developer',e:'~3 hari',tags:[]},
     ]},
-    {name:'Data & Library Penting',project:{title:'Analisis Data Produk DIMERLA',desc:'Gunakan pandas untuk analisis data penjualan — total, rata-rata, dan visualisasi dengan matplotlib.'},topics:[
-      {t:'Jupyter Notebook',d:'Standar mutlak semua AI/data science — wajib paham!',e:'~3 hari',tags:['must','ai']},
-      {t:'pandas & numpy',d:'Olah data — wajib untuk semua project AI & data science',e:'~10 hari',tags:['must','ai']},
-      {t:'matplotlib',d:'Visualisasi data — wajib untuk analisis & presentasi AI',e:'~5 hari',tags:['ai']},
-      {t:'scikit-learn dasar',d:'Library ML dasar — classification, regression, evaluation',e:'~10 hari',tags:['ai']},
-      {t:'Embedding & Vector concepts',d:'Paham cara kerja embedding sebelum masuk RAG',e:'~5 hari',tags:['must','ai']},
-      {t:'Regex (Regular Expression)',d:'Pattern matching — sering dipakai di AI pipeline & data cleaning',e:'~3 hari',tags:[]},
-      {t:'Web scraping (BeautifulSoup)',d:'Ambil data dari internet — untuk training data AI',e:'~5 hari',tags:['ai']},
+    {name:'Data & Library AI',project:{title:'Analisis Data Penjualan DIMERLA',desc:'Gunakan pandas untuk analisis data penjualan — total, rata-rata, visualisasi. Dari CSV ke insight.'},topics:[
+      {t:'Jupyter Notebook',d:'Standar mutlak semua AI/data science — wajib paham dan nyaman pakai',e:'~3 hari',tags:['must','ai']},
+      {t:'pandas & numpy',d:'Olah data — wajib untuk semua project AI & data science. Ini library yang paling sering dipakai.',e:'~10 hari',tags:['must','ai']},
+      {t:'matplotlib & seaborn',d:'Visualisasi data — dari angka ke insight yang bisa dijelaskan ke klien',e:'~5 hari',tags:['ai']},
+      {t:'scikit-learn dasar',d:'ML klasik: classification, regression, clustering, evaluation — fondasi sebelum deep learning',e:'~10 hari',tags:['ai']},
+      {t:'Embedding & Vector concepts',d:'Paham cara kerja embedding secara konseptual — fondasi wajib sebelum belajar RAG',e:'~5 hari',tags:['must','ai']},
+      {t:'Web scraping (BeautifulSoup)',d:'Ambil data dari internet — berguna untuk dataset AI dan automasi',e:'~5 hari',tags:['ai']},
     ]},
-    {name:'API & Web',project:{title:'Fetch Data dari API Publik',desc:'Ambil data dari public API (weather/berita) menggunakan Python requests dan tampilkan hasilnya.'},topics:[
-      {t:'HTTP & REST API',d:'GET, POST, PUT, DELETE, status code — cara kerja internet',e:'~3 hari',tags:['must']},
-      {t:'requests library',d:'Call API dari Python — dasar semua integrasi AI',e:'~3 hari',tags:['must']},
-      {t:'Environment variables (.env)',d:'python-dotenv — simpan API key dengan aman',e:'~2 hari',tags:['must']},
+    {name:'API & Integrasi',project:{title:'Fetch & Proses Data API Publik',desc:'Ambil data weather atau berita dari public API, proses dengan Python, simpan ke file.'},topics:[
+      {t:'HTTP & REST API',d:'GET, POST, PUT, DELETE, status code, header — cara kerja internet yang wajib dipahami',e:'~3 hari',tags:['must']},
+      {t:'requests library',d:'Call API dari Python — dasar semua integrasi AI ke layanan eksternal',e:'~3 hari',tags:['must']},
+      {t:'Environment variables (.env)',d:'python-dotenv — simpan API key dengan aman. Jangan pernah hardcode API key.',e:'~2 hari',tags:['must']},
     ]},
-    {name:'AI API Integration',project:{title:'Chatbot DIMERLA Pertama',desc:'Buat chatbot sederhana menggunakan Claude atau OpenAI API yang bisa menjawab pertanyaan produk.'},topics:[
-      {t:'OpenAI API',d:'GPT-4, chat completions, token, temperature, system prompt',e:'~7 hari',tags:['ai']},
-      {t:'Claude API (Anthropic)',d:'Messages API, streaming, system prompt, model selection',e:'~5 hari',tags:['ai']},
-      {t:'Prompt Engineering',d:'System prompt, few-shot, chain-of-thought, role prompting',e:'~7 hari',tags:['must','ai']},
-      {t:'Structured Output & Function Calling',d:'Paksa AI kembalikan JSON terstruktur — wajib untuk AI Agent yang reliable',e:'~4 hari',tags:['must','ai']},
-      {t:'Hugging Face dasar',d:'Platform AI terbesar — model, spaces, inference API',e:'~5 hari',tags:['ai']},
-      {t:'Bangun chatbot pertama',d:'Chatbot Python dengan AI API — produk nyata pertama',e:'~7 hari',tags:['ai']},
-      {t:'WhatsApp Bot + AI',d:'Integrasi AI ke WA — langsung bisa dijual ke klien',e:'~7 hari',tags:['ai']},
-      {t:'Telegram Bot + AI',d:'python-telegram-bot + AI integration',e:'~5 hari',tags:['ai']},
+    {name:'AI API Integration',project:{title:'Chatbot DIMERLA Pertama',desc:'Buat chatbot Python yang bisa jawab pertanyaan produk menggunakan Claude atau OpenAI API.'},topics:[
+      {t:'Claude API (Anthropic)',d:'Messages API, streaming, system prompt — mulai dengan ini karena dokumentasinya paling jelas',e:'~5 hari',tags:['ai']},
+      {t:'OpenAI API',d:'GPT-4, chat completions, token, temperature — standar industri yang wajib diketahui',e:'~7 hari',tags:['ai']},
+      {t:'Prompt Engineering',d:'System prompt, few-shot, chain-of-thought — ini bukan tentang kata ajaib, tapi tentang memberi konteks yang tepat',e:'~7 hari',tags:['must','ai']},
+      {t:'Structured Output & Function Calling',d:'Paksa AI kembalikan JSON terstruktur — wajib untuk AI Agent yang reliable dan predictable',e:'~4 hari',tags:['must','ai']},
+      {t:'Hugging Face dasar',d:'Platform AI terbesar — model, spaces, inference API. Tempat download model gratis.',e:'~5 hari',tags:['ai']},
+      {t:'Bangun chatbot pertama',d:'Chatbot Python dengan AI API — produk AI nyata pertama yang bisa kamu tunjukkan',e:'~7 hari',tags:['ai']},
+      {t:'WhatsApp Bot + AI',d:'Integrasi AI ke WA — ini yang paling laku dijual ke bisnis lokal Indonesia',e:'~7 hari',tags:['ai']},
+      {t:'Telegram Bot + AI',d:'python-telegram-bot + AI — lebih mudah dari WA, bagus untuk portfolio',e:'~5 hari',tags:['ai']},
     ]},
-    {name:'AI Tools Tambahan',project:{title:'Demo AI dengan Streamlit',desc:'Buat web app sederhana dengan Streamlit yang menampilkan hasil dari AI API secara interaktif.'},topics:[
-      {t:'Streamlit',d:'Build AI web app Python cepat — standar demo ke klien tanpa React',e:'~5 hari',tags:['must','ai']},
+    {name:'Local AI — Run Model Sendiri',project:{title:'Chatbot Lokal dengan Ollama',desc:'Setup Ollama, download Llama 3 atau Mistral, buat chatbot yang jalan 100% lokal tanpa internet.'},topics:[
+      {t:'Ollama & LM Studio',d:'Run Llama, Mistral, Gemma secara lokal — wajib karena klien enterprise sering tidak mau data dikirim ke API eksternal',e:'~5 hari',tags:['must','ai']},
+      {t:'Konsep model quantization',d:'Kenapa model 4-bit bisa jalan di laptop biasa — paham ini agar tahu batasan dan kemungkinannya',e:'~3 hari',tags:['ai']},
+      {t:'Local vs Cloud AI — kapan pakai mana',d:'Decision framework: privasi data, biaya, latensi, kemampuan — klien akan tanya ini',e:'~2 hari',tags:['must','ai']},
+    ]},
+    {name:'AI Tools & Demo',project:{title:'Demo AI dengan Streamlit',desc:'Buat web app Streamlit yang tampilkan output AI API secara interaktif — bisa langsung dishow ke klien.'},topics:[
+      {t:'Streamlit',d:'Build AI web app Python tanpa React — standar demo ke klien cepat',e:'~5 hari',tags:['must','ai']},
       {t:'Gradio',d:'UI untuk demo model AI — standar di Hugging Face Spaces',e:'~5 hari',tags:['ai']},
-      {t:'Whisper API (Speech-to-Text)',d:'Transkripsi suara ke teks — banyak diminta klien untuk chatbot suara',e:'~3 hari',tags:['ai']},
-      {t:'Image Generation API',d:'DALL-E, Stable Diffusion API — integrasi generasi gambar ke produk',e:'~5 hari',tags:['ai']},
+      {t:'Whisper API (Speech-to-Text)',d:'Transkripsi suara ke teks — banyak diminta klien untuk meeting summary dan voice chatbot',e:'~3 hari',tags:['ai']},
     ]},
-    {name:'Produk & Monetisasi',project:{title:'Integrasi Stripe Payment',desc:'Tambahkan sistem pembayaran Stripe ke aplikasi Python — checkout flow lengkap.'},topics:[
-      {t:'Stripe Payment Integration',d:'Sistem pembayaran — tanpa ini SaaS tidak bisa menghasilkan uang',e:'~5 hari',tags:['must','biz']},
-      {t:'Email Service (Resend/SendGrid)',d:'Kirim email verifikasi, notifikasi, marketing — setiap produk butuh ini',e:'~3 hari',tags:['must']},
-      {t:'n8n / Make (Automation)',d:'Tool automation yang sangat laku dijual ke klien bisnis non-tech',e:'~7 hari',tags:['must','biz']},
+    {name:'Monetisasi Awal',project:{title:'Integrasi Stripe ke Aplikasi',desc:'Tambahkan checkout Stripe ke aplikasi Python — dari tombol bayar sampai konfirmasi pembayaran.'},topics:[
+      {t:'Stripe Payment Integration',d:'Sistem pembayaran — tanpa ini produk SaaS tidak bisa menghasilkan uang',e:'~5 hari',tags:['must','biz']},
+      {t:'Email Service (Resend/SendGrid)',d:'Kirim email otomatis — verifikasi, notifikasi, invoice. Setiap produk butuh ini.',e:'~3 hari',tags:['must']},
+      {t:'n8n / Make (Automation)',d:'Automation no-code yang laku dijual ke klien bisnis non-tech — margin tinggi, waktu development rendah',e:'~7 hari',tags:['must','biz']},
+      {t:'TypeScript dasar',d:'Types, interface — standar industri JS modern. Pelajari di sini bukan di Fase 1 karena lebih masuk akal setelah paham JS dengan baik.',e:'~10 hari',tags:[]},
     ]},
   ]},
+
+  // ─── FASE 3: AI ENGINEER ───
   {id:'f3',title:'Fase 3 — AI Engineer',short:'Fase 3',ico:'🧠',color:'#7C3AED',bg:'#F5F3FF',
    income:'Rp 15–50 juta/bln',
    milestones:[
-     'Bisa bangun RAG system dari nol dan jelaskan cara kerjanya ke orang lain',
-     'Bisa buat AI agent dengan tools yang bekerja mandiri',
-     'Bisa buat REST API FastAPI dan deploy ke cloud',
-     'Bisa buat SaaS AI MVP yang bisa dipakai orang lain'
+     'Bisa bangun RAG system dari nol dan jelaskan cara kerjanya ke orang yang tidak teknis',
+     'Bisa buat AI agent dengan tools yang bekerja mandiri tanpa instruksi terus-menerus',
+     'Bisa ukur apakah sistem AI bekerja dengan benar — bukan hanya "kelihatan" benar',
+     'Bisa buat dan deploy REST API FastAPI ke cloud dan tahan di production'
    ],
    prevId:'f2',
    groups:[
-    {name:'Fondasi & Matematika AI',project:{title:'Implementasi ML Sederhana',desc:'Buat model klasifikasi dengan scikit-learn menggunakan dataset nyata dan evaluasi hasilnya.'},topics:[
-      {t:'Matematika dasar AI',d:'Linear algebra, statistik dasar, probabilitas — fondasi ML',e:'~14 hari',tags:['must','math']},
-      {t:'Machine Learning konsep',d:'Supervised, unsupervised, reinforcement — paham teori & praktik',e:'~7 hari',tags:['ai']},
-      {t:'Data Structures & Algorithms',d:'Array, linked list, tree, graph, sorting, searching — wajib untuk interview internasional',e:'~21 hari',tags:['must']},
-      {t:'System Design dasar',d:'Scalability, load balancing, caching, database sharding — wajib untuk senior level',e:'~14 hari',tags:['must']},
+    {name:'Matematika & CS Fundamentals',project:{title:'Implementasi ML dari Nol',desc:'Buat linear regression dan klasifikasi sederhana dari nol dengan numpy — tanpa scikit-learn.'},topics:[
+      {t:'Linear Algebra untuk AI',d:'Vector, matrix, dot product, transpose, eigenvalue — ini yang bekerja di balik setiap model AI. Tidak perlu PhD, tapi wajib paham intuisinya.',e:'~7 hari',tags:['must','math']},
+      {t:'Statistik & Probabilitas',d:'Mean, variance, distribusi, Bayes theorem, hypothesis testing — fondasi semua keputusan model AI',e:'~7 hari',tags:['must','math']},
+      {t:'Kalkulus untuk AI (intuisi)',d:'Gradient, derivative, chain rule — paham mengapa model "belajar" dari data. Bukan untuk hitung manual, tapi untuk mengerti.',e:'~5 hari',tags:['math']},
+      {t:'Machine Learning konsep',d:'Supervised, unsupervised, reinforcement, overfitting, underfitting, train/test split — paham teori sebelum pakai library',e:'~7 hari',tags:['ai']},
+      {t:'Data Structures & Algorithms',d:'Array, linked list, tree, graph, sorting, searching, time complexity — wajib untuk interview engineer internasional',e:'~21 hari',tags:['must']},
+      {t:'System Design dasar',d:'Scalability, load balancing, caching, queue, database sharding — cara berpikir arsitek sistem, bukan hanya coder',e:'~14 hari',tags:['must']},
     ]},
-    {name:'AI Framework Utama',project:{title:'RAG Chatbot Dokumen',desc:'Buat chatbot yang bisa menjawab pertanyaan dari dokumen PDF menggunakan RAG + LangChain.'},topics:[
-      {t:'LangChain',d:'Chain, memory, tools, agent — framework utama AI Engineer',e:'~14 hari',tags:['must','ai']},
-      {t:'LlamaIndex',d:'Alternatif LangChain untuk indexing dokumen — sering diminta klien enterprise',e:'~7 hari',tags:['must','ai']},
-      {t:'LangGraph',d:'Complex AI agent dengan state machine — standar 2025+',e:'~7 hari',tags:['ai']},
-      {t:'CrewAI',d:'Multi-agent framework paling populer — buat tim AI yang bekerja bersama',e:'~5 hari',tags:['ai']},
-      {t:'Vector Database',d:'Pinecone / Chroma / Weaviate — simpan embedding untuk AI',e:'~7 hari',tags:['must','ai']},
-      {t:'RAG — Retrieval Augmented Generation',d:'AI yang bisa baca dokumen kamu — teknik paling dicari klien',e:'~14 hari',tags:['must','ai']},
-      {t:'AI Agent lanjut',d:'Agent yang cari web, pakai tools, ambil keputusan sendiri',e:'~14 hari',tags:['must','ai']},
-      {t:'OpenAI Assistants API',d:'Persistent threads, file search, code interpreter',e:'~5 hari',tags:['ai']},
-      {t:'Model Context Protocol (MCP)',d:'Standar baru Anthropic untuk AI agent — masa depan AI engineering',e:'~5 hari',tags:['must','ai']},
-      {t:'Fine-tuning model',d:'Training ulang AI dengan data sendiri — LoRA, PEFT',e:'~14 hari',tags:['ai']},
-      {t:'MLflow',d:'Tracking eksperimen ML — standar industri',e:'~5 hari',tags:['tool']},
-      {t:'API cost optimization',d:'Kelola biaya AI API agar produk tetap profit',e:'~5 hari',tags:['must']},
+    {name:'AI Framework Utama',project:{title:'RAG Chatbot Dokumen PDF',desc:'Buat chatbot yang bisa jawab pertanyaan dari dokumen PDF menggunakan RAG + LangChain + vector database.'},topics:[
+      {t:'LangChain',d:'Chain, memory, tools, agent — framework utama AI Engineer. Pelajari konsepnya dalam, bukan hanya cara pakainya.',e:'~14 hari',tags:['must','ai']},
+      {t:'LlamaIndex',d:'Alternatif LangChain untuk indexing — lebih bagus untuk document processing enterprise',e:'~7 hari',tags:['must','ai']},
+      {t:'LangGraph',d:'Complex AI agent dengan state machine — standar untuk agent yang perlu flow kondisional',e:'~7 hari',tags:['ai']},
+      {t:'CrewAI',d:'Multi-agent framework — buat tim AI yang bekerja bersama seperti tim manusia',e:'~5 hari',tags:['ai']},
+      {t:'Vector Database',d:'Pinecone / Chroma / Weaviate — simpan dan cari embedding. Ini infrastruktur inti semua sistem RAG.',e:'~7 hari',tags:['must','ai']},
+      {t:'RAG — Retrieval Augmented Generation',d:'AI yang bisa baca dokumen kamu — teknik paling dicari klien. Kuasai ini dalam.',e:'~14 hari',tags:['must','ai']},
+      {t:'AI Agent lanjut',d:'Agent yang bisa search web, jalankan kode, pakai tools, ambil keputusan sendiri',e:'~14 hari',tags:['must','ai']},
+      {t:'Model Context Protocol (MCP)',d:'Standar Anthropic untuk integrasi AI agent — ini masa depan cara AI terhubung ke tools',e:'~5 hari',tags:['must','ai']},
+      {t:'Fine-tuning model',d:'Training ulang AI dengan data sendiri — LoRA, PEFT. Untuk kasus yang prompt engineering tidak cukup.',e:'~14 hari',tags:['ai']},
+      {t:'API cost optimization',d:'Kelola biaya AI API agar produk tetap profit — caching, batching, model selection strategy',e:'~5 hari',tags:['must']},
     ]},
-    {name:'Backend & Infrastruktur',project:{title:'REST API FastAPI + PostgreSQL',desc:'Buat REST API untuk toko DIMERLA — endpoint produk, user, dan order dengan database PostgreSQL.'},topics:[
-      {t:'Linux dasar',d:'ls, cd, mkdir, vim, chmod, systemctl — semua server AI pakai Linux',e:'~7 hari',tags:['must','tool']},
-      {t:'FastAPI',d:'Buat REST API dengan Python — backend untuk produk AI',e:'~10 hari',tags:['must']},
-      {t:'GraphQL',d:'Alternatif REST API — banyak startup dan klien modern pakai ini',e:'~5 hari',tags:[]},
-      {t:'WebSocket server',d:'Backend real-time — wajib untuk chatbot & live AI apps',e:'~5 hari',tags:['must']},
-      {t:'PostgreSQL & SQL',d:'SELECT, INSERT, JOIN, index — database relasional wajib',e:'~10 hari',tags:['must']},
-      {t:'Prisma ORM',d:'Type-safe database client — standar project TypeScript/Node modern',e:'~5 hari',tags:['tool']},
-      {t:'Redis',d:'Database cepat untuk cache hasil AI — kurangi biaya API',e:'~5 hari',tags:['tool']},
-      {t:'Supabase / Firebase',d:'Backend-as-a-service — database + auth tanpa setup server',e:'~5 hari',tags:[]},
-      {t:'Authentication & Security',d:'JWT, OAuth2, bcrypt, HTTPS — sistem login yang aman',e:'~7 hari',tags:['must']},
-      {t:'Rate limiting & API security',d:'Proteksi produk dari abuse & serangan',e:'~4 hari',tags:['must']},
-      {t:'OWASP Security',d:'Top 10 kerentanan web — wajib sebelum jual produk ke klien enterprise',e:'~5 hari',tags:['must']},
-      {t:'Docker dasar',d:'Container, image, Dockerfile — packaging app AI agar portable',e:'~7 hari',tags:['must','tool']},
-      {t:'GitHub Actions / CI/CD',d:'Otomasi deploy — standar profesional, hemat waktu',e:'~5 hari',tags:['tool']},
-      {t:'Cloud basics (AWS/GCP)',d:'Deploy AI apps skala besar — EC2, Lambda, Cloud Run',e:'~10 hari',tags:['must']},
-      {t:'Monitoring & Logging (Sentry)',d:'Track error di production — semua produk wajib punya ini',e:'~4 hari',tags:['must','tool']},
-      {t:'Testing (pytest & Cypress)',d:'Unit test Python + end-to-end test — kode AI yang bisa dipercaya',e:'~7 hari',tags:['tool']},
+    {name:'AI Observability & Evaluasi',project:{title:'Setup Monitoring RAG System',desc:'Pasang LangSmith ke RAG chatbot, trace setiap call, dan buat eval set untuk ukur akurasi jawaban.'},topics:[
+      {t:'LangSmith / Helicone',d:'Trace setiap AI call di production — lihat prompt apa yang dikirim, response apa yang datang, berapa biayanya. Ini yang engineer senior pakai.',e:'~5 hari',tags:['must','ai']},
+      {t:'RAG Evaluation (RAGAS)',d:'Cara ukur apakah RAG kamu akurat — faithfulness, relevance, recall. Tanpa eval, kamu tidak tahu sistemnya benar atau hanya terlihat benar.',e:'~7 hari',tags:['must','ai']},
+      {t:'Prompt versioning & management',d:'Kelola versi prompt seperti kelola versi kode — PromptLayer atau sistem manual. Penting saat produk sudah di production.',e:'~3 hari',tags:['must','ai']},
+      {t:'A/B testing untuk AI',d:'Bandingkan dua versi sistem AI secara kuantitatif — cara profesional improve produk AI',e:'~4 hari',tags:['ai']},
     ]},
-    {name:'Produk & Bisnis',project:{title:'SaaS AI MVP — Launch Pertama',desc:'Launch produk SaaS AI pertama — landing page, auth, AI feature, dan payment gateway live!'},topics:[
-      {t:'Bangun SaaS AI pertama',d:'Produk berlangganan lengkap — Fase 3 goal utama',e:'~21 hari',tags:['must']},
-      {t:'Open source contribution',d:'Kontribusi ke project AI populer — bangun reputasi GitHub global',e:'~14 hari',tags:[]},
-      {t:'Freelance di Upwork / Toptal',d:'Dapat klien internasional, bayaran USD',e:'~7 hari',tags:[]},
+    {name:'Backend & Infrastruktur',project:{title:'REST API FastAPI + PostgreSQL',desc:'Buat REST API produk DIMERLA — endpoint produk, user auth, order. Deploy ke Railway atau Render.'},topics:[
+      {t:'Linux dasar',d:'ls, cd, mkdir, vim, chmod, systemctl, tail -f logs — semua server AI pakai Linux',e:'~7 hari',tags:['must','tool']},
+      {t:'FastAPI',d:'Buat REST API dengan Python — backend untuk semua produk AI. Lebih cepat dan modern dari Flask.',e:'~10 hari',tags:['must']},
+      {t:'WebSockets server',d:'Backend real-time — wajib untuk chatbot streaming dan live AI apps',e:'~5 hari',tags:['must']},
+      {t:'PostgreSQL & SQL',d:'SELECT, INSERT, JOIN, index, transaction — database relasional wajib. Pahami query, bukan hanya ORM.',e:'~10 hari',tags:['must']},
+      {t:'Redis',d:'Cache hasil AI, session, rate limit — kurangi biaya API dan percepat response',e:'~5 hari',tags:['tool']},
+      {t:'Supabase',d:'Backend-as-a-service — database + auth + storage tanpa setup server. Ideal untuk MVP cepat.',e:'~5 hari',tags:[]},
+      {t:'Authentication & Security',d:'JWT, OAuth2, bcrypt, HTTPS, rate limiting — sistem login yang aman. Ini tidak bisa salah.',e:'~10 hari',tags:['must']},
+      {t:'Docker dasar',d:'Container, image, Dockerfile, docker-compose — packaging app AI agar jalan di mana saja',e:'~7 hari',tags:['must','tool']},
+      {t:'GitHub Actions / CI/CD',d:'Otomasi test dan deploy saat push ke GitHub — standar profesional',e:'~5 hari',tags:['tool']},
+      {t:'Cloud basics (Railway/Render/AWS)',d:'Deploy AI apps ke cloud — mulai dari Railway/Render yang mudah, baru ke AWS',e:'~10 hari',tags:['must']},
+      {t:'Monitoring & Logging (Sentry)',d:'Track error di production — tanpa ini kamu tidak tahu produkmu rusak sampai klien komplain',e:'~4 hari',tags:['must','tool']},
+      {t:'Testing (pytest)',d:'Unit test Python — pastikan kode tidak rusak saat ada perubahan',e:'~7 hari',tags:['tool']},
+      {t:'MLflow',d:'Tracking eksperimen ML — standar industri untuk data science dan ML engineering',e:'~5 hari',tags:['tool']},
+    ]},
+    {name:'Produk & Bisnis',project:{title:'SaaS AI MVP — Launch Pertama',desc:'Launch SaaS AI pertama — landing page, auth, AI feature, Stripe payment, semuanya live dan bisa dipakai orang.'},topics:[
+      {t:'Bangun SaaS AI pertama',d:'Produk berlangganan lengkap dengan AI di dalamnya — ini yang membuktikan semua yang dipelajari',e:'~21 hari',tags:['must']},
+      {t:'Open source contribution',d:'Kontribusi ke project AI populer — GitHub reputation yang nyata dan terlihat oleh recruiter global',e:'~14 hari',tags:[]},
+      {t:'Freelance pertama di Upwork',d:'Cari proyek kecil pertama — $100-500 untuk validasi bahwa skill kamu punya nilai pasar',e:'~7 hari',tags:[]},
     ]},
   ]},
+
+  // ─── FASE 4: WEB3 ───
   {id:'f4',title:'Fase 4 — Web3 Blockchain',short:'Fase 4',ico:'⛓️',color:'#D97706',bg:'#FFFBEB',
    income:'$3.000–10.000/bln',
    milestones:[
-     'Bisa tulis smart contract Solidity sederhana dari kepala',
-     'Bisa deploy dan test smart contract ke testnet sendiri',
-     'Bisa buat DApp React yang terhubung ke blockchain'
+     'Bisa tulis smart contract Solidity sederhana dari kepala dan tahu kenapa setiap barisnya ada',
+     'Bisa deploy, test, dan audit smart contract ke testnet sendiri',
+     'Bisa buat DApp React yang terhubung ke blockchain — tidak hanya demo, tapi bisa dipakai',
+     'Bisa gabungkan AI dan blockchain dalam satu sistem — niche yang sangat langka'
    ],
    prevId:'f3',
    groups:[
-    {name:'Blockchain Dasar',project:{title:'Wallet & Transaksi Testnet',desc:'Setup MetaMask, kirim transaksi di testnet Ethereum, dan pahami cara kerja gas fee secara nyata.'},topics:[
-      {t:'Cara kerja Blockchain',d:'Block, chain, consensus (PoW/PoS), hash, node, ledger',e:'~5 hari',tags:['must','web3']},
-      {t:'Ethereum & Solana',d:'Network paling populer — pilih spesialisasi utama',e:'~5 hari',tags:['web3']},
-      {t:'Layer 2 Solutions',d:'Polygon, Arbitrum, Optimism — biaya lebih murah dari Ethereum',e:'~5 hari',tags:['web3']},
-      {t:'Wallet & Metamask',d:'Public key, private key, seed phrase, gas fee, signing',e:'~3 hari',tags:[]},
-      {t:'Token ERC-20 & NFT ERC-721',d:'Standard token Ethereum — dasar semua DeFi & NFT project',e:'~5 hari',tags:['web3']},
-      {t:'DeFi protocol dasar',d:'Paham Uniswap, Aave, Compound — ekosistem Web3',e:'~7 hari',tags:['web3']},
+    {name:'Blockchain Fundamentals',project:{title:'Kirim Transaksi di Testnet',desc:'Setup MetaMask, pahami gas fee secara nyata, kirim transaksi di testnet Sepolia, baca block explorer.'},topics:[
+      {t:'Cara kerja Blockchain — konsep dalam',d:'Block, chain, consensus, hash, node, ledger, finality — pelajari konsepnya dalam bukan hanya definisinya. Ini yang bertahan 15 tahun.',e:'~7 hari',tags:['must','web3']},
+      {t:'Ethereum & arsitekturnya',d:'EVM, gas, account types, state — pahami platform sebelum bangun di atasnya',e:'~5 hari',tags:['web3']},
+      {t:'Layer 2 Solutions',d:'Polygon, Arbitrum, Optimism — biaya lebih murah, speed lebih tinggi. Mayoritas DApp production pakai L2.',e:'~5 hari',tags:['web3']},
+      {t:'Kriptografi dasar',d:'Hash function, public/private key, digital signature — fondasi kepercayaan di blockchain. Ini bertahan lama.',e:'~5 hari',tags:['must','web3']},
+      {t:'Token standards (ERC-20, ERC-721)',d:'Dasar semua DeFi dan NFT project',e:'~5 hari',tags:['web3']},
+      {t:'DeFi protocol dasar',d:'Paham cara kerja Uniswap, Aave, lending, liquidity pool — ekosistem yang dibangun di atas smart contract',e:'~7 hari',tags:['web3']},
     ]},
-    {name:'Smart Contract',project:{title:'Deploy Token ERC-20 di Testnet',desc:'Buat dan deploy token ERC-20 sederhana di testnet Sepolia menggunakan Foundry.'},topics:[
-      {t:'Solidity dasar',d:'Variables, functions, events, modifiers, mappings',e:'~14 hari',tags:['must','web3']},
-      {t:'Hardhat / Foundry',d:'Framework testing & deploy smart contract — standar industri',e:'~7 hari',tags:['tool']},
-      {t:'Foundry testing lanjut',d:'Fuzz testing, invariant test — smart contract tanpa test tidak dipercaya klien',e:'~7 hari',tags:['must','web3']},
-      {t:'Deploy smart contract',d:'Deploy ke testnet (Sepolia) → mainnet Ethereum',e:'~7 hari',tags:['web3']},
-      {t:'Security smart contract',d:'Reentrancy, overflow, access control — audit wajib sebelum launch',e:'~10 hari',tags:['must']},
-      {t:'OpenZeppelin',d:'Library smart contract standar industri — reusable, audited, aman',e:'~5 hari',tags:['must','web3']},
-      {t:'Gas Optimization Solidity',d:'Teknik hemat biaya transaksi — sangat dicari klien DeFi',e:'~5 hari',tags:['web3']},
-      {t:'Zero-knowledge proof dasar',d:'zk-SNARK konsep — teknologi Web3 masa depan',e:'~7 hari',tags:['web3']},
+    {name:'Smart Contract Development',project:{title:'Deploy Token ERC-20 di Testnet',desc:'Tulis, test, dan deploy token ERC-20 sendiri ke testnet Sepolia menggunakan Foundry.'},topics:[
+      {t:'Solidity dasar',d:'Variables, functions, events, modifiers, mappings, storage vs memory — kuasai ini dulu sebelum lanjut',e:'~14 hari',tags:['must','web3']},
+      {t:'Foundry',d:'Framework testing & deploy smart contract paling modern — Hardhat boleh, tapi Foundry lebih powerful',e:'~7 hari',tags:['tool']},
+      {t:'Testing smart contract (Fuzz testing)',d:'Unit test, fuzz test, invariant test — smart contract yang tidak ditest adalah smart contract yang menunggu dieksploitasi',e:'~7 hari',tags:['must','web3']},
+      {t:'Security smart contract',d:'Reentrancy, overflow, access control, front-running — ini beda dari web security biasa. Kesalahan di sini = uang hilang.',e:'~10 hari',tags:['must']},
+      {t:'OpenZeppelin',d:'Library smart contract yang sudah diaudit — gunakan ini, jangan reinvent the wheel untuk komponen standar',e:'~5 hari',tags:['must','web3']},
+      {t:'Gas Optimization',d:'Cara hemat biaya transaksi — ini yang dicari klien DeFi karena langsung berdampak ke profit',e:'~5 hari',tags:['web3']},
+      {t:'Zero-knowledge proof (konsep)',d:'zk-SNARK intuisi — tidak perlu implementasi, cukup paham konsepnya sebagai arsitek',e:'~5 hari',tags:['web3']},
     ]},
-    {name:'DApp Development',project:{title:'DApp Voting Terdesentralisasi',desc:'Buat aplikasi voting dengan React frontend dan smart contract Solidity — deploy ke testnet.'},topics:[
-      {t:'Ethers.js / Web3.js',d:'Hubungkan frontend JS dengan blockchain',e:'~7 hari',tags:['must','web3']},
-      {t:'The Graph',d:'Indexing data blockchain seperti database — standar DApp production',e:'~5 hari',tags:['web3']},
-      {t:'Subgraph development',d:'Lanjutan The Graph — buat indexer sendiri untuk DApp',e:'~5 hari',tags:['web3']},
-      {t:'Chainlink (Oracle)',d:'Data dunia nyata ke blockchain — harga aset, cuaca, dll',e:'~5 hari',tags:['web3']},
-      {t:'Account Abstraction (ERC-4337)',d:'UX DApp lebih baik — tren Web3 2025 yang sangat penting',e:'~6 hari',tags:['web3']},
-      {t:'Bangun DApp pertama',d:'React + smart contract — decentralized application live',e:'~14 hari',tags:['web3']},
-      {t:'IPFS & decentralized storage',d:'Simpan file tanpa server terpusat — Filecoin, Arweave',e:'~5 hari',tags:[]},
-      {t:'AI + Smart Contract',d:'Gabungkan AI dengan blockchain — niche sangat langka di dunia',e:'~14 hari',tags:['web3','ai']},
+    {name:'DApp Development',project:{title:'DApp Voting Terdesentralisasi',desc:'Buat voting DApp — React frontend + Solidity smart contract + deploy ke testnet. End-to-end.'},topics:[
+      {t:'Ethers.js',d:'Hubungkan React ke blockchain — standar yang lebih modern dari Web3.js',e:'~7 hari',tags:['must','web3']},
+      {t:'The Graph & Subgraph',d:'Indexing data blockchain seperti database — tanpa ini query data on-chain sangat lambat',e:'~7 hari',tags:['web3']},
+      {t:'Chainlink (Oracle)',d:'Bawa data dunia nyata ke blockchain — harga aset, data cuaca, random number yang verifiable',e:'~5 hari',tags:['web3']},
+      {t:'Account Abstraction (ERC-4337)',d:'UX DApp yang lebih manusiawi — user tidak perlu tahu apa itu seed phrase',e:'~6 hari',tags:['web3']},
+      {t:'AI + Smart Contract',d:'Gabungkan AI dengan blockchain — ini kombinasi yang sangat langka di dunia. Ini spesialisasimu yang unik.',e:'~14 hari',tags:['web3','ai']},
+      {t:'Bangun DApp pertama end-to-end',d:'React + smart contract + deploy ke testnet — portfolio Web3 pertama yang nyata',e:'~14 hari',tags:['web3']},
+      {t:'IPFS & Decentralized Storage',d:'Simpan file tanpa server terpusat — Filecoin, Arweave',e:'~5 hari',tags:[]},
     ]},
-    {name:'Rust Dasar (Solana)',project:{title:'Hello World di Solana Devnet',desc:'Deploy program Rust pertama di Solana devnet — transaksi pertama di high-performance blockchain.'},topics:[
-      {t:'Rust dasar',d:'Bahasa pemrograman untuk Solana development — high performance blockchain',e:'~10 hari',tags:['web3']},
+    {name:'Solana & Rust (Opsional)',project:{title:'Hello World di Solana Devnet',desc:'Deploy program Rust pertama di Solana devnet — kenali ekosistem blockchain yang berbeda.'},topics:[
+      {t:'Rust dasar',d:'Bahasa untuk Solana development — pelajari jika ingin spesialisasi Solana yang throughput-nya jauh lebih tinggi dari Ethereum',e:'~10 hari',tags:['web3']},
     ]},
   ]},
+
+  // ─── FASE BONUS ───
   {id:'fb',title:'Fase Bonus — Skala & Global',short:'Bonus',ico:'💎',color:'#0891B2',bg:'#ECFEFF',
    income:'$500–3.000/bln (mulai)',
    milestones:[
-     'Punya minimal 3 proyek live dengan dokumentasi Inggris yang lengkap',
-     'Bisa tulis proposal freelance dalam Inggris dan menang klien pertama',
-     'Punya income aktif dari skill yang dipelajari'
+     'Punya minimal 3 proyek live dengan dokumentasi Inggris yang lengkap dan jelas',
+     'Bisa tulis dan menang proposal freelance dalam Bahasa Inggris',
+     'Punya income aktif pertama dari skill — tidak peduli berapa, yang penting sudah ada'
    ],
    prevId:'f1',
    groups:[
-    {name:'English Teknis',project:{title:'README Profesional dalam Inggris',desc:'Buat README.md lengkap dalam Bahasa Inggris untuk salah satu project portfolio kamu.'},topics:[
-      {t:'English teknis aktif (speaking & writing)',d:'Komunikasi dengan klien global, interview, proposal — tanpa ini USD tidak datang',e:'~60 hari bertahap',tags:['must']},
-      {t:'Technical documentation writing',d:'README, API docs, proposal teknis yang menarik klien internasional',e:'~14 hari',tags:['must']},
+    {name:'Personal Branding & Visibilitas',project:{title:'GitHub & LinkedIn Pro Setup',desc:'GitHub profile README yang menarik, LinkedIn yang dioptimasi untuk klien internasional, dan pinned repos yang representatif.'},topics:[
+      {t:'GitHub profile profesional',d:'README menarik, pinned repos terbaik, contribution graph aktif — ini CV visual programmer yang dilihat recruiter',e:'~7 hari',tags:['must']},
+      {t:'LinkedIn profile teknis',d:'Headline yang menarik, tentang yang jelas, experience yang relevan — optimasi untuk klien dan recruiter internasional',e:'~5 hari',tags:['must']},
+      {t:'Blog teknis (dev.to / Medium)',d:'Tulis tentang apa yang kamu pelajari — ini membangun reputasi lebih cepat dari portfolio project',e:'~14 hari',tags:[]},
+      {t:'Membangun kehadiran di komunitas',d:'Discord developer, Twitter/X tech, GitHub Discussions — networking yang tidak terasa networking',e:'~14 hari',tags:[]},
     ]},
-    {name:'Personal Branding & Karir',project:{title:'GitHub & LinkedIn Pro Setup',desc:'Buat GitHub profile README yang menarik dan optimalkan LinkedIn untuk klien internasional.'},topics:[
-      {t:'GitHub profile profesional',d:'README menarik, pinned repos, contribution graph aktif — CV visual programmer',e:'~7 hari',tags:['must']},
-      {t:'LinkedIn profile teknis',d:'Optimasi LinkedIn untuk dapat klien/rekruter internasional',e:'~5 hari',tags:['must']},
-      {t:'Blog teknis (dev.to / Medium / Hashnode)',d:'Tulis artikel teknis — bukti keahlian nyata yang dilihat klien',e:'~14 hari',tags:[]},
-      {t:'Twitter/X tech presence',d:'Bangun audiens di komunitas developer & AI global',e:'~14 hari',tags:[]},
+    {name:'Freelance & Bisnis',project:{title:'Proposal Pertama $500',desc:'Tulis proposal freelance dalam Inggris untuk proyek AI chatbot — submit ke Upwork dan 3 cold email.'},topics:[
+      {t:'Setup Upwork profile',d:'Profile yang menarik klien USD — ini bukan tentang looks, tapi tentang evidence dan clarity',e:'~5 hari',tags:['must','biz']},
+      {t:'Pricing & proposal freelance',d:'Cara harga jasa, tulis proposal yang menang, negosiasi tanpa takut — ini skill bisnis yang paling krusial',e:'~7 hari',tags:['must','biz']},
+      {t:'Cold outreach yang efektif',d:'Email dingin yang bukan spam — cara cari klien pertama secara aktif',e:'~5 hari',tags:['must','biz']},
+      {t:'Client communication profesional',d:'Handle ekspektasi klien, manage deadline, negosiasi revisi — ini yang membuat klien datang lagi',e:'~7 hari',tags:['must','biz']},
+      {t:'Product thinking & validation',d:'Cara validasi ide produk sebelum bangun — hindari buang 3 bulan untuk produk yang tidak ada yang mau',e:'~10 hari',tags:['must','biz']},
+      {t:'SaaS business model',d:'MRR, churn, CAC, LTV — paham angka bisnis agar produk tidak hanya bagus secara teknis',e:'~7 hari',tags:['biz']},
     ]},
-    {name:'Freelance & Bisnis',project:{title:'Proposal Klien Pertama $500',desc:'Tulis proposal freelance dalam Bahasa Inggris untuk proyek AI chatbot fiktif senilai $500.'},topics:[
-      {t:'Setup Upwork & Toptal profile',d:'Profile yang menarik klien USD dari hari pertama',e:'~5 hari',tags:['must','biz']},
-      {t:'Pricing & proposal freelance',d:'Cara harga jasa, tulis proposal menang, negosiasi tanpa takut',e:'~7 hari',tags:['must','biz']},
-      {t:'Cold outreach & email marketing',d:'Cara aktif cari klien pertama — tidak hanya nunggu di Upwork',e:'~5 hari',tags:['must','biz']},
-      {t:'Client communication',d:'Handle klien sulit, manage deadline, negosiasi revisi dengan profesional',e:'~7 hari',tags:['must','biz']},
-      {t:'Product thinking & validation',d:'Cara validasi ide produk sebelum bangun — hindari buang waktu',e:'~10 hari',tags:['must','biz']},
-      {t:'Business model SaaS',d:'Pricing model, MRR, churn, CAC — paham bisnis bukan hanya kode',e:'~7 hari',tags:['biz']},
+    {name:'Proyek Portfolio Nyata',project:{title:'Launch 3 Proyek Live',desc:'3 proyek live dengan domain, dokumentasi Inggris, dan bisa dijelaskan ke klien dalam 2 menit.'},topics:[
+      {t:'Proyek 1 — Web app full stack',d:'HTML+CSS+JS+React+Next.js+API — deploy live dengan domain sendiri dan README yang jelas',e:'~21 hari',tags:['must']},
+      {t:'Proyek 2 — AI Chatbot produk',d:'Chatbot dengan RAG + FastAPI + database — ini yang paling bisa langsung dijual',e:'~30 hari',tags:['must']},
+      {t:'Proyek 3 — SaaS AI + Payment',d:'Produk berlangganan dengan Stripe — kalau ini menghasilkan MRR, kamu sudah membuktikan segalanya',e:'~30 hari',tags:['must']},
+      {t:'Proyek 4 — DApp Web3 (setelah Fase 4)',d:'Smart contract + React frontend — deploy ke mainnet',e:'~21 hari',tags:['web3']},
+      {t:'Open source contribution',d:'Kontribusi nyata ke project AI populer — satu PR yang merged sudah cukup untuk reputasi',e:'~30 hari',tags:[]},
     ]},
-    {name:'Proyek Portfolio Nyata',project:{title:'Launch 3 Proyek Live',desc:'Pastikan minimal 3 proyek portfolio live dengan domain sendiri dan dokumentasi lengkap dalam Inggris.'},topics:[
-      {t:'Proyek 1 — Web app full stack',d:'HTML+CSS+JS+React+Next.js+API — deploy live dengan domain sendiri',e:'~21 hari',tags:['must']},
-      {t:'Proyek 2 — AI Chatbot produk',d:'Chatbot dengan RAG + FastAPI + database — langsung bisa dijual',e:'~30 hari',tags:['must']},
-      {t:'Proyek 3 — SaaS AI + Payment',d:'Produk berlangganan dengan Stripe — menghasilkan MRR nyata',e:'~30 hari',tags:['must']},
-      {t:'Proyek 4 — DApp Web3',d:'Smart contract + React frontend — deploy ke mainnet',e:'~21 hari',tags:['web3']},
-      {t:'Proyek 5 — Open source contribution',d:'Kontribusi nyata ke project AI/Web3 populer — reputasi global',e:'~30 hari',tags:[]},
-    ]},
-    {name:'Review & Pendalaman',project:{title:'Technical Blog Post',desc:'Tulis artikel teknis di dev.to tentang salah satu hal yang kamu pelajari selama roadmap.'},topics:[
-      {t:'Review & perdalam Fase 1',d:'Fondasi web benar-benar kuat sebelum ke level lebih tinggi',e:'~21 hari',tags:['must']},
-      {t:'Review & perdalam Fase 2',d:'Perdalam Python & AI API — eksperimen lebih banyak model baru',e:'~21 hari',tags:['must']},
-      {t:'Review & perdalam Fase 3',d:'Perdalam LangChain, RAG, Agent — sistem lebih kompleks',e:'~21 hari',tags:['must']},
-      {t:'Review & perdalam Fase 4',d:'Perdalam smart contract — audit, optimasi gas, proyek DeFi real',e:'~21 hari',tags:[]},
-      {t:'Persiapan pulang Medan',d:'Siapkan semua aset digital, klien tetap, dan pendapatan sebelum pulang',e:'~14 hari',tags:['must']},
+    {name:'Review & Pendalaman',project:{title:'Technical Blog Post',desc:'Tulis satu artikel teknis mendalam tentang sesuatu yang kamu bangun — di dev.to atau Medium.'},topics:[
+      {t:'Review & perdalam Fase 1',d:'Kembali ke HTML/CSS/JS/React — pastikan benar-benar solid sebelum bergantung padanya di Fase 3',e:'~21 hari',tags:['must']},
+      {t:'Review & perdalam Fase 2',d:'Perdalam Python & AI API — eksperimen dengan model dan teknik yang belum dicoba',e:'~21 hari',tags:['must']},
+      {t:'Review & perdalam Fase 3',d:'Perdalam LangChain, RAG, Agent — bangun sistem yang lebih kompleks',e:'~21 hari',tags:['must']},
+      {t:'Persiapan pulang Medan',d:'Klien recurring, income yang predictable, infrastruktur bisnis yang jalan — barulah pulang',e:'~14 hari',tags:['must']},
     ]},
   ]},
+
+  // ─── FASE 5: WEB4 ───
   {id:'f5',title:'Fase 5 — Web4 & AI Future',short:'Fase 5',ico:'🚀',color:'#DC2626',bg:'#FEF2F2',
    income:'$5.000–20.000+/bln',
    milestones:[
      'Bisa buat autonomous AI agent yang kerja tanpa instruksi manual',
-     'Bisa gabungkan AI + blockchain menjadi satu produk yang berfungsi'
+     'Bisa gabungkan AI + blockchain menjadi satu produk yang berfungsi di dunia nyata',
+     'Punya produk Web4 yang bisa diexplain ke investor dalam 3 menit'
    ],
    prevId:'fb',
    groups:[
-    {name:'Web4 Core',project:{title:'Autonomous AI Agent',desc:'Buat AI agent yang bisa browsing web, baca dokumen, dan buat laporan sendiri tanpa instruksi manual.'},topics:[
-      {t:'AI Autonomous Agent',d:'Agent bekerja mandiri tanpa instruksi terus-menerus — masa depan AI',e:'~14 hari',tags:['web4','ai']},
-      {t:'Decentralized AI',d:'AI di blockchain — tidak bisa disensor atau dimatikan',e:'~10 hari',tags:['web4']},
-      {t:'Semantic Web & Knowledge Graph',d:'Web yang mengerti konteks — fondasi Web4',e:'~10 hari',tags:['web4']},
-      {t:'Multi-agent Systems',d:'Banyak AI agent bekerja bersama — CrewAI, AutoGen, AutoGPT',e:'~14 hari',tags:['ai']},
-      {t:'AI + IoT Integration',d:'Hubungkan AI dengan perangkat fisik — smart home, industri',e:'~10 hari',tags:['web4']},
-      {t:'Edge AI / TinyML',d:'AI di perangkat fisik tanpa internet — masa depan IoT dan Web4',e:'~10 hari',tags:['web4','ai']},
-      {t:'AI Safety & Alignment Dasar',d:'Etika dan keamanan AI — wajib untuk klien enterprise dan Web4',e:'~7 hari',tags:['web4','must']},
-      {t:'Bangun produk Web4 pertama',d:'AI + blockchain + decentralized — platform yang benar-benar masa depan',e:'~21 hari',tags:['must','web4']},
+    {name:'Web4 Core',project:{title:'Autonomous AI Agent',desc:'Buat AI agent yang browsing web, baca dokumen, dan tulis laporan sendiri — tanpa instruksi per langkah.'},topics:[
+      {t:'AI Autonomous Agent',d:'Agent yang bekerja mandiri dengan tujuan, bukan instruksi — ini masa depan AI engineering',e:'~14 hari',tags:['web4','ai']},
+      {t:'Decentralized AI',d:'AI yang tidak bisa disensor, dimatikan, atau dimanipulasi satu entitas — konsep dan implementasi',e:'~10 hari',tags:['web4']},
+      {t:'Semantic Web & Knowledge Graph',d:'Web yang memahami konteks, bukan hanya kata kunci — fondasi Web4',e:'~10 hari',tags:['web4']},
+      {t:'Multi-agent Systems',d:'Tim AI yang bekerja bersama seperti tim manusia — pembagian tugas, komunikasi, orchestration',e:'~14 hari',tags:['ai']},
+      {t:'Edge AI / TinyML',d:'AI di perangkat fisik tanpa cloud — masa depan IoT dan sistem yang butuh privasi tinggi',e:'~10 hari',tags:['web4','ai']},
+      {t:'AI Safety & Alignment Dasar',d:'Etika, keamanan, dan alignment — klien enterprise akan tanya ini, dan kamu perlu jawaban yang solid',e:'~7 hari',tags:['web4','must']},
+      {t:'Bangun produk Web4 pertama',d:'AI + blockchain + decentralized storage — ini yang membedakan kamu dari 99% developer',e:'~21 hari',tags:['must','web4']},
     ]},
   ]},
+
+  // ─── FASE 6: KEBEBASAN ───
   {id:'f6',title:'Fase 6 — Skala & Kebebasan',short:'Fase 6',ico:'🏆',color:'#BE185D',bg:'#FDF2F8',
    income:'Bebas finansial',
    milestones:[
-     'MRR $1.000+ dari produk atau klien yang recurring',
-     'Bisa kerja remote dari Medan tanpa bergantung satu sumber income',
-     'Punya tim atau agency sendiri'
+     'MRR $1.000+ dari produk atau klien recurring — bukan proyek satu kali',
+     'Income tidak bergantung satu klien atau satu sumber',
+     'Bisa kerja dari Medan tanpa income berkurang'
    ],
    prevId:'f5',
    groups:[
-    {name:'Milestone Kebebasan',project:{title:'Launch Day 🚀',desc:'Hari kebebasan — remote work dari Medan, SaaS live, portfolio lengkap, income USD sudah mengalir!'},topics:[
-      {t:'Portfolio 10+ proyek nyata live',d:'Web, AI, Web3, Web4 — semua bisa dilihat klien global kapan saja',e:'ongoing',tags:['must']},
-      {t:'SaaS dengan MRR $1.000+',d:'Pendapatan pasif bulanan dari produk AI sendiri',e:'ongoing',tags:['must']},
-      {t:'Agency AI — tim sendiri',d:'Hire developer lain, terima proyek besar dari klien multinasional',e:'ongoing',tags:[]},
-      {t:'Kerja remote full-time dari Medan',d:'Bebas waktu, bebas lokasi — tidak perlu Sri Lanka lagi 🇮🇩',e:'ongoing',tags:['must']},
-      {t:'Speaking di Event Tech Indonesia',d:'Jadi pembicara — cara paling cepat bangun reputasi sebagai expert AI',e:'ongoing',tags:['must']},
-      {t:'Mentoring Developer Lain',d:'Mengajarkan = memahami lebih dalam — bangun legacy dan komunitas',e:'ongoing',tags:[]},
+    {name:'Milestone Kebebasan',project:{title:'Launch Day 🚀',desc:'Hari ini income USD sudah mengalir, portfolio live, dan kamu kerja dari Medan — ini tujuannya.'},topics:[
+      {t:'Portfolio 10+ proyek live',d:'Web, AI, Web3, Web4 — semua terdokumentasi dan bisa dilihat kapan saja',e:'ongoing',tags:['must']},
+      {t:'SaaS dengan MRR $1.000+',d:'Pendapatan recurring dari produk sendiri — ini kebebasan yang sesungguhnya',e:'ongoing',tags:['must']},
+      {t:'Agency AI — tim sendiri',d:'Dari freelancer ke agency — hire orang, ambil proyek besar, scale income',e:'ongoing',tags:[]},
+      {t:'Kerja remote full-time dari Medan',d:'Bebas waktu, bebas lokasi 🇮🇩',e:'ongoing',tags:['must']},
+      {t:'Speaking di komunitas tech',d:'Berbagi ilmu — cara tercepat bangun reputasi dan credibility sebagai AI expert',e:'ongoing',tags:['must']},
+      {t:'Mentoring developer lain',d:'Mengajarkan = memahami lebih dalam — bangun legacy di Medan',e:'ongoing',tags:[]},
     ]},
   ]},
-];
+];;
+
 
 var TAG_LABELS={must:'wajib',ai:'AI',web3:'Web3',web4:'Web4',tool:'tool',math:'math',biz:'bisnis'};
 var TAG_CLS={must:'t-must',ai:'t-ai',web3:'t-web3',web4:'t-web4',tool:'t-tool',math:'t-math',biz:'t-biz'};
@@ -917,10 +995,10 @@ var searchQ='';
 
 // ── STATE ──
 function getState(){
-  var s=localStorage.getItem('dimas_v12');
+  var s=localStorage.getItem('dimas_v13');
   return s?JSON.parse(s):{checks:{},projects:{},streak:0,lastDate:'',studyLog:[]};
 }
-function saveState(s){localStorage.setItem('dimas_v12',JSON.stringify(s));}
+function saveState(s){localStorage.setItem('dimas_v13',JSON.stringify(s));}
 
 function getPhasePct(p){
   var s=getState();var done=0,all=0;
@@ -959,10 +1037,13 @@ function goPage(pg){
 function buildSidebarPhases(){
   var html=PHASES.map(function(p,i){
     var pct=getPhasePct(p);
-    return '<button class="sb-item'+(i===activePhase&&currentPage==='materi'?' active':'')+'" id="sbi-'+i+'" onclick="goMateri('+i+')">'
+    var isActive=i===activePhase&&currentPage==='materi';
+    var parallelCls=p.parallel?' sb-item-parallel':'';
+    var parallelTag=p.parallel?'<span class="parallel-tag">paralel</span>':'';
+    return '<button class="sb-item'+parallelCls+(isActive?' active':'')+'" id="sbi-'+i+'" onclick="goMateri('+i+')">'
       +'<div class="sb-ico" style="background:'+p.bg+';font-size:13px">'+p.ico+'</div>'
       +'<div class="sb-info">'
-        +'<div class="sb-name">'+p.short+'</div>'
+        +'<div class="sb-name">'+p.short+parallelTag+'</div>'
         +'<div class="sb-prog-row">'
           +'<div class="sb-bar"><div class="sb-bar-fill" style="width:'+pct+'%;background:'+p.color+'"></div></div>'
           +'<span class="sb-pct">'+pct+'%</span>'
@@ -1132,7 +1213,8 @@ function buildMateri(){
         +'<div class="ph-ico-lg" style="background:'+p.bg+'">'+p.ico+'</div>'
         +'<div>'
           +'<div class="ph-title-lg" style="color:'+p.color+'">'+p.title+'</div>'
-          +'<span class="ph-income-pill" style="background:'+p.bg+';color:'+p.color+'">💰 '+p.income+'</span>'
+          +(p.parallel?'<span class="phase-parallel-badge">🔄 Fase Paralel — Dimulai Sekarang, Jalan Terus</span>':'')
+          +'<span class="ph-income-pill" style="background:'+p.bg+';color:'+p.color+'">'+(!p.parallel?'💰 ':'')+p.income+'</span>'
         +'</div>'
       +'</div>'
       +'<div class="ph-prog-row">'
